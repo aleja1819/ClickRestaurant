@@ -32,7 +32,7 @@
                         <!-- Barra de navegación -->
                         <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
                             <!-- Brand -->
-                            <a class="navbar-brand" href="#">Pizza Express</a><br />
+                            <a class="navbar-brand" href="#">Pizza Express la lleva</a><br />
                             <br />
 
                             <!-- Toggler/collapsibe Button -->
