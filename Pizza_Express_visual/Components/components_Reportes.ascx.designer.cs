@@ -10,6 +10,6 @@
 namespace Pizza_Express_visual.Components {
     
     
-    public partial class component_Bienvenidos {
+    public partial class components_Reportes {
     }
 }

@@ -77,8 +77,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Components\components_CartaMenu.ascx" />
+    <Content Include="Components\components_Inventario.ascx" />
     <Content Include="Components\components_montoInicial.ascx" />
+    <Content Include="Components\components_NumeroMesa.ascx" />
+    <Content Include="Components\components_Proveedores.ascx" />
+    <Content Include="Components\components_RegistrarProductos.ascx" />
+    <Content Include="Components\components_Reportes.ascx" />
+    <Content Include="Components\components_Reservas.ascx" />
+    <Content Include="Components\components_Usuarios.ascx" />
     <Content Include="Components\component_Bienvenidos.ascx" />
+    <Content Include="Components\component_Comanda.ascx" />
     <Content Include="Content\animate.css" />
     <Content Include="Content\animate.min.css" />
     <Content Include="Content\bootstrap-grid.css" />
@@ -153,6 +162,20 @@
     <Content Include="Scripts\popper-utils.js.map" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\components_CartaMenu.ascx.cs">
+      <DependentUpon>components_CartaMenu.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Components\components_CartaMenu.ascx.designer.cs">
+      <DependentUpon>components_CartaMenu.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Components\components_Inventario.ascx.cs">
+      <DependentUpon>components_Inventario.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Components\components_Inventario.ascx.designer.cs">
+      <DependentUpon>components_Inventario.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Components\components_montoInicial.ascx.cs">
       <DependentUpon>components_montoInicial.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -160,12 +183,61 @@
     <Compile Include="Components\components_montoInicial.ascx.designer.cs">
       <DependentUpon>components_montoInicial.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Components\components_NumeroMesa.ascx.cs">
+      <DependentUpon>components_NumeroMesa.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Components\components_NumeroMesa.ascx.designer.cs">
+      <DependentUpon>components_NumeroMesa.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Components\components_Proveedores.ascx.cs">
+      <DependentUpon>components_Proveedores.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Components\components_Proveedores.ascx.designer.cs">
+      <DependentUpon>components_Proveedores.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Components\components_RegistrarProductos.ascx.cs">
+      <DependentUpon>components_RegistrarProductos.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Components\components_RegistrarProductos.ascx.designer.cs">
+      <DependentUpon>components_RegistrarProductos.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Components\components_Reportes.ascx.cs">
+      <DependentUpon>components_Reportes.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Components\components_Reportes.ascx.designer.cs">
+      <DependentUpon>components_Reportes.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Components\components_Reservas.ascx.cs">
+      <DependentUpon>components_Reservas.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Components\components_Reservas.ascx.designer.cs">
+      <DependentUpon>components_Reservas.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Components\components_Usuarios.ascx.cs">
+      <DependentUpon>components_Usuarios.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Components\components_Usuarios.ascx.designer.cs">
+      <DependentUpon>components_Usuarios.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Components\component_Bienvenidos.ascx.cs">
       <DependentUpon>component_Bienvenidos.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Components\component_Bienvenidos.ascx.designer.cs">
       <DependentUpon>component_Bienvenidos.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Components\component_Comanda.ascx.cs">
+      <DependentUpon>component_Comanda.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Components\component_Comanda.ascx.designer.cs">
+      <DependentUpon>component_Comanda.ascx</DependentUpon>
     </Compile>
     <Compile Include="Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>

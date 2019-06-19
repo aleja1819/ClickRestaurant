@@ -9,23 +9,19 @@ namespace Pizza_Express_visual.Services
 {
     public class QueryUsuario
     {
-        // datos de 2 tablas 
+ 
 
-        //1 join
-
-        //2 propiedades de nav.
-
-        public List<object> listaUsuario() {
+        public List<object> filtrarUsuarios() {
             try
             {
                 using (bd1 contexto = new bd1())
                 {
                     //var r = from u in contexto.Usuario
-                    //      select u;
+                    //        select u;
                     var r = from u in contexto.Usuario
                             join t in contexto.TipoUsuario
                                 on u.codigo_tipoUsuario equals t.codigo_tipoUsuario
-                            select new { u.nombre_usuario,t.nombre_tipoUsuario};
+                            select new { u.rut_usuario, u.nombre_usuario, u.email_usuario, u.contraseña_usuario, t.nombre_tipoUsuario};
 
                     return r.ToList<object>();
 

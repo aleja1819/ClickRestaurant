@@ -49,6 +49,33 @@ namespace Pizza_Express_visual {
         protected global::System.Web.UI.WebControls.LinkButton Menu_ventas;
         
         /// <summary>
+        /// Control Menu_MontoInicial.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Menu_MontoInicial;
+        
+        /// <summary>
+        /// Control Menu_Reservas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Menu_Reservas;
+        
+        /// <summary>
+        /// Control Menu_NumeroMesa.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Menu_NumeroMesa;
+        
+        /// <summary>
         /// Control Menu_administracion.
         /// </summary>
         /// <remarks>
@@ -56,6 +83,60 @@ namespace Pizza_Express_visual {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton Menu_administracion;
+        
+        /// <summary>
+        /// Control Menu_usuarios.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Menu_usuarios;
+        
+        /// <summary>
+        /// Control Menu_Proveedores.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Menu_Proveedores;
+        
+        /// <summary>
+        /// Control Menu_RegistrarProductos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Menu_RegistrarProductos;
+        
+        /// <summary>
+        /// Control Menu_Inventario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Menu_Inventario;
+        
+        /// <summary>
+        /// Control Menu_CartaMenu.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Menu_CartaMenu;
+        
+        /// <summary>
+        /// Control Menu_Reportes.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Menu_Reportes;
         
         /// <summary>
         /// Control login.
@@ -94,31 +175,166 @@ namespace Pizza_Express_visual {
         protected global::System.Web.UI.WebControls.MultiView mcontenedor;
         
         /// <summary>
-        /// Control vProducto.
+        /// Control vMonto_Inicial.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View vProducto;
+        protected global::System.Web.UI.WebControls.View vMonto_Inicial;
         
         /// <summary>
-        /// Control vUsuario.
+        /// Control components_montoInicial.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View vUsuario;
+        protected global::Pizza_Express_visual.Components.components_venta components_montoInicial;
         
         /// <summary>
-        /// Control vAsignarMenu.
+        /// Control vReservas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View vAsignarMenu;
+        protected global::System.Web.UI.WebControls.View vReservas;
+        
+        /// <summary>
+        /// Control components_Reservas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::Pizza_Express_visual.Components.components_Reservas components_Reservas;
+        
+        /// <summary>
+        /// Control vNumero_mesa.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View vNumero_mesa;
+        
+        /// <summary>
+        /// Control components_NumeroMesa.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::Pizza_Express_visual.Components.components_NumeroMesa components_NumeroMesa;
+        
+        /// <summary>
+        /// Control vUsuarios.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View vUsuarios;
+        
+        /// <summary>
+        /// Control components_Usuarios.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::Pizza_Express_visual.Components.components_Usuarios components_Usuarios;
+        
+        /// <summary>
+        /// Control vProveedores.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View vProveedores;
+        
+        /// <summary>
+        /// Control components_Proveedores.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::Pizza_Express_visual.Components.components_Proveedores components_Proveedores;
+        
+        /// <summary>
+        /// Control vRegistrar_producto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View vRegistrar_producto;
+        
+        /// <summary>
+        /// Control components_RegistrarProductos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::Pizza_Express_visual.Components.components_RegistrarProductos components_RegistrarProductos;
+        
+        /// <summary>
+        /// Control vInventario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View vInventario;
+        
+        /// <summary>
+        /// Control components_Inventario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::Pizza_Express_visual.Components.components_Inventario components_Inventario;
+        
+        /// <summary>
+        /// Control vCarta_menu.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View vCarta_menu;
+        
+        /// <summary>
+        /// Control components_CartaMenu.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::Pizza_Express_visual.Components.components_CartaMenu components_CartaMenu;
+        
+        /// <summary>
+        /// Control vReportes.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View vReportes;
+        
+        /// <summary>
+        /// Control components_Reportes.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::Pizza_Express_visual.Components.components_Reportes components_Reportes;
         
         /// <summary>
         /// Control vBienvenida.

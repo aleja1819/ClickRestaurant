@@ -14,7 +14,7 @@ namespace Pizza_Express_visual
             if (!IsPostBack)
             {
                 mcontenedor.SetActiveView(vBienvenida);
-                
+
             }
         }
 
@@ -27,6 +27,60 @@ namespace Pizza_Express_visual
         protected void Menu_home_Click(object sender, EventArgs e)
         {
             mcontenedor.SetActiveView(vBienvenida);
+            uContenido.Update();
+        }
+
+        protected void Menu_MontoInicial_Click(object sender, EventArgs e)
+        {
+            mcontenedor.SetActiveView(vMonto_Inicial);
+            uContenido.Update();
+        }
+
+        protected void Menu_CartaMenu_Click(object sender, EventArgs e)
+        {
+            mcontenedor.SetActiveView(vCarta_menu);
+            uContenido.Update();
+        }
+
+        protected void Menu_Inventario_Click(object sender, EventArgs e)
+        {
+            mcontenedor.SetActiveView(vInventario);
+            uContenido.Update();
+        }
+
+        protected void Menu_NumeroMesa_Click(object sender, EventArgs e)
+        {
+            mcontenedor.SetActiveView(vNumero_mesa);
+            uContenido.Update();
+        }
+
+        protected void Menu_Proveedores_Click(object sender, EventArgs e)
+        {
+            mcontenedor.SetActiveView(vProveedores);
+            uContenido.Update();
+        }
+
+        protected void Menu_RegistrarProductos_Click(object sender, EventArgs e)
+        {
+            mcontenedor.SetActiveView(vRegistrar_producto);
+            uContenido.Update();
+        }
+
+        protected void Menu_Reportes_Click(object sender, EventArgs e)
+        {
+            mcontenedor.SetActiveView(vReportes);
+            uContenido.Update();
+        }
+
+        protected void Menu_Reservas_Click(object sender, EventArgs e)
+        {
+            mcontenedor.SetActiveView(vReservas);
+            uContenido.Update();
+        }
+
+        protected void Menu_usuarios_Click(object sender, EventArgs e)
+        {
+            mcontenedor.SetActiveView(vUsuarios);
             uContenido.Update();
         }
     }

@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="components_RegistrarProductos.ascx.cs" Inherits="Pizza_Express_visual.Components.components_RegistrarProductos" %>
+<h4>REGISTRAR PRODUCTOS</h4>

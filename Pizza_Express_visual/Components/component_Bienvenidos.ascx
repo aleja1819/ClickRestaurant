@@ -9,9 +9,3 @@
     </div> 
 </div>
 
-<asp:GridView  runat="server" ID="t1" AutoGenerateColumns="false">
-    <Columns>
-        <asp:BoundField  DataField="nombre_usuario" HeaderText="User"/>
-        <asp:BoundField  DataField="nombre_tipoUsuario" HeaderText="User"/>
-    </Columns>
-</asp:GridView>
