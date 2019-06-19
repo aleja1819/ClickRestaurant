@@ -9,7 +9,9 @@ namespace Pizza_Express_visual.Services
 {
     public class QueryUsuario
     {
- 
+
+        static List<QueryUsuario> queryUsuarios = new List<QueryUsuario>();
+
         //LINQ TO ENTITY
         public List<object> filtrarUsuarios() {
             try
@@ -76,5 +78,11 @@ namespace Pizza_Express_visual.Services
                 return false;
             }
         }
-    }
+        //LISTAR TODOS LOS USUARIOS
+        public List<QueryUsuario> ListarTodosLosUsuarios()
+        {
+            return queryUsuarios.ToList();
+        }
+
+        }
 }

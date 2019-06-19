@@ -85,5 +85,9 @@ namespace Pizza_Express_visual
             uContenido.Update();
         }
 
+        protected void bingresar_login_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
