@@ -64,13 +64,13 @@
                             <ul class="nav nav-default">
                                 <li class="nav-item dropdown show">
 
-                                    <asp:LinkButton Style="color: lightsteelblue" Visible="false" Class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" ID="Menu_ventas" runat="server"
+                                    <asp:LinkButton Style="color: lightsteelblue"  Class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" ID="Menu_ventas" runat="server"
                                         aria-haspopup="true" aria-expanded="true"> 
                                                 <i class="fas fa-dollar-sign fa-2x"></i> Ventas</asp:LinkButton>
                                     <div class="dropdown-menu show" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
-                                        <a class="dropdown-item" href="#">Monto Inicial</a>
-                                        <a class="dropdown-item" href="#">Reservas</a>
-                                        <a class="dropdown-item" href="#">Número de mesa</a>
+                                        <asp:LinkButton runat="server" CssClass="dropdown-item">Monto Inicial</asp:LinkButton>
+                                        <asp:LinkButton runat="server" CssClass="dropdown-item">Reservas</asp:LinkButton>
+                                        <asp:LinkButton runat="server" CssClass="dropdown-item">Número de mesa</asp:LinkButton>
                                     </div>
                                 </li>
                             </ul>
@@ -79,16 +79,16 @@
                             <ul class="nav nav-default">
                                 <li class="nav-item dropdown show">
 
-                                    <asp:LinkButton Style="color: lightsteelblue" Visible="false" CssClass="nav-link dropdown-toggle" data-toggle="dropdown" href="#" ID="Menu_administracion" runat="server"
+                                    <asp:LinkButton Style="color: lightsteelblue"  CssClass="nav-link dropdown-toggle" data-toggle="dropdown" href="#" ID="Menu_administracion" runat="server"
                                         aria-haspopup="true" aria-expanded="true">  
                                                 <i class="fas fa-users-cog fa-2x"></i> Administración</asp:LinkButton>
                                     <div class="dropdown-menu show" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
-                                        <a class="dropdown-item" href="#">Usuarios</a>
-                                        <a class="dropdown-item" href="#">Proveedores</a>
-                                        <a class="dropdown-item" href="#">Registrar Productos</a>
-                                        <a class="dropdown-item" href="#">Inventario</a>
-                                        <a class="dropdown-item" href="#">Carta Menú</a>
-                                        <a class="dropdown-item" href="#">Informes</a>
+                                        <asp:LinkButton runat="server" CssClass="dropdown-item">Usuarios</asp:LinkButton>
+                                        <asp:LinkButton runat="server" CssClass="dropdown-item">Proveedores</asp:LinkButton>
+                                        <asp:LinkButton runat="server" CssClass="dropdown-item">Registrar Productos</asp:LinkButton>
+                                        <asp:LinkButton runat="server" CssClass="dropdown-item">Inventario</asp:LinkButton>
+                                         <asp:LinkButton runat="server" CssClass="dropdown-item">Carta Menú</asp:LinkButton>
+                                        <asp:LinkButton runat="server" CssClass="dropdown-item">Reportes</asp:LinkButton>
                                     </div>
                                 </li>
                             </ul>
