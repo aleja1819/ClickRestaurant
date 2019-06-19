@@ -214,7 +214,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Cerrar</button>
-                                <asp:Button runat="server" ValidationGroup="grupo1" ID="Mostrar" Text="Ingresar" CssClass="btn btn-info float-right" />
+                                <asp:Button runat="server" ValidationGroup="grupo1" OnClick="bingresar_login_Click" ID="bingresar_login" Text="Ingresar" CssClass="btn btn-info float-right" />
                             </div>
                         </div>
                     </ContentTemplate>
