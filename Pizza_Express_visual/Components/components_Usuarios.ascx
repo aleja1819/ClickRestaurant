@@ -1,4 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="components_Usuarios.ascx.cs" Inherits="Pizza_Express_visual.Components.components_Usuarios" %>
+<link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cerulean/bootstrap.min.css" rel="stylesheet" integrity="sha384-C++cugH8+Uf86JbNOnQoBweHHAe/wVKN/mb0lTybu/NZ9sEYbd+BbbYtNpWYAsNP" crossorigin="anonymous">
 
 <div class="container">
     <div class="row">
@@ -30,7 +31,7 @@
         <div class="col-md-6">
             <br />
             <br />
-            <asp:LinkButton runat="server" CssClass="btn btn-success" OnClick="bRegistrarUsuario_Click" ID="bRegistrarUsuario">
+            <asp:LinkButton runat="server" CssClass="btn btn-success" OnClick="bRegistrarUsuarioModal_Click" ID="bRegistrarUsuario">
                        <i class="fas fa-plus"></i> Registrar Usuarios
             </asp:LinkButton>
             <br />
@@ -41,7 +42,7 @@
 
         <%--TABLA GRIDVIEW--%>
         <div class="col align-content-center">
-            <asp:GridView runat="server" ID="idTabla" CssClass="table table-bordered table-center " AutoGenerateColumns="false" AllowPaging="true"
+            <asp:GridView runat="server" ID="idTabla" CssClass="table table-bordered table-center " AutoGenerateColumns="false"
                 OnRowCommand="idTabla_RowCommand">
                 <HeaderStyle CssClass="btn-dark" />
 
@@ -52,12 +53,12 @@
                     <asp:BoundField DataField="contraseña_usuario" HeaderText="Contraseña" />
                     <asp:BoundField DataField="nombre_tipoUsuario" HeaderText="Tipo Usuario" />
 
-                    <asp:ButtonField ButtonType="Link" CommandName="ideditar" ControlStyle-CssClass="btn btn-light" Text="Editar" />
+                    <asp:ButtonField ButtonType="Link" CommandName="ideditar"  ControlStyle-CssClass="btn btn-light" Text="Editar" />
                     <asp:ButtonField ButtonType="Link" CommandName="ideliminar" ControlStyle-CssClass="btn btn-danger" Text="Eliminar" />
 
                 </Columns>
             </asp:GridView>
-            <%-- OnPageIndexChanging="idTabla_PageIndexChanging";PageSize="2--%>
+            <%-- OnPageIndexChanging="idTabla_PageIndexChanging";PageSize="2; AllowPaging="true--%>
         </div>
     </div>
 
@@ -124,7 +125,7 @@
 
                             <%--CONTRASEÑA USUARIO--%>
                             <div class="form-group">
-                                 <label for="tclave">Contraseña</label>
+                                <label for="tclave">Contraseña</label>
                                 <asp:TextBox runat="server" ID="tclave" TextMode="Password" placeholder="Contraseña" CssClass="form-control bg-secondary"></asp:TextBox>
 
                                 <%--VALIDADOR DE CAMPOS REQUERIDOS--%>
@@ -137,28 +138,39 @@
                             </div>
 
                             <%--TIPO USUARIO--%>
-                            <label for="fTipoUsuario">Tipo Usuario  </label><br />
-                            <asp:DropDownList runat="server" ID="fTipoUsuario" CssClass="btn btn-secondary">
-            
-                                <asp:ListItem Value="0" Text="Administrador de venta" Selected="True"></asp:ListItem>
-                                <asp:ListItem Value="1" Text="Administrador de inventario"></asp:ListItem>
-                                 <asp:ListItem Value="2" Text="Garzón"></asp:ListItem>
-                                 <asp:ListItem Value="3" Text="Cajero"></asp:ListItem>
-                               
+                            <div class="form-group">
+                            <label for="fTipoUsuario">Tipo Usuario  </label>
+                            <br />
+                            <asp:DropDownList runat="server" ID="fTipoUsuario" CssClass="form-control"
+                                DataTextField="nombre_tipoUsuario" DataValueField="codigo_tipoUsuario">
                             </asp:DropDownList>
-
+                            </div>
+                           
                             <asp:Label runat="server" ID="mensaje" Text="Mensaje" Visible="false"></asp:Label>
+                             
 
                         </div>
 
                         <div class="modal-footer btn-align-content-center">
                             <asp:Button runat="server" ValidationGroup="grupo1" ID="beditar" Text="Actualizar" CssClass="btn btn-success float-right" />
-                            <asp:Button runat="server" ValidationGroup="grupo1" ID="bregistrar" Text="Registrar" CssClass="btn btn-success float-right" />     
+                            <asp:Button runat="server" ValidationGroup="grupo1" ID="bregistrarUsuario" OnClick="bregistrarUsuario_Click" Text="Registrar" CssClass="btn btn-success float-right" />
                         </div>
 
+                        <%--ALERTA DE MENSAJE--%>
+                            <asp:Panel runat="server" ID="alerta" Visible="false">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="alert-heading">Mensaje del sistema</h4>
+                                <asp:Label ID="mensaje2" runat="server"></asp:Label>
+                                <hr />
+                                <%=DateTime.Now %>
+                            </asp:Panel>
                     </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
+
+
         </div>
     </div>
 </div>

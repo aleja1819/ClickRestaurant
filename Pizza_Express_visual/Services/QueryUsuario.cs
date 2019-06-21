@@ -51,7 +51,7 @@ namespace Pizza_Express_visual.Services
                     return respuestas == 1; //VALIDA SI LO ANGREGA O NO, SI ES UN 1 ES TRUE SI NO AGREGAR NADA ES FALSE
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
 
                 return false;
