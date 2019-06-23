@@ -13,6 +13,15 @@ namespace Pizza_Express_visual.Components {
     public partial class components_Usuarios {
         
         /// <summary>
+        /// Control uContenedorTest.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel uContenedorTest;
+        
+        /// <summary>
         /// Control tdatoBuscar.
         /// </summary>
         /// <remarks>
@@ -121,22 +130,31 @@ namespace Pizza_Express_visual.Components {
         protected global::System.Web.UI.WebControls.Label mensaje;
         
         /// <summary>
-        /// Control beditar.
+        /// Control idtest.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button beditar;
+        protected global::System.Web.UI.WebControls.Button idtest;
         
         /// <summary>
-        /// Control bregistrarUsuario.
+        /// Control ideditar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button bregistrarUsuario;
+        protected global::System.Web.UI.WebControls.Button ideditar;
+        
+        /// <summary>
+        /// Control idregistrar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button idregistrar;
         
         /// <summary>
         /// Control alerta.

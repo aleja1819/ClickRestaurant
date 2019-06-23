@@ -10,6 +10,8 @@
 <%@ Register Src="~/Components/components_Reportes.ascx" TagPrefix="uc1" TagName="components_Reportes" %>
 <%@ Register Src="~/Components/components_Reservas.ascx" TagPrefix="uc1" TagName="components_Reservas" %>
 <%@ Register Src="~/Components/components_Usuarios.ascx" TagPrefix="uc1" TagName="components_Usuarios" %>
+<%--<%@ Register Src="~/Components/WebUserControl1.ascx" TagPrefix="uc1" TagName="WebUserControl1" %>--%>
+
 
 
 
@@ -141,6 +143,8 @@
                     </asp:View>
                     <asp:View runat="server" ID="vUsuarios">
                         <uc1:components_Usuarios runat="server" ID="components_Usuarios" />
+                       <%-- <uc1:WebUserControl1 runat="server" id="WebUserControl1" />--%>
+
                     </asp:View>
                     <asp:View runat="server" ID="vProveedores">
                         <uc1:components_Proveedores runat="server" ID="components_Proveedores" />

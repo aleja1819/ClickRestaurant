@@ -39,5 +39,10 @@ namespace Pizza_Express_visual.Models
         public virtual TipoUsuario TipoUsuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Turno> Turno { get; set; }
+
+        internal static void RemoveAll(Func<object, object> p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -59,13 +59,13 @@ namespace Pizza_Express_visual.Services
         }
 
         //ELIMINAR USUARIO
-        public bool eliminarUsuario(int id_usuario) {
+        public bool eliminarUsuario(string rut_usuario) {
 
             try
             {
                 using (bd1 contexto = new bd1())
                 {
-                    var user = contexto.Usuario.Find(id_usuario);
+                    var user = contexto.Usuario.Find(rut_usuario);
 
                     contexto.Usuario.Remove(user);
 
@@ -73,7 +73,7 @@ namespace Pizza_Express_visual.Services
                     return respuesta == 1;
                 }
             }
-            catch (Exception e)
+            catch (Exception )
             {
                 return false;
             }
