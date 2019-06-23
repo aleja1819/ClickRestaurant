@@ -13,13 +13,13 @@ namespace Pizza_Express_visual.Components {
     public partial class components_Usuarios {
         
         /// <summary>
-        /// Control uContenedorTest.
+        /// Control uContenedorUsuario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel uContenedorTest;
+        protected global::System.Web.UI.UpdatePanel uContenedorUsuario;
         
         /// <summary>
         /// Control tdatoBuscar.
@@ -47,6 +47,15 @@ namespace Pizza_Express_visual.Components {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button idBuscarUsuario;
+        
+        /// <summary>
+        /// Control mensaje.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label mensaje;
         
         /// <summary>
         /// Control bRegistrarUsuario.
@@ -121,31 +130,13 @@ namespace Pizza_Express_visual.Components {
         protected global::System.Web.UI.WebControls.DropDownList fTipoUsuario;
         
         /// <summary>
-        /// Control mensaje.
+        /// Control ideditarUsuarioBoton.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label mensaje;
-        
-        /// <summary>
-        /// Control idtest.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button idtest;
-        
-        /// <summary>
-        /// Control ideditar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ideditar;
+        protected global::System.Web.UI.WebControls.Button ideditarUsuarioBoton;
         
         /// <summary>
         /// Control idregistrar.

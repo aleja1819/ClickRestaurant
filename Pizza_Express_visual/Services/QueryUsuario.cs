@@ -20,10 +20,11 @@ namespace Pizza_Express_visual.Services
                 {
                     //var r = from u in contexto.Usuario
                     //        select u;
+
                     var r = from u in contexto.Usuario
                             join t in contexto.TipoUsuario
-                                on u.codigo_tipoUsuario equals t.codigo_tipoUsuario
-                            select new { u.rut_usuario, u.nombre_usuario, u.email_usuario, u.contraseña_usuario, t.nombre_tipoUsuario};
+                            on u.codigo_tipoUsuario equals t.codigo_tipoUsuario
+                            select new { u.codigo_usuario, u.rut_usuario, u.nombre_usuario, u.email_usuario, u.contraseña_usuario, t.nombre_tipoUsuario };
 
                     return r.ToList<object>();
 
@@ -32,7 +33,7 @@ namespace Pizza_Express_visual.Services
             catch (Exception)
             {
                 return null;
-                
+
             }
         }
 
@@ -59,30 +60,51 @@ namespace Pizza_Express_visual.Services
         }
 
         //ELIMINAR USUARIO
-        public bool eliminarUsuario(string rut_usuario) {
+        public bool eliminarUsuario(Usuario codigo_user)
+        {
 
             try
             {
                 using (bd1 contexto = new bd1())
                 {
-                    var user = contexto.Usuario.Find(rut_usuario);
+                    var user = contexto.Usuario.Find(codigo_user);
 
                     contexto.Usuario.Remove(user);
+                    contexto.SaveChanges();
 
                     int respuesta = contexto.SaveChanges();
                     return respuesta == 1;
                 }
             }
-            catch (Exception )
+            catch (Exception)
             {
                 return false;
             }
-        }
-        //LISTAR TODOS LOS USUARIOS
-        public List<QueryUsuario> ListarTodosLosUsuarios()
-        {
-            return queryUsuarios.ToList();
-        }
 
         }
+
+        public bool editarUsuario(Usuario codigo_user) {
+
+            try
+            {
+                using (bd1 contexto = new bd1()) {
+
+
+                    var user = contexto.Usuario.Find(codigo_user);
+                    contexto.Usuario.First(u => u.codigo_usuario.Equals(user));
+                    contexto.SaveChanges();
+
+                    int respuesta = contexto.SaveChanges();
+                    return respuesta == 1;
+
+                }
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
+
+    }
 }

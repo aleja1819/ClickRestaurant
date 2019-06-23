@@ -3,16 +3,20 @@
 
 <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cerulean/bootstrap.min.css" rel="stylesheet" integrity="sha384-C++cugH8+Uf86JbNOnQoBweHHAe/wVKN/mb0lTybu/NZ9sEYbd+BbbYtNpWYAsNP" crossorigin="anonymous">
 
-<div class="row">
-    <div class="container">   
-            <br />
-            <br />     
-                <asp:UpdatePanel runat="server" ID="uContenedorTest" UpdateMode="Conditional" ChildrenAsTriggers="true">
+<div class="container">
+    <div class="row">   
+            
+         <div class="col-md-12">
+
+                <asp:UpdatePanel runat="server" ID="uContenedorUsuario" UpdateMode="Conditional" ChildrenAsTriggers="true">
                     <ContentTemplate>
-                        
-                            <div class="col-md-12">
+                         <br />
+                         <br />  
+                                         
                                  <%--PRIMERA COLUMNA--%>
+                        <div class="row">
                                 <div class="col-md-6">
+                                   
                                 <div class="input-group mb-2">
                                     <asp:TextBox runat="server" ID="tdatoBuscar"
                                         CssClass="form-control" placeholder="Ingrese datos"></asp:TextBox>
@@ -26,13 +30,15 @@
                                             <%--LO QUE DENTRO--%>
                                         </asp:DropDownList>
 
-                                        <asp:Button runat="server" ID="idBuscarUsuario" Text="buscar" CssClass="btn btn-success" />
+                                        <asp:Button runat="server" ID="idBuscarUsuario" OnClick="idBuscarUsuario_Click" Text="buscar" CssClass="btn btn-success" />
                                     </div>
                                 </div>                     
-                       </div>
+                             </div> <%--CIERRE COLUMNA--%>
+                        
                         <%--SEGUNDA COLUMNA--%>
+                        
                         <div class="col-md-6">
-
+                            <asp:Label runat="server" ID="mensaje" Text="Mensaje" Visible="false"></asp:Label>
                                 <asp:LinkButton runat="server" CssClass="btn btn-success" OnClick="bRegistrarUsuarioModal_Click" ID="bRegistrarUsuario">
                        <i class="fas fa-plus"></i> Registrar Usuarios
                                 </asp:LinkButton>
@@ -40,8 +46,10 @@
                                 <br />
                                 <br />
                                 <br />
-                            </div>
+                            </div> <%--CIERRE COLUMNA--%>
+                        </div>
                         
+                       
                         <%--TABLA GRIDVIEW--%>
                         <div class="col align-content-center">
                             <asp:GridView runat="server" ID="idTabla" CssClass="table table-bordered table-center " AutoGenerateColumns="false"
@@ -49,6 +57,8 @@
                                 <HeaderStyle CssClass="btn-dark" />
 
                                 <Columns>
+                                    <asp:BoundField DataField="codigo_usuario" HeaderStyle-CssClass="ocultarCol" 
+                                    ItemStyle-CssClass="ocultarCol" HeaderText="codigo"  />
                                     <asp:BoundField DataField="rut_usuario" HeaderText="Rut" />
                                     <asp:BoundField DataField="nombre_usuario" HeaderText="Nombre Usuario" />
                                     <asp:BoundField DataField="email_usuario" HeaderText="Email" />
@@ -62,20 +72,20 @@
                             </asp:GridView>
                             <%-- OnPageIndexChanging="idTabla_PageIndexChanging";PageSize="2; AllowPaging="true--%>
                         </div>
-                                </div>
+                                
                   
                     </ContentTemplate>
                 </asp:UpdatePanel>
-
-           
+            
+             </div>
+          
 
             <%--ESTETICA DEL MODAL--%>
             <div class="modal" id="myModalUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg bg-light" role="document">
-                    <asp:UpdatePanel ID="uModalUsuario" runat="server">
 
+                    <asp:UpdatePanel ID="uModalUsuario" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
                         <ContentTemplate>
-
 
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -92,76 +102,42 @@
                                     <div class="form-group">
                                         <label for="trut">Rut Usuario</label>
                                         <asp:TextBox runat="server" placeholder="Rut usuario" ID="trut" CssClass="form-control bg-secondary"></asp:TextBox>
-
-                                        <%--VALIDADOR DE CAMPOS REQUERIDOS--%>
-                                        <asp:RequiredFieldValidator runat="server"
-                                            ForeColor="Red"
-                                            Display="Dynamic"
-                                            ErrorMessage="Rut Obligatorio"
-                                            ControlToValidate="trut"
-                                            ValidationGroup="grupo1"></asp:RequiredFieldValidator>
-
                                     </div>
+
                                     <%--NOMBRE USUARIO--%>
                                     <div class="form-group">
                                         <label for="tnombre">Nombre Usuario</label>
                                         <asp:TextBox runat="server" placeholder="Nombre Usuario" ID="tnombre" CssClass="form-control bg-secondary"></asp:TextBox>
-
-                                        <%--VALIDADOR DE CAMPOS REQUERIDOS--%>
-                                        <asp:RequiredFieldValidator runat="server"
-                                            ForeColor="Red"
-                                            Display="Dynamic"
-                                            ErrorMessage="Nombre Usuario Obligatorio"
-                                            ControlToValidate="tnombre"
-                                            ValidationGroup="grupo1"></asp:RequiredFieldValidator>
                                     </div>
 
                                     <%--EMAIL USUARIO--%>
                                     <div class="form-group">
                                         <label for="temail">Email Usuario</label>
                                         <asp:TextBox runat="server" placeholder="Email Usuario" ID="temail" CssClass="form-control bg-secondary"></asp:TextBox>
-
-                                        <%--VALIDADOR DE CAMPOS REQUERIDOS--%>
-                                        <asp:RequiredFieldValidator runat="server"
-                                            ForeColor="Red"
-                                            Display="Dynamic"
-                                            ErrorMessage="Nombre Usuario Obligatorio"
-                                            ControlToValidate="temail"
-                                            ValidationGroup="grupo1"></asp:RequiredFieldValidator>
                                     </div>
 
                                     <%--CONTRASEÑA USUARIO--%>
                                     <div class="form-group">
                                         <label for="tclave">Contraseña</label>
                                         <asp:TextBox runat="server" ID="tclave" TextMode="Password" placeholder="Contraseña" CssClass="form-control bg-secondary"></asp:TextBox>
-
-                                        <%--VALIDADOR DE CAMPOS REQUERIDOS--%>
-                                        <asp:RequiredFieldValidator runat="server"
-                                            ForeColor="Red"
-                                            Display="Dynamic"
-                                            ErrorMessage="Contraseña Obligatoria"
-                                            ControlToValidate="tclave"
-                                            ValidationGroup="grupo1"></asp:RequiredFieldValidator>
                                     </div>
 
                                     <%--TIPO USUARIO--%>
                                     <div class="form-group">
-                                        <label for="fTipoUsuario">Tipo Usuario  </label>
+                                        <label for="fTipoUsuario">Tipo Usuario</label>
                                         <br />
                                         <asp:DropDownList runat="server" ID="fTipoUsuario" CssClass="form-control"
                                             DataTextField="nombre_tipoUsuario" DataValueField="codigo_tipoUsuario">
                                         </asp:DropDownList>
                                     </div>
 
-                                    <asp:Label runat="server" ID="mensaje" Text="Mensaje" Visible="false"></asp:Label>
-
+                                    <%--<asp:Label runat="server" ID="mensaje" Text="Mensaje" Visible="false"></asp:Label>--%>
 
                                 </div>
 
-
                                 <div class="modal-footer">
-                                    <asp:Button runat="server" ID="idtest" OnClick="idtest_Click" />
-                                    <asp:Button runat="server" ID="ideditar" Text="Actualizar" CssClass="btn btn-success float-right" />
+                                   <%-- <asp:Button runat="server" ID="idtest" OnClick="idtest_Click" />--%>
+                                    <asp:Button runat="server" ID="ideditarUsuarioBoton" OnClick="ideditarUsuarioBoton_Click" Text="Actualizar" CssClass="btn btn-success float-right" />
                                     <asp:Button runat="server" ID="idregistrar" OnClick="idregistrarUsuario_Click" Text="Registrar" CssClass="btn btn-success float-right" />
                                 </div>
 

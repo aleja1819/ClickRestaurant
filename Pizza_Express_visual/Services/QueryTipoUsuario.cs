@@ -35,7 +35,8 @@ namespace Pizza_Express_visual.Services
         }
 
         //AGREGAR TIPO USUARIO
-        public bool addTipoUsuario(TipoUsuario tipoU) {
+        public bool addTipoUsuario(TipoUsuario tipoU)
+        {
             try
             {
                 using (bd1 contexto = new bd1())
