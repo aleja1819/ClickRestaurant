@@ -94,7 +94,7 @@
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                         <asp:LinkButton runat="server" ID="Menu_usuarios" OnClick="Menu_usuarios_Click" CssClass="dropdown-item">Usuarios</asp:LinkButton>
                                         <asp:LinkButton runat="server" ID="Menu_Proveedores" OnClick="Menu_Proveedores_Click" CssClass="dropdown-item">Proveedores</asp:LinkButton>
-                                        <asp:LinkButton runat="server" ID="Menu_RegistrarProductos" OnClick="Menu_RegistrarProductos_Click" CssClass="dropdown-item">Registrar Productos</asp:LinkButton>
+                                        <asp:LinkButton runat="server" ID="Menu_RegistrarProductos" OnClick="Menu_RegistrarProductos_Click" CssClass="dropdown-item">Productos</asp:LinkButton>
                                         <asp:LinkButton runat="server" ID="Menu_Inventario" OnClick="Menu_Inventario_Click" CssClass="dropdown-item">Inventario</asp:LinkButton>
                                         <asp:LinkButton runat="server" ID="Menu_CartaMenu" OnClick="Menu_CartaMenu_Click" CssClass="dropdown-item">Carta Menú</asp:LinkButton>
                                         <asp:LinkButton runat="server" ID="Menu_Reportes" OnClick="Menu_Reportes_Click" CssClass="dropdown-item">Reportes</asp:LinkButton>

@@ -67,13 +67,13 @@ namespace Pizza_Express_visual.Components {
         protected global::System.Web.UI.WebControls.GridView idTabla;
         
         /// <summary>
-        /// Control uModalUsuario.
+        /// Control uModalProveedor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel uModalUsuario;
+        protected global::System.Web.UI.UpdatePanel uModalProveedor;
         
         /// <summary>
         /// Control trut.

@@ -25,8 +25,9 @@ namespace Pizza_Express_visual.Components
                 //MOSTRAR LA LISTA DE LOS TIPOS DE USUARIOS DE LA BASE DE DATOS
                 fTipoProducto.DataSource = accesoTipoProducto.FiltroTipoProducto();
                 fTipoProducto.DataBind();
+
                 uContenedorProveedor.Update();
-                uModalUsuario.Update();
+                uModalProveedor.Update();
 
             }
         }
@@ -60,7 +61,7 @@ namespace Pizza_Express_visual.Components
         protected void bRegistrarProveedorModal_Click(object sender, EventArgs e)
         {
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal();", true);
-            uModalUsuario.Update();
+            uModalProveedor.Update();
             uContenedorProveedor.Update();
         }
 
@@ -68,7 +69,7 @@ namespace Pizza_Express_visual.Components
         {
             try
             {
-                
+                mensaje.Visible = true;
                 //LEER LOS DATOS INGRESADOS
                 string rut_u = trut.Text;
                 string nombre_u = tnombre.Text;
@@ -83,7 +84,7 @@ namespace Pizza_Express_visual.Components
                     nombre_tipoProducto = fTipoProducto.SelectedItem.Text
                 };
 
-                int dire = Convert.ToInt32(tdireccion.Text);
+                
                 //GUARDAR LOS DATOS EN LA LISTA
                 accesoProveedor.addProveedor(new Models.Proveedor
                 {
@@ -92,7 +93,7 @@ namespace Pizza_Express_visual.Components
                     nombre_proveedor = nombre_u,
                     apellido_paterno_proveedor = apellP,
                     apellido_materno_proveedor = apellM,
-                    direccion_proveedor = dire,
+                    direccion_proveedor = direccion,
                     TipoProducto = tipo_P
 
 
@@ -103,7 +104,7 @@ namespace Pizza_Express_visual.Components
                 idTabla.DataBind();
 
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal('hide');", true);
-                uModalUsuario.Update();
+                uModalProveedor.Update();
                 uContenedorProveedor.Update();
 
 
@@ -112,7 +113,7 @@ namespace Pizza_Express_visual.Components
             }
             catch (Exception)
             {
-                
+                mensaje.Text = "NO AGREGADO";
 
             }
         }

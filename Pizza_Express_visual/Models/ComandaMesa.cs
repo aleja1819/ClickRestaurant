@@ -22,7 +22,7 @@ namespace Pizza_Express_visual.Models
     
         public int codigo_comanda { get; set; }
         public int codigo_usuario { get; set; }
-        public int numero_mesa { get; set; }
+        public string numero_mesa { get; set; }
         public System.DateTime fecha { get; set; }
     
         public virtual Mesa Mesa { get; set; }

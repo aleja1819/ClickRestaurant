@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SistemaPizzaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="SistemaPizza_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BoletaComanda">
           <Key>
             <PropertyRef Name="codigo_boleta" />
@@ -13,8 +13,8 @@
           <Property Name="fecha" Type="datetime" Nullable="false" />
           <Property Name="subTotal" Type="int" Nullable="false" />
           <Property Name="total" Type="int" Nullable="false" />
-          <Property Name="codigoMenu" Type="int" Nullable="false" />
-          <Property Name="codigoComanda" Type="int" Nullable="false" />
+          <Property Name="codigo_menu" Type="int" Nullable="false" />
+          <Property Name="codigo_comanda" Type="int" Nullable="false" />
           <Property Name="codigo_pago" Type="int" Nullable="false" />
           <Property Name="numero_caja" Type="int" Nullable="false" />
         </EntityType>
@@ -24,7 +24,7 @@
           </Key>
           <Property Name="numero_caja" Type="int" Nullable="false" />
           <Property Name="monto_caja" Type="int" Nullable="false" />
-          <Property Name="Codigo_estado" Type="int" Nullable="false" />
+          <Property Name="codigo_estado" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Categoria">
           <Key>
@@ -33,21 +33,13 @@
           <Property Name="codigo_categoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre_categoria" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
-        <EntityType Name="Ciudad">
-          <Key>
-            <PropertyRef Name="codigo_ciudad" />
-          </Key>
-          <Property Name="codigo_ciudad" Type="int" Nullable="false" />
-          <Property Name="nombre" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="Region_codigo_postal" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="Cliente">
           <Key>
             <PropertyRef Name="codigo_cliente" />
           </Key>
           <Property Name="codigo_cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre_cliente" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="calle_reparto" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="calle_reparto" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="numero_casa" Type="int" Nullable="false" />
           <Property Name="telefono_cliente" Type="int" Nullable="false" />
         </EntityType>
@@ -66,7 +58,7 @@
           </Key>
           <Property Name="codigo_comanda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="codigo_usuario" Type="int" Nullable="false" />
-          <Property Name="numero_mesa" Type="int" Nullable="false" />
+          <Property Name="numero_mesa" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="fecha" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Detalle_Mesa">
@@ -78,28 +70,18 @@
           <Property Name="codigo_comanda" Type="int" Nullable="false" />
           <Property Name="fecha_comanda" Type="date" Nullable="false" />
         </EntityType>
-        <EntityType Name="Direccion_Proveedor">
-          <Key>
-            <PropertyRef Name="codigoDireccion" />
-          </Key>
-          <Property Name="codigoDireccion" Type="int" Nullable="false" />
-          <Property Name="calle" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="numero" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="codigo_ciudad" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="Estado">
           <Key>
             <PropertyRef Name="codigo_estado" />
           </Key>
           <Property Name="codigo_estado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre_estado" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="descripcion" Type="varchar" MaxLength="45" />
+          <Property Name="nombre_estado" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="Estado_Mesa">
           <Key>
-            <PropertyRef Name="codigo_mesa" />
+            <PropertyRef Name="codigo_estado" />
           </Key>
-          <Property Name="codigo_mesa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigo_estado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre_estado" Type="varchar" MaxLength="25" Nullable="false" />
         </EntityType>
         <EntityType Name="Menu">
@@ -107,7 +89,7 @@
             <PropertyRef Name="codigo_menu" />
           </Key>
           <Property Name="codigo_menu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="idCategoria" Type="int" Nullable="false" />
+          <Property Name="codigo_categoria" Type="int" Nullable="false" />
           <Property Name="nombre_menu" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="precio_menu" Type="int" Nullable="false" />
           <Property Name="ingredientes_menu" Type="varchar" MaxLength="45" Nullable="false" />
@@ -116,8 +98,8 @@
           <Key>
             <PropertyRef Name="numero_mesa" />
           </Key>
-          <Property Name="numero_mesa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="estado" Type="int" Nullable="false" />
+          <Property Name="numero_mesa" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="codigo_estado" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Pago">
           <Key>
@@ -135,15 +117,9 @@
           </Key>
           <Property Name="codigo_recepcion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="monto_recepcion" Type="int" Nullable="false" />
-          <Property Name="fecha" Type="datetime" Nullable="false" />
-          <Property Name="Caja_numero_caja" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Pais">
-          <Key>
-            <PropertyRef Name="codigo_postal" />
-          </Key>
-          <Property Name="codigo_postal" Type="int" Nullable="false" />
-          <Property Name="nombre" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="hora" Type="time" Precision="7" Nullable="false" />
+          <Property Name="numero_caja" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Pedido">
           <Key>
@@ -166,40 +142,31 @@
         </EntityType>
         <EntityType Name="Producto_Proveedor">
           <Key>
-            <PropertyRef Name="codigoProducto" />
-            <PropertyRef Name="codigoProveedor" />
+            <PropertyRef Name="codigo_producto" />
+            <PropertyRef Name="rut_proveedor" />
           </Key>
-          <Property Name="codigoProducto" Type="int" Nullable="false" />
-          <Property Name="codigoProveedor" Type="int" Nullable="false" />
+          <Property Name="codigo_producto" Type="int" Nullable="false" />
+          <Property Name="rut_proveedor" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="fecha_ingreso_producto" Type="date" Nullable="false" />
           <Property Name="cantidad_producto" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Proveedor">
           <Key>
-            <PropertyRef Name="codigo_proveedor" />
+            <PropertyRef Name="rut_proveedor" />
           </Key>
-          <Property Name="codigo_proveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="rut_proveedor" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="nombre_proveedor" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="apellido_paterno_proveedor" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="apellido_materno_proveedor" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="codigoTipoProducto" Type="int" Nullable="false" />
-          <Property Name="direccion_proveedor" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Region">
-          <Key>
-            <PropertyRef Name="codigo_postal" />
-          </Key>
-          <Property Name="codigo_postal" Type="int" Nullable="false" />
-          <Property Name="nombre" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="Pais_codigo_postal" Type="int" Nullable="false" />
+          <Property Name="rut_proveedor" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="nombre_proveedor" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="apellido_paterno_proveedor" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="apellido_materno_proveedor" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="codigo_tipoProducto" Type="int" Nullable="false" />
+          <Property Name="direccion_proveedor" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Reserva">
           <Key>
             <PropertyRef Name="codigo_reserva" />
           </Key>
           <Property Name="codigo_reserva" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="numero_mesa" Type="int" Nullable="false" />
+          <Property Name="numero_mesa" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="nombre_reserva" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="fecha_reserva" Type="date" Nullable="false" />
           <Property Name="hora_reserva" Type="time" Precision="7" Nullable="false" />
@@ -216,23 +183,24 @@
             <PropertyRef Name="codigo_tipoProducto" />
           </Key>
           <Property Name="codigo_tipoProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre_tipoProducto" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="nombre_tipoProducto" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="TipoUsuario">
           <Key>
             <PropertyRef Name="codigo_tipoUsuario" />
           </Key>
           <Property Name="codigo_tipoUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre_tipoUsuario" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="nombre_tipoUsuario" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Turno">
           <Key>
-            <PropertyRef Name="Usuario_codigo_usuario" />
-            <PropertyRef Name="Caja_numero_caja" />
+            <PropertyRef Name="codigo_usuario" />
+            <PropertyRef Name="numero_caja" />
           </Key>
-          <Property Name="Usuario_codigo_usuario" Type="int" Nullable="false" />
-          <Property Name="Caja_numero_caja" Type="int" Nullable="false" />
-          <Property Name="fecha" Type="datetime" Nullable="false" />
+          <Property Name="codigo_usuario" Type="int" Nullable="false" />
+          <Property Name="numero_caja" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="hora" Type="time" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -240,10 +208,10 @@
           </Key>
           <Property Name="codigo_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="codigo_tipoUsuario" Type="int" Nullable="false" />
-          <Property Name="nombre_usuario" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="nombre_usuario" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="contraseña_usuario" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="rut_usuario" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="email_usuario" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="email_usuario" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="fk_BoletaComanda_Caja1">
           <End Role="Caja" Type="Self.Caja" Multiplicity="1" />
@@ -266,8 +234,8 @@
               <PropertyRef Name="codigo_comanda" />
             </Principal>
             <Dependent Role="BoletaComanda">
-              <PropertyRef Name="codigoMenu" />
-              <PropertyRef Name="codigoComanda" />
+              <PropertyRef Name="codigo_menu" />
+              <PropertyRef Name="codigo_comanda" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -291,7 +259,7 @@
               <PropertyRef Name="codigo_estado" />
             </Principal>
             <Dependent Role="Caja">
-              <PropertyRef Name="Codigo_estado" />
+              <PropertyRef Name="codigo_estado" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -327,19 +295,7 @@
               <PropertyRef Name="codigo_categoria" />
             </Principal>
             <Dependent Role="Menu">
-              <PropertyRef Name="idCategoria" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_Ciudad_Region1">
-          <End Role="Region" Type="Self.Region" Multiplicity="1" />
-          <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Region">
-              <PropertyRef Name="codigo_postal" />
-            </Principal>
-            <Dependent Role="Ciudad">
-              <PropertyRef Name="Region_codigo_postal" />
+              <PropertyRef Name="codigo_categoria" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -379,18 +335,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_Direccion_Proveedor_Ciudad1">
-          <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="1" />
-          <End Role="Direccion_Proveedor" Type="Self.Direccion_Proveedor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Ciudad">
-              <PropertyRef Name="codigo_ciudad" />
-            </Principal>
-            <Dependent Role="Direccion_Proveedor">
-              <PropertyRef Name="codigo_ciudad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_Menu_has_ComandaMesa_ComandaMesa1">
           <End Role="ComandaMesa" Type="Self.ComandaMesa" Multiplicity="1" />
           <End Role="Detalle_Mesa" Type="Self.Detalle_Mesa" Multiplicity="*" />
@@ -420,10 +364,10 @@
           <End Role="Mesa" Type="Self.Mesa" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Estado_Mesa">
-              <PropertyRef Name="codigo_mesa" />
+              <PropertyRef Name="codigo_estado" />
             </Principal>
             <Dependent Role="Mesa">
-              <PropertyRef Name="estado" />
+              <PropertyRef Name="codigo_estado" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -459,7 +403,7 @@
               <PropertyRef Name="numero_caja" />
             </Principal>
             <Dependent Role="PagoRepartidor">
-              <PropertyRef Name="Caja_numero_caja" />
+              <PropertyRef Name="numero_caja" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -471,7 +415,7 @@
               <PropertyRef Name="codigo_producto" />
             </Principal>
             <Dependent Role="Producto_Proveedor">
-              <PropertyRef Name="codigoProducto" />
+              <PropertyRef Name="codigo_producto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -480,10 +424,10 @@
           <End Role="Producto_Proveedor" Type="Self.Producto_Proveedor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Proveedor">
-              <PropertyRef Name="codigo_proveedor" />
+              <PropertyRef Name="rut_proveedor" />
             </Principal>
             <Dependent Role="Producto_Proveedor">
-              <PropertyRef Name="codigoProveedor" />
+              <PropertyRef Name="rut_proveedor" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -499,18 +443,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_Proveedor_Direccion_Proveedor1">
-          <End Role="Direccion_Proveedor" Type="Self.Direccion_Proveedor" Multiplicity="1" />
-          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Direccion_Proveedor">
-              <PropertyRef Name="codigoDireccion" />
-            </Principal>
-            <Dependent Role="Proveedor">
-              <PropertyRef Name="direccion_proveedor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_Proveedor_TipoProducto1">
           <End Role="TipoProducto" Type="Self.TipoProducto" Multiplicity="1" />
           <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="*" />
@@ -519,19 +451,7 @@
               <PropertyRef Name="codigo_tipoProducto" />
             </Principal>
             <Dependent Role="Proveedor">
-              <PropertyRef Name="codigoTipoProducto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_Region_Pais1">
-          <End Role="Pais" Type="Self.Pais" Multiplicity="1" />
-          <End Role="Region" Type="Self.Region" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Pais">
-              <PropertyRef Name="codigo_postal" />
-            </Principal>
-            <Dependent Role="Region">
-              <PropertyRef Name="Pais_codigo_postal" />
+              <PropertyRef Name="codigo_tipoProducto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -567,7 +487,7 @@
               <PropertyRef Name="numero_caja" />
             </Principal>
             <Dependent Role="Turno">
-              <PropertyRef Name="Caja_numero_caja" />
+              <PropertyRef Name="numero_caja" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -579,7 +499,7 @@
               <PropertyRef Name="codigo_usuario" />
             </Principal>
             <Dependent Role="Turno">
-              <PropertyRef Name="Usuario_codigo_usuario" />
+              <PropertyRef Name="codigo_usuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -595,28 +515,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SistemaPizzaModelStoreContainer">
+        <EntityContainer Name="SistemaPizza_DBModelStoreContainer">
           <EntitySet Name="BoletaComanda" EntityType="Self.BoletaComanda" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Caja" EntityType="Self.Caja" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Ciudad" EntityType="Self.Ciudad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comanda_reparto" EntityType="Self.Comanda_reparto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ComandaMesa" EntityType="Self.ComandaMesa" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Detalle_Mesa" EntityType="Self.Detalle_Mesa" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Direccion_Proveedor" EntityType="Self.Direccion_Proveedor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Estado" EntityType="Self.Estado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Estado_Mesa" EntityType="Self.Estado_Mesa" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mesa" EntityType="Self.Mesa" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pago" EntityType="Self.Pago" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PagoRepartidor" EntityType="Self.PagoRepartidor" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Pais" EntityType="Self.Pais" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pedido" EntityType="Self.Pedido" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Producto_Proveedor" EntityType="Self.Producto_Proveedor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Proveedor" EntityType="Self.Proveedor" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reserva" EntityType="Self.Reserva" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoPago" EntityType="Self.TipoPago" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoProducto" EntityType="Self.TipoProducto" Schema="dbo" store:Type="Tables" />
@@ -651,10 +567,6 @@
             <End Role="Categoria" EntitySet="Categoria" />
             <End Role="Menu" EntitySet="Menu" />
           </AssociationSet>
-          <AssociationSet Name="fk_Ciudad_Region1" Association="Self.fk_Ciudad_Region1">
-            <End Role="Region" EntitySet="Region" />
-            <End Role="Ciudad" EntitySet="Ciudad" />
-          </AssociationSet>
           <AssociationSet Name="fk_Comanda_reparto_Cliente1" Association="Self.fk_Comanda_reparto_Cliente1">
             <End Role="Cliente" EntitySet="Cliente" />
             <End Role="Comanda_reparto" EntitySet="Comanda_reparto" />
@@ -666,10 +578,6 @@
           <AssociationSet Name="fk_ComandaMesa_Usuario1" Association="Self.fk_ComandaMesa_Usuario1">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="ComandaMesa" EntitySet="ComandaMesa" />
-          </AssociationSet>
-          <AssociationSet Name="fk_Direccion_Proveedor_Ciudad1" Association="Self.fk_Direccion_Proveedor_Ciudad1">
-            <End Role="Ciudad" EntitySet="Ciudad" />
-            <End Role="Direccion_Proveedor" EntitySet="Direccion_Proveedor" />
           </AssociationSet>
           <AssociationSet Name="fk_Menu_has_ComandaMesa_ComandaMesa1" Association="Self.fk_Menu_has_ComandaMesa_ComandaMesa1">
             <End Role="ComandaMesa" EntitySet="ComandaMesa" />
@@ -707,17 +615,9 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Producto" EntitySet="Producto" />
           </AssociationSet>
-          <AssociationSet Name="fk_Proveedor_Direccion_Proveedor1" Association="Self.fk_Proveedor_Direccion_Proveedor1">
-            <End Role="Direccion_Proveedor" EntitySet="Direccion_Proveedor" />
-            <End Role="Proveedor" EntitySet="Proveedor" />
-          </AssociationSet>
           <AssociationSet Name="fk_Proveedor_TipoProducto1" Association="Self.fk_Proveedor_TipoProducto1">
             <End Role="TipoProducto" EntitySet="TipoProducto" />
             <End Role="Proveedor" EntitySet="Proveedor" />
-          </AssociationSet>
-          <AssociationSet Name="fk_Region_Pais1" Association="Self.fk_Region_Pais1">
-            <End Role="Pais" EntitySet="Pais" />
-            <End Role="Region" EntitySet="Region" />
           </AssociationSet>
           <AssociationSet Name="fk_Reparto_Menu1" Association="Self.fk_Reparto_Menu1">
             <End Role="Menu" EntitySet="Menu" />
@@ -744,7 +644,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="SistemaPizzaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="SistemaPizza_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="BoletaComanda">
           <Key>
             <PropertyRef Name="codigo_boleta" />
@@ -753,8 +653,8 @@
           <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="subTotal" Type="Int32" Nullable="false" />
           <Property Name="total" Type="Int32" Nullable="false" />
-          <Property Name="codigoMenu" Type="Int32" Nullable="false" />
-          <Property Name="codigoComanda" Type="Int32" Nullable="false" />
+          <Property Name="codigo_menu" Type="Int32" Nullable="false" />
+          <Property Name="codigo_comanda" Type="Int32" Nullable="false" />
           <Property Name="codigo_pago" Type="Int32" Nullable="false" />
           <Property Name="numero_caja" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Caja" Relationship="Self.fk_BoletaComanda_Caja1" FromRole="BoletaComanda" ToRole="Caja" />
@@ -767,7 +667,7 @@
           </Key>
           <Property Name="numero_caja" Type="Int32" Nullable="false" />
           <Property Name="monto_caja" Type="Int32" Nullable="false" />
-          <Property Name="Codigo_estado" Type="Int32" Nullable="false" />
+          <Property Name="codigo_estado" Type="Int32" Nullable="false" />
           <NavigationProperty Name="BoletaComanda" Relationship="Self.fk_BoletaComanda_Caja1" FromRole="Caja" ToRole="BoletaComanda" />
           <NavigationProperty Name="Estado" Relationship="Self.fk_Caja_Estado1" FromRole="Caja" ToRole="Estado" />
           <NavigationProperty Name="Pedido" Relationship="Self.fk_Caja_has_Comanda_reparto_Caja1" FromRole="Caja" ToRole="Pedido" />
@@ -782,23 +682,13 @@
           <Property Name="nombre_categoria" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Menu" Relationship="Self.fk_CartaMenu_Categoria1" FromRole="Categoria" ToRole="Menu" />
         </EntityType>
-        <EntityType Name="Ciudad">
-          <Key>
-            <PropertyRef Name="codigo_ciudad" />
-          </Key>
-          <Property Name="codigo_ciudad" Type="Int32" Nullable="false" />
-          <Property Name="nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Region_codigo_postal" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Region" Relationship="Self.fk_Ciudad_Region1" FromRole="Ciudad" ToRole="Region" />
-          <NavigationProperty Name="Direccion_Proveedor" Relationship="Self.fk_Direccion_Proveedor_Ciudad1" FromRole="Ciudad" ToRole="Direccion_Proveedor" />
-        </EntityType>
         <EntityType Name="Cliente">
           <Key>
             <PropertyRef Name="codigo_cliente" />
           </Key>
           <Property Name="codigo_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre_cliente" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="calle_reparto" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="calle_reparto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="numero_casa" Type="Int32" Nullable="false" />
           <Property Name="telefono_cliente" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Comanda_reparto" Relationship="Self.fk_Comanda_reparto_Cliente1" FromRole="Cliente" ToRole="Comanda_reparto" />
@@ -822,7 +712,7 @@
           </Key>
           <Property Name="codigo_comanda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="codigo_usuario" Type="Int32" Nullable="false" />
-          <Property Name="numero_mesa" Type="Int32" Nullable="false" />
+          <Property Name="numero_mesa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Mesa" Relationship="Self.fk_ComandaMesa_Mesa1" FromRole="ComandaMesa" ToRole="Mesa" />
           <NavigationProperty Name="Usuario" Relationship="Self.fk_ComandaMesa_Usuario1" FromRole="ComandaMesa" ToRole="Usuario" />
@@ -840,31 +730,19 @@
           <NavigationProperty Name="ComandaMesa" Relationship="Self.fk_Menu_has_ComandaMesa_ComandaMesa1" FromRole="Detalle_Mesa" ToRole="ComandaMesa" />
           <NavigationProperty Name="Menu" Relationship="Self.fk_Menu_has_ComandaMesa_Menu1" FromRole="Detalle_Mesa" ToRole="Menu" />
         </EntityType>
-        <EntityType Name="Direccion_Proveedor">
-          <Key>
-            <PropertyRef Name="codigoDireccion" />
-          </Key>
-          <Property Name="codigoDireccion" Type="Int32" Nullable="false" />
-          <Property Name="calle" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="numero" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="codigo_ciudad" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Ciudad" Relationship="Self.fk_Direccion_Proveedor_Ciudad1" FromRole="Direccion_Proveedor" ToRole="Ciudad" />
-          <NavigationProperty Name="Proveedor" Relationship="Self.fk_Proveedor_Direccion_Proveedor1" FromRole="Direccion_Proveedor" ToRole="Proveedor" />
-        </EntityType>
         <EntityType Name="Estado">
           <Key>
             <PropertyRef Name="codigo_estado" />
           </Key>
           <Property Name="codigo_estado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre_estado" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="descripcion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="nombre_estado" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Caja" Relationship="Self.fk_Caja_Estado1" FromRole="Estado" ToRole="Caja" />
         </EntityType>
         <EntityType Name="Estado_Mesa">
           <Key>
-            <PropertyRef Name="codigo_mesa" />
+            <PropertyRef Name="codigo_estado" />
           </Key>
-          <Property Name="codigo_mesa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigo_estado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre_estado" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Mesa" Relationship="Self.fk_Mesa_Estado_Mesa1" FromRole="Estado_Mesa" ToRole="Mesa" />
         </EntityType>
@@ -873,7 +751,7 @@
             <PropertyRef Name="codigo_menu" />
           </Key>
           <Property Name="codigo_menu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idCategoria" Type="Int32" Nullable="false" />
+          <Property Name="codigo_categoria" Type="Int32" Nullable="false" />
           <Property Name="nombre_menu" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="precio_menu" Type="Int32" Nullable="false" />
           <Property Name="ingredientes_menu" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
@@ -885,8 +763,8 @@
           <Key>
             <PropertyRef Name="numero_mesa" />
           </Key>
-          <Property Name="numero_mesa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="estado" Type="Int32" Nullable="false" />
+          <Property Name="numero_mesa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="codigo_estado" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ComandaMesa" Relationship="Self.fk_ComandaMesa_Mesa1" FromRole="Mesa" ToRole="ComandaMesa" />
           <NavigationProperty Name="Estado_Mesa" Relationship="Self.fk_Mesa_Estado_Mesa1" FromRole="Mesa" ToRole="Estado_Mesa" />
           <NavigationProperty Name="Reserva" Relationship="Self.fk_MesaReserva_Mesa1" FromRole="Mesa" ToRole="Reserva" />
@@ -909,17 +787,10 @@
           </Key>
           <Property Name="codigo_recepcion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="monto_recepcion" Type="Int32" Nullable="false" />
-          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Caja_numero_caja" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="hora" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="numero_caja" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Caja" Relationship="Self.fk_PagoRepartidor_Caja1" FromRole="PagoRepartidor" ToRole="Caja" />
-        </EntityType>
-        <EntityType Name="Pais">
-          <Key>
-            <PropertyRef Name="codigo_postal" />
-          </Key>
-          <Property Name="codigo_postal" Type="Int32" Nullable="false" />
-          <Property Name="nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Region" Relationship="Self.fk_Region_Pais1" FromRole="Pais" ToRole="Region" />
         </EntityType>
         <EntityType Name="Pedido">
           <Key>
@@ -946,11 +817,11 @@
         </EntityType>
         <EntityType Name="Producto_Proveedor">
           <Key>
-            <PropertyRef Name="codigoProducto" />
-            <PropertyRef Name="codigoProveedor" />
+            <PropertyRef Name="codigo_producto" />
+            <PropertyRef Name="rut_proveedor" />
           </Key>
-          <Property Name="codigoProducto" Type="Int32" Nullable="false" />
-          <Property Name="codigoProveedor" Type="Int32" Nullable="false" />
+          <Property Name="codigo_producto" Type="Int32" Nullable="false" />
+          <Property Name="rut_proveedor" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="fecha_ingreso_producto" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="cantidad_producto" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Producto" Relationship="Self.fk_Producto_has_Proveedor_Producto1" FromRole="Producto_Proveedor" ToRole="Producto" />
@@ -958,35 +829,23 @@
         </EntityType>
         <EntityType Name="Proveedor">
           <Key>
-            <PropertyRef Name="codigo_proveedor" />
+            <PropertyRef Name="rut_proveedor" />
           </Key>
-          <Property Name="codigo_proveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="rut_proveedor" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="nombre_proveedor" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="apellido_paterno_proveedor" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="apellido_materno_proveedor" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="codigoTipoProducto" Type="Int32" Nullable="false" />
-          <Property Name="direccion_proveedor" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Direccion_Proveedor1" Relationship="Self.fk_Proveedor_Direccion_Proveedor1" FromRole="Proveedor" ToRole="Direccion_Proveedor" />
+          <Property Name="rut_proveedor" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre_proveedor" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido_paterno_proveedor" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido_materno_proveedor" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="codigo_tipoProducto" Type="Int32" Nullable="false" />
+          <Property Name="direccion_proveedor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Producto_Proveedor" Relationship="Self.fk_Producto_has_Proveedor_Proveedor1" FromRole="Proveedor" ToRole="Producto_Proveedor" />
           <NavigationProperty Name="TipoProducto" Relationship="Self.fk_Proveedor_TipoProducto1" FromRole="Proveedor" ToRole="TipoProducto" />
-        </EntityType>
-        <EntityType Name="Region">
-          <Key>
-            <PropertyRef Name="codigo_postal" />
-          </Key>
-          <Property Name="codigo_postal" Type="Int32" Nullable="false" />
-          <Property Name="nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Pais_codigo_postal" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Ciudad" Relationship="Self.fk_Ciudad_Region1" FromRole="Region" ToRole="Ciudad" />
-          <NavigationProperty Name="Pais" Relationship="Self.fk_Region_Pais1" FromRole="Region" ToRole="Pais" />
         </EntityType>
         <EntityType Name="Reserva">
           <Key>
             <PropertyRef Name="codigo_reserva" />
           </Key>
           <Property Name="codigo_reserva" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="numero_mesa" Type="Int32" Nullable="false" />
+          <Property Name="numero_mesa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="nombre_reserva" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="fecha_reserva" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="hora_reserva" Type="Time" Nullable="false" Precision="7" />
@@ -1005,7 +864,7 @@
             <PropertyRef Name="codigo_tipoProducto" />
           </Key>
           <Property Name="codigo_tipoProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre_tipoProducto" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre_tipoProducto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Proveedor" Relationship="Self.fk_Proveedor_TipoProducto1" FromRole="TipoProducto" ToRole="Proveedor" />
         </EntityType>
         <EntityType Name="TipoUsuario">
@@ -1013,17 +872,18 @@
             <PropertyRef Name="codigo_tipoUsuario" />
           </Key>
           <Property Name="codigo_tipoUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre_tipoUsuario" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre_tipoUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Usuario" Relationship="Self.fk_Usuario_TipoUsuario" FromRole="TipoUsuario" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Turno">
           <Key>
-            <PropertyRef Name="Usuario_codigo_usuario" />
-            <PropertyRef Name="Caja_numero_caja" />
+            <PropertyRef Name="codigo_usuario" />
+            <PropertyRef Name="numero_caja" />
           </Key>
-          <Property Name="Usuario_codigo_usuario" Type="Int32" Nullable="false" />
-          <Property Name="Caja_numero_caja" Type="Int32" Nullable="false" />
-          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="codigo_usuario" Type="Int32" Nullable="false" />
+          <Property Name="numero_caja" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="hora" Type="Time" Nullable="false" Precision="7" />
           <NavigationProperty Name="Caja" Relationship="Self.fk_Usuario_has_Caja_Caja1" FromRole="Turno" ToRole="Caja" />
           <NavigationProperty Name="Usuario" Relationship="Self.fk_Usuario_has_Caja_Usuario1" FromRole="Turno" ToRole="Usuario" />
         </EntityType>
@@ -1033,10 +893,10 @@
           </Key>
           <Property Name="codigo_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="codigo_tipoUsuario" Type="Int32" Nullable="false" />
-          <Property Name="nombre_usuario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre_usuario" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="contraseña_usuario" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="rut_usuario" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="email_usuario" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email_usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Comanda_reparto" Relationship="Self.fk_Reparto_Usuario1" FromRole="Usuario" ToRole="Comanda_reparto" />
           <NavigationProperty Name="ComandaMesa" Relationship="Self.fk_ComandaMesa_Usuario1" FromRole="Usuario" ToRole="ComandaMesa" />
           <NavigationProperty Name="Producto" Relationship="Self.fk_Producto_Usuario1" FromRole="Usuario" ToRole="Producto" />
@@ -1064,8 +924,8 @@
               <PropertyRef Name="codigo_comanda" />
             </Principal>
             <Dependent Role="BoletaComanda">
-              <PropertyRef Name="codigoMenu" />
-              <PropertyRef Name="codigoComanda" />
+              <PropertyRef Name="codigo_menu" />
+              <PropertyRef Name="codigo_comanda" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1089,7 +949,7 @@
               <PropertyRef Name="codigo_estado" />
             </Principal>
             <Dependent Role="Caja">
-              <PropertyRef Name="Codigo_estado" />
+              <PropertyRef Name="codigo_estado" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1113,7 +973,7 @@
               <PropertyRef Name="numero_caja" />
             </Principal>
             <Dependent Role="PagoRepartidor">
-              <PropertyRef Name="Caja_numero_caja" />
+              <PropertyRef Name="numero_caja" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1125,7 +985,7 @@
               <PropertyRef Name="numero_caja" />
             </Principal>
             <Dependent Role="Turno">
-              <PropertyRef Name="Caja_numero_caja" />
+              <PropertyRef Name="numero_caja" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1137,31 +997,7 @@
               <PropertyRef Name="codigo_categoria" />
             </Principal>
             <Dependent Role="Menu">
-              <PropertyRef Name="idCategoria" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_Ciudad_Region1">
-          <End Role="Region" Type="Self.Region" Multiplicity="1" />
-          <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Region">
-              <PropertyRef Name="codigo_postal" />
-            </Principal>
-            <Dependent Role="Ciudad">
-              <PropertyRef Name="Region_codigo_postal" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_Direccion_Proveedor_Ciudad1">
-          <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="1" />
-          <End Role="Direccion_Proveedor" Type="Self.Direccion_Proveedor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Ciudad">
-              <PropertyRef Name="codigo_ciudad" />
-            </Principal>
-            <Dependent Role="Direccion_Proveedor">
-              <PropertyRef Name="codigo_ciudad" />
+              <PropertyRef Name="codigo_categoria" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1261,27 +1097,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_Proveedor_Direccion_Proveedor1">
-          <End Role="Direccion_Proveedor" Type="Self.Direccion_Proveedor" Multiplicity="1" />
-          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Direccion_Proveedor">
-              <PropertyRef Name="codigoDireccion" />
-            </Principal>
-            <Dependent Role="Proveedor">
-              <PropertyRef Name="direccion_proveedor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_Mesa_Estado_Mesa1">
           <End Role="Estado_Mesa" Type="Self.Estado_Mesa" Multiplicity="1" />
           <End Role="Mesa" Type="Self.Mesa" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Estado_Mesa">
-              <PropertyRef Name="codigo_mesa" />
+              <PropertyRef Name="codigo_estado" />
             </Principal>
             <Dependent Role="Mesa">
-              <PropertyRef Name="estado" />
+              <PropertyRef Name="codigo_estado" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1309,18 +1133,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_Region_Pais1">
-          <End Role="Pais" Type="Self.Pais" Multiplicity="1" />
-          <End Role="Region" Type="Self.Region" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Pais">
-              <PropertyRef Name="codigo_postal" />
-            </Principal>
-            <Dependent Role="Region">
-              <PropertyRef Name="Pais_codigo_postal" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_Producto_has_Proveedor_Producto1">
           <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
           <End Role="Producto_Proveedor" Type="Self.Producto_Proveedor" Multiplicity="*" />
@@ -1329,7 +1141,7 @@
               <PropertyRef Name="codigo_producto" />
             </Principal>
             <Dependent Role="Producto_Proveedor">
-              <PropertyRef Name="codigoProducto" />
+              <PropertyRef Name="codigo_producto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1350,10 +1162,10 @@
           <End Role="Producto_Proveedor" Type="Self.Producto_Proveedor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Proveedor">
-              <PropertyRef Name="codigo_proveedor" />
+              <PropertyRef Name="rut_proveedor" />
             </Principal>
             <Dependent Role="Producto_Proveedor">
-              <PropertyRef Name="codigoProveedor" />
+              <PropertyRef Name="rut_proveedor" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1365,7 +1177,7 @@
               <PropertyRef Name="codigo_tipoProducto" />
             </Principal>
             <Dependent Role="Proveedor">
-              <PropertyRef Name="codigoTipoProducto" />
+              <PropertyRef Name="codigo_tipoProducto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1389,32 +1201,28 @@
               <PropertyRef Name="codigo_usuario" />
             </Principal>
             <Dependent Role="Turno">
-              <PropertyRef Name="Usuario_codigo_usuario" />
+              <PropertyRef Name="codigo_usuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="bd1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="bd3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="BoletaComanda" EntityType="Self.BoletaComanda" />
           <EntitySet Name="Caja" EntityType="Self.Caja" />
           <EntitySet Name="Categoria" EntityType="Self.Categoria" />
-          <EntitySet Name="Ciudad" EntityType="Self.Ciudad" />
           <EntitySet Name="Cliente" EntityType="Self.Cliente" />
           <EntitySet Name="Comanda_reparto" EntityType="Self.Comanda_reparto" />
           <EntitySet Name="ComandaMesa" EntityType="Self.ComandaMesa" />
           <EntitySet Name="Detalle_Mesa" EntityType="Self.Detalle_Mesa" />
-          <EntitySet Name="Direccion_Proveedor" EntityType="Self.Direccion_Proveedor" />
           <EntitySet Name="Estado" EntityType="Self.Estado" />
           <EntitySet Name="Estado_Mesa" EntityType="Self.Estado_Mesa" />
           <EntitySet Name="Menu" EntityType="Self.Menu" />
           <EntitySet Name="Mesa" EntityType="Self.Mesa" />
           <EntitySet Name="Pago" EntityType="Self.Pago" />
           <EntitySet Name="PagoRepartidor" EntityType="Self.PagoRepartidor" />
-          <EntitySet Name="Pais" EntityType="Self.Pais" />
           <EntitySet Name="Pedido" EntityType="Self.Pedido" />
           <EntitySet Name="Producto" EntityType="Self.Producto" />
           <EntitySet Name="Producto_Proveedor" EntityType="Self.Producto_Proveedor" />
           <EntitySet Name="Proveedor" EntityType="Self.Proveedor" />
-          <EntitySet Name="Region" EntityType="Self.Region" />
           <EntitySet Name="Reserva" EntityType="Self.Reserva" />
           <EntitySet Name="TipoPago" EntityType="Self.TipoPago" />
           <EntitySet Name="TipoProducto" EntityType="Self.TipoProducto" />
@@ -1453,14 +1261,6 @@
             <End Role="Categoria" EntitySet="Categoria" />
             <End Role="Menu" EntitySet="Menu" />
           </AssociationSet>
-          <AssociationSet Name="fk_Ciudad_Region1" Association="Self.fk_Ciudad_Region1">
-            <End Role="Region" EntitySet="Region" />
-            <End Role="Ciudad" EntitySet="Ciudad" />
-          </AssociationSet>
-          <AssociationSet Name="fk_Direccion_Proveedor_Ciudad1" Association="Self.fk_Direccion_Proveedor_Ciudad1">
-            <End Role="Ciudad" EntitySet="Ciudad" />
-            <End Role="Direccion_Proveedor" EntitySet="Direccion_Proveedor" />
-          </AssociationSet>
           <AssociationSet Name="fk_Comanda_reparto_Cliente1" Association="Self.fk_Comanda_reparto_Cliente1">
             <End Role="Cliente" EntitySet="Cliente" />
             <End Role="Comanda_reparto" EntitySet="Comanda_reparto" />
@@ -1493,10 +1293,6 @@
             <End Role="Menu" EntitySet="Menu" />
             <End Role="Detalle_Mesa" EntitySet="Detalle_Mesa" />
           </AssociationSet>
-          <AssociationSet Name="fk_Proveedor_Direccion_Proveedor1" Association="Self.fk_Proveedor_Direccion_Proveedor1">
-            <End Role="Direccion_Proveedor" EntitySet="Direccion_Proveedor" />
-            <End Role="Proveedor" EntitySet="Proveedor" />
-          </AssociationSet>
           <AssociationSet Name="fk_Mesa_Estado_Mesa1" Association="Self.fk_Mesa_Estado_Mesa1">
             <End Role="Estado_Mesa" EntitySet="Estado_Mesa" />
             <End Role="Mesa" EntitySet="Mesa" />
@@ -1508,10 +1304,6 @@
           <AssociationSet Name="fk_Pago_TipoPago1" Association="Self.fk_Pago_TipoPago1">
             <End Role="TipoPago" EntitySet="TipoPago" />
             <End Role="Pago" EntitySet="Pago" />
-          </AssociationSet>
-          <AssociationSet Name="fk_Region_Pais1" Association="Self.fk_Region_Pais1">
-            <End Role="Pais" EntitySet="Pais" />
-            <End Role="Region" EntitySet="Region" />
           </AssociationSet>
           <AssociationSet Name="fk_Producto_has_Proveedor_Producto1" Association="Self.fk_Producto_has_Proveedor_Producto1">
             <End Role="Producto" EntitySet="Producto" />
@@ -1543,49 +1335,40 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SistemaPizzaModelStoreContainer" CdmEntityContainer="bd1">
+        <EntityContainerMapping StorageEntityContainer="SistemaPizza_DBModelStoreContainer" CdmEntityContainer="bd3">
           <EntitySetMapping Name="BoletaComanda">
-            <EntityTypeMapping TypeName="SistemaPizzaModel.BoletaComanda">
+            <EntityTypeMapping TypeName="SistemaPizza_DBModel.BoletaComanda">
               <MappingFragment StoreEntitySet="BoletaComanda">
                 <ScalarProperty Name="codigo_boleta" ColumnName="codigo_boleta" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="subTotal" ColumnName="subTotal" />
                 <ScalarProperty Name="total" ColumnName="total" />
-                <ScalarProperty Name="codigoMenu" ColumnName="codigoMenu" />
-                <ScalarProperty Name="codigoComanda" ColumnName="codigoComanda" />
+                <ScalarProperty Name="codigo_menu" ColumnName="codigo_menu" />
+                <ScalarProperty Name="codigo_comanda" ColumnName="codigo_comanda" />
                 <ScalarProperty Name="codigo_pago" ColumnName="codigo_pago" />
                 <ScalarProperty Name="numero_caja" ColumnName="numero_caja" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Caja">
-            <EntityTypeMapping TypeName="SistemaPizzaModel.Caja">
+            <EntityTypeMapping TypeName="SistemaPizza_DBModel.Caja">
               <MappingFragment StoreEntitySet="Caja">
                 <ScalarProperty Name="numero_caja" ColumnName="numero_caja" />
                 <ScalarProperty Name="monto_caja" ColumnName="monto_caja" />
-                <ScalarProperty Name="Codigo_estado" ColumnName="Codigo_estado" />
+                <ScalarProperty Name="codigo_estado" ColumnName="codigo_estado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Categoria">
-            <EntityTypeMapping TypeName="SistemaPizzaModel.Categoria">
+            <EntityTypeMapping TypeName="SistemaPizza_DBModel.Categoria">
               <MappingFragment StoreEntitySet="Categoria">
                 <ScalarProperty Name="codigo_categoria" ColumnName="codigo_categoria" />
                 <ScalarProperty Name="nombre_categoria" ColumnName="nombre_categoria" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Ciudad">
-            <EntityTypeMapping TypeName="SistemaPizzaModel.Ciudad">
-              <MappingFragment StoreEntitySet="Ciudad">
-                <ScalarProperty Name="codigo_ciudad" ColumnName="codigo_ciudad" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="Region_codigo_postal" ColumnName="Region_codigo_postal" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Cliente">
-            <EntityTypeMapping TypeName="SistemaPizzaModel.Cliente">
+            <EntityTypeMapping TypeName="SistemaPizza_DBModel.Cliente">
               <MappingFragment StoreEntitySet="Cliente">
                 <ScalarProperty Name="codigo_cliente" ColumnName="codigo_cliente" />
                 <ScalarProperty Name="nombre_cliente" ColumnName="nombre_cliente" />
@@ -1596,7 +1379,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Comanda_reparto">
-            <EntityTypeMapping TypeName="SistemaPizzaModel.Comanda_reparto">
+            <EntityTypeMapping TypeName="SistemaPizza_DBModel.Comanda_reparto">
               <MappingFragment StoreEntitySet="Comanda_reparto">
                 <ScalarProperty Name="codigo_reparto" ColumnName="codigo_reparto" />
                 <ScalarProperty Name="codigoMenu" ColumnName="codigoMenu" />
@@ -1606,7 +1389,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ComandaMesa">
-            <EntityTypeMapping TypeName="SistemaPizzaModel.ComandaMesa">
+            <EntityTypeMapping TypeName="SistemaPizza_DBModel.ComandaMesa">
               <MappingFragment StoreEntitySet="ComandaMesa">
                 <ScalarProperty Name="codigo_comanda" ColumnName="codigo_comanda" />
                 <ScalarProperty Name="codigo_usuario" ColumnName="codigo_usuario" />
@@ -1616,7 +1399,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Detalle_Mesa">
-            <EntityTypeMapping TypeName="SistemaPizzaModel.Detalle_Mesa">
+            <EntityTypeMapping TypeName="SistemaPizza_DBModel.Detalle_Mesa">
               <MappingFragment StoreEntitySet="Detalle_Mesa">
                 <ScalarProperty Name="codigo_menu" ColumnName="codigo_menu" />
                 <ScalarProperty Name="codigo_comanda" ColumnName="codigo_comanda" />
@@ -1624,38 +1407,27 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Direccion_Proveedor">
-            <EntityTypeMapping TypeName="SistemaPizzaModel.Direccion_Proveedor">
-              <MappingFragment StoreEntitySet="Direccion_Proveedor">
-                <ScalarProperty Name="codigoDireccion" ColumnName="codigoDireccion" />
-                <ScalarProperty Name="calle" ColumnName="calle" />
-                <ScalarProperty Name="numero" ColumnName="numero" />
-                <ScalarProperty Name="codigo_ciudad" ColumnName="codigo_ciudad" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Estado">
-            <EntityTypeMapping TypeName="SistemaPizzaModel.Estado">
+            <EntityTypeMapping TypeName="SistemaPizza_DBModel.Estado">
               <MappingFragment StoreEntitySet="Estado">
                 <ScalarProperty Name="codigo_estado" ColumnName="codigo_estado" />
                 <ScalarProperty Name="nombre_estado" ColumnName="nombre_estado" />
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Estado_Mesa">
-            <EntityTypeMapping TypeName="SistemaPizzaModel.Estado_Mesa">
+            <EntityTypeMapping TypeName="SistemaPizza_DBModel.Estado_Mesa">
               <MappingFragment StoreEntitySet="Estado_Mesa">
-                <ScalarProperty Name="codigo_mesa" ColumnName="codigo_mesa" />
+                <ScalarProperty Name="codigo_estado" ColumnName="codigo_estado" />
                 <ScalarProperty Name="nombre_estado" ColumnName="nombre_estado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Menu">
-            <EntityTypeMapping TypeName="SistemaPizzaModel.Menu">
+            <EntityTypeMapping TypeName="SistemaPizza_DBModel.Menu">
               <MappingFragment StoreEntitySet="Menu">
                 <ScalarProperty Name="codigo_menu" ColumnName="codigo_menu" />
-                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="codigo_categoria" ColumnName="codigo_categoria" />
                 <ScalarProperty Name="nombre_menu" ColumnName="nombre_menu" />
                 <ScalarProperty Name="precio_menu" ColumnName="precio_menu" />
                 <ScalarProperty Name="ingredientes_menu" ColumnName="ingredientes_menu" />
@@ -1663,15 +1435,15 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Mesa">
-            <EntityTypeMapping TypeName="SistemaPizzaModel.Mesa">
+            <EntityTypeMapping TypeName="SistemaPizza_DBModel.Mesa">
               <MappingFragment StoreEntitySet="Mesa">
                 <ScalarProperty Name="numero_mesa" ColumnName="numero_mesa" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="codigo_estado" ColumnName="codigo_estado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Pago">
-            <EntityTypeMapping TypeName="SistemaPizzaModel.Pago">
+            <EntityTypeMapping TypeName="SistemaPizza_DBModel.Pago">
               <MappingFragment StoreEntitySet="Pago">
                 <ScalarProperty Name="codigo_pago" ColumnName="codigo_pago" />
                 <ScalarProperty Name="codigo_tipoPago" ColumnName="codigo_tipoPago" />
@@ -1682,25 +1454,18 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PagoRepartidor">
-            <EntityTypeMapping TypeName="SistemaPizzaModel.PagoRepartidor">
+            <EntityTypeMapping TypeName="SistemaPizza_DBModel.PagoRepartidor">
               <MappingFragment StoreEntitySet="PagoRepartidor">
                 <ScalarProperty Name="codigo_recepcion" ColumnName="codigo_recepcion" />
                 <ScalarProperty Name="monto_recepcion" ColumnName="monto_recepcion" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
-                <ScalarProperty Name="Caja_numero_caja" ColumnName="Caja_numero_caja" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Pais">
-            <EntityTypeMapping TypeName="SistemaPizzaModel.Pais">
-              <MappingFragment StoreEntitySet="Pais">
-                <ScalarProperty Name="codigo_postal" ColumnName="codigo_postal" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="hora" ColumnName="hora" />
+                <ScalarProperty Name="numero_caja" ColumnName="numero_caja" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Pedido">
-            <EntityTypeMapping TypeName="SistemaPizzaModel.Pedido">
+            <EntityTypeMapping TypeName="SistemaPizza_DBModel.Pedido">
               <MappingFragment StoreEntitySet="Pedido">
                 <ScalarProperty Name="numero_caja" ColumnName="numero_caja" />
                 <ScalarProperty Name="codigo_reparto" ColumnName="codigo_reparto" />
@@ -1711,7 +1476,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Producto">
-            <EntityTypeMapping TypeName="SistemaPizzaModel.Producto">
+            <EntityTypeMapping TypeName="SistemaPizza_DBModel.Producto">
               <MappingFragment StoreEntitySet="Producto">
                 <ScalarProperty Name="codigo_producto" ColumnName="codigo_producto" />
                 <ScalarProperty Name="nombre_producto" ColumnName="nombre_producto" />
@@ -1720,39 +1485,29 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Producto_Proveedor">
-            <EntityTypeMapping TypeName="SistemaPizzaModel.Producto_Proveedor">
+            <EntityTypeMapping TypeName="SistemaPizza_DBModel.Producto_Proveedor">
               <MappingFragment StoreEntitySet="Producto_Proveedor">
-                <ScalarProperty Name="codigoProducto" ColumnName="codigoProducto" />
-                <ScalarProperty Name="codigoProveedor" ColumnName="codigoProveedor" />
+                <ScalarProperty Name="codigo_producto" ColumnName="codigo_producto" />
+                <ScalarProperty Name="rut_proveedor" ColumnName="rut_proveedor" />
                 <ScalarProperty Name="fecha_ingreso_producto" ColumnName="fecha_ingreso_producto" />
                 <ScalarProperty Name="cantidad_producto" ColumnName="cantidad_producto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Proveedor">
-            <EntityTypeMapping TypeName="SistemaPizzaModel.Proveedor">
+            <EntityTypeMapping TypeName="SistemaPizza_DBModel.Proveedor">
               <MappingFragment StoreEntitySet="Proveedor">
-                <ScalarProperty Name="codigo_proveedor" ColumnName="codigo_proveedor" />
                 <ScalarProperty Name="rut_proveedor" ColumnName="rut_proveedor" />
                 <ScalarProperty Name="nombre_proveedor" ColumnName="nombre_proveedor" />
                 <ScalarProperty Name="apellido_paterno_proveedor" ColumnName="apellido_paterno_proveedor" />
                 <ScalarProperty Name="apellido_materno_proveedor" ColumnName="apellido_materno_proveedor" />
-                <ScalarProperty Name="codigoTipoProducto" ColumnName="codigoTipoProducto" />
+                <ScalarProperty Name="codigo_tipoProducto" ColumnName="codigo_tipoProducto" />
                 <ScalarProperty Name="direccion_proveedor" ColumnName="direccion_proveedor" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Region">
-            <EntityTypeMapping TypeName="SistemaPizzaModel.Region">
-              <MappingFragment StoreEntitySet="Region">
-                <ScalarProperty Name="codigo_postal" ColumnName="codigo_postal" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="Pais_codigo_postal" ColumnName="Pais_codigo_postal" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Reserva">
-            <EntityTypeMapping TypeName="SistemaPizzaModel.Reserva">
+            <EntityTypeMapping TypeName="SistemaPizza_DBModel.Reserva">
               <MappingFragment StoreEntitySet="Reserva">
                 <ScalarProperty Name="codigo_reserva" ColumnName="codigo_reserva" />
                 <ScalarProperty Name="numero_mesa" ColumnName="numero_mesa" />
@@ -1763,7 +1518,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TipoPago">
-            <EntityTypeMapping TypeName="SistemaPizzaModel.TipoPago">
+            <EntityTypeMapping TypeName="SistemaPizza_DBModel.TipoPago">
               <MappingFragment StoreEntitySet="TipoPago">
                 <ScalarProperty Name="codigo_tipoPago" ColumnName="codigo_tipoPago" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -1771,7 +1526,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TipoProducto">
-            <EntityTypeMapping TypeName="SistemaPizzaModel.TipoProducto">
+            <EntityTypeMapping TypeName="SistemaPizza_DBModel.TipoProducto">
               <MappingFragment StoreEntitySet="TipoProducto">
                 <ScalarProperty Name="codigo_tipoProducto" ColumnName="codigo_tipoProducto" />
                 <ScalarProperty Name="nombre_tipoProducto" ColumnName="nombre_tipoProducto" />
@@ -1779,7 +1534,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TipoUsuario">
-            <EntityTypeMapping TypeName="SistemaPizzaModel.TipoUsuario">
+            <EntityTypeMapping TypeName="SistemaPizza_DBModel.TipoUsuario">
               <MappingFragment StoreEntitySet="TipoUsuario">
                 <ScalarProperty Name="codigo_tipoUsuario" ColumnName="codigo_tipoUsuario" />
                 <ScalarProperty Name="nombre_tipoUsuario" ColumnName="nombre_tipoUsuario" />
@@ -1787,16 +1542,17 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Turno">
-            <EntityTypeMapping TypeName="SistemaPizzaModel.Turno">
+            <EntityTypeMapping TypeName="SistemaPizza_DBModel.Turno">
               <MappingFragment StoreEntitySet="Turno">
-                <ScalarProperty Name="Usuario_codigo_usuario" ColumnName="Usuario_codigo_usuario" />
-                <ScalarProperty Name="Caja_numero_caja" ColumnName="Caja_numero_caja" />
+                <ScalarProperty Name="codigo_usuario" ColumnName="codigo_usuario" />
+                <ScalarProperty Name="numero_caja" ColumnName="numero_caja" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="hora" ColumnName="hora" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Usuario">
-            <EntityTypeMapping TypeName="SistemaPizzaModel.Usuario">
+            <EntityTypeMapping TypeName="SistemaPizza_DBModel.Usuario">
               <MappingFragment StoreEntitySet="Usuario">
                 <ScalarProperty Name="codigo_usuario" ColumnName="codigo_usuario" />
                 <ScalarProperty Name="codigo_tipoUsuario" ColumnName="codigo_tipoUsuario" />

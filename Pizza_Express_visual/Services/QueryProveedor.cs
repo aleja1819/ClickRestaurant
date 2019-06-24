@@ -15,15 +15,15 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd1 contexto = new bd1())
+                using (bd3 contexto = new bd3())
                 {
 
-                    var po = from p in contexto.Proveedor
-                            join t in contexto.TipoProducto
-                            on p.codigo_proveedor equals t.codigo_tipoProducto
-                            select new { p.rut_proveedor, p.nombre_proveedor,p.apellido_paterno_proveedor,p.apellido_materno_proveedor,p.direccion_proveedor, t.nombre_tipoProducto };
+                    var pro = from p in contexto.Proveedor
+                              join t in contexto.TipoProducto  
+                              on p.codigo_tipoProducto equals t.codigo_tipoProducto
+                              select new { p.rut_proveedor, p.nombre_proveedor, p.apellido_paterno_proveedor, p.apellido_materno_proveedor, p.direccion_proveedor, t.nombre_tipoProducto };
 
-                    return po.ToList<object>();
+                    return pro.ToList<object>();
 
                 }
             }
@@ -40,7 +40,7 @@ namespace Pizza_Express_visual.Services
 
             try
             {
-                using (bd1 contexto = new bd1())
+                using (bd3 contexto = new bd3())
                 {
 
                     contexto.Proveedor.Add(prove);

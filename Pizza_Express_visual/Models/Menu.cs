@@ -22,7 +22,7 @@ namespace Pizza_Express_visual.Models
         }
     
         public int codigo_menu { get; set; }
-        public int idCategoria { get; set; }
+        public int codigo_categoria { get; set; }
         public string nombre_menu { get; set; }
         public int precio_menu { get; set; }
         public string ingredientes_menu { get; set; }

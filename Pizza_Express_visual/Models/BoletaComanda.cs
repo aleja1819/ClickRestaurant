@@ -18,8 +18,8 @@ namespace Pizza_Express_visual.Models
         public System.DateTime fecha { get; set; }
         public int subTotal { get; set; }
         public int total { get; set; }
-        public int codigoMenu { get; set; }
-        public int codigoComanda { get; set; }
+        public int codigo_menu { get; set; }
+        public int codigo_comanda { get; set; }
         public int codigo_pago { get; set; }
         public int numero_caja { get; set; }
     

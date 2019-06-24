@@ -14,9 +14,10 @@ namespace Pizza_Express_visual.Models
     
     public partial class Turno
     {
-        public int Usuario_codigo_usuario { get; set; }
-        public int Caja_numero_caja { get; set; }
+        public int codigo_usuario { get; set; }
+        public int numero_caja { get; set; }
         public System.DateTime fecha { get; set; }
+        public System.TimeSpan hora { get; set; }
     
         public virtual Caja Caja { get; set; }
         public virtual Usuario Usuario { get; set; }

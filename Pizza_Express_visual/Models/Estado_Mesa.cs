@@ -20,7 +20,7 @@ namespace Pizza_Express_visual.Models
             this.Mesa = new HashSet<Mesa>();
         }
     
-        public int codigo_mesa { get; set; }
+        public int codigo_estado { get; set; }
         public string nombre_estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

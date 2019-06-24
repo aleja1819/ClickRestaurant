@@ -6,22 +6,24 @@ using System.Web;
 using Pizza_Express_visual.Models;
 namespace Pizza_Express_visual.Services
 {
-    public class QueryReservas
+    public class QueryProductos
     {
-        static List<QueryReservas> queryReservas = new List<QueryReservas>();
+        static List<QueryProductos> queryProductos = new List<QueryProductos>();
 
         //LINQ TO ENTITY
-        public List<object> filtrarReservas()
+        public List<object> filtrarProductos()
         {
             try
             {
                 using (bd3 contexto = new bd3())
                 {
 
-                    var re = from r in contexto.Reserva
-                             select new { r.numero_mesa, r.nombre_reserva, r.fecha_reserva, r.hora_reserva};
+                    var pro = from p in contexto.Producto
+                              join pp in contexto.Producto_Proveedor
+                              on p.codigo_producto equals pp.codigo_producto
+                              select new { p.nombre_producto, pp.rut_proveedor, pp.fecha_ingreso_producto, pp.cantidad_producto};
 
-                    return re.ToList<object>();
+                    return pro.ToList<object>();
 
                 }
             }
@@ -33,7 +35,7 @@ namespace Pizza_Express_visual.Services
         }
 
         //AGREGAR PROVEEDOR
-        public bool addReserva(Reserva reserva)
+        public bool addProducto(Producto prod)
         {
 
             try
@@ -41,7 +43,7 @@ namespace Pizza_Express_visual.Services
                 using (bd3 contexto = new bd3())
                 {
 
-                    contexto.Reserva.Add(reserva);
+                    contexto.Producto.Add(prod);
                     contexto.SaveChanges();
 
                     int respuestas = contexto.SaveChanges(); //INSERTA EN LA TABLA DE BASE DE DATOS
@@ -55,7 +57,6 @@ namespace Pizza_Express_visual.Services
                 return false;
             }
         }
-
 
     }
 }

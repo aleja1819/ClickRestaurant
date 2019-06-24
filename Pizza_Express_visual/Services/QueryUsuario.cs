@@ -16,7 +16,7 @@ namespace Pizza_Express_visual.Services
         public List<object> filtrarUsuarios() {
             try
             {
-                using (bd1 contexto = new bd1())
+                using (bd3 contexto = new bd3())
                 {
                     //var r = from u in contexto.Usuario
                     //        select u;
@@ -42,7 +42,7 @@ namespace Pizza_Express_visual.Services
 
             try
             {
-                using (bd1 contexto = new bd1()) {
+                using (bd3 contexto = new bd3()) {
 
                     contexto.Usuario.Add(user);
                     contexto.SaveChanges();
@@ -65,7 +65,7 @@ namespace Pizza_Express_visual.Services
 
             try
             {
-                using (bd1 contexto = new bd1())
+                using (bd3 contexto = new bd3())
                 {
                     var user = contexto.Usuario.Find(codigo_user);
 
@@ -87,7 +87,7 @@ namespace Pizza_Express_visual.Services
 
             try
             {
-                using (bd1 contexto = new bd1()) {
+                using (bd3 contexto = new bd3()) {
 
 
                     var user = contexto.Usuario.Find(codigo_user);

@@ -15,7 +15,7 @@ namespace Pizza_Express_visual.Models
     public partial class Reserva
     {
         public int codigo_reserva { get; set; }
-        public int numero_mesa { get; set; }
+        public string numero_mesa { get; set; }
         public string nombre_reserva { get; set; }
         public System.DateTime fecha_reserva { get; set; }
         public System.TimeSpan hora_reserva { get; set; }

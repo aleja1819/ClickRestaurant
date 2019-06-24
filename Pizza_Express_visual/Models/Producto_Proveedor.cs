@@ -14,8 +14,8 @@ namespace Pizza_Express_visual.Models
     
     public partial class Producto_Proveedor
     {
-        public int codigoProducto { get; set; }
-        public int codigoProveedor { get; set; }
+        public int codigo_producto { get; set; }
+        public string rut_proveedor { get; set; }
         public System.DateTime fecha_ingreso_producto { get; set; }
         public int cantidad_producto { get; set; }
     

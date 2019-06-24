@@ -14,7 +14,7 @@ namespace Pizza_Express_visual.Services
 
             try
             {
-                using (bd1 contexto = new bd1()) {
+                using (bd3 contexto = new bd3()) {
 
                     var tu = from t in contexto.TipoUsuario
                              select new { t.nombre_tipoUsuario,t.codigo_tipoUsuario};
@@ -39,7 +39,7 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd1 contexto = new bd1())
+                using (bd3 contexto = new bd3())
                 {
                     contexto.TipoUsuario.Add(tipoU);
                     contexto.SaveChanges();

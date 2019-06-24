@@ -13,10 +13,10 @@ namespace Pizza_Express_visual.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class bd1 : DbContext
+    public partial class bd3 : DbContext
     {
-        public bd1()
-            : base("name=bd1")
+        public bd3()
+            : base("name=bd3")
         {
         }
     
@@ -28,24 +28,20 @@ namespace Pizza_Express_visual.Models
         public virtual DbSet<BoletaComanda> BoletaComanda { get; set; }
         public virtual DbSet<Caja> Caja { get; set; }
         public virtual DbSet<Categoria> Categoria { get; set; }
-        public virtual DbSet<Ciudad> Ciudad { get; set; }
         public virtual DbSet<Cliente> Cliente { get; set; }
         public virtual DbSet<Comanda_reparto> Comanda_reparto { get; set; }
         public virtual DbSet<ComandaMesa> ComandaMesa { get; set; }
         public virtual DbSet<Detalle_Mesa> Detalle_Mesa { get; set; }
-        public virtual DbSet<Direccion_Proveedor> Direccion_Proveedor { get; set; }
         public virtual DbSet<Estado> Estado { get; set; }
         public virtual DbSet<Estado_Mesa> Estado_Mesa { get; set; }
         public virtual DbSet<Menu> Menu { get; set; }
         public virtual DbSet<Mesa> Mesa { get; set; }
         public virtual DbSet<Pago> Pago { get; set; }
         public virtual DbSet<PagoRepartidor> PagoRepartidor { get; set; }
-        public virtual DbSet<Pais> Pais { get; set; }
         public virtual DbSet<Pedido> Pedido { get; set; }
         public virtual DbSet<Producto> Producto { get; set; }
         public virtual DbSet<Producto_Proveedor> Producto_Proveedor { get; set; }
         public virtual DbSet<Proveedor> Proveedor { get; set; }
-        public virtual DbSet<Region> Region { get; set; }
         public virtual DbSet<Reserva> Reserva { get; set; }
         public virtual DbSet<TipoPago> TipoPago { get; set; }
         public virtual DbSet<TipoProducto> TipoProducto { get; set; }

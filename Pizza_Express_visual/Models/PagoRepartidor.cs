@@ -17,7 +17,8 @@ namespace Pizza_Express_visual.Models
         public int codigo_recepcion { get; set; }
         public int monto_recepcion { get; set; }
         public System.DateTime fecha { get; set; }
-        public int Caja_numero_caja { get; set; }
+        public System.TimeSpan hora { get; set; }
+        public int numero_caja { get; set; }
     
         public virtual Caja Caja { get; set; }
     }

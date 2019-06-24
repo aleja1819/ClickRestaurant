@@ -20,15 +20,13 @@ namespace Pizza_Express_visual.Models
             this.Producto_Proveedor = new HashSet<Producto_Proveedor>();
         }
     
-        public int codigo_proveedor { get; set; }
         public string rut_proveedor { get; set; }
         public string nombre_proveedor { get; set; }
         public string apellido_paterno_proveedor { get; set; }
         public string apellido_materno_proveedor { get; set; }
-        public int codigoTipoProducto { get; set; }
-        public int direccion_proveedor { get; set; }
+        public int codigo_tipoProducto { get; set; }
+        public string direccion_proveedor { get; set; }
     
-        public virtual Direccion_Proveedor Direccion_Proveedor1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Producto_Proveedor> Producto_Proveedor { get; set; }
         public virtual TipoProducto TipoProducto { get; set; }

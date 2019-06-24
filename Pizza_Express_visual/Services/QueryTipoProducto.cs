@@ -1,4 +1,5 @@
 ﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,7 +16,7 @@ namespace Pizza_Express_visual.Services
 
             try
             {
-                using (bd1 contexto = new bd1())
+                using (bd3 contexto = new bd3())
                 {
 
                     var pro = from p in contexto.TipoProducto
@@ -36,7 +37,7 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd1 contexto = new bd1())
+                using (bd3 contexto = new bd3())
                 {
                     contexto.TipoProducto.Add(tipoP);
                     contexto.SaveChanges();

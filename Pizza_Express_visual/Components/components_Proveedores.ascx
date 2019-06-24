@@ -78,7 +78,7 @@
             <div class="modal" id="myModalUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg bg-light" role="document">
 
-                    <asp:UpdatePanel ID="uModalUsuario" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
+                    <asp:UpdatePanel ID="uModalProveedor" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
                         <ContentTemplate>
 
                             <div class="modal-content">
