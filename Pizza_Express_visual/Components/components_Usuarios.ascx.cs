@@ -92,14 +92,11 @@ namespace Pizza_Express_visual.Components
             else if (e.CommandName.Equals("ideliminar"))
             {
                 // ELIMINAR UN PRODUCTO DE LA LISTA
-                string codigo = idTabla.Rows[fila].Cells[1].Text;
-                usuarios.RemoveAll(u => u.codigo_tipoUsuario.Equals(codigo));
-
-               
+                string codigo = idTabla.Rows[fila].Cells[0].Text;
+                int id = Convert.ToInt32(codigo);
+                accesoUsuario.eliminarUsuario(id);
                 idTabla.DataSource = accesoUsuario.filtrarUsuarios();
                 idTabla.DataBind();
-
-                
 
                 mensaje.Visible = true;
                 mensaje.Text = "Usuario eliminado";

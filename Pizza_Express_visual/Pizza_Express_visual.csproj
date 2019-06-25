@@ -276,12 +276,6 @@
     <Compile Include="Models\Detalle_Mesa.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Estado.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Estado_Mesa.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Menu.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

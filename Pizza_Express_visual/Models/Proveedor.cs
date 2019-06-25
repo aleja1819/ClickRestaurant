@@ -20,6 +20,7 @@ namespace Pizza_Express_visual.Models
             this.Producto_Proveedor = new HashSet<Producto_Proveedor>();
         }
     
+        public int codigo_proveedor { get; set; }
         public string rut_proveedor { get; set; }
         public string nombre_proveedor { get; set; }
         public string apellido_paterno_proveedor { get; set; }

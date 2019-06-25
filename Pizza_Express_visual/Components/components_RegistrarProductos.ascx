@@ -100,11 +100,11 @@
                                         <asp:TextBox runat="server" placeholder="Rut Proveedor" ID="trut" CssClass="form-control bg-secondary"></asp:TextBox>
                                     </div>
 
-                                    <%--FECHA--%>
+                                    <%--<%--FECHA--%>
                                     <div class="form-group">
                                         <label for="tfecha">Fecha</label>
                                         <asp:TextBox runat="server" placeholder="Fecha" ID="tfecha" CssClass="form-control bg-secondary"></asp:TextBox>
-                                    </div>
+                                    </div>--%>
 
                                     <%--CANTIDAD--%>
                                     <div class="form-group">

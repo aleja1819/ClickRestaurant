@@ -15,7 +15,7 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd3 contexto = new bd3())
+                using (bd5 contexto = new bd5())
                 {
 
                     var pro = from p in contexto.Proveedor
@@ -40,7 +40,7 @@ namespace Pizza_Express_visual.Services
 
             try
             {
-                using (bd3 contexto = new bd3())
+                using (bd5 contexto = new bd5())
                 {
 
                     contexto.Proveedor.Add(prove);

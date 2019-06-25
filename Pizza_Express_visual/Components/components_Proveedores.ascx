@@ -49,7 +49,8 @@
                        
                         <%--TABLA GRIDVIEW--%>
                         <div class="col align-content-center">
-                            <asp:GridView runat="server" ID="idTabla" CssClass="table table-bordered table-center " AutoGenerateColumns="false">
+                            <asp:GridView runat="server" ID="idTabla" CssClass="table table-bordered table-center " AutoGenerateColumns="false"
+                                OnRowCommand="idTabla_RowCommand">
                                 
                                 <HeaderStyle CssClass="btn-dark" />
 

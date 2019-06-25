@@ -15,13 +15,13 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd3 contexto = new bd3())
+                using (bd5 contexto = new bd5())
                 {
 
                     var pro = from p in contexto.Producto
                               join pp in contexto.Producto_Proveedor
                               on p.codigo_producto equals pp.codigo_producto
-                              select new { p.nombre_producto, pp.rut_proveedor, pp.fecha_ingreso_producto, pp.cantidad_producto};
+                              select new { p.nombre_producto, pp.Proveedor.rut_proveedor, pp.fecha_ingreso_producto, pp.cantidad_producto};
 
                     return pro.ToList<object>();
 
@@ -40,7 +40,7 @@ namespace Pizza_Express_visual.Services
 
             try
             {
-                using (bd3 contexto = new bd3())
+                using (bd5 contexto = new bd5())
                 {
 
                     contexto.Producto.Add(prod);

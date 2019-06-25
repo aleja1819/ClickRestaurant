@@ -117,9 +117,41 @@ namespace Pizza_Express_visual.Components
 
             }
         }
+
+        protected void idTabla_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal();", true);
+            //uModalUsuario.Update();
+            //uContenedorUsuario.Update();
+
+            int fila = Convert.ToInt32(e.CommandArgument);
+            if (e.CommandName.Equals("ideditar"))
+            {
+
+                trut.Text = idTabla.Rows[fila].Cells[0].Text;
+                tnombre.Text = idTabla.Rows[fila].Cells[1].Text;
+                tapellidoP.Text = idTabla.Rows[fila].Cells[2].Text;
+                tapellidoM.Text = idTabla.Rows[fila].Cells[3].Text;
+                tdireccion.Text = idTabla.Rows[fila].Cells[4].Text;
+                fTipoProducto.Text = idTabla.Rows[fila].Cells[5].Text;
+
+
+            }
+            else if (e.CommandName.Equals("ideliminar"))
+            {
+                // ELIMINAR UN PRODUCTO DE LA LISTA
+                //string codigo = idTabla.Rows[fila].Cells[0].Text;
+                //int id = Convert.ToInt32(codigo);
+                //accesoUsuario.eliminarUsuario(id);
+                //idTabla.DataSource = accesoUsuario.filtrarUsuarios();
+                //idTabla.DataBind();
+
+                //mensaje.Visible = true;
+                //mensaje.Text = "Usuario eliminado";
+
+            }
+        }
     }
-
-
 
     }
     

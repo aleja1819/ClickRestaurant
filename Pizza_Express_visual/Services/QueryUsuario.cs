@@ -10,13 +10,11 @@ namespace Pizza_Express_visual.Services
     public class QueryUsuario
     {
 
-        static List<QueryUsuario> queryUsuarios = new List<QueryUsuario>();
-
         //LINQ TO ENTITY
         public List<object> filtrarUsuarios() {
             try
             {
-                using (bd3 contexto = new bd3())
+                using (bd5 contexto = new bd5())
                 {
                     //var r = from u in contexto.Usuario
                     //        select u;
@@ -42,7 +40,7 @@ namespace Pizza_Express_visual.Services
 
             try
             {
-                using (bd3 contexto = new bd3()) {
+                using (bd5 contexto = new bd5()) {
 
                     contexto.Usuario.Add(user);
                     contexto.SaveChanges();
@@ -60,12 +58,12 @@ namespace Pizza_Express_visual.Services
         }
 
         //ELIMINAR USUARIO
-        public bool eliminarUsuario(Usuario codigo_user)
+        public bool eliminarUsuario(int codigo_user)
         {
 
             try
             {
-                using (bd3 contexto = new bd3())
+                using (bd5 contexto = new bd5())
                 {
                     var user = contexto.Usuario.Find(codigo_user);
 
@@ -87,7 +85,7 @@ namespace Pizza_Express_visual.Services
 
             try
             {
-                using (bd3 contexto = new bd3()) {
+                using (bd5 contexto = new bd5()) {
 
 
                     var user = contexto.Usuario.Find(codigo_user);

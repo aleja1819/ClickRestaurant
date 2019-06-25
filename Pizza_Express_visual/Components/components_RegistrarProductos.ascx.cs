@@ -45,9 +45,15 @@ namespace Pizza_Express_visual.Components
                 int cant = Convert.ToInt32(tcantidad.Text);
                 Models.Producto_Proveedor p_pro = new Models.Producto_Proveedor
                 {
-                    rut_proveedor = rut_Prove,
+                    
                     //fecha_ingreso_producto = fecha,
                     cantidad_producto = cant
+                };
+
+                Models.Proveedor pro = new Models.Proveedor
+                {
+                    rut_proveedor = rut_Prove
+                  
                 };
 
                 //GUARDAR LOS DATOS EN LA LISTA
@@ -56,6 +62,7 @@ namespace Pizza_Express_visual.Components
 
                    nombre_producto = nombre_Produc,
                    //Producto_Proveedor = p_pro
+                   
 
                 });
 

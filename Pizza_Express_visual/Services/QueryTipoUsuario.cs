@@ -8,13 +8,12 @@ namespace Pizza_Express_visual.Services
 {
     public class QueryTipoUsuario
     {
-        static List<QueryTipoUsuario> queryUsuarios = new List<QueryTipoUsuario>();
-
+        
         public List<object> FiltroListaTipoUsuario() {
 
             try
             {
-                using (bd3 contexto = new bd3()) {
+                using (bd5 contexto = new bd5()) {
 
                     var tu = from t in contexto.TipoUsuario
                              select new { t.nombre_tipoUsuario,t.codigo_tipoUsuario};
@@ -29,17 +28,12 @@ namespace Pizza_Express_visual.Services
             }
         }
 
-        //LISTAR TODOS LOS TIPOS DE USUARIOS
-        public List<QueryTipoUsuario> ListarTodosLosTipoUsuarios() {
-            return queryUsuarios.ToList();
-        }
-
         //AGREGAR TIPO USUARIO
         public bool addTipoUsuario(TipoUsuario tipoU)
         {
             try
             {
-                using (bd3 contexto = new bd3())
+                using (bd5 contexto = new bd5())
                 {
                     contexto.TipoUsuario.Add(tipoU);
                     contexto.SaveChanges();
@@ -56,8 +50,6 @@ namespace Pizza_Express_visual.Services
         }
 
         //LIMPIAR TIPOS DE USUARIOS
-        public void limpiarTipoUsuarios() {
-            queryUsuarios.Clear();
-        }
+
     }
 }
