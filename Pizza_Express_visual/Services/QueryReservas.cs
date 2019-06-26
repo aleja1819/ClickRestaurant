@@ -19,7 +19,9 @@ namespace Pizza_Express_visual.Services
                 {
 
                     var re = from r in contexto.Reserva
-                             select new { r.numero_mesa, r.nombre_reserva, r.fecha_reserva, r.hora_reserva};
+                             join m in contexto.Mesa
+                             on r.numero_mesa equals m.numero_mesa
+                             select new {r.codigo_reserva, m.numero_mesa, r.nombre_reserva, r.fecha_reserva, r.hora_reserva};
 
                     return re.ToList<object>();
 

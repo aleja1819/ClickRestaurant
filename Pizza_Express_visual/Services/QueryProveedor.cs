@@ -21,7 +21,28 @@ namespace Pizza_Express_visual.Services
                     var pro = from p in contexto.Proveedor
                               join t in contexto.TipoProducto  
                               on p.codigo_tipoProducto equals t.codigo_tipoProducto
-                              select new { p.rut_proveedor, p.nombre_proveedor, p.apellido_paterno_proveedor, p.apellido_materno_proveedor, p.direccion_proveedor, t.nombre_tipoProducto };
+                              select new { p.codigo_proveedor, p.rut_proveedor, p.nombre_proveedor, p.apellido_paterno_proveedor, p.apellido_materno_proveedor, p.direccion_proveedor, t.nombre_tipoProducto, t.codigo_tipoProducto };
+
+                    return pro.ToList<object>();
+
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+
+            }
+        }
+
+        public List<object> filtrartipoProducto()
+        {
+            try
+            {
+                using (bd5 contexto = new bd5())
+                {
+
+                    var pro = from t in contexto.TipoProducto
+                              select new { t.nombre_tipoProducto, t.codigo_tipoProducto };
 
                     return pro.ToList<object>();
 
@@ -55,6 +76,66 @@ namespace Pizza_Express_visual.Services
             {
 
                 return false;
+            }
+        }
+
+        //ELIMNAR 
+        public bool eliminarProveedor(int id_prov)
+        {
+            try
+            {
+                using (bd5 contexto = new bd5())
+                {
+                    var user = contexto.Proveedor.Find(id_prov);
+
+                    contexto.Proveedor.Remove(user);
+                    contexto.SaveChanges();
+
+                    int respuesta = contexto.SaveChanges();
+                    return respuesta == 1;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+        }
+
+        //BUSCAR
+        public List<object> BuscarProveedor(string dato, int filtro)
+        {
+            using (bd5 contexto = new bd5())
+            {
+                switch (filtro)
+                {
+                    case 0: //BUSCAR POR RUT
+                        var pRut = from p in contexto.Proveedor
+                                   where p.rut_proveedor.ToLower().StartsWith(dato.ToLower())
+                                   join t in contexto.TipoProducto
+                                   on p.codigo_tipoProducto equals t.codigo_tipoProducto
+                                   select p;
+
+                        return pRut.ToList<object>();
+
+                    case 1: //BUSCAR POR nombre
+                        var pNombre = from p in contexto.Proveedor
+                                      where p.nombre_proveedor.ToLower().StartsWith(dato.ToLower())
+                                      join t in contexto.TipoProducto
+                                      on p.codigo_tipoProducto equals t.codigo_tipoProducto
+                                      select p;
+
+                        return pNombre.ToList<object>();
+                    default:
+                        var pTodo = from p in contexto.Proveedor
+                                    join t in contexto.TipoProducto
+                                    on p.codigo_tipoProducto equals t.codigo_tipoProducto
+                                    select p;
+
+                        return pTodo.ToList<object>();
+                }
+
+
             }
         }
 

@@ -57,8 +57,7 @@
                                 <HeaderStyle CssClass="btn-dark" />
 
                                 <Columns>
-                                    <asp:BoundField DataField="codigo_usuario" HeaderStyle-CssClass="ocultarCol" 
-                                    ItemStyle-CssClass="ocultarCol" HeaderText="codigo"  />
+                                    <asp:BoundField DataField="codigo_usuario" HeaderText="codigo"/>
                                     <asp:BoundField DataField="rut_usuario" HeaderText="Rut" />
                                     <asp:BoundField DataField="nombre_usuario" HeaderText="Nombre Usuario" />
                                     <asp:BoundField DataField="email_usuario" HeaderText="Email" />

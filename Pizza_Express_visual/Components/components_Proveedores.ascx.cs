@@ -11,7 +11,6 @@ namespace Pizza_Express_visual.Components
     public partial class components_Proveedores : System.Web.UI.UserControl
     {
         private QueryProveedor accesoProveedor = new QueryProveedor();
-        private QueryTipoProducto accesoTipoProducto = new QueryTipoProducto();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,7 +22,7 @@ namespace Pizza_Express_visual.Components
                 idTabla.DataBind();
 
                 //MOSTRAR LA LISTA DE LOS TIPOS DE USUARIOS DE LA BASE DE DATOS
-                fTipoProducto.DataSource = accesoTipoProducto.FiltroTipoProducto();
+                fTipoProducto.DataSource = accesoProveedor.filtrartipoProducto();
                 fTipoProducto.DataBind();
 
                 uContenedorProveedor.Update();
@@ -120,34 +119,71 @@ namespace Pizza_Express_visual.Components
 
         protected void idTabla_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal();", true);
-            //uModalUsuario.Update();
-            //uContenedorUsuario.Update();
-
+            
             int fila = Convert.ToInt32(e.CommandArgument);
             if (e.CommandName.Equals("ideditar"))
             {
 
-                trut.Text = idTabla.Rows[fila].Cells[0].Text;
-                tnombre.Text = idTabla.Rows[fila].Cells[1].Text;
-                tapellidoP.Text = idTabla.Rows[fila].Cells[2].Text;
-                tapellidoM.Text = idTabla.Rows[fila].Cells[3].Text;
-                tdireccion.Text = idTabla.Rows[fila].Cells[4].Text;
-                fTipoProducto.Text = idTabla.Rows[fila].Cells[5].Text;
+                //trut.Text = idTabla.Rows[fila].Cells[0].Text;
+                //tnombre.Text = idTabla.Rows[fila].Cells[1].Text;
+                //tapellidoP.Text = idTabla.Rows[fila].Cells[2].Text;
+                //tapellidoM.Text = idTabla.Rows[fila].Cells[3].Text;
+                //tdireccion.Text = idTabla.Rows[fila].Cells[4].Text;
+                //fTipoProducto.Text = idTabla.Rows[fila].Cells[5].Text;
+
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal();", true);
+                uModalProveedor.Update();
+                uContenedorProveedor.Update();
 
 
             }
             else if (e.CommandName.Equals("ideliminar"))
             {
-                // ELIMINAR UN PRODUCTO DE LA LISTA
-                //string codigo = idTabla.Rows[fila].Cells[0].Text;
-                //int id = Convert.ToInt32(codigo);
-                //accesoUsuario.eliminarUsuario(id);
-                //idTabla.DataSource = accesoUsuario.filtrarUsuarios();
-                //idTabla.DataBind();
+                // ELIMINAR UN PROVEEDOR
+                string codigo = idTabla.Rows[fila].Cells[0].Text;
+                int id = Convert.ToInt32(codigo);
+                accesoProveedor.eliminarProveedor(id);
 
-                //mensaje.Visible = true;
-                //mensaje.Text = "Usuario eliminado";
+                idTabla.DataSource = accesoProveedor.filtrarProveedor();
+                idTabla.DataBind();
+
+                mensaje.Visible = true;
+                mensaje.Text = "proveedor eliminado";
+
+            }
+        }
+
+        protected void ideditarProveedorBoton_Click(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal('hide');", true);
+            uModalProveedor.Update();
+            uContenedorProveedor.Update();
+        }
+
+        protected void idBuscarProveedor_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int filtro = Convert.ToInt32(idOpciones.SelectedValue);
+
+                int cant = accesoProveedor.BuscarProveedor(tdatoBuscarProveedor.Text, filtro).Count;
+
+                idTabla.DataSource = accesoProveedor.BuscarProveedor(tdatoBuscarProveedor.Text, filtro);
+                idTabla.DataBind();
+
+                uContenedorProveedor.Update();
+                uModalProveedor.Update();
+
+                mensaje.Text = "Usuario encontrado";
+                if (cant == 0)
+                {
+                    mensaje.Visible = true;
+                    mensaje.Text = "Usuario no encontrado";
+                }
+
+            }
+            catch (Exception)
+            {
 
             }
         }

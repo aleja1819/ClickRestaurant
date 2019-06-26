@@ -337,8 +337,6 @@
     <Compile Include="Services\QueryProductos.cs" />
     <Compile Include="Services\QueryProveedor.cs" />
     <Compile Include="Services\QueryReservas.cs" />
-    <Compile Include="Services\QueryTipoProducto.cs" />
-    <Compile Include="Services\QueryTipoUsuario.cs" />
     <Compile Include="Services\QueryUsuario.cs" />
     <Compile Include="test.aspx.cs">
       <DependentUpon>test.aspx</DependentUpon>

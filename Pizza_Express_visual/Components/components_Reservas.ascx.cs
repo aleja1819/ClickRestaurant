@@ -22,6 +22,9 @@ namespace Pizza_Express_visual.Components
                 idTabla.DataSource = accesoReservas.filtrarReservas();
                 idTabla.DataBind();
 
+                uModalReserva.Update();
+                uContenedorReservas.Update();
+
             }
         }
 
@@ -37,22 +40,28 @@ namespace Pizza_Express_visual.Components
             try
             {
 
+                Models.Mesa mesa = new Models.Mesa() {
+                    estado_mesa = false
+                    
+                };
+              
                 //LEER LOS DATOS INGRESADOS
                 string nuMesa = tnMesa.Text;
                 string nombre_R = tnombre.Text;
-                //string fecha = tfecha.SelectedDates;
-                //string hora = tapellidoM.Text;
+                string fecha = tfecha.Text;
+                string hora = thora.Text;
 
 
-
+                DateTime date = DateTime.Now;
+                TimeSpan time = TimeSpan.Zero;
                 //GUARDAR LOS DATOS EN LA LISTA
                 accesoReservas.addReserva(new Models.Reserva
                 {
 
-                    //numero_mesa = nuMesa,
-                    //nombre_reserva = nombre_R,
-                    //fecha_reserva = 
-                    //hora_reserva = 
+                    numero_mesa = nuMesa,
+                    nombre_reserva = nombre_R,
+                    fecha_reserva = date,
+                    hora_reserva =time
                 });
 
                 //MOSTRAR LOS DATOS EN LA TABLA

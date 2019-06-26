@@ -36,7 +36,7 @@
                         <%--SEGUNDA COLUMNA--%>          
                         <div class="col-md-6">
                       <asp:LinkButton runat="server" CssClass="btn btn-success" OnClick="bRegistrarReservarModal_Click" ID="bRegistrarReservarModal">
-                       <i class="fas fa-plus"></i> Registrar Proveedor
+                       <i class="fas fa-plus"></i> Registrar Reservas
                                 </asp:LinkButton>
                                 <br />
                                 <br />
@@ -54,6 +54,7 @@
 
                                 <Columns>
 
+                                    <asp:BoundField DataField="codigo_reserva" HeaderText="Código Reserva" />
                                     <asp:BoundField DataField="numero_mesa" HeaderText="Número de mesa" />
                                     <asp:BoundField DataField="nombre_reserva" HeaderText="Nombre Cliente" />
                                     <asp:BoundField DataField="fecha_reserva" HeaderText="Fecha" />
@@ -103,16 +104,17 @@
                                     </div>
 
                                     <%--FECHA--%>
-                                    <%--<div class="form-group">
+                                    <div class="form-group">
                                         <label for="tfecha">Fecha</label>
-                                        <asp:TextBox  runat="server" ID="tfecha" CssClass=""></asp:TextBox>
-                                    </div>--%>
+                                        <asp:TextBox  runat="server" ID="tfecha" TextMode="Date" CssClass="form-control bg-secondary"></asp:TextBox>
+                                    </div>
+                                                               
 
                                     <%--HORA--%>
-                                    <%--<div class="form-group">
-                                        <label for="thora">Hora registrada</label>
-                                        <asp:Timer runat="server"  ID="thora" CssClass="form-control bg-secondary"></asp:Timer>
-                                    </div>--%>
+                                    <div class="form-group">
+                                        <label for="thora">Hora</label>
+                                        <asp:TextBox runat="server"  ID="thora" TextMode="Time" CssClass="form-control bg-secondary"></asp:TextBox>
+                                    </div>
 
                                     <asp:Label runat="server" ID="mensaje" Text="Mensaje" Visible="false"></asp:Label>
 

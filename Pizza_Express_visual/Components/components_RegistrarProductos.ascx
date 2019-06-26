@@ -23,11 +23,11 @@
                                         <asp:DropDownList runat="server" ID="idOpciones" CssClass="btn btn-secondary">
                                             <%--ES UN CONBOBOX--%>
 
-                                            <asp:ListItem Value="1" Text="Nombre Producto"></asp:ListItem>
-                                            <%--LO QUE DENTRO--%>
+                                            <asp:ListItem Value="0" Text="Nombre Producto"></asp:ListItem>
+                                            <asp:ListItem Value="1" Text="Código Producto"></asp:ListItem>
                                         </asp:DropDownList>
 
-                                        <asp:Button runat="server" ID="bBuscarProducto"  Text="buscar" CssClass="btn btn-success" />
+                                        <asp:Button runat="server" ID="bBuscarProducto" OnClick="bBuscarProducto_Click" Text="buscar" CssClass="btn btn-success" />
                                     </div>
                                 </div>                     
                              </div> <%--CIERRE COLUMNA--%>
@@ -47,12 +47,14 @@
                        
                         <%--TABLA GRIDVIEW--%>
                         <div class="col align-content-center">
-                            <asp:GridView runat="server" ID="idTabla" CssClass="table table-bordered table-center " AutoGenerateColumns="false">
+                            <asp:GridView runat="server" ID="idTabla" CssClass="table table-bordered table-center " AutoGenerateColumns="false"
+                                OnRowCommand="idTabla_RowCommand">
                                 
                                 <HeaderStyle CssClass="btn-dark" />
 
                                 <Columns>
 
+                                    <asp:BoundField DataField="codigo_producto" HeaderText="Código" />
                                     <asp:BoundField DataField="nombre_producto" HeaderText="Nombre Producto" />
                                     <asp:BoundField DataField="rut_proveedor" HeaderText="Rut Proveedor" />
                                     <asp:BoundField DataField="fecha_ingreso_producto" HeaderText="Fecha ingreso" />
@@ -63,7 +65,7 @@
 
                                 </Columns>
                             </asp:GridView>
-                            <%-- OnPageIndexChanging="idTabla_PageIndexChanging";PageSize="2; AllowPaging="true; OnRowCommand="idTabla_RowCommand"--%>
+                            <%-- OnPageIndexChanging="idTabla_PageIndexChanging";PageSize="2; AllowPaging="true--%>
                         </div>      
                  </ContentTemplate>
                 </asp:UpdatePanel>      
@@ -91,7 +93,7 @@
                                     <%--NOMBRE PRODUCTO--%>
                                     <div class="form-group">
                                         <label for="tnombre">Nombre Producto</label>
-                                        <asp:TextBox runat="server" placeholder="Nombre Proveedor" ID="tnombre" CssClass="form-control bg-secondary"></asp:TextBox>
+                                        <asp:TextBox runat="server" placeholder="Nombre Producto" ID="tnombre" CssClass="form-control bg-secondary"></asp:TextBox>
                                     </div>
 
                                     <%--RUT PROVEEDOR--%>
@@ -103,7 +105,7 @@
                                     <%--<%--FECHA--%>
                                     <div class="form-group">
                                         <label for="tfecha">Fecha</label>
-                                        <asp:TextBox runat="server" placeholder="Fecha" ID="tfecha" CssClass="form-control bg-secondary"></asp:TextBox>
+                                        <asp:TextBox runat="server" placeholder="Fecha" ID="tfecha" TextMode="Date" CssClass="form-control bg-secondary"></asp:TextBox>
                                     </div>--%>
 
                                     <%--CANTIDAD--%>

@@ -11,21 +11,39 @@ namespace Pizza_Express_visual.Services
     {
 
         //LINQ TO ENTITY
-        public List<object> filtrarUsuarios() {
+        public List<object> filtrarUsuarios()
+        {
             try
             {
                 using (bd5 contexto = new bd5())
                 {
-                    //var r = from u in contexto.Usuario
-                    //        select u;
 
                     var r = from u in contexto.Usuario
                             join t in contexto.TipoUsuario
                             on u.codigo_tipoUsuario equals t.codigo_tipoUsuario
-                            select new { u.codigo_usuario, u.rut_usuario, u.nombre_usuario, u.email_usuario, u.contraseña_usuario, t.nombre_tipoUsuario };
+                            select new { u.codigo_usuario, u.rut_usuario, u.nombre_usuario, u.email_usuario, u.contraseña_usuario, t.nombre_tipoUsuario, t.codigo_tipoUsuario};
 
                     return r.ToList<object>();
+                }
+            }
+            catch (Exception)
+            {
+                return null;
 
+            }
+        }
+
+        public List<object> filtrarTipoUsuarios()
+        {
+            try
+            {
+                using (bd5 contexto = new bd5())
+                {
+
+                    var r = from t in contexto.TipoUsuario
+                            select new { t.nombre_tipoUsuario, t.codigo_tipoUsuario };
+
+                    return r.ToList<object>();
                 }
             }
             catch (Exception)
@@ -36,11 +54,13 @@ namespace Pizza_Express_visual.Services
         }
 
         //AGREGAR USUARIO
-        public bool addUsuario(Usuario user) {
+        public bool addUsuario(Usuario user)
+        {
 
             try
             {
-                using (bd5 contexto = new bd5()) {
+                using (bd5 contexto = new bd5())
+                {
 
                     contexto.Usuario.Add(user);
                     contexto.SaveChanges();
@@ -81,17 +101,26 @@ namespace Pizza_Express_visual.Services
 
         }
 
-        public bool editarUsuario(Usuario codigo_user) {
+        public bool editarUsuario(Usuario usuario)
+        {
 
             try
             {
-                using (bd5 contexto = new bd5()) {
+                using (bd5 contexto = new bd5())
+                {
 
+                    //BUSCAR EL PRODUCTO EN LA BD
+                    var user = contexto.Usuario.Find(usuario.codigo_usuario);
 
-                    var user = contexto.Usuario.Find(codigo_user);
-                    contexto.Usuario.First(u => u.codigo_usuario.Equals(user));
-                    contexto.SaveChanges();
+                    //MODIFICAR LOS CAMPOS QUE NECESITO
 
+                    user.rut_usuario = usuario.rut_usuario;
+                    user.nombre_usuario = usuario.nombre_usuario;
+                    user.email_usuario = usuario.email_usuario;
+                    user.contraseña_usuario = usuario.contraseña_usuario;
+                    user.codigo_tipoUsuario = usuario.codigo_tipoUsuario;
+
+                    //GUARDAR LOS CAMBIOS EN LA TABLA BD
                     int respuesta = contexto.SaveChanges();
                     return respuesta == 1;
 
@@ -104,5 +133,38 @@ namespace Pizza_Express_visual.Services
             }
         }
 
+        public List<object> BuscarrUsuarios(string dato, int filtro)
+        {
+            using (bd5 contexto = new bd5())
+            {
+                switch (filtro){
+                        case 0: //BUSCAR POR RUT
+                            var rRut = from u in contexto.Usuario
+                                       where u.rut_usuario.ToLower().StartsWith(dato.ToLower())
+                                       join t in contexto.TipoUsuario
+                                       on u.codigo_tipoUsuario equals t.codigo_tipoUsuario
+                                       select u;
+
+                            return rRut.ToList<object>();
+                        case 1: //BUSCAR POR nombre
+                        var rNombre = from u in contexto.Usuario
+                                      where u.nombre_usuario.ToLower().StartsWith(dato.ToLower())
+                                      join t in contexto.TipoUsuario
+                                      on u.codigo_tipoUsuario equals t.codigo_tipoUsuario
+                                      select u;
+
+                        return rNombre.ToList<object>();
+                        default:
+                            var rTodo = from u in contexto.Usuario
+                                        join t in contexto.TipoUsuario
+                                        on u.codigo_tipoUsuario equals t.codigo_tipoUsuario
+                                        select u;
+
+                            return rTodo.ToList<object>();
+                    }
+
+
+                }
+            }
+        }
     }
-}

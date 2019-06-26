@@ -29,7 +29,7 @@
                                             <%--LO QUE DENTRO--%>
                                         </asp:DropDownList>
 
-                                        <asp:Button runat="server" ID="idBuscarProveedor"  Text="buscar" CssClass="btn btn-success" />
+                                        <asp:Button runat="server" ID="idBuscarProveedor" OnClick="idBuscarProveedor_Click"  Text="buscar" CssClass="btn btn-success" />
                                     </div>
                                 </div>                     
                              </div> <%--CIERRE COLUMNA--%>
@@ -56,6 +56,7 @@
 
                                 <Columns>
 
+                                    <asp:BoundField DataField="codigo_proveedor" HeaderText="Código" />
                                     <asp:BoundField DataField="rut_proveedor" HeaderText="Rut" />
                                     <asp:BoundField DataField="nombre_proveedor" HeaderText="Nombre Usuario" />
                                     <asp:BoundField DataField="apellido_paterno_proveedor" HeaderText="Apellido Paterno" />
@@ -137,7 +138,7 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    <asp:Button runat="server" ID="ideditarProveedorBoton" Text="Actualizar" CssClass="btn btn-success float-right" />
+                                    <asp:Button runat="server" ID="ideditarProveedorBoton" OnClick="ideditarProveedorBoton_Click" Text="Actualizar" CssClass="btn btn-success float-right" />
                                     <asp:Button runat="server" ID="idregistrarProveedor" OnClick="idregistrarProveedor_Click"  Text="Registrar" CssClass="btn btn-success float-right" />
                                 </div>
 
