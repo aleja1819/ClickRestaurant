@@ -76,8 +76,8 @@ namespace Pizza_Express_visual.Components
             int fila = Convert.ToInt32(e.CommandArgument);
             if (e.CommandName.Equals("ideditar"))
             {
-                
 
+                cod_orginal.Text = idTabla.Rows[fila].Cells[0].Text;
                 trut.Text = idTabla.Rows[fila].Cells[1].Text;
                 tnombre.Text = idTabla.Rows[fila].Cells[2].Text;
                 temail.Text =  idTabla.Rows[fila].Cells[3].Text;
@@ -115,11 +115,6 @@ namespace Pizza_Express_visual.Components
                 string clave_u = tclave.Text;
 
                 int id = Convert.ToInt32(fTipoUsuario.SelectedItem.Value);
-                Models.TipoUsuario tipo_U = new Models.TipoUsuario
-                {
-                   
-                    nombre_tipoUsuario = fTipoUsuario.SelectedItem.Text
-                };
 
                 //GUARDAR LOS DATOS EN LA LISTA
                 accesoUsuario.addUsuario(new Models.Usuario
@@ -129,7 +124,7 @@ namespace Pizza_Express_visual.Components
                     nombre_usuario = nombre_u,
                     email_usuario = email_u,
                     contraseña_usuario = clave_u,
-                    TipoUsuario = tipo_U
+                    codigo_tipoUsuario=id
 
                 });
 
@@ -191,23 +186,19 @@ namespace Pizza_Express_visual.Components
                 string email_u = temail.Text;
                 string clave_u = tclave.Text;
 
-                int id = Convert.ToInt32(fTipoUsuario.SelectedItem.Value);
-                Models.TipoUsuario tipo_U = new Models.TipoUsuario
-                {
-
-                    nombre_tipoUsuario = fTipoUsuario.SelectedItem.Text
-                };
-
-                accesoUsuario.editarUsuario(new Models.Usuario
+                int id_tipoU = Convert.ToInt32(fTipoUsuario.SelectedItem.Value);
+                string codigo_original = cod_orginal.Text;
+                //int cod_o = Convert.ToInt32(codigo_original);
+                _ = accesoUsuario.editarUsuario(new Models.Usuario
                 {
 
                     rut_usuario = rut_u,
                     nombre_usuario = nombre_u,
                     email_usuario = email_u,
                     contraseña_usuario = clave_u,
-                    TipoUsuario = tipo_U
+                    codigo_tipoUsuario = id_tipoU,
 
-                });
+                }, codigo_original);
 
                 //MOSTRAR LOS DATOS EN LA TABLA
                 idTabla.DataSource = accesoUsuario.filtrarUsuarios();

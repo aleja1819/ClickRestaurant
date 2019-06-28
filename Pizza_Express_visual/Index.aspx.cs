@@ -87,7 +87,13 @@ namespace Pizza_Express_visual
 
         protected void bingresar_login_Click(object sender, EventArgs e)
         {
+            
+        }
 
+        protected void Menu_comanda_Click(object sender, EventArgs e)
+        {
+            mcontenedor.SetActiveView(vComanda);
+            uContenido.Update();
         }
     }
 }

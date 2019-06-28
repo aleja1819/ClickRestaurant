@@ -39,11 +39,6 @@ namespace Pizza_Express_visual.Components
         {
             try
             {
-
-                Models.Mesa mesa = new Models.Mesa() {
-                    estado_mesa = false
-                    
-                };
               
                 //LEER LOS DATOS INGRESADOS
                 string nuMesa = tnMesa.Text;

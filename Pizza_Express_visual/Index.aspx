@@ -10,6 +10,10 @@
 <%@ Register Src="~/Components/components_Reportes.ascx" TagPrefix="uc1" TagName="components_Reportes" %>
 <%@ Register Src="~/Components/components_Reservas.ascx" TagPrefix="uc1" TagName="components_Reservas" %>
 <%@ Register Src="~/Components/components_Usuarios.ascx" TagPrefix="uc1" TagName="components_Usuarios" %>
+<%@ Register Src="~/Components/component_Comanda.ascx" TagPrefix="uc1" TagName="component_Comanda" %>
+
+
+
 <%--<%@ Register Src="~/Components/WebUserControl1.ascx" TagPrefix="uc1" TagName="WebUserControl1" %>--%>
 
 
@@ -56,10 +60,6 @@
                             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                                 <ul class="navbar-nav">
 
-                                    <%--                                    <li class="nav-item">
-                                        <%--<asp:LinkButton CssClass="nav-link" runat="server" Visible="false" ID="Menu_cerrar">Cerrar</asp:LinkButton>
-                                  <asp:LinkButton CssClass="nav-link" runat="server" ID="Menu_Login">Login</asp:LinkButton>
-                                    </li>--%>
                                 </ul>
                             </div>
 
@@ -81,6 +81,7 @@
                                         <asp:LinkButton runat="server" CssClass="dropdown-item" ID="Menu_MontoInicial" OnClick="Menu_MontoInicial_Click">Monto Inicial</asp:LinkButton>
                                         <asp:LinkButton runat="server" ID="Menu_Reservas" OnClick="Menu_Reservas_Click" CssClass="dropdown-item">Reservas</asp:LinkButton>
                                         <asp:LinkButton runat="server" ID="Menu_NumeroMesa" OnClick="Menu_NumeroMesa_Click" CssClass="dropdown-item">Número de mesa</asp:LinkButton>
+                                    <asp:LinkButton runat="server" ID="Menu_comanda" OnClick="Menu_comanda_Click"  CssClass="dropdown-item">Comanda</asp:LinkButton>
                                     </div>
                                 </li>
                             </ul>
@@ -163,6 +164,9 @@
                     </asp:View>
                     <asp:View runat="server" ID="vBienvenida">
                         <uc1:component_Bienvenidos runat="server" ID="component_Bienvenidos" />
+                    </asp:View>
+                    <asp:View runat="server" ID="vComanda">
+                        <uc1:component_Comanda runat="server" ID="component_Comanda" />
                     </asp:View>
                 </asp:MultiView>
 

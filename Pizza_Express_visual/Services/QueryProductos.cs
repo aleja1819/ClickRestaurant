@@ -14,7 +14,7 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd5 contexto = new bd5())
+                using (bd7 contexto = new bd7())
                 {
 
                     var pro = from p in contexto.Producto
@@ -41,7 +41,7 @@ namespace Pizza_Express_visual.Services
 
             try
             {
-                using (bd5 contexto = new bd5())
+                using (bd7 contexto = new bd7())
                 {
 
                     contexto.Producto.Add(prod);
@@ -65,7 +65,7 @@ namespace Pizza_Express_visual.Services
 
             try
             {
-                using (bd5 contexto = new bd5())
+                using (bd7 contexto = new bd7())
                 {
 
                     contexto.Producto_Proveedor.Add(prod_prove);
@@ -87,7 +87,7 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd5 contexto = new bd5())
+                using (bd7 contexto = new bd7())
                 {
                     int cod = contexto.Proveedor.First(x => x.rut_proveedor.Equals(rut)).codigo_proveedor;
                     return cod;
@@ -106,7 +106,7 @@ namespace Pizza_Express_visual.Services
 
             try
             {
-                using (bd5 contexto = new bd5())
+                using (bd7 contexto = new bd7())
                 {
                     var user = contexto.Producto.Find(id_prod);
 
@@ -126,7 +126,7 @@ namespace Pizza_Express_visual.Services
 
         public List<object> BuscarProductos(string dato, int filtro)
         {
-            using (bd5 contexto = new bd5())
+            using (bd7 contexto = new bd7())
             {
 
                 int cod_prod = 0; //TIENE QUE VER CON EL CONBOBOX

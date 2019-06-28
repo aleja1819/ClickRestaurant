@@ -15,7 +15,7 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd5 contexto = new bd5())
+                using (bd7 contexto = new bd7())
                 {
 
                     var r = from u in contexto.Usuario
@@ -37,7 +37,7 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd5 contexto = new bd5())
+                using (bd7 contexto = new bd7())
                 {
 
                     var r = from t in contexto.TipoUsuario
@@ -59,7 +59,7 @@ namespace Pizza_Express_visual.Services
 
             try
             {
-                using (bd5 contexto = new bd5())
+                using (bd7 contexto = new bd7())
                 {
 
                     contexto.Usuario.Add(user);
@@ -83,7 +83,7 @@ namespace Pizza_Express_visual.Services
 
             try
             {
-                using (bd5 contexto = new bd5())
+                using (bd7 contexto = new bd7())
                 {
                     var user = contexto.Usuario.Find(codigo_user);
 
@@ -101,26 +101,28 @@ namespace Pizza_Express_visual.Services
 
         }
 
-        public bool editarUsuario(Usuario usuario)
+        public bool editarUsuario(Usuario usuario, string cod_original)
         {
 
             try
             {
-                using (bd5 contexto = new bd5())
+                int idOri = Convert.ToInt32(cod_original);
+                using (bd7 contexto = new bd7())
                 {
-
+                
                     //BUSCAR EL PRODUCTO EN LA BD
-                    var user = contexto.Usuario.Find(usuario.codigo_usuario);
+                    //contexto.Usuario.Find(usuario.codigo_usuario);
+                    var user = contexto.Usuario.First(usu => usu.codigo_usuario == idOri);
 
                     //MODIFICAR LOS CAMPOS QUE NECESITO
-
+                   
                     user.rut_usuario = usuario.rut_usuario;
                     user.nombre_usuario = usuario.nombre_usuario;
                     user.email_usuario = usuario.email_usuario;
                     user.contraseña_usuario = usuario.contraseña_usuario;
                     user.codigo_tipoUsuario = usuario.codigo_tipoUsuario;
 
-                    //GUARDAR LOS CAMBIOS EN LA TABLA BD
+                    //GUARDAR LOS CAMBIOS EN LA TABLA B
                     int respuesta = contexto.SaveChanges();
                     return respuesta == 1;
 
@@ -135,7 +137,7 @@ namespace Pizza_Express_visual.Services
 
         public List<object> BuscarrUsuarios(string dato, int filtro)
         {
-            using (bd5 contexto = new bd5())
+            using (bd7 contexto = new bd7())
             {
                 switch (filtro){
                         case 0: //BUSCAR POR RUT

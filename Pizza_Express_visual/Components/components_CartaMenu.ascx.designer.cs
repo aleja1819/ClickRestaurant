@@ -10,7 +10,7 @@
 namespace Pizza_Express_visual.Components {
     
     
-    public partial class components_Usuarios {
+    public partial class components_CartaMenu {
         
         /// <summary>
         /// Control uContenedorMenu.
@@ -121,13 +121,13 @@ namespace Pizza_Express_visual.Components {
         protected global::System.Web.UI.WebControls.DropDownList ftamaño;
         
         /// <summary>
-        /// Control fTipoUsuario.
+        /// Control fcategoria.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList fTipoUsuario;
+        protected global::System.Web.UI.WebControls.DropDownList fcategoria;
         
         /// <summary>
         /// Control ideditarMenuBoton.

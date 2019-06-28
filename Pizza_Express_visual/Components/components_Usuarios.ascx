@@ -136,6 +136,7 @@
 
                                 <div class="modal-footer">
                                    <%-- <asp:Button runat="server" ID="idtest" OnClick="idtest_Click" />--%>
+                                    <asp:Label runat="server" ID="cod_orginal" CssClass="ocultarCol"></asp:Label>
                                     <asp:Button runat="server" ID="ideditarUsuarioBoton" OnClick="ideditarUsuarioBoton_Click" Text="Actualizar" CssClass="btn btn-success float-right" />
                                     <asp:Button runat="server" ID="idregistrar" OnClick="idregistrarUsuario_Click" Text="Registrar" CssClass="btn btn-success float-right" />
                                 </div>

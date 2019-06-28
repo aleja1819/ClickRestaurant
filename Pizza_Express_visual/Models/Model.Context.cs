@@ -13,10 +13,10 @@ namespace Pizza_Express_visual.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class bd5 : DbContext
+    public partial class bd7 : DbContext
     {
-        public bd5()
-            : base("name=bd5")
+        public bd7()
+            : base("name=bd7")
         {
         }
     
@@ -32,6 +32,8 @@ namespace Pizza_Express_visual.Models
         public virtual DbSet<Comanda_reparto> Comanda_reparto { get; set; }
         public virtual DbSet<ComandaMesa> ComandaMesa { get; set; }
         public virtual DbSet<Detalle_Mesa> Detalle_Mesa { get; set; }
+        public virtual DbSet<Estado> Estado { get; set; }
+        public virtual DbSet<Estado_Mesa> Estado_Mesa { get; set; }
         public virtual DbSet<Menu> Menu { get; set; }
         public virtual DbSet<Mesa> Mesa { get; set; }
         public virtual DbSet<Pago> Pago { get; set; }
@@ -41,6 +43,7 @@ namespace Pizza_Express_visual.Models
         public virtual DbSet<Producto_Proveedor> Producto_Proveedor { get; set; }
         public virtual DbSet<Proveedor> Proveedor { get; set; }
         public virtual DbSet<Reserva> Reserva { get; set; }
+        public virtual DbSet<TamanoP> TamanoP { get; set; }
         public virtual DbSet<TipoPago> TipoPago { get; set; }
         public virtual DbSet<TipoProducto> TipoProducto { get; set; }
         public virtual DbSet<TipoUsuario> TipoUsuario { get; set; }

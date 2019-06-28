@@ -26,11 +26,13 @@ namespace Pizza_Express_visual.Models
         public string nombre_menu { get; set; }
         public int precio_menu { get; set; }
         public string ingredientes_menu { get; set; }
+        public int codigo_tamanoP { get; set; }
     
         public virtual Categoria Categoria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comanda_reparto> Comanda_reparto { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detalle_Mesa> Detalle_Mesa { get; set; }
+        public virtual TamanoP TamanoP { get; set; }
     }
 }

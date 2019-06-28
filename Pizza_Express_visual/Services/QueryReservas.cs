@@ -15,7 +15,7 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd5 contexto = new bd5())
+                using (bd7 contexto = new bd7())
                 {
 
                     var re = from r in contexto.Reserva
@@ -40,7 +40,7 @@ namespace Pizza_Express_visual.Services
 
             try
             {
-                using (bd5 contexto = new bd5())
+                using (bd7 contexto = new bd7())
                 {
 
                     contexto.Reserva.Add(reserva);

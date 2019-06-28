@@ -12,22 +12,18 @@ namespace Pizza_Express_visual.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Mesa
+    public partial class TamanoP
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Mesa()
+        public TamanoP()
         {
-            this.ComandaMesa = new HashSet<ComandaMesa>();
-            this.Reserva = new HashSet<Reserva>();
+            this.Menu = new HashSet<Menu>();
         }
     
-        public string numero_mesa { get; set; }
-        public int codigo_estado { get; set; }
+        public int codigo_tamanoP { get; set; }
+        public string nombre_tamanoP { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ComandaMesa> ComandaMesa { get; set; }
-        public virtual Estado_Mesa Estado_Mesa { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Reserva> Reserva { get; set; }
+        public virtual ICollection<Menu> Menu { get; set; }
     }
 }

@@ -276,6 +276,12 @@
     <Compile Include="Models\Detalle_Mesa.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Estado.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Estado_Mesa.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Menu.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -318,6 +324,9 @@
     <Compile Include="Models\Reserva.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TamanoP.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TipoPago.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -334,6 +343,7 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\QueryMenu.cs" />
     <Compile Include="Services\QueryProductos.cs" />
     <Compile Include="Services\QueryProveedor.cs" />
     <Compile Include="Services\QueryReservas.cs" />
