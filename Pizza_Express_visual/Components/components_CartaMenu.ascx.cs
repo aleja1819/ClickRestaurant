@@ -267,7 +267,7 @@ namespace Pizza_Express_visual.Components
             {
 
                 cod_orginal.Text = idTabla.Rows[fila].Cells[0].Text;
-                tnombre.Text = idTabla.Rows[fila].Cells[1].Text.Replace("&#243;", "ó").Replace("&#233;", "é").Replace("&#241;", "ñ").Replace("$", "");
+                tnombre.Text = idTabla.Rows[fila].Cells[1].Text.Replace("&#243;", "ó").Replace("&#233;", "é").Replace("&#241;", "ñ");
                 tprecio.Text = idTabla.Rows[fila].Cells[2].Text.Replace("&#243;", "ó").Replace("&#233;", "é").Replace("&#241;", "ñ").Replace("$","");
                 tingredientes.Text = idTabla.Rows[fila].Cells[3].Text.Replace("&#243;", "ó").Replace("&#233;", "é").Replace("&#241;", "ñ");
 
