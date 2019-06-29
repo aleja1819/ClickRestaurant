@@ -19,12 +19,14 @@ namespace Pizza_Express_visual.Models
         {
             this.Comanda_reparto = new HashSet<Comanda_reparto>();
             this.ComandaMesa = new HashSet<ComandaMesa>();
+            this.PagoRepartidor = new HashSet<PagoRepartidor>();
             this.Producto = new HashSet<Producto>();
             this.Turno = new HashSet<Turno>();
         }
     
         public int codigo_usuario { get; set; }
         public int codigo_tipoUsuario { get; set; }
+        public int codigo_estado { get; set; }
         public string nombre_usuario { get; set; }
         public string contraseña_usuario { get; set; }
         public string rut_usuario { get; set; }
@@ -34,6 +36,9 @@ namespace Pizza_Express_visual.Models
         public virtual ICollection<Comanda_reparto> Comanda_reparto { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ComandaMesa> ComandaMesa { get; set; }
+        public virtual Estado_Usuario Estado_Usuario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PagoRepartidor> PagoRepartidor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Producto> Producto { get; set; }
         public virtual TipoUsuario TipoUsuario { get; set; }

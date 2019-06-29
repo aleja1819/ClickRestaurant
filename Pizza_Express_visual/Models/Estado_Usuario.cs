@@ -12,18 +12,18 @@ namespace Pizza_Express_visual.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Estado
+    public partial class Estado_Usuario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Estado()
+        public Estado_Usuario()
         {
-            this.Caja = new HashSet<Caja>();
+            this.Usuario = new HashSet<Usuario>();
         }
     
         public int codigo_estado { get; set; }
         public string nombre_estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Caja> Caja { get; set; }
+        public virtual ICollection<Usuario> Usuario { get; set; }
     }
 }

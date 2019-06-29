@@ -35,6 +35,13 @@ namespace Pizza_Express_visual.Components
                 uContenedorUsuario.Update();
                 uModalUsuario.Update();
 
+                //MOSTRAR LISTA ESTADO USUARIO
+                fEstado.DataSource = accesoUsuario.filtrarEstado();
+                fEstado.DataBind();
+
+                uContenedorUsuario.Update();
+                uModalUsuario.Update();
+
             }
         }
 
@@ -48,6 +55,7 @@ namespace Pizza_Express_visual.Components
                 temail.Text = "";
                 tclave.Text = "";
                 fTipoUsuario.SelectedIndex = 0;
+                fEstado.SelectedIndex = 0;
             }
             else
             {
@@ -59,6 +67,7 @@ namespace Pizza_Express_visual.Components
                 temail.Text = "";
                 tclave.Text = "";
                 fTipoUsuario.SelectedIndex = 0;
+                fEstado.SelectedIndex = 0;
 
             }
         }
@@ -180,6 +189,7 @@ namespace Pizza_Express_visual.Components
                     string clave_u = tclave.Text;
 
                     int id = Convert.ToInt32(fTipoUsuario.SelectedItem.Value);
+                    int idE = Convert.ToInt32(fEstado.SelectedItem.Value);
 
                     //GUARDAR LOS DATOS EN LA LISTA
                     accesoUsuario.addUsuario(new Models.Usuario
@@ -189,7 +199,9 @@ namespace Pizza_Express_visual.Components
                         nombre_usuario = nombre_u,
                         email_usuario = email_u,
                         contraseña_usuario = clave_u,
-                        codigo_tipoUsuario = id
+                        codigo_tipoUsuario = id,
+                        codigo_estado = idE
+                        
 
                     });
 
@@ -267,7 +279,7 @@ namespace Pizza_Express_visual.Components
 
                 int id_tipoU = Convert.ToInt32(fTipoUsuario.SelectedItem.Value);
                 string codigo_original = cod_orginal.Text;
-
+                int idE = Convert.ToInt32(fEstado.SelectedItem.Value);
                 accesoUsuario.editarUsuario(new Models.Usuario
                 {
 
@@ -276,6 +288,7 @@ namespace Pizza_Express_visual.Components
                     email_usuario = email_u,
                     contraseña_usuario = clave_u,
                     codigo_tipoUsuario = id_tipoU,
+                    codigo_estado = idE
 
                 }, codigo_original);
 

@@ -15,12 +15,13 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd7 contexto = new bd7())
+                using (bd8 contexto = new bd8())
                 {
 
                     var pro = from p in contexto.Proveedor
                               join t in contexto.TipoProducto  
                               on p.codigo_tipoProducto equals t.codigo_tipoProducto
+                                                          
                               select new { p.codigo_proveedor, p.rut_proveedor, p.nombre_proveedor, p.apellido_paterno_proveedor, p.apellido_materno_proveedor, p.direccion_proveedor, t.nombre_tipoProducto, t.codigo_tipoProducto };
 
                     return pro.ToList<object>();
@@ -38,7 +39,7 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd7 contexto = new bd7())
+                using (bd8 contexto = new bd8())
                 {
 
                     var pro = from t in contexto.TipoProducto
@@ -61,7 +62,7 @@ namespace Pizza_Express_visual.Services
 
             try
             {
-                using (bd7 contexto = new bd7())
+                using (bd8 contexto = new bd8())
                 {
 
                     contexto.Proveedor.Add(prove);
@@ -84,7 +85,7 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd7 contexto = new bd7())
+                using (bd8 contexto = new bd8())
                 {
                     var user = contexto.Proveedor.Find(id_prov);
 
@@ -105,7 +106,7 @@ namespace Pizza_Express_visual.Services
         //BUSCAR
         public List<object> BuscarProveedor(string dato, int filtro)
         {
-            using (bd7 contexto = new bd7())
+            using (bd8 contexto = new bd8())
             {
                 switch (filtro)
                 {
@@ -143,7 +144,7 @@ namespace Pizza_Express_visual.Services
                 try
                 {
                     int idOri = Convert.ToInt32(cod_original);
-                    using (bd7 contexto = new bd7())
+                    using (bd8 contexto = new bd8())
                     {
 
                     //BUSCAR EL PRODUCTO EN LA BD

@@ -12,16 +12,13 @@ namespace Pizza_Express_visual.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PagoRepartidor
+    public partial class Asignar_Menu
     {
-        public int codigo_recepcion { get; set; }
-        public int monto_recepcion { get; set; }
-        public System.DateTime fecha { get; set; }
-        public System.TimeSpan hora { get; set; }
-        public int numero_caja { get; set; }
-        public int codigo_usuario { get; set; }
+        public int idAsignarMenu { get; set; }
+        public int codigo_tipoUsuario { get; set; }
+        public int idMenu { get; set; }
     
-        public virtual Caja Caja { get; set; }
-        public virtual Usuario Usuario { get; set; }
+        public virtual Menu_Link Menu_Link { get; set; }
+        public virtual TipoUsuario TipoUsuario { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.UI.WebControls;
 
 using Pizza_Express_visual.Models;
 
@@ -15,13 +16,26 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd7 contexto = new bd7())
+                using (bd8 contexto = new bd8())
                 {
 
                     var r = from u in contexto.Usuario
                             join t in contexto.TipoUsuario
                             on u.codigo_tipoUsuario equals t.codigo_tipoUsuario
-                            select new { u.codigo_usuario, u.rut_usuario, u.nombre_usuario, u.email_usuario, u.contraseña_usuario, t.nombre_tipoUsuario, t.codigo_tipoUsuario};
+                            join e in contexto.Estado_Usuario
+                            on u.codigo_estado equals e.codigo_estado
+                            select new
+                            {
+                                u.codigo_usuario,
+                                u.rut_usuario,
+                                u.nombre_usuario,
+                                u.email_usuario,
+                                u.contraseña_usuario,
+                                t.nombre_tipoUsuario,
+                                t.codigo_tipoUsuario,
+                                e.codigo_estado,
+                                e.nombre_estado
+                            };
 
                     return r.ToList<object>();
                 }
@@ -37,11 +51,31 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd7 contexto = new bd7())
+                using (bd8 contexto = new bd8())
                 {
 
                     var r = from t in contexto.TipoUsuario
                             select new { t.nombre_tipoUsuario, t.codigo_tipoUsuario };
+
+                    return r.ToList<object>();
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+
+            }
+        }
+
+        public List<object> filtrarEstado()
+        {
+            try
+            {
+                using (bd8 contexto = new bd8())
+                {
+
+                    var r = from e in contexto.Estado_Usuario
+                            select new { e.codigo_estado, e.nombre_estado };
 
                     return r.ToList<object>();
                 }
@@ -59,7 +93,7 @@ namespace Pizza_Express_visual.Services
 
             try
             {
-                using (bd7 contexto = new bd7())
+                using (bd8 contexto = new bd8())
                 {
 
                     contexto.Usuario.Add(user);
@@ -83,7 +117,7 @@ namespace Pizza_Express_visual.Services
 
             try
             {
-                using (bd7 contexto = new bd7())
+                using (bd8 contexto = new bd8())
                 {
                     var user = contexto.Usuario.Find(codigo_user);
 
@@ -107,19 +141,20 @@ namespace Pizza_Express_visual.Services
             try
             {
                 int idOri = Convert.ToInt32(cod_original);
-                using (bd7 contexto = new bd7())
+                using (bd8 contexto = new bd8())
                 {
-                
+
                     //BUSCAR EL PRODUCTO EN LA BD
                     var user = contexto.Usuario.First(usu => usu.codigo_usuario == idOri);
 
                     //MODIFICAR LOS CAMPOS QUE NECESITO
-                   
+
                     user.rut_usuario = usuario.rut_usuario;
                     user.nombre_usuario = usuario.nombre_usuario;
                     user.email_usuario = usuario.email_usuario;
                     user.contraseña_usuario = usuario.contraseña_usuario;
                     user.codigo_tipoUsuario = usuario.codigo_tipoUsuario;
+                    user.codigo_estado = usuario.codigo_estado;
 
                     //GUARDAR LOS CAMBIOS EN LA TABLA B
                     int respuesta = contexto.SaveChanges();
@@ -136,18 +171,19 @@ namespace Pizza_Express_visual.Services
 
         public List<object> BuscarrUsuarios(string dato, int filtro)
         {
-            using (bd7 contexto = new bd7())
+            using (bd8 contexto = new bd8())
             {
-                switch (filtro){
-                        case 0: //BUSCAR POR RUT
-                            var rRut = from u in contexto.Usuario
-                                       where u.rut_usuario.ToLower().StartsWith(dato.ToLower())
-                                       join t in contexto.TipoUsuario
-                                       on u.codigo_tipoUsuario equals t.codigo_tipoUsuario
-                                       select u;
+                switch (filtro)
+                {
+                    case 0: //BUSCAR POR RUT
+                        var rRut = from u in contexto.Usuario
+                                   where u.rut_usuario.ToLower().StartsWith(dato.ToLower())
+                                   join t in contexto.TipoUsuario
+                                   on u.codigo_tipoUsuario equals t.codigo_tipoUsuario
+                                   select u;
 
-                            return rRut.ToList<object>();
-                        case 1: //BUSCAR POR nombre
+                        return rRut.ToList<object>();
+                    case 1: //BUSCAR POR nombre
                         var rNombre = from u in contexto.Usuario
                                       where u.nombre_usuario.ToLower().StartsWith(dato.ToLower())
                                       join t in contexto.TipoUsuario
@@ -155,17 +191,84 @@ namespace Pizza_Express_visual.Services
                                       select u;
 
                         return rNombre.ToList<object>();
-                        default:
-                            var rTodo = from u in contexto.Usuario
-                                        join t in contexto.TipoUsuario
-                                        on u.codigo_tipoUsuario equals t.codigo_tipoUsuario
-                                        select u;
+                    default:
+                        var rTodo = from u in contexto.Usuario
+                                    join t in contexto.TipoUsuario
+                                    on u.codigo_tipoUsuario equals t.codigo_tipoUsuario
+                                    select u;
 
-                            return rTodo.ToList<object>();
+                        return rTodo.ToList<object>();
+                }
+
+            }
+        }
+
+        public List<LinkButton> menu(int idRol, List<LinkButton> links)
+        {
+
+            try
+            {
+                using (bd8 contexto = new bd8())
+                {
+
+
+                    var result = from a in contexto.Asignar_Menu
+                                  join m in contexto.Menu_Link
+                                  on a.idMenu equals m.idMenu
+                                  where a.codigo_tipoUsuario == idRol
+                                  select new { m.linkMenu};
+
+                    foreach (var sis in result.ToList())
+                    {
+                        foreach (var menu in links)
+                        {
+                            if (sis.linkMenu.Equals(menu.ID))
+                            {
+                                menu.Visible = true;
+                            }
+                        }
+                        
                     }
 
+                    return links;
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public int[] validateUser(string user, string clave)
+        {
+
+
+            int[] respuesta = new int[5];
+            try
+            {
+                using (bd8 contexto = new bd8())
+                {
+
+                    var result = from u in contexto.Usuario
+                                 where u.nombre_usuario.Trim().ToUpper().Equals(user.Trim().ToUpper())
+                                 && u.contraseña_usuario.Equals(clave)
+                                 select u;
+
+                    respuesta[1] = result.Count() == 1 ? 1 : 0; //1 el usuario existe
+                    respuesta[2] = result.First().codigo_estado == 1 ? 1 : 0; //1 el usuario tiene estado activo
+                    respuesta[3] = result.First().codigo_tipoUsuario; //el rol que tiene asociado el usuario
+                    respuesta[0] = 1; //sin errores de conexion al servidor
+                    respuesta[4] = result.First().codigo_usuario;
+                    return respuesta;
 
                 }
             }
+            catch (Exception)
+            {
+                respuesta[0] = 0;
+                return respuesta;
+            }
         }
     }
+}
+

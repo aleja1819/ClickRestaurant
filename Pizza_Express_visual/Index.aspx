@@ -61,12 +61,11 @@
                             <!-- Navbar links -->
                             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                                 <ul class="navbar-nav">
-
                                 </ul>
                             </div>
 
                             <%--HOME--%>
-                            <asp:LinkButton runat="server" Visible="false" OnClick="Menu_home_Click" CssClass="navbar-brand" ID="Menu_home">
+                            <asp:LinkButton runat="server" Visible="false" OnClick="Menu_home_Click1" CssClass="navbar-brand" ID="Menu_home">
                                 <div class="btn-group-toggle">
                                     <i class="fas fa-home fa-2x"></i> Home
 
@@ -77,14 +76,14 @@
                             <ul class="nav nav-default">
                                 <li class="nav-item dropdown">
 
-                                    <asp:LinkButton Style="color: white" Class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" ID="Menu_ventas" runat="server"
+                                    <asp:LinkButton Style="color: white" Class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" Visible="false" ID="Menu_ventas" runat="server"
                                         aria-haspopup="true" aria-expanded="false"><i class="fas fa-dollar-sign fa-2x"></i> Ventas</asp:LinkButton>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                         <asp:LinkButton runat="server" CssClass="dropdown-item" ID="Menu_MontoInicial" OnClick="Menu_MontoInicial_Click">Monto Inicial</asp:LinkButton>
                                         <asp:LinkButton runat="server" ID="Menu_Reservas" OnClick="Menu_Reservas_Click" CssClass="dropdown-item">Reservas</asp:LinkButton>
                                         <asp:LinkButton runat="server" ID="Menu_NumeroMesa" OnClick="Menu_NumeroMesa_Click" CssClass="dropdown-item">Número de mesa</asp:LinkButton>
-                                    <asp:LinkButton runat="server" ID="Menu_comanda" OnClick="Menu_comanda_Click"  CssClass="dropdown-item">Comanda</asp:LinkButton>
-                                    <asp:LinkButton runat="server" ID="Menu_test" OnClick="Menu_test_Click"   CssClass="dropdown-item">test</asp:LinkButton>
+                                        <asp:LinkButton runat="server" ID="Menu_comanda" OnClick="Menu_comanda_Click" CssClass="dropdown-item">Comanda</asp:LinkButton>
+                                        <asp:LinkButton runat="server" ID="Menu_test" OnClick="Menu_test_Click" CssClass="dropdown-item">test</asp:LinkButton>
                                     </div>
                                 </li>
                             </ul>
@@ -93,7 +92,7 @@
                             <ul class="nav nav-default">
                                 <li class="nav-item dropdown show">
 
-                                    <asp:LinkButton Style="color: white" CssClass="nav-link dropdown-toggle" data-toggle="dropdown" href="#" ID="Menu_administracion" runat="server"
+                                    <asp:LinkButton Style="color: white" CssClass="nav-link dropdown-toggle" data-toggle="dropdown" href="#" Visible="false" ID="Menu_administracion" runat="server"
                                         aria-haspopup="true" aria-expanded="true"><i class="fas fa-users-cog fa-2x"></i> Administración</asp:LinkButton>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                         <asp:LinkButton runat="server" ID="Menu_usuarios" OnClick="Menu_usuarios_Click" CssClass="dropdown-item">Usuarios</asp:LinkButton>
@@ -115,12 +114,30 @@
                             </asp:LinkButton>
 
                             <%--BIENVENIDOS--%>
-                            <asp:LinkButton runat="server" Visible="false" CssClass="nav-link " ID="bCerrarSesion">
-                             
-                                <div class="btn-group-vertical"  style="color:beige">
-                                     Bienvenido@<%=Session["userName"] %>
-                                           </div>
-                            </asp:LinkButton>
+
+
+                            <asp:Panel runat="server" CssClass="btn-group" ID="mostrar_usuario" Visible="false">
+
+                                <asp:LinkButton runat="server" CssClass="nav-link  badge badge-pill badge-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ID="idCerrarSesion">
+                             <div class="btn-group-vertical" style="color: beige">
+                                    Bienvenido@<%=Session["name_user"] %>
+                                </div>
+                                
+                                </asp:LinkButton>
+                                <div class="dropdown-menu">
+                                    <asp:LinkButton runat="server" CssClass="dropdown-item" OnClick="bCerrarSesion_Click" ID="bCerrarSesion">
+                                Cerrar Sesión
+                                    </asp:LinkButton>
+                                <div class="dropdown-divider"></div>
+                                    <asp:LinkButton runat="server" CssClass="dropdown-item">
+                               Notificaciones
+                                    </asp:LinkButton>
+                                </div>
+
+                            </asp:Panel>
+
+
+
 
                         </nav>
 
@@ -147,8 +164,6 @@
                     </asp:View>
                     <asp:View runat="server" ID="vUsuarios">
                         <uc1:components_Usuarios runat="server" ID="components_Usuarios" />
-                       <%-- <uc1:WebUserControl1 runat="server" id="WebUserControl1" />--%>
-
                     </asp:View>
                     <asp:View runat="server" ID="vProveedores">
                         <uc1:components_Proveedores runat="server" ID="components_Proveedores" />
@@ -172,7 +187,7 @@
                         <uc1:component_Comanda runat="server" ID="component_Comanda" />
                     </asp:View>
                     <asp:View runat="server" ID="vtest">
-                         <uc1:WebUserControl1 runat="server" ID="WebUserControl1" />
+                        <uc1:WebUserControl1 runat="server" ID="WebUserControl1" />
                     </asp:View>
                 </asp:MultiView>
 

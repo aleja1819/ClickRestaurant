@@ -15,7 +15,7 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd7 contexto = new bd7())
+                using (bd8 contexto = new bd8())
                 {
 
                     var re = from r in contexto.Reserva
@@ -40,7 +40,7 @@ namespace Pizza_Express_visual.Services
 
             try
             {
-                using (bd7 contexto = new bd7())
+                using (bd8 contexto = new bd8())
                 {
 
                     contexto.Reserva.Add(reserva);
@@ -63,7 +63,7 @@ namespace Pizza_Express_visual.Services
 
             try
             {
-                using (bd7 contexto = new bd7())
+                using (bd8 contexto = new bd8())
                 {
                     var user = contexto.Reserva.Find(codigo_reserva);
 
@@ -87,7 +87,7 @@ namespace Pizza_Express_visual.Services
             try
             {
                 int idOri = Convert.ToInt32(cod_original);
-                using (bd7 contexto = new bd7())
+                using (bd8 contexto = new bd8())
                 {
 
                     //BUSCAR EL PRODUCTO EN LA BD
@@ -115,7 +115,7 @@ namespace Pizza_Express_visual.Services
 
         public List<object> BuscarrReservas(string dato, int filtro)
         {
-            using (bd7 contexto = new bd7())
+            using (bd8 contexto = new bd8())
             {
                 switch (filtro)
                 {

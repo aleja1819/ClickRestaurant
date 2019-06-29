@@ -13,10 +13,10 @@ namespace Pizza_Express_visual.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class bd7 : DbContext
+    public partial class bd8 : DbContext
     {
-        public bd7()
-            : base("name=bd7")
+        public bd8()
+            : base("name=bd8")
         {
         }
     
@@ -25,6 +25,7 @@ namespace Pizza_Express_visual.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Asignar_Menu> Asignar_Menu { get; set; }
         public virtual DbSet<BoletaComanda> BoletaComanda { get; set; }
         public virtual DbSet<Caja> Caja { get; set; }
         public virtual DbSet<Categoria> Categoria { get; set; }
@@ -32,9 +33,11 @@ namespace Pizza_Express_visual.Models
         public virtual DbSet<Comanda_reparto> Comanda_reparto { get; set; }
         public virtual DbSet<ComandaMesa> ComandaMesa { get; set; }
         public virtual DbSet<Detalle_Mesa> Detalle_Mesa { get; set; }
-        public virtual DbSet<Estado> Estado { get; set; }
+        public virtual DbSet<Estado_caja> Estado_caja { get; set; }
         public virtual DbSet<Estado_Mesa> Estado_Mesa { get; set; }
+        public virtual DbSet<Estado_Usuario> Estado_Usuario { get; set; }
         public virtual DbSet<Menu> Menu { get; set; }
+        public virtual DbSet<Menu_Link> Menu_Link { get; set; }
         public virtual DbSet<Mesa> Mesa { get; set; }
         public virtual DbSet<Pago> Pago { get; set; }
         public virtual DbSet<PagoRepartidor> PagoRepartidor { get; set; }

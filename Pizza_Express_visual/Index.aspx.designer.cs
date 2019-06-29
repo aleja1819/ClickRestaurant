@@ -166,6 +166,24 @@ namespace Pizza_Express_visual {
         protected global::System.Web.UI.WebControls.LinkButton login;
         
         /// <summary>
+        /// Control mostrar_usuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel mostrar_usuario;
+        
+        /// <summary>
+        /// Control idCerrarSesion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton idCerrarSesion;
+        
+        /// <summary>
         /// Control bCerrarSesion.
         /// </summary>
         /// <remarks>

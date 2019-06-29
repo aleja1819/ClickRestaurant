@@ -12,16 +12,18 @@ namespace Pizza_Express_visual.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PagoRepartidor
+    public partial class Estado_caja
     {
-        public int codigo_recepcion { get; set; }
-        public int monto_recepcion { get; set; }
-        public System.DateTime fecha { get; set; }
-        public System.TimeSpan hora { get; set; }
-        public int numero_caja { get; set; }
-        public int codigo_usuario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Estado_caja()
+        {
+            this.Caja = new HashSet<Caja>();
+        }
     
-        public virtual Caja Caja { get; set; }
-        public virtual Usuario Usuario { get; set; }
+        public int codigo_estado { get; set; }
+        public string nombre_estado { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Caja> Caja { get; set; }
     }
 }
