@@ -134,10 +134,42 @@ namespace Pizza_Express_visual.Services
 
                         return pTodo.ToList<object>();
                 }
+            }
+        }
 
+            public bool editarProveedor(Proveedor proveedor, string cod_original)
+            {
 
+                try
+                {
+                    int idOri = Convert.ToInt32(cod_original);
+                    using (bd7 contexto = new bd7())
+                    {
+
+                    //BUSCAR EL PRODUCTO EN LA BD
+
+                    var user = contexto.Proveedor.First(pro => pro.codigo_proveedor == idOri);
+
+                        //MODIFICAR LOS CAMPOS QUE NECESITO
+
+                        user.rut_proveedor = proveedor.rut_proveedor;
+                        user.nombre_proveedor = proveedor.nombre_proveedor;
+                        user.apellido_paterno_proveedor = proveedor.apellido_paterno_proveedor;
+                        user.apellido_materno_proveedor = proveedor.apellido_materno_proveedor;
+                        user.direccion_proveedor = proveedor.direccion_proveedor;
+
+                        //GUARDAR LOS CAMBIOS EN LA TABLA B
+                        int respuesta = contexto.SaveChanges();
+                        return respuesta == 1;
+
+                    }
+                }
+                catch (Exception)
+                {
+
+                    return false;
+                }
             }
         }
 
     }
-}

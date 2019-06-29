@@ -85,6 +85,15 @@ namespace Pizza_Express_visual {
         protected global::System.Web.UI.WebControls.LinkButton Menu_comanda;
         
         /// <summary>
+        /// Control Menu_test.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Menu_test;
+        
+        /// <summary>
         /// Control Menu_administracion.
         /// </summary>
         /// <remarks>
@@ -380,6 +389,24 @@ namespace Pizza_Express_visual {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::Pizza_Express_visual.Components.component_Comanda component_Comanda;
+        
+        /// <summary>
+        /// Control vtest.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View vtest;
+        
+        /// <summary>
+        /// Control WebUserControl1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::Pizza_Express_visual.Components.WebUserControl1 WebUserControl1;
         
         /// <summary>
         /// Control uModal.

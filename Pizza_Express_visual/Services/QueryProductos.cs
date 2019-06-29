@@ -106,9 +106,10 @@ namespace Pizza_Express_visual.Services
 
             try
             {
+                int idP = Convert.ToInt32(id_prod);
                 using (bd7 contexto = new bd7())
                 {
-                    var user = contexto.Producto.Find(id_prod);
+                    var user = contexto.Producto.First(p => p.codigo_producto == idP);
 
                     contexto.Producto.Remove(user);
                     contexto.SaveChanges();
@@ -167,6 +168,68 @@ namespace Pizza_Express_visual.Services
                 }
 
 
+            }
+        }
+
+        public bool editarProducto(Producto producto, string cod_ori)
+        {
+
+            try
+            {
+                int idOri = Convert.ToInt32(cod_ori);
+                using (bd7  contexto = new bd7())
+                {
+
+                    //BUSCAR EL PRODUCTO EN LA BD
+                    var user = contexto.Producto.First(prod => prod.codigo_producto == idOri);
+                  
+                    //MODIFICAR LOS CAMPOS QUE NECESITO
+
+                    user.nombre_producto = producto.nombre_producto;
+                    
+
+                    //GUARDAR LOS CAMBIOS EN LA TABLA B
+                    int respuesta = contexto.SaveChanges();
+                    return respuesta == 1;
+
+                }
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
+
+        public bool editarProductoProveedor(Producto_Proveedor prove, string cod_ori)
+            {
+
+            try
+            {
+                int idOri = Convert.ToInt32(cod_ori);
+                using (bd7 contexto = new bd7())
+                {
+
+                    //BUSCAR EL PRODUCTO EN LA BD
+                    var user = contexto.Producto_Proveedor.First(prod => prod.codigo_producto == idOri);
+
+                    //MODIFICAR LOS CAMPOS QUE NECESITO
+
+                    user.codigo_proveedor = prove.codigo_proveedor;
+                   
+                    user.fecha_ingreso_producto = prove.fecha_ingreso_producto;
+                    user.cantidad_producto = prove.cantidad_producto;
+
+                    //GUARDAR LOS CAMBIOS EN LA TABLA B
+                    int respuesta = contexto.SaveChanges();
+                    return respuesta == 1;
+
+                }
+            }
+            catch (Exception)
+            {
+
+                return false;
             }
         }
 

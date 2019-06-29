@@ -10,7 +10,16 @@
                 <asp:UpdatePanel runat="server" ID="uContenedorProveedor" UpdateMode="Conditional" ChildrenAsTriggers="true">
                     <ContentTemplate>
                          <br />
-                         <br />  
+             
+                  <%--ALERTA DE MENSAJE--%>
+                    <asp:Panel runat="server" ID="alerta" Visible="false">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <asp:Label  ID="mensaje3" runat="server"></asp:Label>
+                    </asp:Panel>
+                            
+                        <br />  
                      
                       <%--PRIMERA COLUMNA--%>
                         <div class="row">
@@ -94,64 +103,57 @@
                                 <%--TEXTOS INPUTS--%>
                                 <div class="modal-body">
 
-                                    <%--RUT USUARIO--%>
+                                    <%--RUT PROVEEDOR--%>
                                     <div class="form-group">
-                                        <label for="trut">Rut Proveedor</label>
+                                        <label for="trut">Rut Proveedor (*)</label>
                                         <asp:TextBox runat="server" placeholder="Rut Proveedor" ID="trut" CssClass="form-control bg-secondary"></asp:TextBox>
+                                     <asp:Label runat="server" ID="valida_trut" CssClass="invalid-feedback" Text="Ingrese Rut"></asp:Label>
                                     </div>
 
-                                    <%--NOMBRE USUARIO--%>
+                                    <%--NOMBRE PROVEEDOR--%>
                                     <div class="form-group">
-                                        <label for="tnombre">Nombre Proveedor</label>
+                                        <label for="tnombre">Nombre Proveedor (*)</label>
                                         <asp:TextBox runat="server" placeholder="Nombre Proveedor" ID="tnombre" CssClass="form-control bg-secondary"></asp:TextBox>
+                                    <asp:Label runat="server" ID="validar_tnombre" CssClass="invalid-feedback" Text="Ingrese Nombre"></asp:Label>
                                     </div>
 
                                     <%--APELLIDO PATERNO--%>
                                     <div class="form-group">
-                                        <label for="tapellidoP">Apellido Paterno</label>
+                                        <label for="tapellidoP">Apellido Paterno (*)</label>
                                         <asp:TextBox runat="server" placeholder="Apellido Paterno" ID="tapellidoP" CssClass="form-control bg-secondary"></asp:TextBox>
+                                    <asp:Label runat="server" ID="validar_tapellidoP" CssClass="invalid-feedback" Text="Ingrese Apellido Paterno"></asp:Label>
                                     </div>
 
                                     <%--APELLIDO MATERNO--%>
                                     <div class="form-group">
-                                        <label for="tapellidoM">Apellido Materno</label>
+                                        <label for="tapellidoM">Apellido Materno (*)</label>
                                         <asp:TextBox runat="server" placeholder="Apellido Paterno" ID="tapellidoM" CssClass="form-control bg-secondary"></asp:TextBox>
+                                    <asp:Label runat="server" ID="validar_tapellidoM" CssClass="invalid-feedback" Text="Ingrese Apellido Materno"></asp:Label>
                                     </div>
 
                                     <%--DIRECCION--%>
                                     <div class="form-group">
-                                        <label for="tdireccion">Dirección</label>
+                                        <label for="tdireccion">Dirección (*)</label>
                                         <asp:TextBox runat="server" placeholder="Dirección" ID="tdireccion" CssClass="form-control bg-secondary"></asp:TextBox>
+                                    <asp:Label runat="server" ID="validar_tdireccion" CssClass="invalid-feedback" Text="Ingrese Dirección"></asp:Label>
                                     </div>
 
                                     <%--TIPO Producto--%>
                                     <div class="form-group">
-                                        <label for="fTipoProducto">Tipo Producto</label>
+                                        <label for="fTipoProducto">Tipo Producto (*)</label>
                                         <br />
                                         <asp:DropDownList runat="server" ID="fTipoProducto" CssClass="form-control"
                                             DataTextField="nombre_tipoProducto" DataValueField="codigo_tipoProducto">
                                         </asp:DropDownList>
                                     </div>
 
-                                    <asp:Label runat="server" ID="mensaje" Text="Mensaje" Visible="false"></asp:Label>
-
-                                </div>
+                               </div>
 
                                 <div class="modal-footer">
+                                    <asp:Label runat="server" ID="codigo_orginal" CssClass="ocultarCol"></asp:Label>
                                     <asp:Button runat="server" ID="ideditarProveedorBoton" OnClick="ideditarProveedorBoton_Click" Text="Actualizar" CssClass="btn btn-success float-right" />
                                     <asp:Button runat="server" ID="idregistrarProveedor" OnClick="idregistrarProveedor_Click"  Text="Registrar" CssClass="btn btn-success float-right" />
                                 </div>
-
-                                <%--ALERTA DE MENSAJE--%>
-                                <asp:Panel runat="server" ID="alerta" Visible="false">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    <h4 class="alert-heading">Mensaje del sistema</h4>
-                                    <asp:Label ID="mensaje2" runat="server"></asp:Label>
-                                    <hr />
-                                    <%=DateTime.Now %>
-                                </asp:Panel>
                             </div>
 
                         </ContentTemplate>

@@ -95,5 +95,11 @@ namespace Pizza_Express_visual
             mcontenedor.SetActiveView(vComanda);
             uContenido.Update();
         }
+
+        protected void Menu_test_Click(object sender, EventArgs e)
+        {
+            mcontenedor.SetActiveView(vtest);
+            uContenido.Update();
+        }
     }
 }

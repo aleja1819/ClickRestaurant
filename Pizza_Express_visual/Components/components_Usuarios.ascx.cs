@@ -14,11 +14,15 @@ namespace Pizza_Express_visual.Components
         private QueryUsuario accesoUsuario = new QueryUsuario();
         //private QueryTipoUsuario accesoTipoUsuario = new QueryTipoUsuario();
 
-       
+            
+
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (!IsPostBack)
             {
+
+                
 
                 //PARA MOSTRAR LOS USUARIOS DE LA BASE DE DATOS
                 idTabla.DataSource = accesoUsuario.filtrarUsuarios();
@@ -72,6 +76,7 @@ namespace Pizza_Express_visual.Components
         //BOTON EDITAR USUARIOS, SELECCIONA LOS CAMPOS
         protected void idTabla_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            alerta.Visible = false;
 
             int fila = Convert.ToInt32(e.CommandArgument);
             if (e.CommandName.Equals("ideditar"))
@@ -80,9 +85,9 @@ namespace Pizza_Express_visual.Components
                 cod_orginal.Text = idTabla.Rows[fila].Cells[0].Text;
                 trut.Text = idTabla.Rows[fila].Cells[1].Text;
                 tnombre.Text = idTabla.Rows[fila].Cells[2].Text;
-                temail.Text =  idTabla.Rows[fila].Cells[3].Text;
-                tclave.Text =  idTabla.Rows[fila].Cells[4].Text;
-                //fTipoUsuario.SelectedValue = idTabla.Rows[fila].Cells[4].Text;
+                temail.Text = idTabla.Rows[fila].Cells[3].Text;
+                tclave.Text = idTabla.Rows[fila].Cells[4].Text;
+
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal('show');", true);
                 uModalUsuario.Update();
                 uContenedorUsuario.Update();
@@ -90,6 +95,7 @@ namespace Pizza_Express_visual.Components
             }
             else if (e.CommandName.Equals("ideliminar"))
             {
+               
                 // ELIMINAR UN PRODUCTO DE LA LISTA
                 string codigo = idTabla.Rows[fila].Cells[0].Text;
                 int id = Convert.ToInt32(codigo);
@@ -97,59 +103,126 @@ namespace Pizza_Express_visual.Components
                 idTabla.DataSource = accesoUsuario.filtrarUsuarios();
                 idTabla.DataBind();
 
-                mensaje.Visible = true;
-                mensaje.Text = "Usuario eliminado";
-
             }
         }
+
+        private void MostrarError(TextBox t, Label l, int r) {
+
+            if (r == 0)
+            {
+                t.CssClass = "form-control is-invalid";
+                l.CssClass = "invalid-feedback";
+            }
+            else {
+                t.CssClass = "form-control is-valid";
+                l.CssClass = "valid-feedback";
+            }
+        }
+
+        private bool validaCampos() {
+
+            bool correcto = true;
+
+            if (trut.Text.Equals(""))
+            {
+                MostrarError(trut, valida_trut, 0);
+                correcto = false;
+            }
+            else {
+                MostrarError(trut, valida_trut, 1);
+            }
+            if (tnombre.Text.Equals(""))
+            {
+                MostrarError(tnombre, valida_tnombre, 0);
+                correcto = false;
+            }
+            else {
+                MostrarError(tnombre, valida_tnombre, 1);
+            };
+
+            if (temail.Text.Equals(""))
+            {
+                MostrarError(temail, valida_temail, 0);
+                correcto = false;
+            }
+            else {
+                MostrarError(temail, valida_temail, 1);
+            }
+            if (tclave.Text.Equals(""))
+            {
+                MostrarError(tclave, valida_tcalve, 0);
+                correcto = false;
+            }
+            else {
+                MostrarError(tclave, valida_tcalve, 1);
+            }
+            return correcto;
+        }
+
 
         //REGISTRAR UN USUARIO
         protected void idregistrarUsuario_Click(object sender, EventArgs e)
         {
-            try {
-                mensaje.Visible = true;
-                //LEER LOS DATOS INGRESADOS
-                string rut_u = trut.Text;
-                string nombre_u = tnombre.Text;
-                string email_u = temail.Text;
-                string clave_u = tclave.Text;
+            try
+            {
 
-                int id = Convert.ToInt32(fTipoUsuario.SelectedItem.Value);
-
-                //GUARDAR LOS DATOS EN LA LISTA
-                accesoUsuario.addUsuario(new Models.Usuario
+                if (validaCampos() == false)
                 {
 
-                    rut_usuario = rut_u,
-                    nombre_usuario = nombre_u,
-                    email_usuario = email_u,
-                    contraseña_usuario = clave_u,
-                    codigo_tipoUsuario=id
+                }
+                else
+                {
 
-                });
+                    //LEER LOS DATOS INGRESADOS
+                    string rut_u = trut.Text;
+                    string nombre_u = tnombre.Text;
+                    string email_u = temail.Text;
+                    string clave_u = tclave.Text;
 
-                //MOSTRAR LOS DATOS EN LA TABLA
-                idTabla.DataSource = accesoUsuario.filtrarUsuarios();
-                idTabla.DataBind();
+                    int id = Convert.ToInt32(fTipoUsuario.SelectedItem.Value);
 
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal('hide');", true);
-                uModalUsuario.Update();
-                uContenedorUsuario.Update();
-               
-                limpiarTodo(2);
+                    //GUARDAR LOS DATOS EN LA LISTA
+                    accesoUsuario.addUsuario(new Models.Usuario
+                    {
 
+                        rut_usuario = rut_u,
+                        nombre_usuario = nombre_u,
+                        email_usuario = email_u,
+                        contraseña_usuario = clave_u,
+                        codigo_tipoUsuario = id
+
+                    });
+
+                    //MOSTRAR LOS DATOS EN LA TABLA
+                    idTabla.DataSource = accesoUsuario.filtrarUsuarios();
+                    idTabla.DataBind();
+
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal('hide');", true);
+                    uModalUsuario.Update();
+                    uContenedorUsuario.Update();
+
+                    limpiarTodo(2);
+
+                    alerta.Visible = true;
+                    alerta.CssClass = "alert alert-warning animated zoomInUp";
+                    mensaje3.Text = "USUARIO AGREGADO CON EXITO.";
+
+                }
             }
             catch (Exception)
             {
-                mensaje.Text = "Usuario No agregado";
-
+                alerta.Visible = true;
+                alerta.CssClass = "alert alert-danger animated zoomInUp";
+                mensaje3.Text = "USUARIO NO AGREGADO.";
             }
         }
+    
 
         protected void idBuscarUsuario_Click(object sender, EventArgs e)
         {
             try
             {
+                alerta.Visible = false;
                 int filtro = Convert.ToInt32(idOpciones.SelectedValue);
 
                 int cant = accesoUsuario.BuscarrUsuarios(tdatoBuscar.Text, filtro).Count;
@@ -160,11 +233,12 @@ namespace Pizza_Express_visual.Components
                 uModalUsuario.Update();
                 uContenedorUsuario.Update();
 
-                mensaje.Text = "Usuario encontrado";
+
                 if (cant == 0)
                 {
-                    mensaje.Visible = true;
-                    mensaje.Text = "Usuario no encontrado";
+                    alerta.Visible = true;
+                    alerta.CssClass = "alert alert-danger animated zoomInUp";
+                    mensaje3.Text = "USUARIO NO ECONTRADO.";
                 }
 
             }
@@ -178,7 +252,12 @@ namespace Pizza_Express_visual.Components
         {
             try
             {
-                mensaje.Visible = true;
+                if (validaCampos() == false)
+                {
+
+                }
+                else {
+                }
 
                 //LEER LOS DATOS INGRESADOS
                 string rut_u = trut.Text;
@@ -188,8 +267,8 @@ namespace Pizza_Express_visual.Components
 
                 int id_tipoU = Convert.ToInt32(fTipoUsuario.SelectedItem.Value);
                 string codigo_original = cod_orginal.Text;
-                //int cod_o = Convert.ToInt32(codigo_original);
-                _ = accesoUsuario.editarUsuario(new Models.Usuario
+
+                accesoUsuario.editarUsuario(new Models.Usuario
                 {
 
                     rut_usuario = rut_u,
@@ -211,12 +290,16 @@ namespace Pizza_Express_visual.Components
 
                 limpiarTodo(2);
 
-                mensaje.Text = "USUARIO MODIFICADO";
+                alerta.Visible = true;
+                alerta.CssClass = "alert alert-warning animated zoomInUp";
+                mensaje3.Text = "USUARIO MODIFICADO CON EXITO.";
 
             }
             catch (Exception)
             {
-                mensaje.Text = "USUARIO NO MODIFICADO";
+                alerta.Visible = true;
+                alerta.CssClass = "alert alert-danger animated zoomInUp";
+                mensaje3.Text = "USUARIO NO MODIFICADO.";
 
             }
          

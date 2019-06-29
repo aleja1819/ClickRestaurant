@@ -22,6 +22,24 @@ namespace Pizza_Express_visual.Components {
         protected global::System.Web.UI.UpdatePanel uContenedorProducto;
         
         /// <summary>
+        /// Control alerta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel alerta;
+        
+        /// <summary>
+        /// Control mensaje3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label mensaje3;
+        
+        /// <summary>
         /// Control tdatoBuscarProducto.
         /// </summary>
         /// <remarks>
@@ -85,6 +103,15 @@ namespace Pizza_Express_visual.Components {
         protected global::System.Web.UI.WebControls.TextBox tnombre;
         
         /// <summary>
+        /// Control valida_tnombre.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label valida_tnombre;
+        
+        /// <summary>
         /// Control trut.
         /// </summary>
         /// <remarks>
@@ -92,6 +119,15 @@ namespace Pizza_Express_visual.Components {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox trut;
+        
+        /// <summary>
+        /// Control valida_trut.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label valida_trut;
         
         /// <summary>
         /// Control tfecha.
@@ -103,6 +139,15 @@ namespace Pizza_Express_visual.Components {
         protected global::System.Web.UI.WebControls.TextBox tfecha;
         
         /// <summary>
+        /// Control valida_tfecha.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label valida_tfecha;
+        
+        /// <summary>
         /// Control tcantidad.
         /// </summary>
         /// <remarks>
@@ -112,13 +157,22 @@ namespace Pizza_Express_visual.Components {
         protected global::System.Web.UI.WebControls.TextBox tcantidad;
         
         /// <summary>
-        /// Control mensaje.
+        /// Control valida_tcantidad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label mensaje;
+        protected global::System.Web.UI.WebControls.Label valida_tcantidad;
+        
+        /// <summary>
+        /// Control cod_orginal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label cod_orginal;
         
         /// <summary>
         /// Control beditarProveedorBoton.
@@ -137,23 +191,5 @@ namespace Pizza_Express_visual.Components {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button bregistrarProveedor;
-        
-        /// <summary>
-        /// Control alerta.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel alerta;
-        
-        /// <summary>
-        /// Control mensaje2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label mensaje2;
     }
 }

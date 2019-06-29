@@ -111,7 +111,6 @@ namespace Pizza_Express_visual.Services
                 {
                 
                     //BUSCAR EL PRODUCTO EN LA BD
-                    //contexto.Usuario.Find(usuario.codigo_usuario);
                     var user = contexto.Usuario.First(usu => usu.codigo_usuario == idOri);
 
                     //MODIFICAR LOS CAMPOS QUE NECESITO
