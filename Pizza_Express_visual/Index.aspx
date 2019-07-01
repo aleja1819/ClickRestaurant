@@ -50,7 +50,10 @@
                         <!-- Barra de navegación -->
                         <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
                             <!-- Brand -->
-                            <a class="navbar-brand" href="#">Pizza Express</a><br />
+                            <a class="navbar-brand" href="#">
+                                <img src="Imagenes/PIZZZA.jpg" class="img-thumbnail img-rounded shadow-lg" style="width: 4rem" />
+                            </a>
+                            <br />
                             <br />
 
                             <!-- Toggler/collapsibe Button -->
@@ -115,11 +118,10 @@
 
                             <%--BIENVENIDOS--%>
 
-
                             <asp:Panel runat="server" CssClass="btn-group" ID="mostrar_usuario" Visible="false">
 
                                 <asp:LinkButton runat="server" CssClass="nav-link  badge badge-pill badge-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ID="idCerrarSesion">
-                             <div class="btn-group-vertical" style="color: beige">
+                             <div class="btn-group-vertical" style="color: ghostwhite">
                                     Bienvenido@<%=Session["name_user"] %>
                                 </div>
                                 
@@ -128,27 +130,48 @@
                                     <asp:LinkButton runat="server" CssClass="dropdown-item" OnClick="bCerrarSesion_Click" ID="bCerrarSesion">
                                 Cerrar Sesión
                                     </asp:LinkButton>
-                                <div class="dropdown-divider"></div>
+                                    <div class="dropdown-divider"></div>
                                     <asp:LinkButton runat="server" CssClass="dropdown-item">
                                Notificaciones
                                     </asp:LinkButton>
                                 </div>
 
                             </asp:Panel>
-
-
-
-
                         </nav>
-
                     </div>
                 </div>
-
             </ContentTemplate>
         </asp:UpdatePanel>
 
+
         <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="uContenido" ChildrenAsTriggers="true">
             <ContentTemplate>
+
+
+                <asp:Panel runat="server" ID="MostrarLogo" Visible="true">
+                    <br />
+                    <br />
+                    <br />
+
+                    <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active" data-interval="2000">
+                                <img src="Imagenes/LOGO%20APP.png" class="mx-auto d-block" />
+                            </div>
+                            <div class="carousel-item align-content-center" data-interval="2000">
+                                <img src="Imagenes/LOGO%20APP.png" class="mx-auto d-block" />
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </asp:Panel>
 
                 <%--VISTAS--%>
                 <asp:MultiView runat="server" ID="mcontenedor">

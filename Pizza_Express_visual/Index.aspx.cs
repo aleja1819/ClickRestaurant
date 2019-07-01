@@ -115,6 +115,7 @@ namespace Pizza_Express_visual
             queryUsuario.menu(idRol, ListaMenu);
 
             mostrar_usuario.Visible = true;
+            MostrarLogo.Visible = false;
 
             Menu_administracion.Visible = true;
             Menu_ventas.Visible = true;
@@ -159,7 +160,7 @@ namespace Pizza_Express_visual
                             //HABILITAR MENUS SEGUN EL ROL DEL USUARIO
                             cargarMenu(respuestas[3]);
                             login.Visible = false;
-
+                            MostrarLogo.Visible = false;
 
                             //CERRAR VENTANA MODAL
                             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal('hide');", true);
@@ -195,11 +196,6 @@ namespace Pizza_Express_visual
 
         protected void bCerrarSesion_Click(object sender, EventArgs e)
         {
-
-        }
-
-        protected void cerrar_Sesion_Click(object sender, EventArgs e)
-        {
             Session.Clear();
             Session.Abandon();
 
@@ -207,7 +203,9 @@ namespace Pizza_Express_visual
             Menu_ventas.Visible = false;
             Menu_home.Visible = false;
             mostrar_usuario.Visible = false;
+            component_Bienvenidos.Visible = false;
             login.Visible = true;
+            MostrarLogo.Visible = true;
 
             mcontenedor.SetActiveView(vBienvenida);
             uBarraMenu.Update();

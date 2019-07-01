@@ -22,13 +22,13 @@ namespace Pizza_Express_visual.Components {
         protected global::System.Web.UI.UpdatePanel uContenedorUsuario;
         
         /// <summary>
-        /// Control GridView1.
+        /// Control idMostrarMenu.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.GridView idMostrarMenu;
         
         /// <summary>
         /// Control tabfamiliar.
@@ -238,12 +238,12 @@ namespace Pizza_Express_visual.Components {
         protected global::System.Web.UI.WebControls.Button btnAnular;
         
         /// <summary>
-        /// Control idTabla.
+        /// Control idCargarSeleccion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView idTabla;
+        protected global::System.Web.UI.WebControls.GridView idCargarSeleccion;
     }
 }

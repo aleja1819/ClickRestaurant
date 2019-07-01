@@ -22,19 +22,22 @@
                     <div class="col-md-6">
                         <h6 class="section-title h3 text-center text-dark">CARGA DE LOS MENUS</h6>
                         <div class="col align-content-center">
-                            <asp:GridView runat="server" ID="GridView1" CssClass="table table-bordered table-center " AutoGenerateColumns="false">
+                            <asp:GridView runat="server" ID="idMostrarMenu" CssClass="table table-bordered table-center " AutoGenerateColumns="false"
+                                OnRowCommand="idMostrarMenu_RowCommand">
                                 <HeaderStyle CssClass="btn-dark" />
 
                                 <Columns>
-                                    <asp:BoundField DataField="codigo_usuario" HeaderText="codigo" />
+                                     <asp:BoundField DataField="" HeaderText="Código" />
+                                    <asp:BoundField DataField="" HeaderText="Nombre" />
+                                     <asp:BoundField DataField="" HeaderText="Tamano" />
+                                     <asp:BoundField DataField="" HeaderText="Ingrediente" />
+                                     <asp:BoundField DataField="" HeaderText="precio" />
 
-                                    <asp:ButtonField ButtonType="Link" CommandName="ideditar" ControlStyle-CssClass="btn btn-light" Text="Editar" />
-                                    <asp:ButtonField ButtonType="Link" CommandName="ideliminar" ControlStyle-CssClass="btn btn-danger" Text="Eliminar" />
                                     <asp:ButtonField ButtonType="Link" CommandName="idselected" ControlStyle-CssClass="btn btn-danger" Text="Seleccione" />
 
                                 </Columns>
                             </asp:GridView>
-                            <%-- OnPageIndexChanging="idTabla_PageIndexChanging";PageSize="2; AllowPaging="true; OnRowCommand="idTabla_RowCommand--%>
+                            <%-- OnPageIndexChanging="idTabla_PageIndexChanging";PageSize="2; AllowPaging="true;--%>
                         </div>
 
                     </div>
@@ -65,8 +68,8 @@
                                                 <div class="btn-group-vertical" role="group">
                                                     <a href="#" class="list-group">
 
-                                                        <asp:Button ID="tabfamiliar" CssClass=" btn btn-success  btn-lg btn-block" runat="server" Text="FAMILIAR" />
-                                                        <asp:Button ID="tabmediana" CssClass="btn btn-success  btn-lg  btn-block" runat="server" Text="MEDIANA" />
+                                                        <asp:Button ID="tabfamiliar" OnClick="tabfamiliar_Click" CssClass=" btn btn-success  btn-lg btn-block" runat="server" Text="FAMILIAR" />
+                                                        <asp:Button ID="tabmediana" CssClass="btn btn-success btn-lg  btn-block" runat="server" Text="MEDIANA" />
                                                         <asp:Button ID="tabindividual" CssClass="btn btn-success  btn-lg  btn-block" runat="server" Text="INDIVIDUAL" />
 
                                                     </a>
@@ -79,67 +82,63 @@
 
                                                         <asp:Button ID="tabTablas" CssClass=" btn btn-success  btn-lg btn-block" runat="server" Text="TABLAS" />
                                                         <asp:Button ID="taAgregadoT" CssClass="btn btn-success  btn-lg  btn-block" runat="server" Text="AGREGADO" />
-                              
+
                                                     </a>
                                                 </div>
                                                 <%--FIN BOTONES--%>
                                             </div>
                                             <div class="tab-pane fade" id="nav-sandiwch" role="tabpanel" aria-labelledby="tab-sandiwch">
-                                              <%--BOTONES--%>
+                                                <%--BOTONES--%>
                                                 <div class="btn-group-vertical" role="group">
                                                     <a href="#" class="list-group">
 
                                                         <asp:Button ID="btnChurrasco" CssClass=" btn btn-success  btn-lg btn-block" runat="server" Text="CHURRASCOS" />
                                                         <asp:Button ID="btnAgregadoC" CssClass="btn btn-success  btn-lg  btn-block" runat="server" Text="AGREGADO" />
-                                                        
+
                                                     </a>
                                                 </div>
-                                                <%--FIN BOTONES--%>  
-				
+                                                <%--FIN BOTONES--%>
                                             </div>
                                             <div class="tab-pane fade" id="nav-plato" role="tabpanel" aria-labelledby="tab-platos">
-                                                      <%--BOTONES--%>
+                                                <%--BOTONES--%>
                                                 <div class="btn-group-vertical" role="group">
                                                     <a href="#" class="list-group">
 
-                                                        <asp:Button ID="btnPlatos"    CssClass=" btn btn-success  btn-lg btn-block" runat="server" Text="PLATOS" />
+                                                        <asp:Button ID="btnPlatos" CssClass=" btn btn-success  btn-lg btn-block" runat="server" Text="PLATOS" />
                                                         <asp:Button ID="btnAgregadoP" CssClass="btn btn-success  btn-lg  btn-block" runat="server" Text="AGREGADO DE PLATO" />
-                                                        <asp:Button ID="btnEnsaladaP"      CssClass="btn btn-success  btn-lg  btn-block" runat="server" Text="ENSALDA" />
-                                                        <asp:Button ID="btnPostreP"      CssClass="btn btn-success  btn-lg  btn-block" runat="server" Text="POSTRES" />
-                                                        
+                                                        <asp:Button ID="btnEnsaladaP" CssClass="btn btn-success  btn-lg  btn-block" runat="server" Text="ENSALDA" />
+                                                        <asp:Button ID="btnPostreP" CssClass="btn btn-success  btn-lg  btn-block" runat="server" Text="POSTRES" />
+
                                                     </a>
                                                 </div>
-                                                <%--FIN BOTONES--%>   
-				
+                                                <%--FIN BOTONES--%>
                                             </div>
-                                                     <div class="tab-pane fade" id="nav-bebestible" role="tabpanel" aria-labelledby="tab-bebestible" >
-                                                      <%--BOTONES--%>
+                                            <div class="tab-pane fade" id="nav-bebestible" role="tabpanel" aria-labelledby="tab-bebestible">
+                                                <%--BOTONES--%>
                                                 <div class="btn-group-vertical" role="group">
                                                     <a href="#" class="list-group">
 
-                                                        <asp:Button ID="btnVinos"    CssClass=" btn btn-success  btn-lg btn-block" runat="server" Text="VINOS" />
-                                                        <asp:Button ID="btnTragos" CssClass="btn btn-success  btn-lg  btn-block" runat="server" Text="TRAGOS"/>
-                                                        <asp:Button ID="btnCervezas"      CssClass="btn btn-success  btn-lg  btn-block" runat="server" Text="CERVEZAS" />
-                                                        <asp:Button ID="btnBebidaE"      CssClass="btn btn-success  btn-lg  btn-block" runat="server" Text="BEBIDA EXPRESS" />
-                                                        <asp:Button ID="btnBebidaL"      CssClass="btn btn-success  btn-lg  btn-block" runat="server" Text="BEBIDA LITRO" />
-                                                        <asp:Button ID="btnJugo"      CssClass="btn btn-success  btn-lg  btn-block" runat="server" Text="JUGOS" />
+                                                        <asp:Button ID="btnVinos" CssClass=" btn btn-success  btn-lg btn-block" runat="server" Text="VINOS" />
+                                                        <asp:Button ID="btnTragos" CssClass="btn btn-success  btn-lg  btn-block" runat="server" Text="TRAGOS" />
+                                                        <asp:Button ID="btnCervezas" CssClass="btn btn-success  btn-lg  btn-block" runat="server" Text="CERVEZAS" />
+                                                        <asp:Button ID="btnBebidaE" CssClass="btn btn-success  btn-lg  btn-block" runat="server" Text="BEBIDA EXPRESS" />
+                                                        <asp:Button ID="btnBebidaL" CssClass="btn btn-success  btn-lg  btn-block" runat="server" Text="BEBIDA LITRO" />
+                                                        <asp:Button ID="btnJugo" CssClass="btn btn-success  btn-lg  btn-block" runat="server" Text="JUGOS" />
                                                     </a>
                                                 </div>
-                                                <%--FIN BOTONES--%>   
-				
+                                                <%--FIN BOTONES--%>
                                             </div>
-                                                                     <div class="tab-pane fade" id="nav-Picadillo" role="tabpanel" aria-labelledby="tab-Picadillo" >
-                                                      <%--BOTONES--%>
+                                            <div class="tab-pane fade" id="nav-Picadillo" role="tabpanel" aria-labelledby="tab-Picadillo">
+                                                <%--BOTONES--%>
                                                 <div class="btn-group-vertical" role="group">
                                                     <a href="#" class="list-group">
 
-                                                        <asp:Button ID="btnPapas"    CssClass=" btn btn-success  btn-lg btn-block" runat="server" Text="PAPAS FRITAS" />
-                                                        <asp:Button ID="btnPicadillo" CssClass="btn btn-success  btn-lg  btn-block" runat="server" Text="PICADILLO"/>
-                                                        <asp:Button ID="btnSalsa"      CssClass="btn btn-success  btn-lg  btn-block" runat="server" Text="SALSAS" />
+                                                        <asp:Button ID="btnPapas" CssClass=" btn btn-success  btn-lg btn-block" runat="server" Text="PAPAS FRITAS" />
+                                                        <asp:Button ID="btnPicadillo" CssClass="btn btn-success  btn-lg  btn-block" runat="server" Text="PICADILLO" />
+                                                        <asp:Button ID="btnSalsa" CssClass="btn btn-success  btn-lg  btn-block" runat="server" Text="SALSAS" />
                                                     </a>
                                                 </div>
-                                                <%--FIN BOTONES--%>   
-				
+                                                <%--FIN BOTONES--%>
                                             </div>
                                         </div>
 
@@ -176,13 +175,15 @@
                         <h6 class="section-title h3 text-center text-dark">TABLA DETALLE ELECCION DE COMIDA</h6>
                         <%--TABLA GRIDVIEW--%>
                         <div class="col align-content-center">
-                            <asp:GridView runat="server" ID="idTabla" CssClass="table table-bordered table-center " AutoGenerateColumns="false">
+                            <asp:GridView runat="server" ID="idCargarSeleccion" CssClass="table table-bordered table-center " AutoGenerateColumns="false">
                                 <HeaderStyle CssClass="btn-dark" />
 
                                 <Columns>
-                                    <asp:BoundField DataField="codigo_usuario" HeaderText="codigo" />
-                                    <asp:BoundField DataField="rut_usuario" HeaderText="Rut" />
-
+                                    <asp:BoundField DataField="" HeaderText="codigo" />
+                                    <asp:BoundField DataField="" HeaderText="Cantidad" />
+                                    <asp:BoundField DataField="" HeaderText="detalle" />
+                                    <asp:BoundField DataField="" HeaderText="Precio" />
+                                  
                                     <asp:ButtonField ButtonType="Link" CommandName="ideditar" ControlStyle-CssClass="btn btn-light" Text="Editar" />
                                     <asp:ButtonField ButtonType="Link" CommandName="ideliminar" ControlStyle-CssClass="btn btn-danger" Text="Eliminar" />
 
