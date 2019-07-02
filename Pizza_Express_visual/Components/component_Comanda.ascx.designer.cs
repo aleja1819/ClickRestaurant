@@ -31,15 +31,6 @@ namespace Pizza_Express_visual.Components {
         protected global::System.Web.UI.WebControls.GridView idMostrarMenu;
         
         /// <summary>
-        /// Control idOpciones.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList idOpciones;
-        
-        /// <summary>
         /// Control tabfamiliar.
         /// </summary>
         /// <remarks>
@@ -47,6 +38,24 @@ namespace Pizza_Express_visual.Components {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button tabfamiliar;
+        
+        /// <summary>
+        /// Control tabmediana.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button tabmediana;
+        
+        /// <summary>
+        /// Control tabindividual.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button tabindividual;
         
         /// <summary>
         /// Control tabTablas.
@@ -202,6 +211,15 @@ namespace Pizza_Express_visual.Components {
         protected global::System.Web.UI.WebControls.Button btnSalsa;
         
         /// <summary>
+        /// Control idCargarSeleccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView idCargarSeleccion;
+        
+        /// <summary>
         /// Control btnenviarC.
         /// </summary>
         /// <remarks>
@@ -227,14 +245,5 @@ namespace Pizza_Express_visual.Components {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAnular;
-        
-        /// <summary>
-        /// Control idCargarSeleccion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView idCargarSeleccion;
     }
 }

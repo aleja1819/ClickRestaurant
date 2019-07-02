@@ -2,11 +2,11 @@
 
 <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cerulean/bootstrap.min.css" rel="stylesheet" integrity="sha384-C++cugH8+Uf86JbNOnQoBweHHAe/wVKN/mb0lTybu/NZ9sEYbd+BbbYtNpWYAsNP" crossorigin="anonymous">
 
-   <style>
-        .ocultarCol {
-        display:none;
-        }
-    </style>
+<style>
+    .ocultarCol {
+        display: none;
+    }
+</style>
 
 
 <%--<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">--%>
@@ -36,10 +36,9 @@
                                     <asp:BoundField DataField="nombre_menu" HeaderText="Nombre" />
                                     <asp:BoundField DataField="precio_menu" HeaderText="Precio" />
                                     <asp:BoundField DataField="ingredientes_menu" HeaderText="Ingredientes" />
-                                    <asp:BoundField DataField="nombre_tamanoP" HeaderText="Tamaño" />
-                                    <asp:BoundField DataField="nombre_categoria" HeaderText="Categoria" />
 
-                                    <asp:ButtonField ButtonType="Link" CommandName="idselected" ControlStyle-CssClass="btn btn-danger" Text="Seleccione" />
+
+                                    <asp:ButtonField ButtonType="Link" CommandName="idselected" ControlStyle-CssClass="btn btn-danger bt-sm" Text=" + " />
 
                                 </Columns>
                             </asp:GridView>
@@ -74,18 +73,9 @@
                                                 <div class="btn-group-vertical" role="group">
                                                     <a href="#" class="list-group">
 
-                                                        
-                                                            <asp:DropDownList runat="server"  ID="idOpciones" CssClass="btn btn-secondary">
-                                                                <%--ES UN CONBOBOX--%>
-
-                                                                <asp:ListItem Value="0" Text="Grande"  Selected="True"></asp:ListItem>
-                                                                
-                                                            </asp:DropDownList>
-
-
-                                                            <asp:Button ID="tabfamiliar" OnClick="tabGrande_Click" CssClass=" btn btn-success  btn-lg btn-block" runat="server" Text="FAMILIAR" />
-                                                            <%--<asp:Button ID="tabmediana" CssClass="btn btn-success btn-lg  btn-block" runat="server" Text="MEDIANA" />
-                                                            <asp:Button ID="tabindividual" CssClass="btn btn-success  btn-lg  btn-block" runat="server" Text="INDIVIDUAL" />--%>
+                                                        <asp:Button ID="tabfamiliar" OnClick="tabGrande_Click" CssClass=" btn btn-success  btn-lg btn-block" runat="server" Text="FAMILIAR" />
+                                                        <asp:Button ID="tabmediana" CssClass="btn btn-success btn-lg  btn-block" runat="server" Text="MEDIANA" />
+                                                        <asp:Button ID="tabindividual" CssClass="btn btn-success  btn-lg  btn-block" runat="server" Text="INDIVIDUAL" />
                                                     </a>
                                                 </div>
                                             </div>
@@ -171,21 +161,10 @@
 
                 <%--CIERRE COLUMNA--%>
 
+                <%--FILA 2--%>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6"></
                         <%--TABLA CARGA DE MENUS--%>
-                        <h6 class="section-title h3 text-center text-dark">TABLA DETALLE PAGO</h6>
-
-                        <div class="container offset-3">
-                            <asp:Button runat="server" ID="btnenviarC" Text="Enviar Comanda" CssClass="btn btn-warning" />
-                            <asp:Button runat="server" ID="btnpago" Text="Pagar" CssClass="btn btn-info" />
-                            <asp:Button runat="server" ID="btnAnular" Text="Anular" CssClass="btn btn-danger" />
-                        </div>
-                    </div>
-
-
-                    <%--PRECIO DETALLE--%>
-                    <div class="col-md-6">
                         <h6 class="section-title h3 text-center text-dark">TABLA DETALLE ELECCION DE COMIDA</h6>
                         <%--TABLA GRIDVIEW--%>
                         <div class="col align-content-center">
@@ -205,15 +184,30 @@
                             </asp:GridView>
                             <%-- OnPageIndexChanging="idTabla_PageIndexChanging";PageSize="2; AllowPaging="true; OnRowCommand="idTabla_RowCommand--%>
                         </div>
+
+
+                        <%--PRECIO DETALLE--%>
+
+                        <div class="col-md-6">
+
+                            <h6 class="section-title h3 text-center text-dark">TABLA DETALLE PAGO</h6>
+
+                            <div class="container offset-3">
+                                <asp:Button runat="server" ID="btnenviarC" Text="Enviar Comanda" CssClass="btn btn-warning" />
+                                <asp:Button runat="server" ID="btnpago" Text="Pagar" CssClass="btn btn-info" />
+                                <asp:Button runat="server" ID="btnAnular" Text="Anular" CssClass="btn btn-danger" />
+                            </div>
+                        </div><%--FIN COLUMNA --%>
+
+
                     </div>
-                </div>
-                </div>
+                </div> <%--FIN ROW 2--%>
                  
             </ContentTemplate>
         </asp:UpdatePanel>
 
-    </div>
-</div>
+    </div><%--FIN COLUMNA 1--%>
+</div><%--FIN ROW 1--%>
 
 
 
