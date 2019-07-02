@@ -11,7 +11,7 @@ namespace Pizza_Express_visual.Components
     public partial class component_Comanda : System.Web.UI.UserControl
     {
 
-        QueryMenu accesoMenuTabla = new QueryMenu();
+        QueryComanda accesoComanda = new QueryComanda();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -19,11 +19,15 @@ namespace Pizza_Express_visual.Components
             idCargarSeleccion.Visible = true;
         }
 
-        protected void tabfamiliar_Click(object sender, EventArgs e)
+        protected void tabGrande_Click(object sender, EventArgs e)
         {
             idMostrarMenu.Visible = true;
-            idMostrarMenu.DataSource = accesoMenuTabla.filtrarMenu();
+            int filtro = Convert.ToInt32(idOpciones.SelectedValue);
+            
+            int cant = accesoComanda.filtrarCategoriaMenu(idOpciones.Text, filtro).Count;
             idMostrarMenu.DataBind();
+
+            
         }
 
         protected void idMostrarMenu_RowCommand(object sender, GridViewCommandEventArgs e)

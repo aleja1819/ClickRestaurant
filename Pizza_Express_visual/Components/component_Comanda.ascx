@@ -2,12 +2,17 @@
 
 <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cerulean/bootstrap.min.css" rel="stylesheet" integrity="sha384-C++cugH8+Uf86JbNOnQoBweHHAe/wVKN/mb0lTybu/NZ9sEYbd+BbbYtNpWYAsNP" crossorigin="anonymous">
 
+   <style>
+        .ocultarCol {
+        display:none;
+        }
+    </style>
+
+
 <%--<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">--%>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
-
-
 
 
 <div class="row">
@@ -27,11 +32,12 @@
                                 <HeaderStyle CssClass="btn-dark" />
 
                                 <Columns>
-                                     <asp:BoundField DataField="" HeaderText="Código" />
-                                    <asp:BoundField DataField="" HeaderText="Nombre" />
-                                     <asp:BoundField DataField="" HeaderText="Tamano" />
-                                     <asp:BoundField DataField="" HeaderText="Ingrediente" />
-                                     <asp:BoundField DataField="" HeaderText="precio" />
+                                    <asp:BoundField DataField="codigo_menu" HeaderText="Código" />
+                                    <asp:BoundField DataField="nombre_menu" HeaderText="Nombre" />
+                                    <asp:BoundField DataField="precio_menu" HeaderText="Precio" />
+                                    <asp:BoundField DataField="ingredientes_menu" HeaderText="Ingredientes" />
+                                    <asp:BoundField DataField="nombre_tamanoP" HeaderText="Tamaño" />
+                                    <asp:BoundField DataField="nombre_categoria" HeaderText="Categoria" />
 
                                     <asp:ButtonField ButtonType="Link" CommandName="idselected" ControlStyle-CssClass="btn btn-danger" Text="Seleccione" />
 
@@ -68,10 +74,18 @@
                                                 <div class="btn-group-vertical" role="group">
                                                     <a href="#" class="list-group">
 
-                                                        <asp:Button ID="tabfamiliar" OnClick="tabfamiliar_Click" CssClass=" btn btn-success  btn-lg btn-block" runat="server" Text="FAMILIAR" />
-                                                        <asp:Button ID="tabmediana" CssClass="btn btn-success btn-lg  btn-block" runat="server" Text="MEDIANA" />
-                                                        <asp:Button ID="tabindividual" CssClass="btn btn-success  btn-lg  btn-block" runat="server" Text="INDIVIDUAL" />
+                                                        
+                                                            <asp:DropDownList runat="server"  ID="idOpciones" CssClass="btn btn-secondary">
+                                                                <%--ES UN CONBOBOX--%>
 
+                                                                <asp:ListItem Value="0" Text="Grande"  Selected="True"></asp:ListItem>
+                                                                
+                                                            </asp:DropDownList>
+
+
+                                                            <asp:Button ID="tabfamiliar" OnClick="tabGrande_Click" CssClass=" btn btn-success  btn-lg btn-block" runat="server" Text="FAMILIAR" />
+                                                            <%--<asp:Button ID="tabmediana" CssClass="btn btn-success btn-lg  btn-block" runat="server" Text="MEDIANA" />
+                                                            <asp:Button ID="tabindividual" CssClass="btn btn-success  btn-lg  btn-block" runat="server" Text="INDIVIDUAL" />--%>
                                                     </a>
                                                 </div>
                                             </div>
@@ -183,7 +197,7 @@
                                     <asp:BoundField DataField="" HeaderText="Cantidad" />
                                     <asp:BoundField DataField="" HeaderText="detalle" />
                                     <asp:BoundField DataField="" HeaderText="Precio" />
-                                  
+
                                     <asp:ButtonField ButtonType="Link" CommandName="ideditar" ControlStyle-CssClass="btn btn-light" Text="Editar" />
                                     <asp:ButtonField ButtonType="Link" CommandName="ideliminar" ControlStyle-CssClass="btn btn-danger" Text="Eliminar" />
 

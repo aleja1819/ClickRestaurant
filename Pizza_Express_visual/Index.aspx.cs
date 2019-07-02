@@ -128,7 +128,7 @@ namespace Pizza_Express_visual
             try
             {
                 Services.QueryUsuario user = new Services.QueryUsuario();
-                int[] respuestas = user.validateUser(tusuario.Text.Trim(), tclave.Text.Trim());
+                int[] respuestas = user.validateUser(tnombre.Text.Trim(), tclave.Text.Trim());
                 mensaje.CssClass = "text-danger";
                 mensaje.Visible = true;
                 if (respuestas[0] == 0)
@@ -153,7 +153,7 @@ namespace Pizza_Express_visual
                             //AQUI EL USUARIO PUEDE INGRESAR AL SISTEMA
 
                             Session["idUser"] = respuestas[4];
-                            Session["name_user"] = tusuario.Text;
+                            Session["name_user"] = tnombre.Text;
                             Session["rol_user"] = respuestas[3];
 
 

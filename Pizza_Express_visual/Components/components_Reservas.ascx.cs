@@ -30,6 +30,8 @@ namespace Pizza_Express_visual.Components
 
         protected void bRegistrarReservarModal_Click(object sender, EventArgs e)
         {
+            ideditarReservaBoton.Visible = false;
+
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal();", true);
             uModalReserva.Update();
             uContenedorReservas.Update();
@@ -139,7 +141,7 @@ namespace Pizza_Express_visual.Components
                     uContenedorReservas.Update();
 
                     alerta.Visible = true;
-                    alerta.CssClass = "alert alert-warning animated zoomInUp";
+                    alerta.CssClass = "alert alert-primary animated zoomInUp";
                     mensaje3.Text = "RESERVA AGREGADA CON EXITO.";
                 }
             }
@@ -155,7 +157,7 @@ namespace Pizza_Express_visual.Components
         protected void idTabla_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             alerta.Visible = false;
-
+            idregistrarReservas.Visible = false;
             int fila = Convert.ToInt32(e.CommandArgument);
             if (e.CommandName.Equals("ideditar"))
             {
@@ -182,7 +184,7 @@ namespace Pizza_Express_visual.Components
                 idTabla.DataBind();
 
                 alerta.Visible = true;
-                alerta.CssClass = "alert alert-warning animated zoomInUp";
+                alerta.CssClass = "alert alert-primary animated zoomInUp";
                 mensaje3.Text = "RESERVA ELIMINADA CON EXITO.";
 
             }
@@ -211,7 +213,7 @@ namespace Pizza_Express_visual.Components
             }
         }
 
-        protected void ideditarProveedorBoton_Click(object sender, EventArgs e)
+        protected void ideditarReservaBoton_Click(object sender, EventArgs e)
         {
 
             try
@@ -255,7 +257,7 @@ namespace Pizza_Express_visual.Components
                     limpiarTodo(2);
 
                     alerta.Visible = true;
-                    alerta.CssClass = "alert alert-warning animated zoomInUp";
+                    alerta.CssClass = "alert alert-primary animated zoomInUp";
                     mensaje3.Text = "RESERVA MODIFICADA CON EXITO.";
 
                 }

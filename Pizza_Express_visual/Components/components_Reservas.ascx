@@ -3,6 +3,12 @@
 
 <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cerulean/bootstrap.min.css" rel="stylesheet" integrity="sha384-C++cugH8+Uf86JbNOnQoBweHHAe/wVKN/mb0lTybu/NZ9sEYbd+BbbYtNpWYAsNP" crossorigin="anonymous">
 
+   <style>
+        .ocultarCol {
+        display:none;
+        }
+    </style>
+
 <div class="container">
     <div class="row">   
             
@@ -59,7 +65,7 @@
                             <asp:GridView runat="server" ID="idTabla" CssClass="table table-bordered table-center " AutoGenerateColumns="false"
                                 OnRowCommand="idTabla_RowCommand">
                                 
-                                <HeaderStyle CssClass="btn-dark" />
+                                <HeaderStyle CssClass="btn-success" ForeColor="White" Font-Bold="true" />
 
                                 <Columns>
 
@@ -69,7 +75,7 @@
                                     <asp:BoundField DataField="fecha_reserva" HeaderText="Fecha" />
                                      <%--<asp:BoundField DataField="hora_reserva" HeaderText="Hora" />--%>
 
-                                    <asp:ButtonField ButtonType="Link" CommandName="ideditar" ControlStyle-CssClass="btn btn-light" Text="Editar" />
+                                    <asp:ButtonField ButtonType="Link" CommandName="ideditar" ControlStyle-CssClass="btn btn-dark" Text="Editar" />
                                     <asp:ButtonField ButtonType="Link" CommandName="ideliminar" ControlStyle-CssClass="btn btn-danger" Text="Eliminar" />
 
                                 </Columns>
@@ -90,7 +96,7 @@
 
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title"><span class="badge badge-pill badge-info badge-center">Registrar Reservas</span></h5>
+                                    <h5 class="modal-title"><span class="badge badge-pill badge-info badge-center">RESERVAS</span></h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -125,12 +131,12 @@
                                         <label for="thora">Hora</label>
                                         <asp:TextBox  runat="server" ID="thora" TextMode="Time" CssClass="form-control bg-secondary"></asp:TextBox>
                                     <asp:Label runat="server" ID="valida_thora" CssClass="invalid-feedback" Text="Ingrese Hora"></asp:Label>
-                                        </div>--%>--%>
+                                        </div>--%>
                                 </div>
 
                                 <div class="modal-footer">
                                     <asp:Label runat="server" ID="c_orginal" CssClass="ocultarCol"></asp:Label>
-                                    <asp:Button runat="server" ID="ideditarProveedorBoton" OnClick="ideditarProveedorBoton_Click" Text="Actualizar" CssClass="btn btn-success float-right" />
+                                    <asp:Button runat="server" ID="ideditarReservaBoton" OnClick="ideditarReservaBoton_Click" Text="Actualizar" CssClass="btn btn-success float-right" />
                                     <asp:Button runat="server" ID="idregistrarReservas" OnClick="idregistrarReservas_Click" Text="Registrar" CssClass="btn btn-success float-right" />
                                 </div>
                             </div>

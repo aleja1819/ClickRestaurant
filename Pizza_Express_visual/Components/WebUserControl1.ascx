@@ -1,5 +1,11 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="WebUserControl1.ascx.cs" Inherits="Pizza_Express_visual.Components.WebUserControl1" %>
 
+   <style>
+        .ocultarCol {
+        display:none;
+        }
+    </style>
+
 <asp:UpdatePanel runat="server" ID="uContenedorTest" UpdateMode="Conditional" ChildrenAsTriggers="true">
     <ContentTemplate>
         <br />

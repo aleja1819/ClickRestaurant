@@ -175,21 +175,30 @@ namespace Pizza_Express_visual.Components {
         protected global::System.Web.UI.WebControls.Label cod_orginal;
         
         /// <summary>
-        /// Control beditarProveedorBoton.
+        /// Control cod_OriProve.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button beditarProveedorBoton;
+        protected global::System.Web.UI.WebControls.Label cod_OriProve;
         
         /// <summary>
-        /// Control bregistrarProveedor.
+        /// Control beditarProductoBoton.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button bregistrarProveedor;
+        protected global::System.Web.UI.WebControls.Button beditarProductoBoton;
+        
+        /// <summary>
+        /// Control bregistrarProducto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button bregistrarProducto;
     }
 }

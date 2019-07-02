@@ -353,6 +353,7 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\QueryComanda.cs" />
     <Compile Include="Services\QueryMenu.cs" />
     <Compile Include="Services\QueryProductos.cs" />
     <Compile Include="Services\QueryProveedor.cs" />

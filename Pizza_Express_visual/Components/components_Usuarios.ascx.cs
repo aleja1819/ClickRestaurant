@@ -20,9 +20,7 @@ namespace Pizza_Express_visual.Components
         {
 
             if (!IsPostBack)
-            {
-
-                
+            {             
 
                 //PARA MOSTRAR LOS USUARIOS DE LA BASE DE DATOS
                 idTabla.DataSource = accesoUsuario.filtrarUsuarios();
@@ -75,10 +73,13 @@ namespace Pizza_Express_visual.Components
         //PARA ABRIR EL MODAL
         protected void bRegistrarUsuarioModal_Click(object sender, EventArgs e) //MODAL 
         {
+            ideditarUsuarioBoton.Visible = false;
+
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal();", true);
             uModalUsuario.Update();
             uContenedorUsuario.Update();
 
+            
 
         }
 
@@ -86,7 +87,7 @@ namespace Pizza_Express_visual.Components
         protected void idTabla_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             alerta.Visible = false;
-
+            idregistrar.Visible = false;
             int fila = Convert.ToInt32(e.CommandArgument);
             if (e.CommandName.Equals("ideditar"))
             {
@@ -111,6 +112,10 @@ namespace Pizza_Express_visual.Components
                 accesoUsuario.eliminarUsuario(id);
                 idTabla.DataSource = accesoUsuario.filtrarUsuarios();
                 idTabla.DataBind();
+
+                alerta.Visible = true;
+                alerta.CssClass = "alert alert-primary animated zoomInUp";
+                mensaje3.Text = "USUARIO ELIMINADO CON EXITO.";
 
             }
         }
@@ -168,7 +173,6 @@ namespace Pizza_Express_visual.Components
             return correcto;
         }
 
-
         //REGISTRAR UN USUARIO
         protected void idregistrarUsuario_Click(object sender, EventArgs e)
         {
@@ -216,7 +220,7 @@ namespace Pizza_Express_visual.Components
                     limpiarTodo(2);
 
                     alerta.Visible = true;
-                    alerta.CssClass = "alert alert-warning animated zoomInUp";
+                    alerta.CssClass = "alert alert-primary animated zoomInUp";
                     mensaje3.Text = "USUARIO AGREGADO CON EXITO.";
 
                 }
@@ -229,7 +233,6 @@ namespace Pizza_Express_visual.Components
             }
         }
     
-
         protected void idBuscarUsuario_Click(object sender, EventArgs e)
         {
             try
@@ -264,6 +267,8 @@ namespace Pizza_Express_visual.Components
         {
             try
             {
+              
+
                 if (validaCampos() == false)
                 {
 
@@ -300,11 +305,10 @@ namespace Pizza_Express_visual.Components
                 uModalUsuario.Update();
                 uContenedorUsuario.Update();
 
-
                 limpiarTodo(2);
 
                 alerta.Visible = true;
-                alerta.CssClass = "alert alert-warning animated zoomInUp";
+                alerta.CssClass = "alert alert-primary animated zoomInUp";
                 mensaje3.Text = "USUARIO MODIFICADO CON EXITO.";
 
             }

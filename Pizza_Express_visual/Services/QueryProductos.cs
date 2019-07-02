@@ -125,6 +125,31 @@ namespace Pizza_Express_visual.Services
 
         }
 
+        public bool eliminarProductoProvee(int id_prod, int cod_prove)
+        {
+
+            try
+            {
+              
+                using (bd8 contexto = new bd8())
+                {
+                    var user = contexto.Producto_Proveedor.First(prod => prod.codigo_proveedor == cod_prove && prod.codigo_producto == id_prod);
+
+                    contexto.Producto_Proveedor.Remove(user);
+                    contexto.SaveChanges();
+
+                    int respuesta = contexto.SaveChanges();
+                    return respuesta == 1;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+        }
+
+
         public List<object> BuscarProductos(string dato, int filtro)
         {
             using (bd8 contexto = new bd8())
@@ -171,18 +196,19 @@ namespace Pizza_Express_visual.Services
             }
         }
 
-        public bool editarProducto(Producto producto, string cod_ori)
+        public bool editarProducto(Producto producto,  int cod_original)
         {
 
             try
             {
-                int idOri = Convert.ToInt32(cod_ori);
+                int idPro = Convert.ToInt32(cod_original);
                 using (bd8  contexto = new bd8())
                 {
 
                     //BUSCAR EL PRODUCTO EN LA BD
-                    var user = contexto.Producto.First(prod => prod.codigo_producto == idOri);
-                  
+
+                    var user = contexto.Producto.First(prod => prod.codigo_producto == idPro);
+
                     //MODIFICAR LOS CAMPOS QUE NECESITO
 
                     user.nombre_producto = producto.nombre_producto;
@@ -201,22 +227,20 @@ namespace Pizza_Express_visual.Services
             }
         }
 
-        public bool editarProductoProveedor(Producto_Proveedor prove, string cod_ori)
+        public bool editarProductoProveedor(Producto_Proveedor prove, int cod_original)
             {
 
             try
             {
-                int idOri = Convert.ToInt32(cod_ori);
+                int idProve = Convert.ToInt32(cod_original);
                 using (bd8 contexto = new bd8())
                 {
 
                     //BUSCAR EL PRODUCTO EN LA BD
-                    var user = contexto.Producto_Proveedor.First(prod => prod.codigo_producto == idOri);
+                    var user = contexto.Producto_Proveedor.First(prod => prod.codigo_proveedor == prove.codigo_proveedor && prod.codigo_producto == idProve);
 
                     //MODIFICAR LOS CAMPOS QUE NECESITO
-
-                    user.codigo_proveedor = prove.codigo_proveedor;
-                   
+              
                     user.fecha_ingreso_producto = prove.fecha_ingreso_producto;
                     user.cantidad_producto = prove.cantidad_producto;
 

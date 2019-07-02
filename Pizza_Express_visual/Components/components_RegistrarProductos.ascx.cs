@@ -114,10 +114,10 @@ namespace Pizza_Express_visual.Components
             return correcto;
         }
 
-
-
         protected void bRegistrarProductoModal_Click(object sender, EventArgs e)
         {
+            beditarProductoBoton.Visible = false;
+            bregistrarProducto.Visible = true;
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal();", true);
             uModalProducto.Update();
             uContenedorProducto.Update();
@@ -131,8 +131,8 @@ namespace Pizza_Express_visual.Components
                 {
 
                 }
-                else { 
-
+                else
+                {
 
                     //LEER LOS DATOS INGRESADOS
                     string nombre_Produc = tnombre.Text;
@@ -181,9 +181,10 @@ namespace Pizza_Express_visual.Components
                         limpiarTodo(2);
 
                         alerta.Visible = true;
-                        alerta.CssClass = "alert alert-warning animated zoomInUp";
+                        alerta.CssClass = "alert alert-primary animated zoomInUp";
                         mensaje3.Text = "PRODUCTO AGREGADO CON EXITO.";
 
+                        bregistrarProducto.Visible = false;
                     }
                 }
             }
@@ -198,10 +199,15 @@ namespace Pizza_Express_visual.Components
 
         protected void idTabla_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            
             alerta.Visible = false;
+            beditarProductoBoton.Visible = true;
+            
             int fila = Convert.ToInt32(e.CommandArgument);
+           
             if (e.CommandName.Equals("ideditar"))
             {
+                cod_OriProve.Text = idTabla.Rows[fila].Cells[0].Text;
                 cod_orginal.Text = idTabla.Rows[fila].Cells[0].Text;
                 tnombre.Text = idTabla.Rows[fila].Cells[1].Text;
                 trut.Text = idTabla.Rows[fila].Cells[2].Text;
@@ -217,19 +223,26 @@ namespace Pizza_Express_visual.Components
             else if (e.CommandName.Equals("ideliminar"))
             {
                 // ELIMINAR UN PROVEEDOR
-                string codigo = idTabla.Rows[fila].Cells[0].Text;
-                int id = Convert.ToInt32(codigo);
-                accesoProductos.eliminarProducto(id);
+                string codigoProd = idTabla.Rows[fila].Cells[0].Text;
+                string RutProve = idTabla.Rows[fila].Cells[2].Text;
+
+                int idProd = Convert.ToInt32(codigoProd);
+                int idProve = accesoProductos.codigoProvee(RutProve);
+
+                accesoProductos.eliminarProductoProvee(idProd, idProve);
+
+                accesoProductos.eliminarProducto(idProd);
 
                 idTabla.DataSource = accesoProductos.filtrarProductos();
                 idTabla.DataBind();
 
                 alerta.Visible = true;
-                alerta.CssClass = "alert alert-danger animated zoomInUp";
+                alerta.CssClass = "alert alert-primary animated zoomInUp";
                 mensaje3.Text = "PRODUCTO ELIMANDO CON EXITO.";
 
             }
-            else {
+            else
+            {
                 alerta.Visible = true;
                 alerta.CssClass = "alert alert-danger animated zoomInUp";
                 mensaje3.Text = "PRODUCTO NO ELIMINADO.";
@@ -266,67 +279,86 @@ namespace Pizza_Express_visual.Components
             }
         }
 
-        protected void beditarProveedorBoton_Click(object sender, EventArgs e)
+        protected void beditarProductoBoton_Click(object sender, EventArgs e)
         {
 
 
             try
             {
-                //LEER LOS DATOS INGRESADOS
-                string nombre_Produc = tnombre.Text;
-                string rut_Prove = trut.Text;
-                string fecha = tfecha.Text;
-                string cantidad = tcantidad.Text;
-                int cod = accesoProductos.codigoProvee(rut_Prove);
-                int idProd = 0;
-                if (cod == -1)
+
+                if (validaCampos() == false)
                 {
 
                 }
                 else
                 {
-                    string codigo_original = cod_orginal.Text;
 
-                    //EDITAR LOS DATOS
-                    accesoProductos.editarProducto(new Models.Producto
+                    //LEER LOS DATOS INGRESADOS
+                    string nombre_Produc = tnombre.Text;
+                    string rut_Prove = trut.Text;
+                    string fecha = tfecha.Text;
+                    string cantidad = tcantidad.Text;
+                    int cod = accesoProductos.codigoProvee(rut_Prove);
+                    int idProd = 0;
+                    if (cod == -1)
                     {
 
-                        nombre_producto = nombre_Produc,
-                        codigo_usuario = 2
-
-                    }, codigo_original);
-
-                    DateTime t = DateTime.Now;
-                    int cant = Convert.ToInt32(tcantidad.Text);
-                    int rut_P = Convert.ToInt32(trut.Text);
-
-                    accesoProductos.editarProductoProveedor(new Models.Producto_Proveedor
+                    }
+                    else
                     {
+                        string cod_prove = cod_OriProve.Text;
+                        string codigo_original = cod_orginal.Text;
+                        int cod_O = Convert.ToInt32(codigo_original);
+                        int cod_prov = Convert.ToInt32(cod_prove);
 
-                        fecha_ingreso_producto = t,
-                        codigo_producto = idProd,
-                        cantidad_producto = cant,
-                        codigo_proveedor = cod
+                        //EDITAR LOS DATOS
+                        accesoProductos.editarProducto(new Models.Producto
+                        {
 
-                    }, codigo_original);
+                            nombre_producto = nombre_Produc,
+                            codigo_usuario = 2
 
-                    //MOSTRAR LOS DATOS EN LA TABLA
-                    idTabla.DataSource = accesoProductos.filtrarProductos();
-                    idTabla.DataBind();
+                        }, cod_O);
 
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal('hide');", true);
-                    uModalProducto.Update();
-                    uContenedorProducto.Update();
+                        DateTime t = DateTime.Now;
 
-                    limpiarTodo(2);
+                        int cant = Convert.ToInt32(tcantidad.Text);
 
+                        accesoProductos.editarProductoProveedor(new Models.Producto_Proveedor
+                        {
+
+                            fecha_ingreso_producto = t,
+                            codigo_producto = idProd,
+                            cantidad_producto = cant,
+                            codigo_proveedor = cod
+
+                        }, cod_prov);
+
+                        //MOSTRAR LOS DATOS EN LA TABLA
+                        idTabla.DataSource = accesoProductos.filtrarProductos();
+                        idTabla.DataBind();
+
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal('hide');", true);
+                        uModalProducto.Update();
+                        uContenedorProducto.Update();
+
+                        limpiarTodo(2);
+
+                        alerta.Visible = true;
+                        alerta.CssClass = "alert alert-primary animated zoomInUp";
+                        mensaje3.Text = "PRODUCTO ACTUALIZADO CON EXITO.";
+
+                        
+                    }
                 }
+
             }
             catch (Exception)
             {
 
             }
+            }
         }
     }
-    
-}
+
+

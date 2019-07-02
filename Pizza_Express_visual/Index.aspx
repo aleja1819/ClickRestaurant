@@ -1,5 +1,12 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="Pizza_Express_visual.Index" %>
 
+ <style>
+        .ocultarCol {
+        display:none;
+        }
+    </style>
+
+
 <%@ Register Src="~/Components/component_Bienvenidos.ascx" TagPrefix="uc1" TagName="component_Bienvenidos" %>
 <%@ Register Src="~/Components/components_CartaMenu.ascx" TagPrefix="uc1" TagName="components_CartaMenu" %>
 <%@ Register Src="~/Components/components_Inventario.ascx" TagPrefix="uc1" TagName="components_Inventario" %>
@@ -15,10 +22,7 @@
 
 
 
-
 <%--<%@ Register Src="~/Components/WebUserControl1.ascx" TagPrefix="uc1" TagName="WebUserControl1" %>--%>
-
-
 
 
 <!DOCTYPE html>
@@ -48,7 +52,8 @@
                     <div class="col">
 
                         <!-- Barra de navegación -->
-                        <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+                        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                        <%--<nav class="navbar navbar-expand-lg navbar-dark bg-danger">--%>
                             <!-- Brand -->
                             <a class="navbar-brand" href="#">
                                 <img src="Imagenes/PIZZZA.jpg" class="img-thumbnail img-rounded shadow-lg" style="width: 4rem" />
@@ -225,15 +230,18 @@
                     <ContentTemplate>
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title"><span class="badge badge-pill badge-info">Login</span></h5>
+                                <h5 class="modal-title"><span class="badge badge-pill badge-info">Inicio Sesión</span></h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
+                               
+                                <%--<asp:Label runat="server" ID="tusuario" CssClass="ocultarCol"></asp:Label>--%>
+
                                 <div class="form-group">
-                                    <label for="uname1">Usuario</label>
-                                    <asp:TextBox runat="server" placeholder="Usuario" ID="tusuario" CssClass="form-control"></asp:TextBox>
+                                    <label for="tnombre">Nombre Usuario</label>
+                                    <asp:TextBox runat="server" placeholder="nombre usuario"  ID="tnombre" CssClass="form-control"></asp:TextBox>
 
                                     <%--VALIDADOR DE CAMPOS REQUERIDOS--%>
 
@@ -242,7 +250,7 @@
                                         ForeColor="Red"
                                         Display="Dynamic"
                                         ErrorMessage="Usuario Requerido"
-                                        ControlToValidate="tusuario"
+                                        ControlToValidate="tnombre"
                                         ValidationGroup="grupo1"></asp:RequiredFieldValidator>
 
                                 </div>

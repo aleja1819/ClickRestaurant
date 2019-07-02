@@ -445,13 +445,13 @@ namespace Pizza_Express_visual {
         protected global::System.Web.UI.UpdatePanel uModal;
         
         /// <summary>
-        /// Control tusuario.
+        /// Control tnombre.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tusuario;
+        protected global::System.Web.UI.WebControls.TextBox tnombre;
         
         /// <summary>
         /// Control tclave.

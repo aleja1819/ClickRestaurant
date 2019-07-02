@@ -1,5 +1,11 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="components_NumeroMesa.ascx.cs" Inherits="Pizza_Express_visual.Components.components_NumeroMesa" %>
 
+   <style>
+        .ocultarCol {
+        display:none;
+        }
+    </style>
+
 <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cerulean/bootstrap.min.css" rel="stylesheet" integrity="sha384-C++cugH8+Uf86JbNOnQoBweHHAe/wVKN/mb0lTybu/NZ9sEYbd+BbbYtNpWYAsNP" crossorigin="anonymous">
 
 <style type="text/css">

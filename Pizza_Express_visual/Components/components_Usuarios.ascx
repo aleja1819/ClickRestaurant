@@ -1,5 +1,10 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="components_Usuarios.ascx.cs" Inherits="Pizza_Express_visual.Components.components_Usuarios" %>
 
+   <style>
+        .ocultarCol {
+        display:none;
+        }
+    </style>
 
 <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cerulean/bootstrap.min.css" rel="stylesheet" integrity="sha384-C++cugH8+Uf86JbNOnQoBweHHAe/wVKN/mb0lTybu/NZ9sEYbd+BbbYtNpWYAsNP" crossorigin="anonymous">
 <link href="../Content/animate.min.css" rel="stylesheet" />
@@ -65,7 +70,7 @@
                     <div class="col align-content-center">
                         <asp:GridView runat="server" ID="idTabla" CssClass="table table-bordered table-center " AutoGenerateColumns="false"
                             OnRowCommand="idTabla_RowCommand">
-                            <HeaderStyle CssClass="btn-dark" />
+                            <HeaderStyle CssClass="btn-success" ForeColor="White" Font-Bold="true" />
 
                             <Columns>
                                 <asp:BoundField DataField="codigo_usuario" HeaderText="codigo" />
@@ -76,7 +81,7 @@
                                 <asp:BoundField DataField="nombre_tipoUsuario" HeaderText="Tipo Usuario" />
                                 <asp:BoundField DataField="nombre_estado" HeaderText="Estado Usuario" />
 
-                                <asp:ButtonField ButtonType="Link" CommandName="ideditar" ControlStyle-CssClass="btn btn-light" Text="Editar" />
+                                <asp:ButtonField ButtonType="Link" CommandName="ideditar" ControlStyle-CssClass="btn btn-dark" Text="Editar" />
                                 <asp:ButtonField ButtonType="Link" CommandName="ideliminar" ControlStyle-CssClass="btn btn-danger" Text="Eliminar" />
 
                             </Columns>
@@ -101,7 +106,7 @@
 
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title"><span class="badge badge-pill badge-info badge-center">Registrar Usuarios</span></h5>
+                                <h5 class="modal-title"><span class="badge badge-pill badge-info badge-center">USUARIOS</span></h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>

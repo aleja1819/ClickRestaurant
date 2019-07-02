@@ -22,8 +22,8 @@
         <EntityTypeShape EntityType="PizzaEModel.Pago" Width="1.5" PointX="13.5" PointY="3" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaEModel.PagoRepartidor" Width="1.5" PointX="8.25" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaEModel.Pedido" Width="1.5" PointX="13.5" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="PizzaEModel.Producto" Width="1.5" PointX="8.25" PointY="19.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="PizzaEModel.Producto_Proveedor" Width="1.5" PointX="10.5" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzaEModel.Producto" Width="1.5" PointX="2.125" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzaEModel.Producto_Proveedor" Width="1.5" PointX="5.375" PointY="20.125" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaEModel.Proveedor" Width="1.5" PointX="8.25" PointY="26.5" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaEModel.Reserva" Width="1.5" PointX="11.25" PointY="23.125" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaEModel.TamanoP" Width="1.5" PointX="3.75" PointY="17" IsExpanded="true" />
