@@ -24,7 +24,7 @@ namespace Pizza_Express_visual.Models
         public int numero_caja { get; set; }
     
         public virtual Caja Caja { get; set; }
-        public virtual Detalle_Mesa Detalle_Mesa { get; set; }
         public virtual Pago Pago { get; set; }
+        public virtual Detalle_Mesa Detalle_Mesa { get; set; }
     }
 }

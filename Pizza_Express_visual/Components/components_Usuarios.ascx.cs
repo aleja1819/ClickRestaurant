@@ -18,6 +18,7 @@ namespace Pizza_Express_visual.Components
 
         protected void Page_Load(object sender, EventArgs e)
         {
+          
 
             if (!IsPostBack)
             {             
@@ -73,8 +74,7 @@ namespace Pizza_Express_visual.Components
         //PARA ABRIR EL MODAL
         protected void bRegistrarUsuarioModal_Click(object sender, EventArgs e) //MODAL 
         {
-            ideditarUsuarioBoton.Visible = false;
-
+            alerta.Visible = false;
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal();", true);
             uModalUsuario.Update();
             uContenedorUsuario.Update();
@@ -87,11 +87,10 @@ namespace Pizza_Express_visual.Components
         protected void idTabla_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             alerta.Visible = false;
-            idregistrar.Visible = false;
+
             int fila = Convert.ToInt32(e.CommandArgument);
             if (e.CommandName.Equals("ideditar"))
             {
-
                 cod_orginal.Text = idTabla.Rows[fila].Cells[0].Text;
                 trut.Text = idTabla.Rows[fila].Cells[1].Text;
                 tnombre.Text = idTabla.Rows[fila].Cells[2].Text;
@@ -178,7 +177,7 @@ namespace Pizza_Express_visual.Components
         {
             try
             {
-
+                
                 if (validaCampos() == false)
                 {
 
@@ -204,8 +203,7 @@ namespace Pizza_Express_visual.Components
                         email_usuario = email_u,
                         contraseña_usuario = clave_u,
                         codigo_tipoUsuario = id,
-                        codigo_estado = idE
-                        
+                        codigo_estado = idE                     
 
                     });
 
@@ -267,7 +265,6 @@ namespace Pizza_Express_visual.Components
         {
             try
             {
-              
 
                 if (validaCampos() == false)
                 {
@@ -320,6 +317,22 @@ namespace Pizza_Express_visual.Components
 
             }
          
+        }
+
+        protected void idTabla_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            try
+            {
+                int filtro = Convert.ToInt32(idOpciones.SelectedValue);
+                idTabla.PageIndex = e.NewPageIndex;
+                idTabla.DataSource = accesoUsuario.filtrarUsuarios();
+                idTabla.DataBind();
+
+            }
+            catch (Exception)
+            {
+
+            }
         }
     }
 }

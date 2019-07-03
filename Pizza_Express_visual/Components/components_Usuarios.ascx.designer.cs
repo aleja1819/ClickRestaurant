@@ -85,15 +85,6 @@ namespace Pizza_Express_visual.Components {
         protected global::System.Web.UI.WebControls.GridView idTabla;
         
         /// <summary>
-        /// Control mensaje.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label mensaje;
-        
-        /// <summary>
         /// Control uModalUsuario.
         /// </summary>
         /// <remarks>

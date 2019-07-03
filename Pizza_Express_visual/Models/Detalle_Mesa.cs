@@ -22,7 +22,8 @@ namespace Pizza_Express_visual.Models
     
         public int codigo_menu { get; set; }
         public int codigo_comanda { get; set; }
-        public System.DateTime fecha_comanda { get; set; }
+        public int cant_Menu { get; set; }
+        public int precio_total { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BoletaComanda> BoletaComanda { get; set; }

@@ -1,10 +1,10 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="Pizza_Express_visual.Index" %>
 
- <style>
-        .ocultarCol {
-        display:none;
-        }
-    </style>
+<style>
+    .ocultarCol {
+        display: none;
+    }
+</style>
 
 
 <%@ Register Src="~/Components/component_Bienvenidos.ascx" TagPrefix="uc1" TagName="component_Bienvenidos" %>
@@ -53,7 +53,7 @@
 
                         <!-- Barra de navegación -->
                         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                        <%--<nav class="navbar navbar-expand-lg navbar-dark bg-danger">--%>
+                            <%--<nav class="navbar navbar-expand-lg navbar-dark bg-danger">--%>
                             <!-- Brand -->
                             <a class="navbar-brand" href="#">
                                 <img src="Imagenes/PIZZZA.jpg" class="img-thumbnail img-rounded shadow-lg" style="width: 4rem" />
@@ -235,14 +235,17 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
+                            
                             <div class="modal-body">
-                               
-                                <%--<asp:Label runat="server" ID="tusuario" CssClass="ocultarCol"></asp:Label>--%>
 
                                 <div class="form-group">
-                                    <label for="tnombre">Nombre Usuario</label>
-                                    <asp:TextBox runat="server" placeholder="nombre usuario"  ID="tnombre" CssClass="form-control"></asp:TextBox>
-
+                                    <label for="tnombre">Nombre Usuario (*)</label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text text-info"><i class="fas fa-file-signature"></i></div>
+                                        </div>
+                                        <asp:TextBox runat="server" placeholder="nombre usuario" ID="tnombre" CssClass="form-control"></asp:TextBox>
+                                    </div>
                                     <%--VALIDADOR DE CAMPOS REQUERIDOS--%>
 
 
@@ -256,9 +259,13 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Contraseña</label>
-                                    <asp:TextBox runat="server" ID="tclave" TextMode="Password" placeholder="Clave" CssClass="form-control"></asp:TextBox>
-
+                                    <label>Contraseña (*)</label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text text-info"><i class="fas fa-key"></i></div>
+                                        </div>
+                                        <asp:TextBox runat="server" ID="tclave" TextMode="Password" placeholder="Clave" CssClass="form-control"></asp:TextBox>
+                                    </div>
                                     <%--VALIDADOR DE CAMPOS REQUERIDOS--%>
 
 

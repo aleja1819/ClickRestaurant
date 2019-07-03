@@ -74,8 +74,8 @@
                                                     <a href="#" class="list-group">
 
                                                         <asp:Button ID="tabfamiliar" OnClick="tabGrande_Click" CssClass=" btn btn-success  btn-lg btn-block" runat="server" Text="FAMILIAR" />
-                                                        <asp:Button ID="tabmediana" CssClass="btn btn-success btn-lg  btn-block" runat="server" Text="MEDIANA" />
-                                                        <asp:Button ID="tabindividual" CssClass="btn btn-success  btn-lg  btn-block" runat="server" Text="INDIVIDUAL" />
+                                                        <asp:Button ID="tabmediana" OnClick="tabmediana_Click" CssClass="btn btn-success btn-lg  btn-block" runat="server" Text="MEDIANA" />
+                                                        <asp:Button ID="tabindividual" OnClick="tabindividual_Click" CssClass="btn btn-success  btn-lg  btn-block" runat="server" Text="INDIVIDUAL" />
                                                     </a>
                                                 </div>
                                             </div>
@@ -163,7 +163,7 @@
 
                 <%--FILA 2--%>
                 <div class="row">
-                    <div class="col-md-6"></
+                    <div class="col-md-6">
                         <%--TABLA CARGA DE MENUS--%>
                         <h6 class="section-title h3 text-center text-dark">TABLA DETALLE ELECCION DE COMIDA</h6>
                         <%--TABLA GRIDVIEW--%>
@@ -172,19 +172,19 @@
                                 <HeaderStyle CssClass="btn-dark" />
 
                                 <Columns>
-                                    <asp:BoundField DataField="" HeaderText="codigo" />
-                                    <asp:BoundField DataField="" HeaderText="Cantidad" />
-                                    <asp:BoundField DataField="" HeaderText="detalle" />
-                                    <asp:BoundField DataField="" HeaderText="Precio" />
-
-                                    <asp:ButtonField ButtonType="Link" CommandName="ideditar" ControlStyle-CssClass="btn btn-light" Text="Editar" />
-                                    <asp:ButtonField ButtonType="Link" CommandName="ideliminar" ControlStyle-CssClass="btn btn-danger" Text="Eliminar" />
+                                    <asp:BoundField DataField="codigo_M" HeaderText="Codigo" />
+                                    <asp:BoundField DataField="cantidad" HeaderText="Cantidad" />
+                                    <asp:BoundField DataField="nombre_M" HeaderText="Nombre" />
+                                    <asp:BoundField DataField="precio_M" HeaderText="Precio" />
+                                    <asp:BoundField DataField="ingre_M" HeaderText="Detalle" />
+                                    
+                                    <asp:ButtonField ButtonType="Link" CommandName="ideditar" ControlStyle-CssClass="btn btn-danger" Text="-" />
 
                                 </Columns>
                             </asp:GridView>
                             <%-- OnPageIndexChanging="idTabla_PageIndexChanging";PageSize="2; AllowPaging="true; OnRowCommand="idTabla_RowCommand--%>
                         </div>
-
+                         </div>
 
                         <%--PRECIO DETALLE--%>
 
@@ -198,9 +198,7 @@
                                 <asp:Button runat="server" ID="btnAnular" Text="Anular" CssClass="btn btn-danger" />
                             </div>
                         </div><%--FIN COLUMNA --%>
-
-
-                    </div>
+ 
                 </div> <%--FIN ROW 2--%>
                  
             </ContentTemplate>

@@ -43,6 +43,7 @@ namespace Pizza_Express_visual.Components
 
         protected void bRegistrarMenu_Click(object sender, EventArgs e)
         {
+            alerta.Visible = false;
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal();", true);
             uModalMenu.Update();
             uContenedorMenu.Update();
@@ -185,7 +186,7 @@ namespace Pizza_Express_visual.Components
                     limpiarTodo(2);
 
                     alerta.Visible = true;
-                    alerta.CssClass = "alert alert-warning animated zoomInUp";
+                    alerta.CssClass = "alert alert-primary animated zoomInUp";
                     mensaje3.Text = "CARTA MENÚ AGREGADA CON EXITO.";
 
                 }
@@ -243,7 +244,7 @@ namespace Pizza_Express_visual.Components
                 limpiarTodo(2);
 
                 alerta.Visible = true;
-                alerta.CssClass = "alert alert-warning animated zoomInUp";
+                alerta.CssClass = "alert alert-primary animated zoomInUp";
                 mensaje3.Text = "MENÚ MODIFICADO CON EXITO.";
 
             }
@@ -287,6 +288,10 @@ namespace Pizza_Express_visual.Components
                 idTabla.DataSource = accesoMenu.filtrarMenu();
                 idTabla.DataBind();
 
+                alerta.Visible = true;
+                alerta.CssClass = "alert alert-primary animated zoomInUp";
+                mensaje3.Text = "MENÚ ELIMINADO CON EXITO.";
+
             }
         }
 
@@ -319,5 +324,23 @@ namespace Pizza_Express_visual.Components
 
             }
         }
+
+        protected void idTabla_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            try
+            {
+                int filtro = Convert.ToInt32(idOpciones.SelectedValue);
+                idTabla.PageIndex = e.NewPageIndex;
+                idTabla.DataSource = accesoMenu.filtrarMenu();
+                idTabla.DataBind();
+
+            }
+            catch (Exception)
+            {
+
+
+            }
+        }
+
     }
 }

@@ -1,10 +1,10 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="components_Usuarios.ascx.cs" Inherits="Pizza_Express_visual.Components.components_Usuarios" %>
 
-   <style>
-        .ocultarCol {
-        display:none;
-        }
-    </style>
+<style>
+    .ocultarCol {
+        display: none;
+    }
+</style>
 
 <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cerulean/bootstrap.min.css" rel="stylesheet" integrity="sha384-C++cugH8+Uf86JbNOnQoBweHHAe/wVKN/mb0lTybu/NZ9sEYbd+BbbYtNpWYAsNP" crossorigin="anonymous">
 <link href="../Content/animate.min.css" rel="stylesheet" />
@@ -18,12 +18,12 @@
                 <ContentTemplate>
                     <br />
 
-                  <%--ALERTA DE MENSAJE--%>
+                    <%--ALERTA DE MENSAJE--%>
                     <asp:Panel runat="server" ID="alerta" Visible="false">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <asp:Label  ID="mensaje3" runat="server"></asp:Label>
+                        <asp:Label ID="mensaje3" runat="server"></asp:Label>
                     </asp:Panel>
                     <br />
 
@@ -69,7 +69,7 @@
                     <%--TABLA GRIDVIEW--%>
                     <div class="col align-content-center">
                         <asp:GridView runat="server" ID="idTabla" CssClass="table table-bordered table-center " AutoGenerateColumns="false"
-                            OnRowCommand="idTabla_RowCommand">
+                            OnRowCommand="idTabla_RowCommand" OnPageIndexChanging="idTabla_PageIndexChanging" PageSize="4" AllowPaging="true">
                             <HeaderStyle CssClass="btn-success" ForeColor="White" Font-Bold="true" />
 
                             <Columns>
@@ -86,10 +86,8 @@
 
                             </Columns>
                         </asp:GridView>
-                        <%-- OnPageIndexChanging="idTabla_PageIndexChanging";PageSize="2; AllowPaging="true--%>
+                       
                     </div>
-
-                    <asp:Label runat="server" ID="mensaje" CssClass="invalid-feedback" Text="error"></asp:Label>
 
                 </ContentTemplate>
             </asp:UpdatePanel>
@@ -118,29 +116,49 @@
                                 <%--RUT USUARIO--%>
                                 <div class="form-group">
                                     <label for="trut">Rut Usuario (*)</label>
-                                    <asp:TextBox runat="server" placeholder="Rut usuario" ID="trut" CssClass="form-control bg-secondary"></asp:TextBox>
-                                    <asp:Label runat="server" ID="valida_trut" CssClass="invalid-feedback" Text="Ingrese Rut"></asp:Label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text text-info"><i class="fas fa-user"></i></div>
+                                        </div>
+                                        <asp:TextBox runat="server" placeholder="Rut usuario" ID="trut" CssClass="form-control bg-secondary"></asp:TextBox>
+                                        <asp:Label runat="server" ID="valida_trut" CssClass="invalid-feedback" Text="Ingrese Rut"></asp:Label>
+                                    </div>
                                 </div>
 
                                 <%--NOMBRE USUARIO--%>
                                 <div class="form-group">
                                     <label for="tnombre">Nombre Usuario (*)</label>
-                                    <asp:TextBox runat="server" placeholder="Nombre Usuario" ID="tnombre" CssClass="form-control bg-secondary"></asp:TextBox>
-                                    <asp:Label runat="server" ID="valida_tnombre" CssClass="invalid-feedback" Text="Ingrese Nombre"></asp:Label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text text-info"><i class="fas fa-file-signature"></i></div>
+                                        </div>
+                                        <asp:TextBox runat="server" placeholder="Nombre Usuario" ID="tnombre" CssClass="form-control bg-secondary"></asp:TextBox>
+                                        <asp:Label runat="server" ID="valida_tnombre" CssClass="invalid-feedback" Text="Ingrese Nombre"></asp:Label>
+                                    </div>
                                 </div>
 
                                 <%--EMAIL USUARIO--%>
                                 <div class="form-group">
                                     <label for="temail">Email Usuario(*)</label>
-                                    <asp:TextBox runat="server" placeholder="Email Usuario" ID="temail" CssClass="form-control bg-secondary"></asp:TextBox>
-                                    <asp:Label runat="server" ID="valida_temail" CssClass="invalid-feedback" Text="Ingrese Email"></asp:Label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text text-info"><i class="fas fa-envelope-open-text"></i></div>
+                                        </div>
+                                        <asp:TextBox runat="server" placeholder="Email Usuario" ID="temail" CssClass="form-control bg-secondary"></asp:TextBox>
+                                        <asp:Label runat="server" ID="valida_temail" CssClass="invalid-feedback" Text="Ingrese Email"></asp:Label>
+                                    </div>
                                 </div>
 
                                 <%--CONTRASEÑA USUARIO--%>
                                 <div class="form-group">
                                     <label for="tclave">Contraseña(*)</label>
-                                    <asp:TextBox runat="server" ID="tclave" TextMode="Password" placeholder="Contraseña" CssClass="form-control bg-secondary"></asp:TextBox>
-                                    <asp:Label runat="server" ID="valida_tcalve" CssClass="invalid-feedback" Text="Ingrese Contraseña"></asp:Label>
+                                    <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text text-info"><i class="fas fa-key"></i></div>
+                                        </div>
+                                        <asp:TextBox runat="server" ID="tclave" TextMode="Password" placeholder="Contraseña" CssClass="form-control bg-secondary"></asp:TextBox>
+                                        <asp:Label runat="server" ID="valida_tcalve" CssClass="invalid-feedback" Text="Ingrese Contraseña"></asp:Label>
+                                    </div>
                                 </div>
 
                                 <%--TIPO USUARIO--%>
@@ -151,10 +169,10 @@
                                         DataTextField="nombre_tipoUsuario" DataValueField="codigo_tipoUsuario">
                                     </asp:DropDownList>
                                 </div>
-                           
-                              <%--TIPO USUARIO--%>
+
+                                <%--ESTADO--%>
                                 <div class="form-group">
-                                    <label for="fEstado">ESTADO(*)</label>
+                                    <label for="fEstado">Estado(*)</label>
                                     <br />
                                     <asp:DropDownList runat="server" ID="fEstado" CssClass="form-control"
                                         DataTextField="nombre_estado" DataValueField="codigo_estado">
@@ -165,7 +183,7 @@
                             <div class="modal-footer">
                                 <asp:Label runat="server" ID="cod_orginal" CssClass="ocultarCol"></asp:Label>
                                 <asp:Button runat="server" ID="ideditarUsuarioBoton" OnClick="ideditarUsuarioBoton_Click" Text="Actualizar" CssClass="btn btn-success float-right" />
-                                <asp:Button runat="server" ID="idregistrar" OnClick="idregistrarUsuario_Click" Text="Registrar" CssClass="btn btn-success float-right" />
+                                <asp:Button runat="server" ID="idregistrar" OnClick="idregistrarUsuario_Click" Text="Registrar"  CssClass="btn btn-success float-right" />
                             </div>
                         </div>
 
