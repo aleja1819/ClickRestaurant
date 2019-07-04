@@ -21,6 +21,7 @@ namespace Pizza_Express_visual.Components
                 idTabla.DataSource = accesoProveedor.filtrarProveedor();
                 idTabla.DataBind();
 
+
                 //MOSTRAR LA LISTA DE LOS TIPOS DE USUARIOS DE LA BASE DE DATOS
                 fTipoProducto.DataSource = accesoProveedor.filtrartipoProducto();
                 fTipoProducto.DataBind();
@@ -110,7 +111,8 @@ namespace Pizza_Express_visual.Components
                 MostrarError(tapellidoM, validar_tapellidoM, 0);
                 correcto = false;
             }
-            else {
+            else
+            {
                 MostrarError(tapellidoM, validar_tapellidoM, 1);
             }
 
@@ -119,7 +121,8 @@ namespace Pizza_Express_visual.Components
                 MostrarError(tdireccion, validar_tdireccion, 0);
                 correcto = false;
             }
-            else {
+            else
+            {
                 MostrarError(tdireccion, validar_tdireccion, 1);
             }
             return correcto;
@@ -127,10 +130,15 @@ namespace Pizza_Express_visual.Components
 
         protected void bRegistrarProveedorModal_Click(object sender, EventArgs e)
         {
+            alerta.Visible = false;
+            ideditarProveedorBoton.Visible = false;
+            idregistrarProveedor.Visible = true;
+
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal();", true);
             uModalProveedor.Update();
             uContenedorProveedor.Update();
-        }
+
+                   }
 
         protected void idregistrarProveedor_Click(object sender, EventArgs e)
         {
@@ -175,10 +183,10 @@ namespace Pizza_Express_visual.Components
                     uModalProveedor.Update();
                     uContenedorProveedor.Update();
 
-                    limpiarTodo(2);
+                    limpiarTodo(3);
 
                     alerta.Visible = true;
-                    alerta.CssClass = "alert alert-warning animated zoomInUp";
+                    alerta.CssClass = "alert alert-primary animated zoomInUp";
                     mensaje3.Text = "PROVEEDOR AGREGADO CON EXITO.";
                 }
             }
@@ -195,15 +203,18 @@ namespace Pizza_Express_visual.Components
         {
             alerta.Visible = false;
 
+            idregistrarProveedor.Visible = false;
+            ideditarProveedorBoton.Visible = true;
+
             int fila = Convert.ToInt32(e.CommandArgument);
             if (e.CommandName.Equals("ideditar"))
             {
                 codigo_orginal.Text = idTabla.Rows[fila].Cells[0].Text;
                 trut.Text = idTabla.Rows[fila].Cells[1].Text;
-                tnombre.Text = idTabla.Rows[fila].Cells[2].Text.Replace("&#241;", "ñ");
-                tapellidoP.Text = idTabla.Rows[fila].Cells[3].Text.Replace("&#241;", "ñ");
-                tapellidoM.Text = idTabla.Rows[fila].Cells[4].Text.Replace("&#241;", "ñ");
-                tdireccion.Text = idTabla.Rows[fila].Cells[5].Text.Replace("&#241;", "ñ");
+                tnombre.Text = idTabla.Rows[fila].Cells[2].Text.Replace("&#241;", "ñ").Replace("&#233;", "é").Replace("&#250;", "ú").Replace("&#237;", "í").Replace("&#243;", "ó").Replace("&#225;", "á");
+                tapellidoP.Text = idTabla.Rows[fila].Cells[3].Text.Replace("&#241;", "ñ").Replace("&#233;", "é").Replace("&#250;", "ú").Replace("&#237;", "í").Replace("&#243;", "ó").Replace("&#225;", "á"); ;
+                tapellidoM.Text = idTabla.Rows[fila].Cells[4].Text.Replace("&#241;", "ñ").Replace("&#233;", "é").Replace("&#250;", "ú").Replace("&#237;", "í").Replace("&#243;", "ó").Replace("&#225;", "á"); ;
+                tdireccion.Text = idTabla.Rows[fila].Cells[5].Text.Replace("&#241;", "ñ").Replace("&#233;", "é").Replace("&#250;", "ú").Replace("&#237;", "í").Replace("&#243;", "ó").Replace("&#225;", "á"); ;
 
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal();", true);
                 uModalProveedor.Update();
@@ -221,6 +232,9 @@ namespace Pizza_Express_visual.Components
                 idTabla.DataSource = accesoProveedor.filtrarProveedor();
                 idTabla.DataBind();
 
+                alerta.Visible = true;
+                alerta.CssClass = "alert alert-primary animated zoomInUp";
+                mensaje3.Text = "PROVEEDOR ELIMINADO CON EXITO.";
 
             }
         }
@@ -272,7 +286,7 @@ namespace Pizza_Express_visual.Components
                 limpiarTodo(2);
 
                 alerta.Visible = true;
-                alerta.CssClass = "alert alert-warning animated zoomInUp";
+                alerta.CssClass = "alert alert-primary animated zoomInUp";
                 mensaje3.Text = "USUARIO MODIFICADO CON EXITO.";
 
             }
@@ -288,8 +302,11 @@ namespace Pizza_Express_visual.Components
 
         protected void idBuscarProveedor_Click(object sender, EventArgs e)
         {
+            
+
             try
             {
+
                 alerta.Visible = false;
                 int filtro = Convert.ToInt32(idOpciones.SelectedValue);
 
@@ -300,6 +317,7 @@ namespace Pizza_Express_visual.Components
 
                 uContenedorProveedor.Update();
                 uModalProveedor.Update();
+
                 if (cant == 0)
                 {
                     alerta.Visible = true;
@@ -313,7 +331,24 @@ namespace Pizza_Express_visual.Components
 
             }
         }
-    }
 
+        protected void idTabla_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            try
+            {
+                int filtro = Convert.ToInt32(idOpciones.SelectedValue);
+                idTabla.PageIndex = e.NewPageIndex;
+                idTabla.DataSource = accesoProveedor.filtrarProveedor();
+                idTabla.DataBind();
+
+            }
+            catch (Exception)
+            {
+
+            }
+        }
     }
+}
+
+    
     

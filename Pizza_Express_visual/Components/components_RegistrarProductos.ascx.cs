@@ -116,8 +116,10 @@ namespace Pizza_Express_visual.Components
 
         protected void bRegistrarProductoModal_Click(object sender, EventArgs e)
         {
+            alerta.Visible = true;
             beditarProductoBoton.Visible = false;
             bregistrarProducto.Visible = true;
+
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal();", true);
             uModalProducto.Update();
             uContenedorProducto.Update();
@@ -127,6 +129,7 @@ namespace Pizza_Express_visual.Components
         {
             try
             {
+                alerta.Visible = false;
                 if (validaCampos() == false)
                 {
 
@@ -156,6 +159,7 @@ namespace Pizza_Express_visual.Components
                             codigo_usuario = 2
 
                         }, ref idProd);
+
 
                         DateTime t = DateTime.Now;
 
@@ -209,7 +213,7 @@ namespace Pizza_Express_visual.Components
             {
                 cod_OriProve.Text = idTabla.Rows[fila].Cells[0].Text;
                 cod_orginal.Text = idTabla.Rows[fila].Cells[0].Text;
-                tnombre.Text = idTabla.Rows[fila].Cells[1].Text;
+                tnombre.Text = idTabla.Rows[fila].Cells[1].Text.Replace("&#241;", "ñ").Replace("&#233;", "é").Replace("&#250;", "ú").Replace("&#237;", "í").Replace("&#243;", "ó").Replace("&#225;", "á"); ;
                 trut.Text = idTabla.Rows[fila].Cells[2].Text;
                 tfecha.Text = idTabla.Rows[fila].Cells[3].Text;
                 tcantidad.Text = idTabla.Rows[fila].Cells[4].Text;
@@ -285,7 +289,7 @@ namespace Pizza_Express_visual.Components
 
             try
             {
-
+                alerta.Visible = false;
                 if (validaCampos() == false)
                 {
 
@@ -355,7 +359,9 @@ namespace Pizza_Express_visual.Components
             }
             catch (Exception)
             {
-
+                alerta.Visible = true;
+                alerta.CssClass = "alert alert-danger animated zoomInUp";
+                mensaje3.Text = "PRODUCTO NO ACTUALIZADO.";
             }
             }
         }

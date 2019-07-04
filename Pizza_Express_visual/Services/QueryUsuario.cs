@@ -180,7 +180,20 @@ namespace Pizza_Express_visual.Services
                                    where u.rut_usuario.ToLower().StartsWith(dato.ToLower())
                                    join t in contexto.TipoUsuario
                                    on u.codigo_tipoUsuario equals t.codigo_tipoUsuario
-                                   select u;
+                                   join e in contexto.Estado_Usuario
+                                   on u.codigo_estado equals e.codigo_estado
+                                   select new
+                                   {
+                                       u.codigo_usuario,
+                                       u.rut_usuario,
+                                       u.nombre_usuario,
+                                       u.email_usuario,
+                                       u.contraseña_usuario,
+                                       t.nombre_tipoUsuario,
+                                       t.codigo_tipoUsuario,
+                                       e.codigo_estado,
+                                       e.nombre_estado
+                                   };
 
                         return rRut.ToList<object>();
                     case 1: //BUSCAR POR nombre
@@ -188,14 +201,40 @@ namespace Pizza_Express_visual.Services
                                       where u.nombre_usuario.ToLower().StartsWith(dato.ToLower())
                                       join t in contexto.TipoUsuario
                                       on u.codigo_tipoUsuario equals t.codigo_tipoUsuario
-                                      select u;
+                                      join e in contexto.Estado_Usuario
+                                      on u.codigo_estado equals e.codigo_estado
+                                      select new
+                                      {
+                                          u.codigo_usuario,
+                                          u.rut_usuario,
+                                          u.nombre_usuario,
+                                          u.email_usuario,
+                                          u.contraseña_usuario,
+                                          t.nombre_tipoUsuario,
+                                          t.codigo_tipoUsuario,
+                                          e.codigo_estado,
+                                          e.nombre_estado
+                                      };
 
                         return rNombre.ToList<object>();
                     default:
                         var rTodo = from u in contexto.Usuario
                                     join t in contexto.TipoUsuario
                                     on u.codigo_tipoUsuario equals t.codigo_tipoUsuario
-                                    select u;
+                                    join e in contexto.Estado_Usuario
+                                    on u.codigo_estado equals e.codigo_estado
+                                    select new
+                                    {
+                                        u.codigo_usuario,
+                                        u.rut_usuario,
+                                        u.nombre_usuario,
+                                        u.email_usuario,
+                                        u.contraseña_usuario,
+                                        t.nombre_tipoUsuario,
+                                        t.codigo_tipoUsuario,
+                                        e.codigo_estado,
+                                        e.nombre_estado
+                                    };
 
                         return rTodo.ToList<object>();
                 }

@@ -44,6 +44,9 @@ namespace Pizza_Express_visual.Components
         protected void bRegistrarMenu_Click(object sender, EventArgs e)
         {
             alerta.Visible = false;
+            ideditarMenuBoton.Visible = false;
+            idregistrarMenu.Visible = true;
+
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal();", true);
             uModalMenu.Update();
             uContenedorMenu.Update();
@@ -262,17 +265,19 @@ namespace Pizza_Express_visual.Components
         {
 
             alerta.Visible = false;
+            ideditarMenuBoton.Visible = true;
+            idregistrarMenu.Visible = false;
+
 
             int fila = Convert.ToInt32(e.CommandArgument);
             if (e.CommandName.Equals("ideditar"))
             {
 
                 cod_orginal.Text = idTabla.Rows[fila].Cells[0].Text;
-                tnombre.Text = idTabla.Rows[fila].Cells[1].Text.Replace("&#243;", "ó").Replace("&#233;", "é").Replace("&#241;", "ñ");
-                tprecio.Text = idTabla.Rows[fila].Cells[2].Text.Replace("&#243;", "ó").Replace("&#233;", "é").Replace("&#241;", "ñ").Replace("$","");
-                tingredientes.Text = idTabla.Rows[fila].Cells[3].Text.Replace("&#243;", "ó").Replace("&#233;", "é").Replace("&#241;", "ñ");
+                tnombre.Text = idTabla.Rows[fila].Cells[1].Text.Replace("&#241;", "ñ").Replace("&#233;", "é").Replace("&#250;", "ú").Replace("&#237;", "í").Replace("&#243;", "ó").Replace("&#225;", "á");
+                tprecio.Text = idTabla.Rows[fila].Cells[2].Text;
+                tingredientes.Text = idTabla.Rows[fila].Cells[3].Text.Replace("&#241;", "ñ").Replace("&#233;", "é").Replace("&#250;", "ú").Replace("&#237;", "í").Replace("&#243;", "ó").Replace("&#225;", "á");
 
-                
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal('show');", true);
                 uModalMenu.Update();
                 uContenedorMenu.Update();

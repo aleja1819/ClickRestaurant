@@ -115,7 +115,17 @@ namespace Pizza_Express_visual.Services
                                    where p.rut_proveedor.ToLower().StartsWith(dato.ToLower())
                                    join t in contexto.TipoProducto
                                    on p.codigo_tipoProducto equals t.codigo_tipoProducto
-                                   select p;
+                                   select new
+                                   {
+                                       p.codigo_proveedor,
+                                       p.rut_proveedor,
+                                       p.nombre_proveedor,
+                                       p.apellido_paterno_proveedor,
+                                       p.apellido_materno_proveedor,
+                                       p.direccion_proveedor,
+                                       t.codigo_tipoProducto,
+                                       t.nombre_tipoProducto
+                                   };
 
                         return pRut.ToList<object>();
 
@@ -124,14 +134,25 @@ namespace Pizza_Express_visual.Services
                                       where p.nombre_proveedor.ToLower().StartsWith(dato.ToLower())
                                       join t in contexto.TipoProducto
                                       on p.codigo_tipoProducto equals t.codigo_tipoProducto
-                                      select p;
+                                      select new
+                                      {
+                                          p.codigo_proveedor,
+                                          p.rut_proveedor,
+                                          p.nombre_proveedor,
+                                          p.apellido_paterno_proveedor,
+                                          p.apellido_materno_proveedor,
+                                          p.direccion_proveedor,
+                                          t.codigo_tipoProducto,
+                                          t.nombre_tipoProducto
+                                      };
 
                         return pNombre.ToList<object>();
                     default:
                         var pTodo = from p in contexto.Proveedor
                                     join t in contexto.TipoProducto
                                     on p.codigo_tipoProducto equals t.codigo_tipoProducto
-                                    select p;
+                                    select new { p.codigo_proveedor, p.rut_proveedor, p.nombre_proveedor, p.apellido_paterno_proveedor,
+                                    p.apellido_materno_proveedor, p.direccion_proveedor, t.codigo_tipoProducto, t.nombre_tipoProducto};
 
                         return pTodo.ToList<object>();
                 }

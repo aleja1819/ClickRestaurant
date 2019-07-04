@@ -30,7 +30,9 @@ namespace Pizza_Express_visual.Components
 
         protected void bRegistrarReservarModal_Click(object sender, EventArgs e)
         {
+            alerta.Visible = true;
             ideditarReservaBoton.Visible = false;
+            idregistrarReservas.Visible = true;
 
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal();", true);
             uModalReserva.Update();
@@ -157,6 +159,7 @@ namespace Pizza_Express_visual.Components
         protected void idTabla_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             alerta.Visible = false;
+            ideditarReservaBoton.Visible = true;
             idregistrarReservas.Visible = false;
             int fila = Convert.ToInt32(e.CommandArgument);
             if (e.CommandName.Equals("ideditar"))
@@ -164,7 +167,7 @@ namespace Pizza_Express_visual.Components
 
                 c_orginal.Text = idTabla.Rows[fila].Cells[0].Text;
                 tnMesa.Text = idTabla.Rows[fila].Cells[1].Text;
-                tnombre.Text = idTabla.Rows[fila].Cells[2].Text;
+                tnombre.Text = idTabla.Rows[fila].Cells[2].Text.Replace("&#241;", "ñ").Replace("&#233;", "é").Replace("&#250;", "ú").Replace("&#237;", "í").Replace("&#243;", "ó").Replace("&#225;", "á"); ;
                 tfecha.Text = idTabla.Rows[fila].Cells[3].Text;
                 //thora.Text = idTabla.Rows[fila].Cells[4].Text;
 
@@ -215,7 +218,7 @@ namespace Pizza_Express_visual.Components
 
         protected void ideditarReservaBoton_Click(object sender, EventArgs e)
         {
-
+            alerta.Visible = false;
             try
             {
 
@@ -301,6 +304,23 @@ namespace Pizza_Express_visual.Components
 
             }
         }
+
+        protected void idTabla_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            try
+            {
+                int filtro = Convert.ToInt32(idOpciones.SelectedValue);
+                idTabla.PageIndex = e.NewPageIndex;
+                idTabla.DataSource = accesoReservas.filtrarReservas();
+                idTabla.DataBind();
+
+            }
+            catch (Exception)
+            {
+
+            }
+        }
     }
     }
+    
     

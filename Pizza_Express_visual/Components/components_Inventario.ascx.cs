@@ -89,7 +89,7 @@ namespace Pizza_Express_visual.Components
             {
                 cod_OriProve.Text = idTablaInven.Rows[fila].Cells[0].Text;
                 cod_orginal.Text = idTablaInven.Rows[fila].Cells[0].Text;
-                tnombre.Text = idTablaInven.Rows[fila].Cells[1].Text;
+                tnombre.Text = idTablaInven.Rows[fila].Cells[1].Text.Replace("&#241;", "ñ").Replace("&#233;", "é").Replace("&#250;", "ú").Replace("&#237;", "í").Replace("&#243;", "ó").Replace("&#225;", "á"); ;
                 trut.Text = idTablaInven.Rows[fila].Cells[2].Text;
                 tfecha.Text = idTablaInven.Rows[fila].Cells[3].Text;
                 tcantidad.Text = idTablaInven.Rows[fila].Cells[4].Text;
@@ -193,8 +193,30 @@ namespace Pizza_Express_visual.Components
                         uContenedorProducto.Update();
 
                         limpiarTodo(2);
+
+                        alerta.Visible = true;
+                        alerta.CssClass = "alert alert-primary animated zoomInUp";
+                        mensaje3.Text = "PRODUCTO INVENTARIO MODIFICADO CON EXITO.";
                     }
                 }
+
+            }
+            catch (Exception)
+            {
+                alerta.Visible = true;
+                alerta.CssClass = "alert alert-danger animated zoomInUp";
+                mensaje3.Text = "PRODUCTO INVENTARIO NO MODIFICADO.";
+            }
+        }
+
+        protected void idTablaInven_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            try
+            {
+                int filtro = Convert.ToInt32(idOpciones.SelectedValue);
+                idTablaInven.PageIndex = e.NewPageIndex;
+                idTablaInven.DataSource = accesoProductos.filtrarProductos();
+                idTablaInven.DataBind();
 
             }
             catch (Exception)

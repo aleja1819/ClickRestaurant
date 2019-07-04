@@ -13,30 +13,6 @@ namespace Pizza_Express_visual.Components
         {
 
         }
-
-        protected void btnBarra_Click(object sender, EventArgs e)
-        {
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal();", true);
-            uModalTest.Update();
-            uContenedorTest.Update();
-           
-        }
-
-        protected void idtest_Click(object sender, EventArgs e)
-        {
-            if (t1.Text.Equals("")) {
-                error.Text = "*"; 
-            }
-            else
-            {
-
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal('hide');", true);
-                uModalTest.Update();
-                uContenedorTest.Update();
-                ms.Text = "up panel 1";
-            }
-
           
         }
     }
-}

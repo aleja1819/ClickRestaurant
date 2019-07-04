@@ -12,9 +12,6 @@ namespace Pizza_Express_visual.Components
     public partial class components_Usuarios : System.Web.UI.UserControl
     {
         private QueryUsuario accesoUsuario = new QueryUsuario();
-        //private QueryTipoUsuario accesoTipoUsuario = new QueryTipoUsuario();
-
-            
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -75,18 +72,20 @@ namespace Pizza_Express_visual.Components
         protected void bRegistrarUsuarioModal_Click(object sender, EventArgs e) //MODAL 
         {
             alerta.Visible = false;
+            idregistrar.Visible = true;
+            ideditarUsuarioBoton.Visible = false;
+
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal();", true);
             uModalUsuario.Update();
-            uContenedorUsuario.Update();
-
-            
+            uContenedorUsuario.Update();    
 
         }
 
-        //BOTON EDITAR USUARIOS, SELECCIONA LOS CAMPOS
         protected void idTabla_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             alerta.Visible = false;
+            idregistrar.Visible = false;
+            ideditarUsuarioBoton.Visible = true;
 
             int fila = Convert.ToInt32(e.CommandArgument);
             if (e.CommandName.Equals("ideditar"))
@@ -96,7 +95,7 @@ namespace Pizza_Express_visual.Components
                 tnombre.Text = idTabla.Rows[fila].Cells[2].Text;
                 temail.Text = idTabla.Rows[fila].Cells[3].Text;
                 tclave.Text = idTabla.Rows[fila].Cells[4].Text;
-
+            
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal('show');", true);
                 uModalUsuario.Update();
                 uContenedorUsuario.Update();

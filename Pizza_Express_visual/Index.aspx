@@ -158,13 +158,31 @@
                     <br />
                     <br />
 
-                    <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
+                    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
                         <div class="carousel-inner">
-                            <div class="carousel-item active" data-interval="2000">
-                                <img src="Imagenes/LOGO%20APP.png" class="mx-auto d-block" />
+                            <div class="carousel-item active">
+                                <img src="Imagenes/LOGO%20APP.png" class="Responsive image mx-auto d-block" 
+                                    style="width: 41rem"/>
                             </div>
-                            <div class="carousel-item align-content-center" data-interval="2000">
-                                <img src="Imagenes/LOGO%20APP.png" class="mx-auto d-block" />
+                            <div class="carousel-item align-content-center">
+                                <img src="Imagenes/1.jpg" class="Responsive image mx-auto d-block" 
+                                    style="width: 50rem"/>
+                            </div>
+                            <div class="carousel-item align-content-center">
+                                <img src="Imagenes/2.jpg" class="Responsive image mx-auto d-block"
+                                    style="width: 47rem"/>
+                            </div>
+                            <div class="carousel-item align-content-center">
+                                <img src="Imagenes/7.jpg"  class="Responsive image mx-auto d-block"
+                                    style="width: 55rem"/>
+                            </div>
+                            <div class="carousel-item align-content-center">
+                                <img src="Imagenes/4.jpg"  class="Responsive image mx-auto d-block" 
+                                    style="width: 45rem "/>
+                            </div>
+                            <div class="carousel-item align-content-center">
+                                <img src="Imagenes/6.jpg"  class="Responsive image mx-auto d-block" 
+                                    style="width: 50rem"/>
                             </div>
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
@@ -242,7 +260,7 @@
                                     <label for="tnombre">Nombre Usuario (*)</label>
                                     <div class="input-group mb-2">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text text-info"><i class="fas fa-file-signature"></i></div>
+                                            <div class="input-group-text text-info"><i class="fas fa-user"></i></div>
                                         </div>
                                         <asp:TextBox runat="server" placeholder="nombre usuario" ID="tnombre" CssClass="form-control"></asp:TextBox>
                                     </div>

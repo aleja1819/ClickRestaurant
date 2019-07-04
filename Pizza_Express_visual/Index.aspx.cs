@@ -134,19 +134,19 @@ namespace Pizza_Express_visual
                 if (respuestas[0] == 0)
                 {
                     mensaje.Visible = true;
-                    mensaje.Text = "ERROR DE CONEXION";
+                    mensaje.Text = "Clave o Usuario Incorrecto";
                 }
                 else
                 {
                     if (respuestas[1] == 0)
                     {
-                        mensaje.Text = "USUARIO NO EXISTE";
+                        mensaje.Text = "Usuario no existe";
                     }
                     else
                     {
                         if (respuestas[2] == 0)
                         {
-                            mensaje.Text = "USUARIO BLOQUEADO";
+                            mensaje.Text = "Usuario Bloqueado";
                         }
                         else
                         {

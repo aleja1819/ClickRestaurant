@@ -168,8 +168,8 @@
 
                             <div class="modal-footer">
                                 <asp:Label runat="server" ID="cod_orginal" CssClass="ocultarCol"></asp:Label>
-                                <asp:Button runat="server" ID="ideditarMenuBoton" OnClick="ideditarMenuBoton_Click" Text="Actualizar" CssClass="btn btn-success float-right" />
-                                <asp:Button runat="server" ID="idregistrarMenu" OnClick="idregistrarMenu_Click" Text="Registrar" CssClass="btn btn-success float-right" />
+                                <asp:Button runat="server" ID="ideditarMenuBoton" Visible="false" OnClick="ideditarMenuBoton_Click" Text="Actualizar" CssClass="btn btn-success float-right" />
+                                <asp:Button runat="server" ID="idregistrarMenu" Visible="false" OnClick="idregistrarMenu_Click" Text="Registrar" CssClass="btn btn-success float-right" />
                             </div>
 
                         </div>
