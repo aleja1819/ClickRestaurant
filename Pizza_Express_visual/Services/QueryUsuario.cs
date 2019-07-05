@@ -16,7 +16,7 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd8 contexto = new bd8())
+                using (bd9 contexto = new bd9())
                 {
 
                     var r = from u in contexto.Usuario
@@ -51,7 +51,7 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd8 contexto = new bd8())
+                using (bd9 contexto = new bd9())
                 {
 
                     var r = from t in contexto.TipoUsuario
@@ -71,7 +71,7 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd8 contexto = new bd8())
+                using (bd9 contexto = new bd9())
                 {
 
                     var r = from e in contexto.Estado_Usuario
@@ -93,7 +93,7 @@ namespace Pizza_Express_visual.Services
 
             try
             {
-                using (bd8 contexto = new bd8())
+                using (bd9 contexto = new bd9())
                 {
 
                     contexto.Usuario.Add(user);
@@ -117,7 +117,7 @@ namespace Pizza_Express_visual.Services
 
             try
             {
-                using (bd8 contexto = new bd8())
+                using (bd9 contexto = new bd9())
                 {
                     var user = contexto.Usuario.Find(codigo_user);
 
@@ -141,7 +141,7 @@ namespace Pizza_Express_visual.Services
             try
             {
                 int idOri = Convert.ToInt32(cod_original);
-                using (bd8 contexto = new bd8())
+                using (bd9 contexto = new bd9())
                 {
 
                     //BUSCAR EL PRODUCTO EN LA BD
@@ -171,7 +171,7 @@ namespace Pizza_Express_visual.Services
 
         public List<object> BuscarrUsuarios(string dato, int filtro)
         {
-            using (bd8 contexto = new bd8())
+            using (bd9 contexto = new bd9())
             {
                 switch (filtro)
                 {
@@ -247,7 +247,7 @@ namespace Pizza_Express_visual.Services
 
             try
             {
-                using (bd8 contexto = new bd8())
+                using (bd9 contexto = new bd9())
                 {
 
 
@@ -285,7 +285,7 @@ namespace Pizza_Express_visual.Services
             int[] respuesta = new int[5];
             try
             {
-                using (bd8 contexto = new bd8())
+                using (bd9 contexto = new bd9())
                 {
 
                     var result = from u in contexto.Usuario

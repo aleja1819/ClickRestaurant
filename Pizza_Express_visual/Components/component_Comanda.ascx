@@ -13,7 +13,18 @@
 <asp:UpdatePanel runat="server" ID="uContenedorUsuario1">
     <ContentTemplate>
         <br />
+
         <div class="container col-md-12">
+
+                    <%--ALERTA DE MENSAJE--%>
+        <div class="container">
+                    <asp:Panel runat="server" ID="alerta" Visible="false">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <asp:Label ID="mensaje3" runat="server"></asp:Label>
+                    </asp:Panel>
+            </div>
             <div class="row">
                 <div class="col-md-1">
                     <div class="d-flex flex-row mt-2">

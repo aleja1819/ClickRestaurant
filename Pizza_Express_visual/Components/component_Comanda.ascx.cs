@@ -249,7 +249,7 @@ namespace Pizza_Express_visual.Components
             doc.Add(garzon);
             doc.Add(comanda);
 
-            Paragraph paragraph3 = new Paragraph(" ");
+            Paragraph paragraph3 = new Paragraph();
             paragraph3.Alignment = Element.ALIGN_LEFT;
             doc.Add(paragraph3);
 
@@ -278,7 +278,6 @@ namespace Pizza_Express_visual.Components
 
             doc.Add(table);
             doc.Close();
-
             ShowPdf((path + nombre));
 
         }
@@ -387,7 +386,7 @@ namespace Pizza_Express_visual.Components
 
             doc.Add(table);
 
-            Paragraph espa = new Paragraph(" ");
+            Paragraph espa = new Paragraph(ltotal.Text);
             espa.Alignment = Element.ALIGN_LEFT;
             doc.Add(espa);
 

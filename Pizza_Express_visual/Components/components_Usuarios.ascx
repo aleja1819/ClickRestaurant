@@ -16,7 +16,6 @@
 
             <asp:UpdatePanel runat="server" ID="uContenedorUsuario" UpdateMode="Conditional" ChildrenAsTriggers="true">
                 <ContentTemplate>
-                    <br />
 
                     <%--ALERTA DE MENSAJE--%>
                     <asp:Panel runat="server" ID="alerta" Visible="false">

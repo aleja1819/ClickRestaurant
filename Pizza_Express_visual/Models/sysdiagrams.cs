@@ -12,15 +12,12 @@ namespace Pizza_Express_visual.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Producto_Proveedor
+    public partial class sysdiagrams
     {
-        public int codigo_producto { get; set; }
-        public int codigo_proveedor { get; set; }
-        public System.DateTime fecha_ingreso_producto { get; set; }
-        public int cantidad_producto { get; set; }
-        public int id_roducto_proveedor { get; set; }
-    
-        public virtual Producto Producto { get; set; }
-        public virtual Proveedor Proveedor { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

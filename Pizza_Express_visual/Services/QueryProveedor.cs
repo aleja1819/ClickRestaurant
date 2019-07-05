@@ -15,7 +15,7 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd8 contexto = new bd8())
+                using (bd9 contexto = new bd9())
                 {
 
                     var pro = from p in contexto.Proveedor
@@ -39,7 +39,7 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd8 contexto = new bd8())
+                using (bd9 contexto = new bd9())
                 {
 
                     var pro = from t in contexto.TipoProducto
@@ -62,7 +62,7 @@ namespace Pizza_Express_visual.Services
 
             try
             {
-                using (bd8 contexto = new bd8())
+                using (bd9 contexto = new bd9())
                 {
 
                     contexto.Proveedor.Add(prove);
@@ -85,7 +85,7 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd8 contexto = new bd8())
+                using (bd9 contexto = new bd9())
                 {
                     var user = contexto.Proveedor.Find(id_prov);
 
@@ -106,7 +106,7 @@ namespace Pizza_Express_visual.Services
         //BUSCAR
         public List<object> BuscarProveedor(string dato, int filtro)
         {
-            using (bd8 contexto = new bd8())
+            using (bd9 contexto = new bd9())
             {
                 switch (filtro)
                 {
@@ -165,7 +165,7 @@ namespace Pizza_Express_visual.Services
                 try
                 {
                     int idOri = Convert.ToInt32(cod_original);
-                    using (bd8 contexto = new bd8())
+                    using (bd9 contexto = new bd9())
                     {
 
                     //BUSCAR EL PRODUCTO EN LA BD
@@ -179,6 +179,7 @@ namespace Pizza_Express_visual.Services
                         user.apellido_paterno_proveedor = proveedor.apellido_paterno_proveedor;
                         user.apellido_materno_proveedor = proveedor.apellido_materno_proveedor;
                         user.direccion_proveedor = proveedor.direccion_proveedor;
+                        user.codigo_tipoProducto = proveedor.codigo_tipoProducto;
 
                         //GUARDAR LOS CAMBIOS EN LA TABLA B
                         int respuesta = contexto.SaveChanges();

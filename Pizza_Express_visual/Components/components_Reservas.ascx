@@ -114,7 +114,7 @@
                                             <div class="input-group-text text-info"><i class="fas fa-edit"></i></i></div>
                                         </div>
                                         <asp:TextBox runat="server" placeholder="Número mesa" ID="tnMesa" CssClass="form-control bg-secondary"></asp:TextBox>
-                                        <asp:Label runat="server" ID="valida_tnMesa" CssClass="invalid-feedback" Text="Ingrese Número Mesa"></asp:Label>
+                                        <asp:Label runat="server" ID="valida_tnMesa" CssClass="invalid-feedback" Text="Complete campos vacios, Ingrese Número Mesa"></asp:Label>
                                     </div>
                                 </div>
 
@@ -126,7 +126,7 @@
                                             <div class="input-group-text text-info"><i class="fas fa-file-signature"></i></div>
                                         </div>
                                         <asp:TextBox runat="server" placeholder="Nombre Cliente" ID="tnombre" CssClass="form-control bg-secondary"></asp:TextBox>
-                                        <asp:Label runat="server" ID="valida_tnombre" CssClass="invalid-feedback" Text="Ingrese Nombre Cliente"></asp:Label>
+                                        <asp:Label runat="server" ID="valida_tnombre" CssClass="invalid-feedback" Text="Complete campos vacios, Ingrese Nombre Cliente"></asp:Label>
                                     </div>
                                 </div>
 
@@ -138,7 +138,7 @@
                                             <div class="input-group-text text-info"><i class="far fa-calendar-alt"></i></div>
                                         </div>
                                         <asp:TextBox runat="server" ID="tfecha" TextMode="Date" CssClass="form-control bg-secondary"></asp:TextBox>
-                                        <asp:Label runat="server" ID="valida_tfecha" CssClass="invalid-feedback" Text="Ingrese Fecha"></asp:Label>
+                                        <asp:Label runat="server" ID="valida_tfecha" CssClass="invalid-feedback" Text="Complete campos vacios, Ingrese Fecha"></asp:Label>
                                     </div>
                                 </div>
 

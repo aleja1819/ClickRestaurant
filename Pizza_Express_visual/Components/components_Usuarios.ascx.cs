@@ -218,7 +218,7 @@ namespace Pizza_Express_visual.Components
 
                     alerta.Visible = true;
                     alerta.CssClass = "alert alert-primary animated zoomInUp";
-                    mensaje3.Text = "USUARIO AGREGADO CON EXITO.";
+                    mensaje3.Text = "DATOS INGRESADOS CON EXITO,USUARIO AGREGADO.";
 
                 }
             }
@@ -226,7 +226,7 @@ namespace Pizza_Express_visual.Components
             {
                 alerta.Visible = true;
                 alerta.CssClass = "alert alert-danger animated zoomInUp";
-                mensaje3.Text = "USUARIO NO AGREGADO.";
+                mensaje3.Text = "DATOS INCORRECTOS,USUARIO NO AGREGADO.";
             }
         }
     
@@ -245,6 +245,9 @@ namespace Pizza_Express_visual.Components
                 uModalUsuario.Update();
                 uContenedorUsuario.Update();
 
+                alerta.Visible = true;
+                alerta.CssClass = "alert alert-primary animated zoomInUp";
+                mensaje3.Text = "USUARIO ECONTRADO.";
 
                 if (cant == 0)
                 {

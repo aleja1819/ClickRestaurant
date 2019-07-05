@@ -345,6 +345,9 @@
     <Compile Include="Models\Reserva.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TamanoP.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -368,6 +371,7 @@
     <Compile Include="Services\QueryMenu.cs" />
     <Compile Include="Services\QueryProductos.cs" />
     <Compile Include="Services\QueryProveedor.cs" />
+    <Compile Include="Services\QueryReport.cs" />
     <Compile Include="Services\QueryReservas.cs" />
     <Compile Include="Services\QueryUsuario.cs" />
     <Compile Include="test.aspx.cs">

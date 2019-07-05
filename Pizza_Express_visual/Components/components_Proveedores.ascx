@@ -118,7 +118,7 @@
                                             <div class="input-group-text text-info"><i class="fas fa-user"></i></div>
                                         </div>
                                         <asp:TextBox runat="server" placeholder="Rut Proveedor" ID="trut" CssClass="form-control bg-secondary"></asp:TextBox>
-                                        <asp:Label runat="server" ID="valida_trut" CssClass="invalid-feedback" Text="Ingrese Rut"></asp:Label>
+                                        <asp:Label runat="server" ID="valida_trut" CssClass="invalid-feedback" Text="Complete campos, Ingrese Rut"></asp:Label>
                                     </div>
                                 </div>
 
@@ -130,7 +130,7 @@
                                             <div class="input-group-text text-info"><i class="fas fa-file-signature"></i></div>
                                         </div>
                                         <asp:TextBox runat="server" placeholder="Nombre Proveedor" ID="tnombre" CssClass="form-control bg-secondary"></asp:TextBox>
-                                        <asp:Label runat="server" ID="validar_tnombre" CssClass="invalid-feedback" Text="Ingrese Nombre"></asp:Label>
+                                        <asp:Label runat="server" ID="validar_tnombre" CssClass="invalid-feedback" Text="Complet campos, Ingrese Nombre"></asp:Label>
                                     </div>
                                 </div>
 
@@ -142,7 +142,7 @@
                                             <div class="input-group-text text-info"><i class="fas fa-file-signature"></i></div>
                                         </div>
                                         <asp:TextBox runat="server" placeholder="Apellido Paterno" ID="tapellidoP" CssClass="form-control bg-secondary"></asp:TextBox>
-                                        <asp:Label runat="server" ID="validar_tapellidoP" CssClass="invalid-feedback" Text="Ingrese Apellido Paterno"></asp:Label>
+                                        <asp:Label runat="server" ID="validar_tapellidoP" CssClass="invalid-feedback" Text="Complet campos, Ingrese Apellido Paterno"></asp:Label>
                                     </div>
                                 </div>
 
@@ -154,7 +154,7 @@
                                             <div class="input-group-text text-info"><i class="fas fa-file-signature"></i></div>
                                         </div>
                                         <asp:TextBox runat="server" placeholder="Apellido Paterno" ID="tapellidoM" CssClass="form-control bg-secondary"></asp:TextBox>
-                                        <asp:Label runat="server" ID="validar_tapellidoM" CssClass="invalid-feedback" Text="Ingrese Apellido Materno"></asp:Label>
+                                        <asp:Label runat="server" ID="validar_tapellidoM" CssClass="invalid-feedback" Text="Complet campos, Ingrese Apellido Materno"></asp:Label>
                                     </div>
                                 </div>
 
@@ -166,7 +166,7 @@
                                             <div class="input-group-text text-info"><i class="fas fa-map-marked-alt"></i></div>
                                         </div>
                                         <asp:TextBox runat="server" placeholder="Dirección" ID="tdireccion" CssClass="form-control bg-secondary"></asp:TextBox>
-                                        <asp:Label runat="server" ID="validar_tdireccion" CssClass="invalid-feedback" Text="Ingrese Dirección"></asp:Label>
+                                        <asp:Label runat="server" ID="validar_tdireccion" CssClass="invalid-feedback" Text="Complet campos, Ingrese Dirección"></asp:Label>
                                     </div>
                                 </div>
 

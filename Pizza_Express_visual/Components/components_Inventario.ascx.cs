@@ -115,6 +115,9 @@ namespace Pizza_Express_visual.Components
                 uContenedorProducto.Update();
                 uModalProducto.Update();
 
+                alerta.Visible = true;
+                alerta.CssClass = "alert alert-danger animated zoomInUp";
+                mensaje3.Text = "PRODUCTO ENCONTRADO.";
 
                 if (cant == 0)
                 {

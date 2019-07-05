@@ -9,7 +9,6 @@ namespace Pizza_Express_visual.Services
   public  class carro
 {
     public int codigo_M { get; set; }
-
         public int cantidad { get; set; }
         public string nombre_M { get; set; }
         public int precio_M { get; set; }
@@ -20,12 +19,30 @@ namespace Pizza_Express_visual.Services
 public class QueryComanda
     {
      
+        public List<object> consulta(DateTime fini,DateTime ffin) {
 
+            try
+            {
+                using (bd9 c = new bd9())
+                {
+                    var r = from p in c.Producto_Proveedor
+                            where p.fecha_ingreso_producto <= ffin && p.fecha_ingreso_producto >= fini
+                            select p;
+
+                    return r.ToList<object>();
+
+                }                
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
         public List<object> filtrarCategoriaMenu( int idcategoria, int idtamano)
         {
             try
             {
-                using (bd8 contexto = new bd8())
+                using (bd9 contexto = new bd9())
                 {
 
                             var Grande = from u in contexto.Menu

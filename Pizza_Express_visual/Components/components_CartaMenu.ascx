@@ -50,7 +50,7 @@
 
                         <%--SEGUNDA COLUMNA--%>
 
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <asp:LinkButton runat="server" CssClass="btn btn-success" OnClick="bRegistrarMenu_Click" ID="bRegistrarMenu">
                        <i class="fas fa-plus"></i> Registrar Menú
                             </asp:LinkButton>
@@ -60,6 +60,11 @@
                             <br />
 
                         </div>
+
+                     <div class="col-md-3">
+                            <asp:LinkButton runat="server" CssClass="btn btn-success" OnClick="btnVolver_Click" ID="btnVolver">
+                       <i class="fas fa-home"></i>
+                            </asp:LinkButton>
                         <%--CIERRE COLUMNA--%>
                     </div>
 
@@ -67,7 +72,7 @@
                     <%--TABLA GRIDVIEW--%>
                     <div class="col align-content-center">
                         <asp:GridView runat="server" ID="idTabla" CssClass="table table-bordered table-center " AutoGenerateColumns="false"
-                            OnRowCommand="idTabla_RowCommand" OnPageIndexChanging="idTabla_PageIndexChanging" PageSize="5" AllowPaging="true">
+                            OnRowCommand="idTabla_RowCommand" OnPageIndexChanging="idTabla_PageIndexChanging" PageSize="4" AllowPaging="true">
                             <HeaderStyle CssClass="btn-success" ForeColor="White" Font-Bold="true" />
 
                             <Columns>
@@ -120,7 +125,7 @@
                                                 <div class="input-group-text text-info"><i class="fas fa-map fa-1x"></i></div>
                                             </div>
                                            <asp:TextBox runat="server" placeholder="Nombre" ID="tnombre" CssClass="form-control bg-secondary"></asp:TextBox>
-                                        <asp:Label runat="server" ID="valida_tnombre" CssClass="invalid-feedback" Text="Ingrese Nombre"></asp:Label>
+                                        <asp:Label runat="server" ID="valida_tnombre" CssClass="invalid-feedback" Text="Complete campos vacios, Ingrese Nombre"></asp:Label>
                                     </div>
                                 </div>
                                 <%--NOMBRE USUARIO--%>
@@ -132,7 +137,7 @@
                                                 <div class="input-group-text text-info"><i class="fas fa-dollar-sign"></i></div>
                                             </div>
                                     <asp:TextBox runat="server" DataFormatString="${0:N0}" placeholder="Precio" ID="tprecio" CssClass="form-control bg-secondary"></asp:TextBox>
-                                    <asp:Label runat="server" ID="valida_tprecio" CssClass="invalid-feedback" Text="Ingrese Precio"></asp:Label>
+                                    <asp:Label runat="server" ID="valida_tprecio" CssClass="invalid-feedback" Text="Complete campos vacios, Ingrese Precio"></asp:Label>
                                 </div>
                                     </div>
                                 <%--EMAIL USUARIO--%>
@@ -143,7 +148,7 @@
                                          <div class="input-group-text text-info"><i class="fas fa-hamburger"></i></div>
                                         </div>
                                     <asp:TextBox runat="server" placeholder="Ingredientes" ID="tingredientes" CssClass="form-control bg-secondary"></asp:TextBox>
-                                    <asp:Label runat="server" ID="valida_tingrediente" CssClass="invalid-feedback" Text="Ingrese Ingredientes"></asp:Label>
+                                    <asp:Label runat="server" ID="valida_tingrediente" CssClass="invalid-feedback" Text="Complete campos vacios, Ingrese Ingredientes"></asp:Label>
                                 </div>
                                     </div>
                                 <%--TAMAÑO PIZZA--%>

@@ -28,7 +28,7 @@ namespace Pizza_Express_visual.Models
         public virtual Cliente Cliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pedido> Pedido { get; set; }
-        public virtual Usuario Usuario { get; set; }
         public virtual Menu Menu { get; set; }
+        public virtual Usuario Usuario { get; set; }
     }
 }

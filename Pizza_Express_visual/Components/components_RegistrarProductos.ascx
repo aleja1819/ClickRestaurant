@@ -113,7 +113,7 @@
                                             <div class="input-group-text text-info"><i class="fas fa-file-signature"></i></div>
                                         </div>
                                         <asp:TextBox runat="server" placeholder="Nombre Producto" ID="tnombre" CssClass="form-control bg-secondary"></asp:TextBox>
-                                        <asp:Label runat="server" ID="valida_tnombre" CssClass="invalid-feedback" Text="Ingrese Nombre producto"></asp:Label>
+                                        <asp:Label runat="server" ID="valida_tnombre" CssClass="invalid-feedback" Text=" Complete Campos, Ingrese Nombre producto"></asp:Label>
                                     </div>
                                 </div>
 
@@ -125,7 +125,7 @@
                                             <div class="input-group-text text-info"><i class="fas fa-user"></i></div>
                                         </div>
                                         <asp:TextBox runat="server" placeholder="Rut Proveedor" ID="trut" CssClass="form-control bg-secondary"></asp:TextBox>
-                                        <asp:Label runat="server" ID="valida_trut" CssClass="invalid-feedback" Text="Ingrese Rut"></asp:Label>
+                                        <asp:Label runat="server" ID="valida_trut" CssClass="invalid-feedback" Text="Complete Campos, Ingrese Rut"></asp:Label>
                                     </div>
                                 </div>
 
@@ -137,7 +137,7 @@
                                             <div class="input-group-text text-info"><i class="far fa-calendar-alt"></i></div>
                                         </div>
                                         <asp:TextBox runat="server" placeholder="Fecha" ID="tfecha" TextMode="Date" CssClass="form-control bg-secondary"></asp:TextBox>
-                                        <asp:Label runat="server" ID="valida_tfecha" CssClass="invalid-feedback" Text="Ingrese Fecha"></asp:Label>
+                                        <asp:Label runat="server" ID="valida_tfecha" CssClass="invalid-feedback" Text="Complete Campos, Ingrese Fecha"></asp:Label>
                                     </div>
                                 </div>
                                 <%--CANTIDAD--%>
@@ -148,7 +148,7 @@
                                             <div class="input-group-text text-info"><i class="fas fa-coins"></i></div>
                                         </div>
                                         <asp:TextBox runat="server" placeholder="Cantidad Productos" ID="tcantidad" CssClass="form-control bg-secondary"></asp:TextBox>
-                                        <asp:Label runat="server" ID="valida_tcantidad" CssClass="invalid-feedback" Text="Ingrese Cantidad"></asp:Label>
+                                        <asp:Label runat="server" ID="valida_tcantidad" CssClass="invalid-feedback" Text="Complete Campos, Ingrese Cantidad"></asp:Label>
                                     </div>
                                 </div>
                             </div>

@@ -152,6 +152,16 @@
         <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="uContenido" ChildrenAsTriggers="true">
             <ContentTemplate>
 
+                  <%--ALERTA DE MENSAJE--%>
+                <div class="container">
+                    <asp:Panel runat="server" ID="alerta" Visible="false">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <asp:Label ID="mensaje3" runat="server"></asp:Label>
+                    </asp:Panel>
+                    </div>
+                    <br />
 
                 <asp:Panel runat="server" ID="MostrarLogo" Visible="true">
                     <br />

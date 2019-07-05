@@ -5,6 +5,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+using iTextSharp.text;
+using System.IO;
+using iTextSharp.text.pdf;
+
 using Pizza_Express_visual.Services;
 namespace Pizza_Express_visual.Components
 {
@@ -105,7 +109,6 @@ namespace Pizza_Express_visual.Components
             try
             {
 
-               
                 if (validaCampos() == false)
                 {
 
@@ -290,6 +293,9 @@ namespace Pizza_Express_visual.Components
                 uModalReserva.Update();
                 uContenedorReservas.Update();
 
+                alerta.Visible = true;
+                alerta.CssClass = "alert alert-primary animated zoomInUp";
+                mensaje3.Text = "RESERVA ECONTRADO.";
 
                 if (cant == 0)
                 {

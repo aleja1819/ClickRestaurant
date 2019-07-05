@@ -190,7 +190,7 @@ namespace Pizza_Express_visual.Components
 
                     alerta.Visible = true;
                     alerta.CssClass = "alert alert-primary animated zoomInUp";
-                    mensaje3.Text = "CARTA MENÚ AGREGADA CON EXITO.";
+                    mensaje3.Text = "CARTA MENÚ CREADA CON EXITO.";
 
                 }
             }
@@ -275,7 +275,7 @@ namespace Pizza_Express_visual.Components
 
                 cod_orginal.Text = idTabla.Rows[fila].Cells[0].Text;
                 tnombre.Text = idTabla.Rows[fila].Cells[1].Text.Replace("&#241;", "ñ").Replace("&#233;", "é").Replace("&#250;", "ú").Replace("&#237;", "í").Replace("&#243;", "ó").Replace("&#225;", "á");
-                tprecio.Text = idTabla.Rows[fila].Cells[2].Text;
+                tprecio.Text = idTabla.Rows[fila].Cells[2].Text.Replace(".","").Replace("$","");
                 tingredientes.Text = idTabla.Rows[fila].Cells[3].Text.Replace("&#241;", "ñ").Replace("&#233;", "é").Replace("&#250;", "ú").Replace("&#237;", "í").Replace("&#243;", "ó").Replace("&#225;", "á");
 
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal('show');", true);
@@ -295,7 +295,7 @@ namespace Pizza_Express_visual.Components
 
                 alerta.Visible = true;
                 alerta.CssClass = "alert alert-primary animated zoomInUp";
-                mensaje3.Text = "MENÚ ELIMINADO CON EXITO.";
+                mensaje3.Text = "CARTA MENÚ ELIMINADO CON EXITO.";
 
             }
         }
@@ -315,7 +315,9 @@ namespace Pizza_Express_visual.Components
                 uModalMenu.Update();
                 uContenedorMenu.Update();
 
-
+                alerta.Visible = true;
+                alerta.CssClass = "alert alert-primary animated zoomInUp";
+                mensaje3.Text = "CARTA MENÚ ECONTRADA.";
                 if (cant == 0)
                 {
                     alerta.Visible = true;
@@ -347,5 +349,10 @@ namespace Pizza_Express_visual.Components
             }
         }
 
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            idTabla.DataSource = accesoMenu.filtrarMenu();
+            idTabla.DataBind();
+        }
     }
 }

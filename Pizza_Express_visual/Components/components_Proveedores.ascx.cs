@@ -318,6 +318,10 @@ namespace Pizza_Express_visual.Components
                 uContenedorProveedor.Update();
                 uModalProveedor.Update();
 
+                alerta.Visible = true;
+                alerta.CssClass = "alert alert-primary animated zoomInUp";
+                mensaje3.Text = "PROVEEDOR ENCONTRADO.";
+
                 if (cant == 0)
                 {
                     alerta.Visible = true;

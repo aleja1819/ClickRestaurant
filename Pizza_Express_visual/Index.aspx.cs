@@ -57,6 +57,7 @@ namespace Pizza_Express_visual
 
         protected void Menu_CartaMenu_Click(object sender, EventArgs e)
         {
+            alerta.Visible = false;
             mcontenedor.SetActiveView(vCarta_menu);
             uContenido.Update();
         }
@@ -75,12 +76,14 @@ namespace Pizza_Express_visual
 
         protected void Menu_Proveedores_Click(object sender, EventArgs e)
         {
+            alerta.Visible = false;
             mcontenedor.SetActiveView(vProveedores);
             uContenido.Update();
         }
 
         protected void Menu_RegistrarProductos_Click(object sender, EventArgs e)
         {
+            alerta.Visible = false;
             mcontenedor.SetActiveView(vRegistrar_producto);
             uContenido.Update();
         }
@@ -93,12 +96,14 @@ namespace Pizza_Express_visual
 
         protected void Menu_Reservas_Click(object sender, EventArgs e)
         {
+            alerta.Visible = false;
             mcontenedor.SetActiveView(vReservas);
             uContenido.Update();
         }
 
         protected void Menu_usuarios_Click(object sender, EventArgs e)
         {
+            alerta.Visible = false;
             mcontenedor.SetActiveView(vUsuarios);
             uContenido.Update();
         }
@@ -162,6 +167,10 @@ namespace Pizza_Express_visual
                             login.Visible = false;
                             MostrarLogo.Visible = false;
 
+                            alerta.Visible = true;
+                            alerta.CssClass = "alert alert-primary animated zoomInUp";
+                            mensaje3.Text = "USUARIO INGRESADO EXITOSAMENTE.";
+
                             //CERRAR VENTANA MODAL
                             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal", "$('#myModal').modal('hide');", true);
                             mcontenedor.SetActiveView(vBienvenida);
@@ -184,6 +193,7 @@ namespace Pizza_Express_visual
 
         protected void Menu_comanda_Click(object sender, EventArgs e)
         {
+            alerta.Visible = false;
             mcontenedor.SetActiveView(vComanda);
             uContenido.Update();
         }
@@ -196,9 +206,10 @@ namespace Pizza_Express_visual
 
         protected void bCerrarSesion_Click(object sender, EventArgs e)
         {
+          
             Session.Clear();
             Session.Abandon();
-
+            
             Menu_administracion.Visible = false;
             Menu_ventas.Visible = false;
             Menu_home.Visible = false;
@@ -207,6 +218,7 @@ namespace Pizza_Express_visual
             login.Visible = true;
             MostrarLogo.Visible = true;
 
+            alerta.Visible = false;
             mcontenedor.SetActiveView(vBienvenida);
             uBarraMenu.Update();
             uContenido.Update();

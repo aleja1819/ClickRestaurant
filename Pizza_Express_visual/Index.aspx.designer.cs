@@ -202,6 +202,24 @@ namespace Pizza_Express_visual {
         protected global::System.Web.UI.UpdatePanel uContenido;
         
         /// <summary>
+        /// Control alerta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel alerta;
+        
+        /// <summary>
+        /// Control mensaje3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label mensaje3;
+        
+        /// <summary>
         /// Control MostrarLogo.
         /// </summary>
         /// <remarks>

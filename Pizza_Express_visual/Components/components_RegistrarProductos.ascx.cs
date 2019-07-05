@@ -268,6 +268,9 @@ namespace Pizza_Express_visual.Components
                 uContenedorProducto.Update();
                 uModalProducto.Update();
 
+                alerta.Visible = true;
+                alerta.CssClass = "alert alert-primary animated zoomInUp";
+                mensaje3.Text = "PRODUCTO ENCONTRADO.";
 
                 if (cant == 0)
                 {
@@ -285,7 +288,6 @@ namespace Pizza_Express_visual.Components
 
         protected void beditarProductoBoton_Click(object sender, EventArgs e)
         {
-
 
             try
             {

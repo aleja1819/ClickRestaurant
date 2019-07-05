@@ -13,7 +13,7 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd8 contexto = new bd8())
+                using (bd9 contexto = new bd9())
                 {
 
                     var r = from m in contexto.Menu
@@ -47,7 +47,7 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd8 contexto = new bd8())
+                using (bd9 contexto = new bd9())
                 {
 
                     var r = from t in contexto.TamanoP
@@ -67,7 +67,7 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd8 contexto = new bd8())
+                using (bd9 contexto = new bd9())
                 {
 
                     var r = from c in contexto.Categoria
@@ -88,7 +88,7 @@ namespace Pizza_Express_visual.Services
 
             try
             {
-                using (bd8 contexto = new bd8())
+                using (bd9 contexto = new bd9())
                 {
 
                     contexto.Menu.Add(menu);
@@ -111,7 +111,7 @@ namespace Pizza_Express_visual.Services
 
             try
             {
-                using (bd8 contexto = new bd8())
+                using (bd9 contexto = new bd9())
                 {
                     var user = contexto.Menu.Find(cod_Menu);
 
@@ -135,7 +135,7 @@ namespace Pizza_Express_visual.Services
             try
             {
                 int idOri = Convert.ToInt32(cod_original);
-                using (bd8 contexto = new bd8())
+                using (bd9 contexto = new bd9())
                 {
 
                     //BUSCAR EL PRODUCTO EN LA BD
@@ -164,7 +164,7 @@ namespace Pizza_Express_visual.Services
 
         public List<object> BuscarMenu(string dato, int filtro)
         {
-            using (bd8 contexto = new bd8())
+            using (bd9 contexto = new bd9())
             {
                 switch (filtro)
                 {
