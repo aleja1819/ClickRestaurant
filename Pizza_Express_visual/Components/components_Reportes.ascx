@@ -11,107 +11,223 @@
 
 <asp:UpdatePanel runat="server" ID="uConteReport">
     <ContentTemplate>
-        <div class="container col-12 offset-2">
-           
-            <div class="row">
 
-                <%--ALERTA DE MENSAJE--%>
-                <asp:Panel runat="server" ID="alerta" Visible="false">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <asp:Label ID="mensaje3" runat="server"></asp:Label>
-                </asp:Panel>
+                <ul id="tabIndice" class="nav nav-tabs">
+                    <li class="nav-item">
+                        <asp:LinkButton runat="server" ID="venta" OnClick="venta_Click" CssClass="nav-link small text-uppercase">Reporte Ventas</asp:LinkButton></li>
+                    <li class="nav-item">
+                        <asp:LinkButton runat="server" ID="producto" OnClick="producto_Click" CssClass="nav-link small text-uppercase">Reporte Productos</asp:LinkButton></li>
+                </ul>   
+        <br />
+        <div class="tab-content" id="nav-tabContent">
+            <asp:MultiView runat="server" ID="mcontenedor">
 
-                                    
-                <div class="col-md-2">
+                <%--VENTAS--%>
+                <asp:View runat="server" ID="vVenta">
 
-                    <div class="input-group mb-4">
-                        <h4 class="text-dark">Desde :</h4>
-                        <asp:TextBox runat="server" ID="tfechaini" CssClass="form-control" TextMode="Date" placeholder="Fecha inicial"></asp:TextBox>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="input-group mb-4">
-                        <h5 class="text-dark">Hasta :</h5>
-                        <asp:TextBox runat="server" ID="tfechafin" CssClass="form-control" TextMode="Date" placeholder="Fecha final"></asp:TextBox>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="input-group mb-2">
-                        <asp:LinkButton runat="server" CssClass="btn btn-success" ID="bBuscarNombre" OnClick="bBuscarNombre_Click">
+                     <div class="container col-12 offset-2">
+                    <div class="row">
+
+                        <%--ALERTA DE MENSAJE--%>
+                        <asp:Panel runat="server" ID="Panel1" Visible="false">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <asp:Label ID="Label1" runat="server"></asp:Label>
+                        </asp:Panel>
+
+
+                        <div class="col-md-2">
+
+                            <div class="input-group mb-4">
+                                <h4 class="text-dark">Desde :</h4>
+                                <asp:TextBox runat="server" ID="tfechaI" CssClass="form-control" TextMode="Date" placeholder="Fecha inicial"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="input-group mb-4">
+                                <h5 class="text-dark">Hasta :</h5>
+                                <asp:TextBox runat="server" ID="tfechaF" CssClass="form-control" TextMode="Date" placeholder="Fecha final"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="input-group mb-2">
+                                <asp:LinkButton runat="server" CssClass="btn btn-success" ID="buscarVentas" OnClick="buscarVentas_Click">
                        <i class="fas fa-plus"></i> Buscar
-                        </asp:LinkButton>
+                                </asp:LinkButton>
+                            </div>
+                        </div>
+
+                        <%--CIERRE COLUMNA--%>
+
+                        <div class="col-md-2">
+                            <asp:LinkButton runat="server" CssClass="btn btn-success" ID="bPDFVentas" >
+                         Generar PDF
+                            </asp:LinkButton>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                        </div>
+                        <%--CIERRE COLUMNA--%>
                     </div>
                 </div>
+                <div class="container col-10">
 
-                <%--CIERRE COLUMNA--%>
+                    <div class="row">
+                        <div class=" col-md-12">
+                            <div class="col align-content-center">
+                                <asp:GridView runat="server" ID="idVentaSelect" CssClass="table table-bordered table-center " AutoGenerateColumns="false"
+                                   OnRowCommand="idVentaSelect_RowCommand">
 
-                <div class="col-md-2">
-                    <asp:LinkButton runat="server" CssClass="btn btn-success" ID="bGenerarPdf" OnClick="bGenerarPdf_Click">
-             Generar PDF
-                    </asp:LinkButton>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                </div>
-                <%--CIERRE COLUMNA--%>
-            </div>
-            </div>
-        <div class="container col-10">
+                                    <HeaderStyle CssClass="btn-dark" ForeColor="White" Font-Bold="true" />
+                                    <Columns>
 
-            <div class="row">
-                <div class=" col-md-12">
-                <div class="col align-content-center">
-                    <asp:GridView runat="server" ID="idTablaEnvio" CssClass="table table-bordered table-center " AutoGenerateColumns="false"
-                        OnRowCommand="idTablaEnvio_RowCommand">
+                                        <asp:BoundField DataField="codigo_comanda" HeaderText="Código"
+                                            HeaderStyle-CssClass="ocultarCol" ItemStyle-CssClass="ocultarCol" />
+                                        <asp:BoundField DataField="cant_Menu" HeaderText="Cantidad" />
+                                        <asp:BoundField DataField="nombre_menu" HeaderText="Nombre Menú" />
+                                        <asp:BoundField DataField="fecha" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy}"/>
+                                        <asp:BoundField DataField="precio_total" HeaderText="Precio"  DataFormatString="${0:N0}"/>
 
-                        <HeaderStyle CssClass="btn-dark" ForeColor="White" Font-Bold="true" />
+                                        <asp:ButtonField ButtonType="Link" CommandName="idseleccionar" ControlStyle-CssClass="btn btn-danger" Text="+" />
 
-                        <Columns>
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
+                            <br />
+                            <h3 class="text-center text-body">Detalle Generar Reporte</h3>
+                            <br />
 
-                            <asp:BoundField DataField="codigo_producto" HeaderText="Código" 
-                                HeaderStyle-CssClass="ocultarCol" ItemStyle-CssClass="ocultarCol"/>
-                            <asp:BoundField DataField="nombre_producto" HeaderText="Nombre Producto" />
-                            <asp:BoundField DataField="rut_proveedor" HeaderText="Rut Proveedor" />
-                            <asp:BoundField DataField="fecha_ingreso_producto" HeaderText="Fecha ingreso" DataFormatString="{0:dd/MM/yyyy}" />
-                            <asp:BoundField DataField="cantidad_producto" HeaderText="Cantidad Producto" />
+                            <div class="col align-content-center">
+                                <asp:GridView runat="server" ID="CargarVentasReporte" CssClass="table table-bordered table-center " AutoGenerateColumns="false"
+                                    OnRowCommand="CargarVentasReporte_RowCommand">
+                                    <HeaderStyle CssClass="btn-success" ForeColor="White" Font-Bold="true" />
 
-                            <asp:ButtonField ButtonType="Link" CommandName="idseleccionar" ControlStyle-CssClass="btn btn-danger" Text="+" />
+                                    <Columns>
+                                        <asp:BoundField DataField="codigo_C" HeaderText="Código"
+                                            HeaderStyle-CssClass="ocultarCol" ItemStyle-CssClass="ocultarCol" />
+                                        <asp:BoundField DataField="cantidad_V" HeaderText="Cantidad" />
+                                        <asp:BoundField DataField="nombre_V" HeaderText="Nombre Menú" />
+                                        <asp:BoundField DataField="fecha_V" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy}"/>
+                                        <asp:BoundField DataField="precio_V" HeaderText="Precio" />
 
-                        </Columns>
-                    </asp:GridView>
-                </div>
-                    <br />
-                             <h3 class="text-center text-body">Detalle Generar Reporte</h3>
-                    <br />
-                    
-                <div class="col align-content-center">
-                    <asp:GridView runat="server" ID="cargaReporte" CssClass="table table-bordered table-center " AutoGenerateColumns="false"
-                        OnRowCommand="cargaReporte_RowCommand">
-                        <HeaderStyle CssClass="btn-success" ForeColor="White" Font-Bold="true" />
+                                        <asp:ButtonField ButtonType="Link" CommandName="ideditar" Visible="false"  ControlStyle-CssClass="btn btn-danger" Text="-" />
 
-                        <Columns>
-                            <asp:BoundField DataField="codigo_P" HeaderText="Código" 
-                            HeaderStyle-CssClass="ocultarCol" ItemStyle-CssClass="ocultarCol"/>
-                            <asp:BoundField DataField="nombre_P" HeaderText="Nombre Producto" />
-                            <asp:BoundField DataField="rut_P" HeaderText="Rut Proveedor" />
-                            <asp:BoundField DataField="fecha_I" HeaderText="Fecha ingreso" DataFormatString="{0:dd/MM/yyyy}" />
-                            <asp:BoundField DataField="cantidad_P" HeaderText="Cantidad Producto" />
-
-                            <asp:ButtonField ButtonType="Link" CommandName="ideditar" Visible="false" ControlStyle-CssClass="btn btn-danger" Text="-" />
-
-                        </Columns>
-                    </asp:GridView>
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
+                </asp:View>
 
+                <%--REPORTES--%>
+                <asp:View runat="server" ID="vProducto">
+
+                <div class="container col-12 offset-2">
+                    <div class="row">
+
+                        <%--ALERTA DE MENSAJE--%>
+                        <asp:Panel runat="server" ID="alerta" Visible="false">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <asp:Label ID="mensaje3" runat="server"></asp:Label>
+                        </asp:Panel>
+
+
+                        <div class="col-md-2">
+
+                            <div class="input-group mb-4">
+                                <h4 class="text-dark">Desde :</h4>
+                                <asp:TextBox runat="server" ID="tfechaini" CssClass="form-control" TextMode="Date" placeholder="Fecha inicial"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="input-group mb-4">
+                                <h5 class="text-dark">Hasta :</h5>
+                                <asp:TextBox runat="server" ID="tfechafin" CssClass="form-control" TextMode="Date" placeholder="Fecha final"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="input-group mb-2">
+                                <asp:LinkButton runat="server" CssClass="btn btn-success" ID="bBuscarNombre" OnClick="bBuscarNombre_Click">
+                       <i class="fas fa-plus"></i> Buscar
+                                </asp:LinkButton>
+                            </div>
+                        </div>
+
+                        <%--CIERRE COLUMNA--%>
+
+                        <div class="col-md-2">
+                            <asp:LinkButton runat="server" CssClass="btn btn-success" ID="bGenerarPdf" OnClick="bGenerarPdf_Click">
+                         Generar PDF
+                            </asp:LinkButton>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                        </div>
+                        <%--CIERRE COLUMNA--%>
+                    </div>
+                </div>
+                <div class="container col-10">
+
+                    <div class="row">
+                        <div class=" col-md-12">
+                            <div class="col align-content-center">
+                                <asp:GridView runat="server" ID="idTablaEnvio" CssClass="table table-bordered table-center " AutoGenerateColumns="false"
+                                    OnRowCommand="idTablaEnvio_RowCommand">
+
+                                    <HeaderStyle CssClass="btn-dark" ForeColor="White" Font-Bold="true" />
+
+                                    <Columns>
+
+                                        <asp:BoundField DataField="codigo_producto" HeaderText="Código"
+                                            HeaderStyle-CssClass="ocultarCol" ItemStyle-CssClass="ocultarCol" />
+                                        <asp:BoundField DataField="nombre_producto" HeaderText="Nombre Producto" />
+                                        <asp:BoundField DataField="rut_proveedor" HeaderText="Rut Proveedor" />
+                                        <asp:BoundField DataField="fecha_ingreso_producto" HeaderText="Fecha ingreso" DataFormatString="{0:dd/MM/yyyy}" />
+                                        <asp:BoundField DataField="cantidad_producto" HeaderText="Cantidad Producto" />
+
+                                        <asp:ButtonField ButtonType="Link" CommandName="idseleccionar" ControlStyle-CssClass="btn btn-danger" Text="+" />
+
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
+                            <br />
+                            <h3 class="text-center text-body">Detalle Generar Reporte</h3>
+                            <br />
+
+                            <div class="col align-content-center">
+                                <asp:GridView runat="server" ID="cargaReporte" CssClass="table table-bordered table-center " AutoGenerateColumns="false"
+                                    OnRowCommand="cargaReporte_RowCommand">
+                                    <HeaderStyle CssClass="btn-success" ForeColor="White" Font-Bold="true" />
+
+                                    <Columns>
+                                        <asp:BoundField DataField="codigo_P" HeaderText="Código"
+                                            HeaderStyle-CssClass="ocultarCol" ItemStyle-CssClass="ocultarCol" />
+                                        <asp:BoundField DataField="nombre_P" HeaderText="Nombre Producto" />
+                                        <asp:BoundField DataField="rut_P" HeaderText="Rut Proveedor" />
+                                        <asp:BoundField DataField="fecha_I" HeaderText="Fecha ingreso" DataFormatString="{0:dd/MM/yyyy}" />
+                                        <asp:BoundField DataField="cantidad_P" HeaderText="Cantidad Producto" />
+
+                                        <asp:ButtonField ButtonType="Link" CommandName="ideditar" Visible="false"  ControlStyle-CssClass="btn btn-danger" Text="-" />
+
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </asp:View>
+                </asp:MultiView>
+            </div>
     </ContentTemplate>
     <Triggers>
         <%--<asp:AsyncPostBackTrigger ControlID="bGenerarPDF"  EventName="Click"/>--%>
         <asp:PostBackTrigger ControlID="bGenerarPdf" />
+        <asp:PostBackTrigger ControlID="bPDFVentas" />
     </Triggers>
 </asp:UpdatePanel>

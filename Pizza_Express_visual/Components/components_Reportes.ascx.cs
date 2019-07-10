@@ -17,8 +17,27 @@ namespace Pizza_Express_visual.Components
        private QueryReportes aR = new QueryReportes();
        static List<object> prod_dispo = new List<object>();
        static List<Services.reporte> ListaReporte = new List<reporte>();
-        private QueryReportes accesoReportes = new QueryReportes();
+       static List<Services.ventas> ListaVentas = new List<ventas>();
+       private QueryReportes accesoReportes = new QueryReportes();
 
+        void active(int switch_on)
+        {
+            switch (switch_on)
+            {
+                case 1:
+                    mcontenedor.SetActiveView(vVenta);
+                    venta.CssClass = "nav-link small text-uppercase active";
+                    producto.CssClass = "nav-link small text-uppercase";
+                    break;
+                case 2:
+                    mcontenedor.SetActiveView(vProducto);
+                    venta.CssClass = "nav-link small text-uppercase";
+                    producto.CssClass = "nav-link small text-uppercase active";
+                    break;
+                default:
+                    break;
+            }
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,6 +45,9 @@ namespace Pizza_Express_visual.Components
             {
                 idTablaEnvio.DataSource = accesoReportes.listartodo();
                 idTablaEnvio.DataBind();
+
+                active(1);
+                alerta.Visible = false;
 
             }
 
@@ -128,17 +150,14 @@ namespace Pizza_Express_visual.Components
             Response.Flush();
             Response.Clear();
         }
-
     
-    protected void bBuscarNombre_Click(object sender, EventArgs e)
+        protected void bBuscarNombre_Click(object sender, EventArgs e)
         {
             try
             {
 
                 DateTime date11 = Convert.ToDateTime(tfechaini.Text);
                 DateTime date21 = Convert.ToDateTime(tfechafin.Text);
-                //var date1 = new DateTime(2019, 3, 1);
-                //var date2 = new DateTime(2019, 5, 5);
 
                 int cant = accesoReportes.filtrarPorNombre(date11, date21).Count;
 
@@ -256,6 +275,143 @@ namespace Pizza_Express_visual.Components
 
                 }
                 
+            }
+        }
+
+        protected void venta_Click(object sender, EventArgs e)
+        {
+            active(1);
+        }
+
+        protected void producto_Click(object sender, EventArgs e)
+        {
+            active(2);
+        }
+
+        protected void buscarVentas_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                DateTime date11 = Convert.ToDateTime(tfechaI.Text);
+                DateTime date21 = Convert.ToDateTime(tfechaF.Text);
+
+                int cant = accesoReportes.reporteVenta(date11, date21).Count;
+
+                idVentaSelect.DataSource = accesoReportes.reporteVenta(date11, date21);
+                idVentaSelect.DataBind();
+
+                //if (cant == 0 || string.IsNullOrEmpty(tfechaini.Text) || string.IsNullOrEmpty(tfechafin.Text))
+                //{
+                //    alerta.Visible = true;
+                //    alerta.CssClass = "alert alert-danger animated zoomInUp";
+                //    mensaje3.Text = "PRODUCTO NO ENCONTRADO.";
+                //    idTabla.DataSource = accesoReportes.listartodo();
+                //    idTabla.DataBind();
+                //}
+            }
+            catch (Exception)
+            {
+
+
+            }
+        }
+
+        //ENVIAR AL CARRITO
+        protected void idVentaSelect_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int fila = Convert.ToInt32(e.CommandArgument);
+            if (e.CommandName.Equals("idseleccionar"))
+            {
+                string codigo_Ven = "";
+                string canti_Ven = "";
+                string nombre_Ven = "";
+                string fecha_Ven = ""; 
+                string precio_Ven = "";
+                try
+                {
+                    codigo_Ven = idVentaSelect.Rows[fila].Cells[0].Text;
+                    canti_Ven = idVentaSelect.Rows[fila].Cells[1].Text;
+                    nombre_Ven = idVentaSelect.Rows[fila].Cells[2].Text.Replace("&#243;", "ó").Replace("&#233;", "é").Replace("&#241;", "ñ").Replace(".", "");              
+                    fecha_Ven = idVentaSelect.Rows[fila].Cells[3].Text;
+                    precio_Ven = idVentaSelect.Rows[fila].Cells[4].Text.Replace("$","").Replace(".","");
+
+                    int codV = Convert.ToInt32(codigo_Ven);
+                    int cantidad = Convert.ToInt32(canti_Ven);
+                    int precio = Convert.ToInt32(precio_Ven);
+                    //AGREGAR PRODUCTO AL CARRO
+                    ventas carro_comp = new ventas();
+                    carro_comp = ListaVentas.First(v => v.codigo_C == codV);
+
+                    CargarVentasReporte.DataSource = ListaVentas;
+                    CargarVentasReporte.DataBind();
+
+                }
+                catch (Exception)
+                {
+
+                    int codV = Convert.ToInt32(codigo_Ven);
+                    int cantidad = Convert.ToInt32(canti_Ven);
+                    int precio = Convert.ToInt32(precio_Ven); 
+                    DateTime fecha = Convert.ToDateTime(fecha_Ven);
+
+                    ListaVentas.Add(new ventas { codigo_C = codV, cantidad_V = cantidad, nombre_V = nombre_Ven, fecha_V = fecha, precio_V = precio });
+
+                }
+                finally
+                {
+                    CargarVentasReporte.DataSource = ListaVentas;
+                    CargarVentasReporte.DataBind();
+                    codigo_Ven = "";
+
+                }
+
+            }
+        }
+
+        protected void CargarVentasReporte_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int fila = Convert.ToInt32(e.CommandArgument);
+            if (e.CommandName.Equals("ideditar"))
+            {
+                string codigo_Ven = "";
+                string canti_Ven = "";
+                string nombre_Ven = "";
+                string fecha_Ven = "";
+                string precio_Ven = "";
+
+                try
+                {
+
+                    codigo_Ven = CargarVentasReporte.Rows[fila].Cells[0].Text;
+                    canti_Ven = CargarVentasReporte.Rows[fila].Cells[1].Text;
+                    nombre_Ven = CargarVentasReporte.Rows[fila].Cells[2].Text.Replace("&#243;", "ó").Replace("&#233;", "é").Replace("&#241;", "ñ").Replace(".", "");
+                    fecha_Ven = CargarVentasReporte.Rows[fila].Cells[3].Text;
+                    precio_Ven = CargarVentasReporte.Rows[fila].Cells[4].Text.Replace("$","").Replace(".", "");
+
+                    int codV = Convert.ToInt32(codigo_Ven);
+                    int cantidad = Convert.ToInt32(canti_Ven);
+                    int precio = Convert.ToInt32(precio_Ven);
+                    ventas carro_comp = new ventas();
+                    carro_comp = ListaVentas.First(v => v.codigo_C == codV);
+
+                    if (carro_comp.cantidad_V > 1)
+                    {
+                        //restar stock
+                        int cantidadActual = carro_comp.cantidad_V;
+                    }
+                    else
+                    {
+
+                        ListaVentas.Remove(carro_comp);
+                    }
+                    CargarVentasReporte.DataSource = ListaVentas;
+                    CargarVentasReporte.DataBind();
+                }
+                catch (Exception ex)
+                {
+                    string ms = ex.ToString();
+                }
             }
         }
     }

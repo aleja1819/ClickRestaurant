@@ -199,11 +199,7 @@ namespace Pizza_Express_visual.Components
         protected void btnpago_Click(object sender, EventArgs e)
         {
 
-            int id = Convert.ToInt32(Session["idUser"]);
-            accesoComanda.addcomanda(
-
-                carroCompra, "1", 9
-            );
+           
         }
 
         protected void btnNuevo_Click(object sender, EventArgs e)
@@ -301,6 +297,13 @@ namespace Pizza_Express_visual.Components
 
         protected void btnpago_Click1(object sender, EventArgs e)
         {
+
+            int id = Convert.ToInt32(Session["idUser"]);
+            accesoComanda.addcomanda(
+
+                carroCompra, "1", 9
+            );
+
             var doc = new Document(PageSize.A5);
             string path = Server.MapPath("Files");
             Random r = new Random();
