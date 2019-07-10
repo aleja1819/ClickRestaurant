@@ -13,9 +13,8 @@ namespace Pizza_Express_visual.Services
         public string nombre_M { get; set; }
         public int precio_M { get; set; }
         public string ingre_M { get; set; }
+       }
 
-
-    }
 public class QueryComanda
     {
      
@@ -56,7 +55,8 @@ public class QueryComanda
                                              u.codigo_menu,
                                              u.nombre_menu,
                                              u.precio_menu,
-                                             u.ingredientes_menu,                                                                                
+                                             u.ingredientes_menu, 
+                                             t.nombre_tamanoP
                                          };
 
                     return Grande.ToList<object>();
@@ -68,6 +68,34 @@ public class QueryComanda
                 return null;
 
             }
+        }
+
+        public bool addcomanda(List<carro> listaCarro, string num_mesa, int idUser)
+        {
+            int cod_comanda = 0;
+            using (bd9 c = new bd9())
+            {
+                ComandaMesa comanda = new ComandaMesa { codigo_usuario = idUser, numero_mesa = num_mesa, fecha = DateTime.Now };
+                c.ComandaMesa.Add(comanda);
+                c.SaveChanges();
+                cod_comanda = comanda.codigo_comanda;
+            }
+            using (bd9 c = new bd9())
+            {
+                foreach (var item in listaCarro)
+                {
+                    c.Detalle_Mesa.Add(new Detalle_Mesa
+                    {
+                        codigo_comanda = cod_comanda,
+                        codigo_menu = item.codigo_M,
+                        precio_total = item.precio_M,
+                        cant_Menu = item.cantidad
+                    });
+                    c.SaveChanges();
+                }
+
+            }
+            return true;
         }
     }
 }

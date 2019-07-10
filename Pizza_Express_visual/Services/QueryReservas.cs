@@ -21,7 +21,7 @@ namespace Pizza_Express_visual.Services
                     var re = from r in contexto.Reserva
                              join m in contexto.Mesa
                              on r.numero_mesa equals m.numero_mesa
-                             select new { r.codigo_reserva, m.numero_mesa, r.nombre_reserva, r.fecha_reserva };
+                             select new { r.codigo_reserva, m.numero_mesa, r.nombre_reserva, r.fecha_reser, r.hora_reser};
 
                     return re.ToList<object>();
 
@@ -97,7 +97,7 @@ namespace Pizza_Express_visual.Services
 
                     user.numero_mesa = reser.numero_mesa;
                     user.nombre_reserva = reser.nombre_reserva;
-                    user.fecha_reserva = reser.fecha_reserva;
+                    user.fecha_reser = reser.fecha_reser;
                     //user.hora_reserva = reser.hora_reserva;
 
                     //GUARDAR LOS CAMBIOS EN LA TABLA B
@@ -124,7 +124,7 @@ namespace Pizza_Express_visual.Services
                                    join m in contexto.Mesa
                                    on r.numero_mesa equals m.numero_mesa
                                    where m.numero_mesa.ToLower().StartsWith(dato.ToLower())
-                                   select new { r.codigo_reserva, m.numero_mesa, r.nombre_reserva, r.fecha_reserva };
+                                   select new { r.codigo_reserva, m.numero_mesa, r.nombre_reserva, r.fecha_reser };
 
                         return rRut.ToList<object>();
                     default:

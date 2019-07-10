@@ -114,22 +114,20 @@ namespace Pizza_Express_visual.Components
 
                 uContenedorProducto.Update();
                 uModalProducto.Update();
-
-                alerta.Visible = true;
-                alerta.CssClass = "alert alert-danger animated zoomInUp";
-                mensaje3.Text = "PRODUCTO ENCONTRADO.";
+              
 
                 if (cant == 0)
                 {
                     alerta.Visible = true;
                     alerta.CssClass = "alert alert-danger animated zoomInUp";
                     mensaje3.Text = "PRODUCTO NO ENCONTRADO.";
+                    alerta.Visible = false;
                 }
 
             }
             catch (Exception)
             {
-
+                alerta.Visible = false;
             }
         }
 
@@ -138,7 +136,7 @@ namespace Pizza_Express_visual.Components
 
             try
             {
-
+                alerta.Visible = false;
                 if (validaCampos() == false)
                 {
 
@@ -226,6 +224,14 @@ namespace Pizza_Express_visual.Components
             {
 
             }
+        }
+
+        protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            alerta.Visible = false;
+            idTablaInven.DataSource = accesoProductos.filtrarProductos();
+            idTablaInven.DataBind();
+            alerta.Visible = false;
         }
     }
 }

@@ -76,6 +76,15 @@ namespace Pizza_Express_visual.Components {
         protected global::System.Web.UI.WebControls.LinkButton bRegistrarReservarModal;
         
         /// <summary>
+        /// Control btnVolverR.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnVolverR;
+        
+        /// <summary>
         /// Control idTabla.
         /// </summary>
         /// <remarks>
@@ -146,6 +155,24 @@ namespace Pizza_Express_visual.Components {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label valida_tfecha;
+        
+        /// <summary>
+        /// Control thora.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox thora;
+        
+        /// <summary>
+        /// Control valida_thora.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label valida_thora;
         
         /// <summary>
         /// Control c_orginal.

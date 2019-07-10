@@ -15,8 +15,8 @@ namespace Pizza_Express_visual.Components
     {
 
        private QueryReportes aR = new QueryReportes();
-        static List<QueryReportes> queryRepo = new List<QueryReportes>();
-
+       static List<object> prod_dispo = new List<object>();
+       static List<Services.reporte> ListaReporte = new List<reporte>();
         private QueryReportes accesoReportes = new QueryReportes();
 
 
@@ -24,8 +24,8 @@ namespace Pizza_Express_visual.Components
         {
             if (!IsPostBack)
             {
-                idTabla.DataSource = accesoReportes.listartodo();
-                idTabla.DataBind();
+                idTablaEnvio.DataSource = accesoReportes.listartodo();
+                idTablaEnvio.DataBind();
 
             }
 
@@ -49,47 +49,63 @@ namespace Pizza_Express_visual.Components
             //pdfWrite.PageEvent = ev;
             //doc.Open();
 
-            iTextSharp.text.Font verdana = FontFactory.GetFont("Verdana", 18, iTextSharp.text.Font.BOLDITALIC, BaseColor.RED);
-            Paragraph paragraph = new Paragraph(@"COCINA", verdana);
+            iTextSharp.text.Font verdana = FontFactory.GetFont("Verdana", 18, iTextSharp.text.Font.BOLDITALIC, BaseColor.BLACK);
+            Paragraph paragraph = new Paragraph(@"Reporte Ingreso de Productos", verdana);
             paragraph.Alignment = Element.ALIGN_CENTER;
             doc.Add(paragraph);
 
-            Paragraph paragraph2 = new Paragraph("Fecha: " + DateTime.Now.ToString());
-            Random m = new Random();
-            Paragraph mesa = new Paragraph("N° Mesa: " + m.Next(1, 20));
-            Paragraph garzon = new Paragraph("Garzón: GARZÓN PIZZERIA");
-            Random c = new Random();
-            Paragraph comanda = new Paragraph("Comanda: " + c.Next(1, 5000));
+            Paragraph noVali = new Paragraph(" ");
+            noVali.Alignment = Element.ALIGN_CENTER;
+            doc.Add(noVali);
+
+            Paragraph paragraph2 = new Paragraph("Fecha Reporte: " + DateTime.Now.ToString());
             paragraph2.Alignment = Element.ALIGN_LEFT;
             paragraph2.PaddingTop = 1;
             doc.Add(paragraph2);
-            doc.Add(mesa);
-            doc.Add(garzon);
-            doc.Add(comanda);
+
+            Paragraph Vali = new Paragraph(" ");
+            noVali.Alignment = Element.ALIGN_CENTER;
+            doc.Add(Vali);
 
             Paragraph paragraph3 = new Paragraph();
             paragraph3.Alignment = Element.ALIGN_LEFT;
             doc.Add(paragraph3);
 
-            PdfPTable table = new PdfPTable(2);
+            PdfPTable table = new PdfPTable(5);
             PdfPCell cell = new PdfPCell();
             cell.HorizontalAlignment = 1; //0=Left, 1=Centre, 2=Right
             cell.BorderColor = BaseColor.BLACK;
             cell.BackgroundColor = BaseColor.RED;
 
             iTextSharp.text.Font letraBlanca = FontFactory.GetFont("Verdana", 12, iTextSharp.text.Font.BOLDITALIC, BaseColor.WHITE);
+            cell.Phrase = new Phrase("Código", letraBlanca);
+            table.AddCell(cell);
+            cell.Phrase = new Phrase("Nombre", letraBlanca);
+            table.AddCell(cell);
+            cell.Phrase = new Phrase("Rut Proveedor", letraBlanca);
+            table.AddCell(cell);
+            cell.Phrase = new Phrase("Fecha Ingreso", letraBlanca);
+            table.AddCell(cell);
             cell.Phrase = new Phrase("Cantidad", letraBlanca);
             table.AddCell(cell);
-            cell.Phrase = new Phrase("Detalle", letraBlanca);
-            table.AddCell(cell);
+
 
             PdfPCell cell0 = new PdfPCell();
-            foreach (var regist in )
+            foreach (var regist in ListaReporte )
             {
-                cell0.Phrase = new Phrase(regist.cantidad.ToString());
+                cell0.Phrase = new Phrase(regist.codigo_P.ToString());
                 table.AddCell(cell0);
 
-                cell0.Phrase = new Phrase(regist.nombre_M);
+                cell0.Phrase = new Phrase(regist.nombre_P);
+                table.AddCell(cell0);
+
+                cell0.Phrase = new Phrase(regist.rut_P);
+                table.AddCell(cell0);
+
+                cell0.Phrase = new Phrase(regist.fecha_I.ToString());
+                table.AddCell(cell0);
+
+                cell0.Phrase = new Phrase(regist.cantidad_P.ToString());
                 table.AddCell(cell0);
 
             }
@@ -126,8 +142,8 @@ namespace Pizza_Express_visual.Components
 
                 int cant = accesoReportes.filtrarPorNombre(date11, date21).Count;
 
-                idTabla.DataSource = accesoReportes.filtrarPorNombre(date11, date21);
-                idTabla.DataBind();
+                idTablaEnvio.DataSource = accesoReportes.filtrarPorNombre(date11, date21);
+                idTablaEnvio.DataBind();
 
                 //if (cant == 0 || string.IsNullOrEmpty(tfechaini.Text) || string.IsNullOrEmpty(tfechafin.Text))
                 //{
@@ -140,10 +156,107 @@ namespace Pizza_Express_visual.Components
             }
             catch (Exception)
             {
-
+            
                
             }
 
+        }
+
+        protected void cargaReporte_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int fila = Convert.ToInt32(e.CommandArgument);
+            if (e.CommandName.Equals("ideditar"))
+            {
+                string codigo_pro = "";
+                string nombre_pro = "";
+                string rut_pro = "";
+                string fecha_ingre = "";
+                string canti_pro = "";
+
+                try
+                {
+
+                    codigo_pro = cargaReporte.Rows[fila].Cells[0].Text;
+                    nombre_pro = cargaReporte.Rows[fila].Cells[1].Text.Replace("&#243;", "ó").Replace("&#233;", "é").Replace("&#241;", "ñ").Replace(".", "");
+                    rut_pro = cargaReporte.Rows[fila].Cells[2].Text;
+                    fecha_ingre = cargaReporte.Rows[fila].Cells[3].Text;
+                    canti_pro = cargaReporte.Rows[fila].Cells[4].Text;
+
+                    int codM = Convert.ToInt32(codigo_pro);
+                    int cantidad = Convert.ToInt32(canti_pro);
+                    reporte carro_comp = new reporte();
+                    carro_comp = ListaReporte.First(p => p.codigo_P == codM);
+
+                    if (carro_comp.cantidad_P > 1)
+                    {
+                        //restar stock
+                        int cantidadActual = carro_comp.cantidad_P;                                
+                    }
+                    else
+                    {
+
+                        ListaReporte.Remove(carro_comp);
+                    }
+                    cargaReporte.DataSource = ListaReporte;
+                    cargaReporte.DataBind();
+                }
+                catch (Exception ex)
+                {
+                    string ms = ex.ToString();
+                }
+            }
+        }
+
+        protected void idTablaEnvio_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int fila = Convert.ToInt32(e.CommandArgument);
+            if (e.CommandName.Equals("idseleccionar"))
+            {
+                string codigo_pro = "";
+                string nombre_pro = "";
+                string rut_pro = "";
+                string fecha_ingre = "";
+                string canti_pro = "";
+
+
+                try
+                {
+                    codigo_pro = idTablaEnvio.Rows[fila].Cells[0].Text;
+                    nombre_pro = idTablaEnvio.Rows[fila].Cells[1].Text.Replace("&#243;", "ó").Replace("&#233;", "é").Replace("&#241;", "ñ").Replace(".", "");
+                    rut_pro = idTablaEnvio.Rows[fila].Cells[2].Text;
+                    fecha_ingre = idTablaEnvio.Rows[fila].Cells[3].Text;
+                    canti_pro = idTablaEnvio.Rows[fila].Cells[4].Text;
+
+                    int codM = Convert.ToInt32(codigo_pro);
+                    int cantidad = Convert.ToInt32(canti_pro);
+                    //AGREGAR PRODUCTO AL CARRO
+                    reporte carro_comp = new reporte();
+                    carro_comp = ListaReporte.First(p => p.codigo_P == codM);
+                   
+
+                    cargaReporte.DataSource = ListaReporte;
+                    cargaReporte.DataBind();
+
+                }
+                catch (Exception)
+                {
+
+                    int codM = Convert.ToInt32(codigo_pro);
+                    int cantidad = Convert.ToInt32(canti_pro);
+                    DateTime fecha = Convert.ToDateTime(fecha_ingre);
+
+                    ListaReporte.Add(new reporte { codigo_P = codM, nombre_P = nombre_pro, rut_P = rut_pro, fecha_I = fecha, cantidad_P = cantidad });
+
+                }
+                finally
+                {
+                    cargaReporte.DataSource = ListaReporte;
+                    cargaReporte.DataBind();
+                    codigo_pro = "";
+
+                }
+                
+            }
         }
     }
 }

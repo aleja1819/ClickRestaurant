@@ -34,7 +34,7 @@ namespace Pizza_Express_visual.Components
 
         protected void bRegistrarReservarModal_Click(object sender, EventArgs e)
         {
-            alerta.Visible = true;
+            alerta.Visible = false; ;
             ideditarReservaBoton.Visible = false;
             idregistrarReservas.Visible = true;
 
@@ -120,10 +120,11 @@ namespace Pizza_Express_visual.Components
                     string nuMesa = tnMesa.Text;
                     string nombre_R = tnombre.Text;
                     string fecha = tfecha.Text;
-                    //string hora = thora.Text;
-
+                    string hor = thora.Text;
 
                     DateTime date = Convert.ToDateTime(tfecha.Text);
+                    DateTime hora = Convert.ToDateTime(thora.Text);
+
                     //TimeZone time = Convert.ToDateTime(thora.Text);
                     //GUARDAR LOS DATOS EN LA LISTA
                     accesoReservas.addReserva(new Models.Reserva
@@ -131,9 +132,10 @@ namespace Pizza_Express_visual.Components
 
                         numero_mesa = nuMesa,
                         nombre_reserva = nombre_R,
-                        fecha_reserva = date,
-                        //hora_reserva = time
-                    });
+                        fecha_reser = date,
+                        hora_reser = hora
+
+                    }) ; 
 
                     //MOSTRAR LOS DATOS EN LA TABLA
                     idTabla.DataSource = accesoReservas.filtrarReservas();
@@ -247,7 +249,7 @@ namespace Pizza_Express_visual.Components
                     {
                         numero_mesa = nuMesa,
                         nombre_reserva = nombre_R,
-                        fecha_reserva = date,
+                        fecha_reser = date,
                         //hora_reserva = time
 
                     }, codigo_ori);
@@ -315,6 +317,7 @@ namespace Pizza_Express_visual.Components
         {
             try
             {
+                alerta.Visible = false;
                 int filtro = Convert.ToInt32(idOpciones.SelectedValue);
                 idTabla.PageIndex = e.NewPageIndex;
                 idTabla.DataSource = accesoReservas.filtrarReservas();
@@ -325,6 +328,13 @@ namespace Pizza_Express_visual.Components
             {
 
             }
+        }
+
+        protected void btnVolverR_Click(object sender, EventArgs e)
+        {
+            alerta.Visible = false;
+            idTabla.DataSource = accesoReservas.filtrarReservas();
+            idTabla.DataBind();
         }
     }
     }

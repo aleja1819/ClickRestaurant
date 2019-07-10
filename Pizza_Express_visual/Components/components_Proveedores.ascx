@@ -50,7 +50,7 @@
                         <%--CIERRE COLUMNA--%>
 
                         <%--SEGUNDA COLUMNA--%>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <asp:LinkButton runat="server" CssClass="btn btn-success" OnClick="bRegistrarProveedorModal_Click" ID="bRegistrarProveedorModal">
                        <i class="fas fa-plus"></i> Registrar Proveedor
                             </asp:LinkButton>
@@ -60,6 +60,13 @@
                             <br />
                         </div>
                         <%--CIERRE COLUMNA--%>
+
+                         <div class="col-md-3">
+                            <asp:LinkButton runat="server" CssClass="btn btn-primary btn-lg" OnClick="btnVolverP_Click" ID="btnVolverP">
+                       <i class="fas fa-home"></i>
+                            </asp:LinkButton>      
+                    </div>
+
                     </div>
 
 
@@ -72,7 +79,8 @@
 
                             <Columns>
 
-                                <asp:BoundField DataField="codigo_proveedor" HeaderText="Código" />
+                                <asp:BoundField DataField="codigo_proveedor" HeaderText="Código" 
+                                    HeaderStyle-CssClass="ocultarCol" ItemStyle-CssClass="ocultarCol"/>
                                 <asp:BoundField DataField="rut_proveedor" HeaderText="Rut" />
                                 <asp:BoundField DataField="nombre_proveedor" HeaderText="Nombre Usuario" />
                                 <asp:BoundField DataField="apellido_paterno_proveedor" HeaderText="Apellido Paterno" />

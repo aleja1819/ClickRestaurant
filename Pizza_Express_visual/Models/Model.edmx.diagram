@@ -25,7 +25,6 @@
         <EntityTypeShape EntityType="PizzaEModel.Producto" Width="1.5" PointX="8.25" PointY="19.875" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaEModel.Producto_Proveedor" Width="1.5" PointX="10.5" PointY="19.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaEModel.Proveedor" Width="1.5" PointX="8.25" PointY="26.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="PizzaEModel.Reserva" Width="1.5" PointX="11.25" PointY="23.125" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaEModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaEModel.TamanoP" Width="1.5" PointX="3.75" PointY="17" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaEModel.TipoPago" Width="1.5" PointX="14.25" PointY="6.375" IsExpanded="true" />
@@ -54,7 +53,6 @@
         <AssociationConnector Association="PizzaEModel.fk_Mesa_Estado_Mesa1" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaEModel.fk_Usuario_Estado_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaEModel.fk_CartaMenu_tamanoP" ManuallyRouted="false" />
-        <AssociationConnector Association="PizzaEModel.fk_MesaReserva_Mesa1" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaEModel.fk_Pago_TipoPago1" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaEModel.fk_pagorepartidor_usuario1" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaEModel.fk_Producto_has_Proveedor_Producto1" ManuallyRouted="false" />
@@ -63,6 +61,8 @@
         <AssociationConnector Association="PizzaEModel.fk_Proveedor_TipoProducto1" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaEModel.fk_Usuario_TipoUsuario" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaEModel.fk_Usuario_has_Caja_Usuario1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PizzaEModel.Reserva" Width="1.5" PointX="11.25" PointY="23.125" />
+        <AssociationConnector Association="PizzaEModel.fk_MesaReserva_Mesa1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

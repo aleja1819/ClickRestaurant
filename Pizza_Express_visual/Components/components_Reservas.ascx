@@ -49,7 +49,7 @@
                         <%--CIERRE COLUMNA--%>
 
                         <%--SEGUNDA COLUMNA--%>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <asp:LinkButton runat="server" CssClass="btn btn-success" OnClick="bRegistrarReservarModal_Click" ID="bRegistrarReservarModal">
                        <i class="fas fa-plus"></i> Registrar Reservas
                             </asp:LinkButton>
@@ -59,6 +59,12 @@
                             <br />
                         </div>
                         <%--CIERRE COLUMNA--%>
+
+                          <div class="col-md-3">
+                            <asp:LinkButton runat="server" CssClass="btn btn-primary btn-lg" OnClick="btnVolverR_Click" ID="btnVolverR">
+                       <i class="fas fa-home"></i>
+                            </asp:LinkButton>      
+                    </div>
                     </div>
 
 
@@ -71,17 +77,19 @@
 
                             <Columns>
 
-                                <asp:BoundField DataField="codigo_reserva" HeaderText="Código" />
+                                <asp:BoundField DataField="codigo_reserva" HeaderText="Código" 
+                                    HeaderStyle-CssClass="ocultarCol" ItemStyle-CssClass="ocultarCol"/>
                                 <asp:BoundField DataField="numero_mesa" HeaderText="Número de mesa" />
                                 <asp:BoundField DataField="nombre_reserva" HeaderText="Nombre Cliente" />
-                                <asp:BoundField DataField="fecha_reserva" HeaderText="Fecha" />
-                                <%--<asp:BoundField DataField="hora_reserva" HeaderText="Hora" />--%>
+                                <asp:BoundField DataField="fecha_reser" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy}" />
+                                <asp:BoundField DataField="hora_reser" HeaderText="Hora" DataFormatString="{0:t}" />
 
                                 <asp:ButtonField ButtonType="Link" CommandName="ideditar" ControlStyle-CssClass="btn btn-dark" Text="Editar" />
                                 <asp:ButtonField ButtonType="Link" CommandName="ideliminar" ControlStyle-CssClass="btn btn-danger" Text="Eliminar" />
 
                             </Columns>
                         </asp:GridView>
+                        <%-- --%>
                      </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
@@ -143,11 +151,11 @@
                                 </div>
 
                                 <%--  <%--HORA--%>
-                                <%--<div class="form-group">
+                                <div class="form-group">
                                         <label for="thora">Hora</label>
                                         <asp:TextBox  runat="server" ID="thora" TextMode="Time" CssClass="form-control bg-secondary"></asp:TextBox>
                                     <asp:Label runat="server" ID="valida_thora" CssClass="invalid-feedback" Text="Ingrese Hora"></asp:Label>
-                                        </div>--%>
+                                </div>
                             </div>
 
                             <div class="modal-footer">

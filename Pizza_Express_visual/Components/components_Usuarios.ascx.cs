@@ -336,6 +336,13 @@ namespace Pizza_Express_visual.Components
 
             }
         }
+
+        protected void btnVolverU_Click(object sender, EventArgs e)
+        {
+            alerta.Visible = false;
+            idTabla.DataSource = accesoUsuario.filtrarUsuarios();
+            idTabla.DataBind();
+        }
     }
 }
     

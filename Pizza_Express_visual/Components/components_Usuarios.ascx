@@ -51,7 +51,7 @@
 
                         <%--SEGUNDA COLUMNA--%>
 
-                        <div class="col-md-6">
+                        <div class="col-md-3">
 
                             <asp:LinkButton runat="server" CssClass="btn btn-success" OnClick="bRegistrarUsuarioModal_Click" ID="bRegistrarUsuario">
                        <i class="fas fa-plus"></i> Registrar Usuarios
@@ -62,6 +62,12 @@
                             <br />
                         </div>
                         <%--CIERRE COLUMNA--%>
+                        <div class="col-md-3">
+                            <asp:LinkButton runat="server" CssClass="btn btn-primary btn-lg" OnClick="btnVolverU_Click" ID="btnVolverU">
+                       <i class="fas fa-home"></i>
+                            </asp:LinkButton>      
+                    </div>
+
                     </div>
 
 
@@ -72,11 +78,12 @@
                             <HeaderStyle CssClass="btn-success" ForeColor="White" Font-Bold="true" />
 
                             <Columns>
-                                <asp:BoundField DataField="codigo_usuario" HeaderText="codigo" />
+                                <asp:BoundField DataField="codigo_usuario" HeaderText="codigo"
+                                    HeaderStyle-CssClass="ocultarCol" ItemStyle-CssClass="ocultarCol"/>
                                 <asp:BoundField DataField="rut_usuario" HeaderText="Rut" />
                                 <asp:BoundField DataField="nombre_usuario" HeaderText="Nombre Usuario" />
                                 <asp:BoundField DataField="email_usuario" HeaderText="Email" />
-                                <asp:BoundField DataField="contraseña_usuario" HeaderText="Contraseña" />
+                                <asp:BoundField DataField="contraseña_usuario" HeaderText="Contraseña" Visible="false" />
                                 <asp:BoundField DataField="nombre_tipoUsuario" HeaderText="Tipo Usuario" />
                                 <asp:BoundField DataField="nombre_estado" HeaderText="Estado Usuario" />
 

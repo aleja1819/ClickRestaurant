@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PizzaEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="PizzaEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Asignar_Menu">
           <Key>
             <PropertyRef Name="idAsignarMenu" />
@@ -194,8 +194,8 @@
           <Property Name="codigo_reserva" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="numero_mesa" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="nombre_reserva" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="fecha_reserva" Type="datetime" Nullable="false" />
-          <Property Name="hora_reserva" Type="time" Precision="7" Nullable="false" />
+          <Property Name="fecha_reser" Type="date" Nullable="false" />
+          <Property Name="hora_reser" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -769,8 +769,7 @@
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PizzaEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -925,7 +924,7 @@
           <Property Name="codigo_estado" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ComandaMesa" Relationship="Self.fk_ComandaMesa_Mesa1" FromRole="Mesa" ToRole="ComandaMesa" />
           <NavigationProperty Name="Estado_Mesa" Relationship="Self.fk_Mesa_Estado_Mesa1" FromRole="Mesa" ToRole="Estado_Mesa" />
-          <NavigationProperty Name="Reserva" Relationship="Self.fk_MesaReserva_Mesa1" FromRole="Mesa" ToRole="Reserva" />
+          <NavigationProperty Name="Reserva" Relationship="PizzaEModel.fk_MesaReserva_Mesa1" FromRole="Mesa" ToRole="Reserva" />
         </EntityType>
         <EntityType Name="Pago">
           <Key>
@@ -1000,17 +999,6 @@
           <Property Name="direccion_proveedor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Producto_Proveedor" Relationship="Self.fk_Producto_has_Proveedor_Proveedor1" FromRole="Proveedor" ToRole="Producto_Proveedor" />
           <NavigationProperty Name="TipoProducto" Relationship="Self.fk_Proveedor_TipoProducto1" FromRole="Proveedor" ToRole="TipoProducto" />
-        </EntityType>
-        <EntityType Name="Reserva">
-          <Key>
-            <PropertyRef Name="codigo_reserva" />
-          </Key>
-          <Property Name="codigo_reserva" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="numero_mesa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="nombre_reserva" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="fecha_reserva" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="hora_reserva" Type="Time" Nullable="false" Precision="7" />
-          <NavigationProperty Name="Mesa" Relationship="Self.fk_MesaReserva_Mesa1" FromRole="Reserva" ToRole="Mesa" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -1340,18 +1328,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_MesaReserva_Mesa1">
-          <End Role="Mesa" Type="Self.Mesa" Multiplicity="1" />
-          <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Mesa">
-              <PropertyRef Name="numero_mesa" />
-            </Principal>
-            <Dependent Role="Reserva">
-              <PropertyRef Name="numero_mesa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_Pago_TipoPago1">
           <End Role="TipoPago" Type="Self.TipoPago" Multiplicity="1" />
           <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
@@ -1469,7 +1445,6 @@
           <EntitySet Name="Producto" EntityType="Self.Producto" />
           <EntitySet Name="Producto_Proveedor" EntityType="Self.Producto_Proveedor" />
           <EntitySet Name="Proveedor" EntityType="Self.Proveedor" />
-          <EntitySet Name="Reserva" EntityType="Self.Reserva" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="TamanoP" EntityType="Self.TamanoP" />
           <EntitySet Name="TipoPago" EntityType="Self.TipoPago" />
@@ -1561,10 +1536,6 @@
             <End Role="TamanoP" EntitySet="TamanoP" />
             <End Role="Menu" EntitySet="Menu" />
           </AssociationSet>
-          <AssociationSet Name="fk_MesaReserva_Mesa1" Association="Self.fk_MesaReserva_Mesa1">
-            <End Role="Mesa" EntitySet="Mesa" />
-            <End Role="Reserva" EntitySet="Reserva" />
-          </AssociationSet>
           <AssociationSet Name="fk_Pago_TipoPago1" Association="Self.fk_Pago_TipoPago1">
             <End Role="TipoPago" EntitySet="TipoPago" />
             <End Role="Pago" EntitySet="Pago" />
@@ -1597,7 +1568,35 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Turno" EntitySet="Turno" />
           </AssociationSet>
+          <EntitySet Name="Reserva" EntityType="PizzaEModel.Reserva" />
+          <AssociationSet Name="fk_MesaReserva_Mesa1" Association="PizzaEModel.fk_MesaReserva_Mesa1">
+            <End Role="Mesa" EntitySet="Mesa" />
+            <End Role="Reserva" EntitySet="Reserva" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Reserva">
+          <Key>
+            <PropertyRef Name="codigo_reserva" />
+          </Key>
+          <Property Name="codigo_reserva" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="numero_mesa" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="nombre_reserva" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_reser" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="hora_reser" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Mesa" Relationship="PizzaEModel.fk_MesaReserva_Mesa1" FromRole="Reserva" ToRole="Mesa" />
+        </EntityType>
+        <Association Name="fk_MesaReserva_Mesa1">
+          <End Type="PizzaEModel.Mesa" Role="Mesa" Multiplicity="1" />
+          <End Type="PizzaEModel.Reserva" Role="Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mesa">
+              <PropertyRef Name="numero_mesa" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="numero_mesa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1804,17 +1803,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Reserva">
-            <EntityTypeMapping TypeName="PizzaEModel.Reserva">
-              <MappingFragment StoreEntitySet="Reserva">
-                <ScalarProperty Name="codigo_reserva" ColumnName="codigo_reserva" />
-                <ScalarProperty Name="numero_mesa" ColumnName="numero_mesa" />
-                <ScalarProperty Name="nombre_reserva" ColumnName="nombre_reserva" />
-                <ScalarProperty Name="fecha_reserva" ColumnName="fecha_reserva" />
-                <ScalarProperty Name="hora_reserva" ColumnName="hora_reserva" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="PizzaEModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -1878,6 +1866,17 @@
                 <ScalarProperty Name="contraseña_usuario" ColumnName="contraseña_usuario" />
                 <ScalarProperty Name="rut_usuario" ColumnName="rut_usuario" />
                 <ScalarProperty Name="email_usuario" ColumnName="email_usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reserva">
+            <EntityTypeMapping TypeName="PizzaEModel.Reserva">
+              <MappingFragment StoreEntitySet="Reserva">
+                <ScalarProperty Name="hora_reser" ColumnName="hora_reser" />
+                <ScalarProperty Name="fecha_reser" ColumnName="fecha_reser" />
+                <ScalarProperty Name="nombre_reserva" ColumnName="nombre_reserva" />
+                <ScalarProperty Name="numero_mesa" ColumnName="numero_mesa" />
+                <ScalarProperty Name="codigo_reserva" ColumnName="codigo_reserva" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

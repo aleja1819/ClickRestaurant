@@ -366,7 +366,32 @@ namespace Pizza_Express_visual.Components
                 mensaje3.Text = "PRODUCTO NO ACTUALIZADO.";
             }
             }
+
+        protected void btnVolverPr_Click(object sender, EventArgs e)
+        {
+            alerta.Visible = false;
+            idTabla.DataSource = accesoProductos.filtrarProductos();
+            idTabla.DataBind();
+
         }
+
+        protected void idTabla_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            try
+            {
+                alerta.Visible = false;
+                int filtro = Convert.ToInt32(idOpciones.SelectedValue);
+                idTabla.PageIndex = e.NewPageIndex;
+                idTabla.DataSource = accesoProductos.filtrarProductos();
+                idTabla.DataBind();
+
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+    }
     }
 
 

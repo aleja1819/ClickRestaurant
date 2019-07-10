@@ -51,6 +51,7 @@ namespace Pizza_Express_visual
 
         protected void Menu_MontoInicial_Click(object sender, EventArgs e)
         {
+            alerta.Visible = false;
             mcontenedor.SetActiveView(vMonto_Inicial);
             uContenido.Update();
         }
@@ -70,6 +71,7 @@ namespace Pizza_Express_visual
 
         protected void Menu_NumeroMesa_Click(object sender, EventArgs e)
         {
+            alerta.Visible = false;
             mcontenedor.SetActiveView(vNumero_mesa);
             uContenido.Update();
         }
@@ -90,6 +92,7 @@ namespace Pizza_Express_visual
 
         protected void Menu_Reportes_Click(object sender, EventArgs e)
         {
+            alerta.Visible = false;
             mcontenedor.SetActiveView(vReportes);
             uContenido.Update();
         }
@@ -198,11 +201,6 @@ namespace Pizza_Express_visual
             uContenido.Update();
         }
 
-        protected void Menu_test_Click(object sender, EventArgs e)
-        {
-            mcontenedor.SetActiveView(vtest);
-            uContenido.Update();
-        }
 
         protected void bCerrarSesion_Click(object sender, EventArgs e)
         {

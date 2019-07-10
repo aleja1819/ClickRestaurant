@@ -47,7 +47,7 @@
                         <%--CIERRE COLUMNA--%>
 
                         <%--SEGUNDA COLUMNA--%>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <asp:LinkButton runat="server" CssClass="btn btn-success" OnClick="bRegistrarProductoModal_Click" ID="bRegistrarProductoModal">
                        <i class="fas fa-plus"></i> Registrar Producto
                             </asp:LinkButton>
@@ -57,22 +57,30 @@
                             <br />
                         </div>
                         <%--CIERRE COLUMNA--%>
+
+                           <div class="col-md-3">
+                            <asp:LinkButton runat="server" CssClass="btn btn-primary btn-lg" OnClick="btnVolverPr_Click" ID="btnVolverPr">
+                       <i class="fas fa-home"></i>
+                            </asp:LinkButton>      
+                    </div>
+
                     </div>
 
 
                     <%--TABLA GRIDVIEW--%>
                     <div class="col align-content-center">
                         <asp:GridView runat="server" ID="idTabla" CssClass="table table-bordered table-center " AutoGenerateColumns="false"
-                            OnRowCommand="idTabla_RowCommand">
+                            OnRowCommand="idTabla_RowCommand" OnPageIndexChanging="idTabla_PageIndexChanging" PageSize="4" AllowPaging="true">
 
                             <HeaderStyle CssClass="btn-success" ForeColor="White" Font-Bold="true" />
 
                             <Columns>
 
-                                <asp:BoundField DataField="codigo_producto" HeaderText="Código" />
+                                <asp:BoundField DataField="codigo_producto" HeaderText="Código" 
+                                    HeaderStyle-CssClass="ocultarCol" ItemStyle-CssClass="ocultarCol"/>
                                 <asp:BoundField DataField="nombre_producto" HeaderText="Nombre Producto" />
                                 <asp:BoundField DataField="rut_proveedor" HeaderText="Rut Proveedor" />
-                                <asp:BoundField DataField="fecha_ingreso_producto" HeaderText="Fecha ingreso" />
+                                <asp:BoundField DataField="fecha_ingreso_producto" HeaderText="Fecha ingreso" DataFormatString="{0:dd/MM/yyyy}" />
                                 <asp:BoundField DataField="cantidad_producto" HeaderText="Cantidad Producto" />
 
                                 <asp:ButtonField ButtonType="Link" CommandName="ideditar" ControlStyle-CssClass="btn btn-dark" Text="Editar" />
@@ -80,7 +88,7 @@
 
                             </Columns>
                         </asp:GridView>
-                        <%-- OnPageIndexChanging="idTabla_PageIndexChanging";PageSize="2; AllowPaging="true--%>
+                        
                     </div>
                 </ContentTemplate>
             </asp:UpdatePanel>

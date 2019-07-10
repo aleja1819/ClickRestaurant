@@ -6,10 +6,20 @@ using Pizza_Express_visual.Models;
 
 namespace Pizza_Express_visual.Services
 {
+
+    public class reporte
+    {
+        public int codigo_P { get; set; }
+        public string nombre_P { get; set; }
+        public string rut_P { get; set; }
+        public DateTime fecha_I { get; set; }
+        public int cantidad_P { get; set; }
+    }
+
+
     public class QueryReportes
     {
         private bd9 contexto = new bd9();
-
 
         public List<object> filtrarPorNombre(DateTime date1, DateTime date2)
         {
@@ -29,9 +39,6 @@ namespace Pizza_Express_visual.Services
 
                     int c = re.Count();
                     return re.ToList<object>();
-
-
-
 
                 }
             }
@@ -72,11 +79,6 @@ namespace Pizza_Express_visual.Services
                              select pr;
 
                 return result.ToList();
-
-
-
-
-
             }
             catch (Exception)
             {

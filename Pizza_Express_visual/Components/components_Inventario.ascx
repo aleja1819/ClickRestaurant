@@ -14,10 +14,7 @@
     }
 </style>
 
-
-
 <div class="container">
-    <div class="row">
 
         <div class="col-md-12">
             <asp:UpdatePanel runat="server" ID="uContenedorProducto" UpdateMode="Conditional" ChildrenAsTriggers="true">
@@ -32,11 +29,9 @@
                     </asp:Panel>
 
                     <br />
-                    <br />
-                    <br />
                     <%--PRIMERA COLUMNA--%>
                     <div class="row">
-                        <div class="col-md-8 offset-2 ">
+                        <div class="col-md-8">
 
                             <div class="input-group mb-2">
                                 <asp:TextBox runat="server" ID="tdatoBuscarProducto"
@@ -56,13 +51,19 @@
                         </div>
                         <%--CIERRE COLUMNA--%>
 
+                                     <div class="col-md-4">
+                            <asp:LinkButton runat="server" CssClass="btn btn-primary btn-lg" OnClick="btnVolver_Click" ID="btnVolver">
+                       <i class="fas fa-home"></i>
+                            </asp:LinkButton>      
+                    </div>
+                </div>
+
                         <br />
                         <br />
                         <br />
                         <br />
                        
-              
-
+  
                         <%--SEGUNDA COLUMNA--%>
 
                         <%--TABLA GRIDVIEW--%>
@@ -73,10 +74,11 @@
                                 <HeaderStyle CssClass="btn-success" ForeColor="White" Font-Bold="true" />
 
                                 <Columns>
-                                    <asp:BoundField DataField="codigo_producto" HeaderText="Código" />
+                                    <asp:BoundField DataField="codigo_producto" HeaderText="Código" 
+                                        HeaderStyle-CssClass="ocultarCol" ItemStyle-CssClass="ocultarCol"/>
                                     <asp:BoundField DataField="nombre_producto" HeaderText="Nombre Producto" />
                                     <asp:BoundField DataField="rut_proveedor" HeaderText="Rut Proveedor" />
-                                    <asp:BoundField DataField="fecha_ingreso_producto" HeaderText="Fecha ingreso" />
+                                    <asp:BoundField DataField="fecha_ingreso_producto" HeaderText="Fecha ingreso" DataFormatString="{0:dd/MM/yyyy}" />
                                     <asp:BoundField DataField="cantidad_producto" HeaderText="Cantidad Producto" />
 
                                     <asp:ButtonField ButtonType="Link" CommandName="ideditar" ControlStyle-CssClass="btn btn-dark" Text="Editar" />
@@ -140,5 +142,4 @@
                 </asp:UpdatePanel>
             </div>
         </div>
-    </div>
 </div>

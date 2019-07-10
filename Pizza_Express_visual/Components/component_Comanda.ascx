@@ -1,14 +1,12 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="component_Comanda.ascx.cs" Inherits="Pizza_Express_visual.Components.component_Comanda" %>
 
-<link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cerulean/bootstrap.min.css" rel="stylesheet" integrity="sha384-C++cugH8+Uf86JbNOnQoBweHHAe/wVKN/mb0lTybu/NZ9sEYbd+BbbYtNpWYAsNP" crossorigin="anonymous">
+<link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cerulean/bootstrap.min.css" rel="stylesheet" integrity="sha384-C++cugH8+Uf86JbNOnQoBweHHAe/wVKN/mb0lTybu/NZ9sEYbd+BbbYtNpWYAsNP" crossorigin="anonymous" />
 
 <style>
     .ocultarCol {
         display: none;
     }
 </style>
-
-
 
 <asp:UpdatePanel runat="server" ID="uContenedorUsuario1">
     <ContentTemplate>
@@ -67,40 +65,40 @@
                         <div class="tab-pane fade" id="tabTabla" role="tabpanel">
                             <div class="btn-group" role="group">
 
-                                <asp:LinkButton ID="idTablas" CssClass=" btn btn-info" runat="server" Text="TABLAS"></asp:LinkButton>
+                                <asp:LinkButton ID="idTablas"  OnClick="idTablas_Click" CssClass=" btn btn-success" runat="server" Text="TABLAS"></asp:LinkButton>
 
                             </div>
                         </div>
 
                         <div class="tab-pane fade" id="tabSandiwch" role="tabpanel">
                             <div class="btn-group-vertical" role="group">
-                                <asp:LinkButton ID="idsandiwch" CssClass=" btn btn-success" runat="server" Text="CHURRASCOS"></asp:LinkButton>
+                                <asp:LinkButton ID="idsandiwch" OnClick="idsandiwch_Click" CssClass=" btn btn-success" runat="server" Text="CHURRASCOS"></asp:LinkButton>
                             </div>
                         </div>
 
                         <div class="tab-pane fade" id="tabPicadillo" role="tabpanel">
                             <div class="btn-group-vertical" role="group">
-                                <asp:LinkButton ID="idPapas" CssClass=" btn btn-success" runat="server" Text="PAPASFRITAS"></asp:LinkButton><br />
-                                <asp:LinkButton ID="idsalsa" CssClass=" btn btn-success" runat="server" Text="SALSAS"></asp:LinkButton><br />
-                                <asp:LinkButton ID="idQueso" CssClass=" btn btn-success" runat="server" Text="QUESO "></asp:LinkButton>
+                                <asp:LinkButton ID="idPapas" OnClick="idPapas_Click" CssClass=" btn btn-success" runat="server" Text="PAPASFRITAS"></asp:LinkButton><br />
+                                <asp:LinkButton ID="idsalsa" OnClick="idsalsa_Click" CssClass=" btn btn-success" runat="server" Text="SALSAS"></asp:LinkButton><br />
+                                <asp:LinkButton ID="idQueso" OnClick="idQueso_Click" CssClass=" btn btn-success" runat="server" Text="QUESO "></asp:LinkButton>
 
                             </div>
                         </div>
 
                         <div class="tab-pane fade" id="tabPlatos" role="tabpanel">
                             <div class="btn-group-vertical" role="group">
-                                <asp:LinkButton ID="idPlato" CssClass=" btn btn-success" runat="server" Text="PLATO_CARTA"></asp:LinkButton><br />
-                                <asp:LinkButton ID="idAgregado" CssClass=" btn btn-success" runat="server" Text="AGREGADO"></asp:LinkButton><br />
-                                <asp:LinkButton ID="idEnsalda" CssClass=" btn btn-success" runat="server" Text="ENSALDA "></asp:LinkButton>
+                                <asp:LinkButton ID="idPlato" CssClass=" btn btn-success" OnClick="idPlato_Click" runat="server" Text="PLATO_CARTA"></asp:LinkButton><br />
+                                <asp:LinkButton ID="idAgregado" CssClass=" btn btn-success" OnClick="idAgregado_Click" runat="server" Text="AGREGADO"></asp:LinkButton><br />
+                                <asp:LinkButton ID="idEnsalda" CssClass=" btn btn-success" runat="server" OnClick="idEnsalda_Click" Text="ENSALDA "></asp:LinkButton>
 
                             </div>
                         </div>
 
                         <div class="tab-pane fade" id="tabBebestible" role="tabpanel">
                             <div class="btn-group-vertical" role="group">
-                                <asp:LinkButton ID="idVinos" CssClass=" btn btn-success" runat="server" Text="VINOS"></asp:LinkButton><br />
-                                <asp:LinkButton ID="idBebidas" CssClass=" btn btn-success" runat="server" Text="BEBIDAS"></asp:LinkButton><br />
-                                <asp:LinkButton ID="idJugos" CssClass=" btn btn-success" runat="server" Text="JUGOS "></asp:LinkButton>
+                                <asp:LinkButton ID="idVinos" OnClick="idVinos_Click" CssClass=" btn btn-success" runat="server" Text="VINOS"></asp:LinkButton><br />
+                                <asp:LinkButton ID="idBebidas" OnClick="idBebidas_Click" CssClass=" btn btn-success" runat="server" Text="BEBIDAS"></asp:LinkButton><br />
+                                <asp:LinkButton ID="idJugos" OnClick="idJugos_Click" CssClass=" btn btn-success" runat="server" Text="JUGOS "></asp:LinkButton>
 
                             </div>
                         </div>
@@ -118,7 +116,7 @@
 
                             <Columns>
                                 <asp:BoundField DataField="codigo_menu" HeaderText="Código" />
-                                <asp:BoundField DataField="nombre_menu" HeaderText="Nombre" />
+                                <asp:BoundField DataField="nombre_menu"  HeaderText="Nombre" />
                                 <asp:BoundField DataField="precio_menu" HeaderText="Precio" DataFormatString="${0:N0}" />
                                 <asp:BoundField DataField="ingredientes_menu" HeaderText="Ingredientes" />
 
@@ -162,7 +160,6 @@
                                 <asp:BoundField DataField="cantidad" HeaderText="Cantidad" />
                                 <asp:BoundField DataField="nombre_M" HeaderText="Nombre" />
                                 <asp:BoundField DataField="precio_M" HeaderText="Precio" />
-                                <asp:BoundField DataField="ingre_M" HeaderText="Detalle" />
 
                                 <asp:ButtonField ButtonType="Link" CommandName="ideditar" ControlStyle-CssClass="btn btn-danger" Text="-" />
 

@@ -45,7 +45,6 @@ namespace Pizza_Express_visual.Models
         public virtual DbSet<Producto> Producto { get; set; }
         public virtual DbSet<Producto_Proveedor> Producto_Proveedor { get; set; }
         public virtual DbSet<Proveedor> Proveedor { get; set; }
-        public virtual DbSet<Reserva> Reserva { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TamanoP> TamanoP { get; set; }
         public virtual DbSet<TipoPago> TipoPago { get; set; }
@@ -53,5 +52,6 @@ namespace Pizza_Express_visual.Models
         public virtual DbSet<TipoUsuario> TipoUsuario { get; set; }
         public virtual DbSet<Turno> Turno { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<Reserva> Reserva { get; set; }
     }
 }

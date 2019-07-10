@@ -18,7 +18,7 @@
 <%@ Register Src="~/Components/components_Reservas.ascx" TagPrefix="uc1" TagName="components_Reservas" %>
 <%@ Register Src="~/Components/components_Usuarios.ascx" TagPrefix="uc1" TagName="components_Usuarios" %>
 <%@ Register Src="~/Components/component_Comanda.ascx" TagPrefix="uc1" TagName="component_Comanda" %>
-<%@ Register Src="~/Components/WebUserControl1.ascx" TagPrefix="uc1" TagName="WebUserControl1" %>
+<%--<%@ Register Src="~/Components/WebUserControl1.ascx" TagPrefix="uc1" TagName="WebUserControl1" %>--%>
 
 
 
@@ -59,7 +59,6 @@
                                 <img src="Imagenes/PIZZZA.jpg" class="img-thumbnail img-rounded shadow-lg" style="width: 4rem" />
                             </a>
                             <br />
-                            <br />
 
                             <!-- Toggler/collapsibe Button -->
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -91,7 +90,7 @@
                                         <asp:LinkButton runat="server" ID="Menu_Reservas" OnClick="Menu_Reservas_Click" CssClass="dropdown-item">Reservas</asp:LinkButton>
                                         <asp:LinkButton runat="server" ID="Menu_NumeroMesa" OnClick="Menu_NumeroMesa_Click" CssClass="dropdown-item">Número de mesa</asp:LinkButton>
                                         <asp:LinkButton runat="server" ID="Menu_comanda" OnClick="Menu_comanda_Click" CssClass="dropdown-item">Comanda</asp:LinkButton>
-                                        <asp:LinkButton runat="server" ID="Menu_test" OnClick="Menu_test_Click" CssClass="dropdown-item">test</asp:LinkButton>
+                                        
                                     </div>
                                 </li>
                             </ul>
@@ -164,7 +163,6 @@
                     <br />
 
                 <asp:Panel runat="server" ID="MostrarLogo" Visible="true">
-                    <br />
                     <br />
                     <br />
 
@@ -242,9 +240,7 @@
                     <asp:View runat="server" ID="vComanda">
                         <uc1:component_Comanda runat="server" ID="component_Comanda" />
                     </asp:View>
-                    <asp:View runat="server" ID="vtest">
-                        <uc1:WebUserControl1 runat="server" ID="WebUserControl1" />
-                    </asp:View>
+   
                 </asp:MultiView>
 
             </ContentTemplate>

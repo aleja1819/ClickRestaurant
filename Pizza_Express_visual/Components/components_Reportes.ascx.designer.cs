@@ -13,6 +13,15 @@ namespace Pizza_Express_visual.Components {
     public partial class components_Reportes {
         
         /// <summary>
+        /// Control uConteReport.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel uConteReport;
+        
+        /// <summary>
         /// Control alerta.
         /// </summary>
         /// <remarks>
@@ -67,12 +76,21 @@ namespace Pizza_Express_visual.Components {
         protected global::System.Web.UI.WebControls.LinkButton bGenerarPdf;
         
         /// <summary>
-        /// Control idTabla.
+        /// Control idTablaEnvio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView idTabla;
+        protected global::System.Web.UI.WebControls.GridView idTablaEnvio;
+        
+        /// <summary>
+        /// Control cargaReporte.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView cargaReporte;
     }
 }

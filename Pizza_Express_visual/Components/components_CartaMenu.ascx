@@ -6,7 +6,7 @@
     }
 </style>
 
-<link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cerulean/bootstrap.min.css" rel="stylesheet" integrity="sha384-C++cugH8+Uf86JbNOnQoBweHHAe/wVKN/mb0lTybu/NZ9sEYbd+BbbYtNpWYAsNP" crossorigin="anonymous">
+<link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cerulean/bootstrap.min.css" rel="stylesheet" integrity="sha384-C++cugH8+Uf86JbNOnQoBweHHAe/wVKN/mb0lTybu/NZ9sEYbd+BbbYtNpWYAsNP" crossorigin="anonymous" />
 
 <div class="container">
     <div class="row">
@@ -48,7 +48,7 @@
                         </div>
                         <%--CIERRE COLUMNA--%>
 
-                        <%--SEGUNDA COLUMNA--%>
+                        
 
                         <div class="col-md-3">
                             <asp:LinkButton runat="server" CssClass="btn btn-success" OnClick="bRegistrarMenu_Click" ID="bRegistrarMenu">
@@ -62,13 +62,12 @@
                         </div>
 
                      <div class="col-md-3">
-                            <asp:LinkButton runat="server" CssClass="btn btn-success" OnClick="btnVolver_Click" ID="btnVolver">
+                            <asp:LinkButton runat="server" CssClass="btn btn-primary btn-lg" OnClick="btnVolver_Click" ID="btnVolver">
                        <i class="fas fa-home"></i>
-                            </asp:LinkButton>
-                        <%--CIERRE COLUMNA--%>
+                            </asp:LinkButton>      
                     </div>
 
-
+                        <%--SEGUNDA COLUMNA--%>
                     <%--TABLA GRIDVIEW--%>
                     <div class="col align-content-center">
                         <asp:GridView runat="server" ID="idTabla" CssClass="table table-bordered table-center " AutoGenerateColumns="false"
@@ -76,7 +75,8 @@
                             <HeaderStyle CssClass="btn-success" ForeColor="White" Font-Bold="true" />
 
                             <Columns>
-                                <asp:BoundField DataField="codigo_menu" HeaderText="codigo" />
+                                <asp:BoundField DataField="codigo_menu" HeaderText="codigo" 
+                                     HeaderStyle-CssClass="ocultarCol" ItemStyle-CssClass="ocultarCol"/>
                                 <asp:BoundField DataField="nombre_menu" HeaderText="Nombre Menú" />
                                 <asp:BoundField DataField="precio_menu" DataFormatString="${0:N0}" HeaderText="Precio Menú" />
                                 <asp:BoundField DataField="ingredientes_menu" HeaderText="Ingredientes" />
