@@ -67,10 +67,6 @@ namespace Pizza_Express_visual.Components
             tif.Alignment = iTextSharp.text.Image.ALIGN_RIGHT;
             doc.Add(tif);
 
-            //itsEvents ev = new itsEvents();
-            //pdfWrite.PageEvent = ev;
-            //doc.Open();
-
             iTextSharp.text.Font verdana = FontFactory.GetFont("Verdana", 18, iTextSharp.text.Font.BOLDITALIC, BaseColor.BLACK);
             Paragraph paragraph = new Paragraph(@"Reporte Ingreso de Productos", verdana);
             paragraph.Alignment = Element.ALIGN_CENTER;
@@ -414,5 +410,94 @@ namespace Pizza_Express_visual.Components
                 }
             }
         }
+
+        protected void bPDFVentas_Click(object sender, EventArgs e)
+        {
+            var doc = new Document(PageSize.A5);
+            string path = Server.MapPath("Files");
+            Random r = new Random();
+            string nombre = "Prod_" + r.Next(1, 500) + "_" + DateTime.Now.Second;
+            PdfWriter pdfWrite = PdfWriter.GetInstance(doc, new FileStream(path + nombre, FileMode.OpenOrCreate));
+
+            doc.Open();
+            iTextSharp.text.Image tif = iTextSharp.text.Image.GetInstance(path + "/PIZZZA.jpg");
+            tif.ScalePercent(13f, 9f);
+            tif.Alignment = iTextSharp.text.Image.ALIGN_RIGHT;
+            doc.Add(tif);
+
+            iTextSharp.text.Font verdana = FontFactory.GetFont("Verdana", 18, iTextSharp.text.Font.BOLDITALIC, BaseColor.BLACK);
+            Paragraph paragraph = new Paragraph(@"Reporte de Ventas", verdana);
+            paragraph.Alignment = Element.ALIGN_CENTER;
+            doc.Add(paragraph);
+
+            Paragraph noVali = new Paragraph(" ");
+            noVali.Alignment = Element.ALIGN_CENTER;
+            doc.Add(noVali);
+
+            Paragraph paragraph2 = new Paragraph("Fecha Reporte: " + DateTime.Now.ToString());
+            paragraph2.Alignment = Element.ALIGN_LEFT;
+            paragraph2.PaddingTop = 1;
+            doc.Add(paragraph2);
+
+            Paragraph Vali = new Paragraph(" ");
+            noVali.Alignment = Element.ALIGN_CENTER;
+            doc.Add(Vali);
+
+            Paragraph paragraph3 = new Paragraph();
+            paragraph3.Alignment = Element.ALIGN_LEFT;
+            doc.Add(paragraph3);
+
+            PdfPTable table = new PdfPTable(4);
+            PdfPCell cell = new PdfPCell();
+            cell.HorizontalAlignment = 1; //0=Left, 1=Centre, 2=Right
+            cell.BorderColor = BaseColor.BLACK;
+            cell.BackgroundColor = BaseColor.RED;
+
+            iTextSharp.text.Font letraBlanca = FontFactory.GetFont("Verdana", 12, iTextSharp.text.Font.BOLDITALIC, BaseColor.WHITE);
+            cell.Phrase = new Phrase("Cantidad", letraBlanca);
+            table.AddCell(cell);
+            cell.Phrase = new Phrase("Nombre", letraBlanca);
+            table.AddCell(cell);
+            cell.Phrase = new Phrase("Fecha Ingreso", letraBlanca);
+            table.AddCell(cell);
+            cell.Phrase = new Phrase("Precio", letraBlanca);
+            table.AddCell(cell);
+
+
+            PdfPCell cell0 = new PdfPCell();
+            foreach (var regist in ListaVentas)
+            {
+                cell0.Phrase = new Phrase(regist.cantidad_V.ToString());
+                table.AddCell(cell0);
+
+                cell0.Phrase = new Phrase(regist.nombre_V);
+                table.AddCell(cell0);
+
+                cell0.Phrase = new Phrase(regist.fecha_V.ToString());
+                table.AddCell(cell0);
+
+                cell0.Phrase = new Phrase("$ "+ regist.precio_V.ToString());
+                table.AddCell(cell0);
+
+            }
+
+            doc.Add(table);
+            doc.Close();
+            ShowPdfL((path + nombre));
+
+        }
+        private void ShowPdfL(string strS)
+        {
+            Response.ClearContent();
+            Response.ClearHeaders();
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("Content-Disposition", "attachment; filename=" + strS);
+            //Response.AddHeader("Content-Disposition", "inline; filename=" + strS);
+            // Response.ContentType = "application/octectstream";
+            Response.TransmitFile(strS);
+            Response.End();
+            Response.Flush();
+            Response.Clear();
+        }
     }
-}
+  }

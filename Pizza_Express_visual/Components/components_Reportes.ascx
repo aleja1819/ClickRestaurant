@@ -61,7 +61,7 @@
                         <%--CIERRE COLUMNA--%>
 
                         <div class="col-md-2">
-                            <asp:LinkButton runat="server" CssClass="btn btn-success" ID="bPDFVentas" >
+                            <asp:LinkButton runat="server" CssClass="btn btn-success" ID="bPDFVentas" OnClick="bPDFVentas_Click" >
                          Generar PDF
                             </asp:LinkButton>
                             <br />
@@ -96,7 +96,7 @@
                                 </asp:GridView>
                             </div>
                             <br />
-                            <h3 class="text-center text-body">Detalle Generar Reporte</h3>
+                            <h3 class="text-center text-body">Detalle de Ventas</h3>
                             <br />
 
                             <div class="col align-content-center">
@@ -197,7 +197,7 @@
                                 </asp:GridView>
                             </div>
                             <br />
-                            <h3 class="text-center text-body">Detalle Generar Reporte</h3>
+                            <h3 class="text-center text-body">Detalle Productos</h3>
                             <br />
 
                             <div class="col align-content-center">
