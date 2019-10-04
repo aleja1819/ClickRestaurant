@@ -118,16 +118,21 @@ namespace Pizza_Express_visual
 
             Services.QueryUsuario queryUsuario = new Services.QueryUsuario();
             List<LinkButton> ListaMenu = new List<LinkButton>();
+            ListaMenu.Add(Menu_home);
             ListaMenu.Add(Menu_administracion);
             ListaMenu.Add(Menu_ventas);
+
             queryUsuario.menu(idRol, ListaMenu);
 
             mostrar_usuario.Visible = true;
             MostrarLogo.Visible = false;
 
-            Menu_administracion.Visible = true;
-            Menu_ventas.Visible = true;
-            Menu_home.Visible = true;
+            login.Visible = false;
+            idCerrarSesion.Visible = true;
+
+            //Menu_administracion.Visible = true;
+            //Menu_ventas.Visible = true;
+            //Menu_home.Visible = true;
 
         }
 
