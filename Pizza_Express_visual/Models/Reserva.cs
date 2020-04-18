@@ -18,7 +18,7 @@ namespace Pizza_Express_visual.Models
         public string numero_mesa { get; set; }
         public string nombre_reserva { get; set; }
         public System.DateTime fecha_reser { get; set; }
-        public System.DateTime hora_reser { get; set; }
+        public System.TimeSpan hora_reser { get; set; }
     
         public virtual Mesa Mesa { get; set; }
     }

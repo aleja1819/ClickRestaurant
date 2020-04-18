@@ -27,14 +27,14 @@ namespace Pizza_Express_visual.Services
 
     public class QueryReportes
     {
-        private bd9 contexto = new bd9();
+        private bd11 contexto = new bd11();
 
         public List<object> filtrarPorNombre(DateTime date1, DateTime date2)
         {
             try
             {
             
-                using (bd9 contexto = new bd9())
+                using (bd11 contexto = new bd11())
                 {
 
                     var re = from p in contexto.Producto
@@ -62,7 +62,7 @@ namespace Pizza_Express_visual.Services
             try
             {
 
-                using (bd9 contexto = new bd9())
+                using (bd11 contexto = new bd11())
                 {
 
                     var re = from cc in contexto.ComandaMesa
@@ -92,7 +92,7 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd9 contexto = new bd9())
+                using (bd11 contexto = new bd11())
                 {
 
                     var re = from p in contexto.Producto join pp in contexto.Producto_Proveedor on p.codigo_producto equals pp.codigo_proveedor select new { p.codigo_producto, p.nombre_producto, pp.Proveedor.rut_proveedor, pp.fecha_ingreso_producto, pp.cantidad_producto };

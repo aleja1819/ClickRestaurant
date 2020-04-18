@@ -15,7 +15,7 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd9 contexto = new bd9())
+                using (bd11 contexto = new bd11())
                 {
 
                     var pro = from p in contexto.Proveedor
@@ -39,7 +39,7 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd9 contexto = new bd9())
+                using (bd11 contexto = new bd11())
                 {
 
                     var pro = from t in contexto.TipoProducto
@@ -62,7 +62,7 @@ namespace Pizza_Express_visual.Services
 
             try
             {
-                using (bd9 contexto = new bd9())
+                using (bd11 contexto = new bd11())
                 {
 
                     contexto.Proveedor.Add(prove);
@@ -85,7 +85,7 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd9 contexto = new bd9())
+                using (bd11 contexto = new bd11())
                 {
                     var user = contexto.Proveedor.Find(id_prov);
 
@@ -106,7 +106,7 @@ namespace Pizza_Express_visual.Services
         //BUSCAR
         public List<object> BuscarProveedor(string dato, int filtro)
         {
-            using (bd9 contexto = new bd9())
+            using (bd11 contexto = new bd11())
             {
                 switch (filtro)
                 {
@@ -165,7 +165,7 @@ namespace Pizza_Express_visual.Services
                 try
                 {
                     int idOri = Convert.ToInt32(cod_original);
-                    using (bd9 contexto = new bd9())
+                    using (bd11 contexto = new bd11())
                     {
 
                     //BUSCAR EL PRODUCTO EN LA BD

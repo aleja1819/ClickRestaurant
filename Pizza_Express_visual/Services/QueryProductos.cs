@@ -14,7 +14,7 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd9 contexto = new bd9())
+                using (bd11 contexto = new bd11())
                 {
 
                     var pro = from p in contexto.Producto
@@ -41,7 +41,7 @@ namespace Pizza_Express_visual.Services
 
             try
             {
-                using (bd9 contexto = new bd9())
+                using (bd11 contexto = new bd11())
                 {
 
                     contexto.Producto.Add(prod);
@@ -65,7 +65,7 @@ namespace Pizza_Express_visual.Services
 
             try
             {
-                using (bd9 contexto = new bd9())
+                using (bd11 contexto = new bd11())
                 {
 
                     contexto.Producto_Proveedor.Add(prod_prove);
@@ -87,7 +87,7 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd9 contexto = new bd9())
+                using (bd11 contexto = new bd11())
                 {
                     int cod = contexto.Proveedor.First(x => x.rut_proveedor.Equals(rut)).codigo_proveedor;
                     return cod;
@@ -107,7 +107,7 @@ namespace Pizza_Express_visual.Services
             try
             {
                 int idP = Convert.ToInt32(id_prod);
-                using (bd9 contexto = new bd9())
+                using (bd11 contexto = new bd11())
                 {
                     var user = contexto.Producto.First(p => p.codigo_producto == idP);
 
@@ -131,7 +131,7 @@ namespace Pizza_Express_visual.Services
             try
             {
               
-                using (bd9 contexto = new bd9())
+                using (bd11 contexto = new bd11())
                 {
                     var user = contexto.Producto_Proveedor.First(prod => prod.codigo_proveedor == cod_prove && prod.codigo_producto == id_prod);
 
@@ -152,7 +152,7 @@ namespace Pizza_Express_visual.Services
 
         public List<object> BuscarProductos(string dato, int filtro)
         {
-            using (bd9 contexto = new bd9())
+            using (bd11 contexto = new bd11())
             {
 
                 int cod_prod = 0; //TIENE QUE VER CON EL CONBOBOX
@@ -202,7 +202,7 @@ namespace Pizza_Express_visual.Services
             try
             {
                 int idPro = Convert.ToInt32(cod_original);
-                using (bd9  contexto = new bd9())
+                using (bd11  contexto = new bd11())
                 {
 
                     //BUSCAR EL PRODUCTO EN LA BD
@@ -233,7 +233,7 @@ namespace Pizza_Express_visual.Services
             try
             {
                 int idProve = Convert.ToInt32(cod_original);
-                using (bd9 contexto = new bd9())
+                using (bd11 contexto = new bd11())
                 {
 
                     //BUSCAR EL PRODUCTO EN LA BD

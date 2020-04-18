@@ -22,7 +22,7 @@ public class QueryComanda
 
             try
             {
-                using (bd9 c = new bd9())
+                using (bd11 c = new bd11())
                 {
                     var r = from p in c.Producto_Proveedor
                             where p.fecha_ingreso_producto <= ffin && p.fecha_ingreso_producto >= fini
@@ -41,7 +41,7 @@ public class QueryComanda
         {
             try
             {
-                using (bd9 contexto = new bd9())
+                using (bd11 contexto = new bd11())
                 {
 
                             var Grande = from u in contexto.Menu
@@ -49,7 +49,7 @@ public class QueryComanda
                                          on u.codigo_categoria equals c.codigo_categoria
                                          join t in contexto.TamanoP
                                                on u.codigo_tamanoP equals t.codigo_tamanoP                                               
-                                         where u.codigo_categoria == idcategoria && u.codigo_tamanoP ==idtamano                                   
+                                         where u.codigo_categoria == idcategoria && u.codigo_tamanoP == idtamano                                   
                                          select new
                                          {
                                              u.codigo_menu,
@@ -73,14 +73,14 @@ public class QueryComanda
         public bool addcomanda(List<carro> listaCarro, string num_mesa, int idUser)
         {
             int cod_comanda = 0;
-            using (bd9 c = new bd9())
+            using (bd11 c = new bd11())
             {
                 ComandaMesa comanda = new ComandaMesa { codigo_usuario = idUser, numero_mesa = num_mesa, fecha = DateTime.Now };
                 c.ComandaMesa.Add(comanda);
                 c.SaveChanges();
                 cod_comanda = comanda.codigo_comanda;
             }
-            using (bd9 c = new bd9())
+            using (bd11 c = new bd11())
             {
                 foreach (var item in listaCarro)
                 {

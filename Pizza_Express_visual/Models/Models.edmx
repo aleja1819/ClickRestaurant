@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="PizzaEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="PizzaEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Asignar_Menu">
           <Key>
             <PropertyRef Name="idAsignarMenu" />
@@ -76,8 +76,9 @@
           </Key>
           <Property Name="codigo_menu" Type="int" Nullable="false" />
           <Property Name="codigo_comanda" Type="int" Nullable="false" />
-          <Property Name="cant_Menu" Type="int" Nullable="false" />
-          <Property Name="precio_total" Type="int" Nullable="false" />
+          <Property Name="fecha_comanda" Type="date" Nullable="false" />
+          <Property Name="precio_total" Type="int" />
+          <Property Name="cant_Menu" Type="int" />
         </EntityType>
         <EntityType Name="Estado_caja">
           <Key>
@@ -108,7 +109,7 @@
           <Property Name="codigo_categoria" Type="int" Nullable="false" />
           <Property Name="nombre_menu" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="precio_menu" Type="int" Nullable="false" />
-          <Property Name="ingredientes_menu" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="ingredientes_menu" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="codigo_tamanoP" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Menu_Link">
@@ -167,13 +168,13 @@
         </EntityType>
         <EntityType Name="Producto_Proveedor">
           <Key>
-            <PropertyRef Name="id_roducto_proveedor" />
+            <PropertyRef Name="codigo_producto" />
+            <PropertyRef Name="codigo_proveedor" />
           </Key>
           <Property Name="codigo_producto" Type="int" Nullable="false" />
           <Property Name="codigo_proveedor" Type="int" Nullable="false" />
-          <Property Name="fecha_ingreso_producto" Type="datetime" Nullable="false" />
+          <Property Name="fecha_ingreso_producto" Type="date" Nullable="false" />
           <Property Name="cantidad_producto" Type="int" Nullable="false" />
-          <Property Name="id_roducto_proveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Proveedor">
           <Key>
@@ -195,17 +196,7 @@
           <Property Name="numero_mesa" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="nombre_reserva" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="fecha_reser" Type="date" Nullable="false" />
-          <Property Name="hora_reser" Type="datetime" Nullable="false" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
+          <Property Name="hora_reser" Type="time" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="TamanoP">
           <Key>
@@ -641,7 +632,6 @@
           <EntitySet Name="Producto_Proveedor" EntityType="Self.Producto_Proveedor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Proveedor" EntityType="Self.Proveedor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reserva" EntityType="Self.Reserva" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TamanoP" EntityType="Self.TamanoP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoPago" EntityType="Self.TipoPago" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoProducto" EntityType="Self.TipoProducto" Schema="dbo" store:Type="Tables" />
@@ -769,7 +759,8 @@
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PizzaEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -863,8 +854,9 @@
           </Key>
           <Property Name="codigo_menu" Type="Int32" Nullable="false" />
           <Property Name="codigo_comanda" Type="Int32" Nullable="false" />
-          <Property Name="cant_Menu" Type="Int32" Nullable="false" />
-          <Property Name="precio_total" Type="Int32" Nullable="false" />
+          <Property Name="fecha_comanda" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="precio_total" Type="Int32" />
+          <Property Name="cant_Menu" Type="Int32" />
           <NavigationProperty Name="BoletaComanda" Relationship="Self.fk_BoletaComanda_Detalle_Mesa1" FromRole="Detalle_Mesa" ToRole="BoletaComanda" />
           <NavigationProperty Name="ComandaMesa" Relationship="Self.fk_Menu_has_ComandaMesa_ComandaMesa1" FromRole="Detalle_Mesa" ToRole="ComandaMesa" />
           <NavigationProperty Name="Menu" Relationship="Self.fk_Menu_has_ComandaMesa_Menu1" FromRole="Detalle_Mesa" ToRole="Menu" />
@@ -901,7 +893,7 @@
           <Property Name="codigo_categoria" Type="Int32" Nullable="false" />
           <Property Name="nombre_menu" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="precio_menu" Type="Int32" Nullable="false" />
-          <Property Name="ingredientes_menu" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ingredientes_menu" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="codigo_tamanoP" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Categoria" Relationship="Self.fk_CartaMenu_Categoria1" FromRole="Menu" ToRole="Categoria" />
           <NavigationProperty Name="Comanda_reparto" Relationship="Self.fk_Reparto_Menu1" FromRole="Menu" ToRole="Comanda_reparto" />
@@ -924,7 +916,7 @@
           <Property Name="codigo_estado" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ComandaMesa" Relationship="Self.fk_ComandaMesa_Mesa1" FromRole="Mesa" ToRole="ComandaMesa" />
           <NavigationProperty Name="Estado_Mesa" Relationship="Self.fk_Mesa_Estado_Mesa1" FromRole="Mesa" ToRole="Estado_Mesa" />
-          <NavigationProperty Name="Reserva" Relationship="PizzaEModel.fk_MesaReserva_Mesa1" FromRole="Mesa" ToRole="Reserva" />
+          <NavigationProperty Name="Reserva" Relationship="Self.fk_MesaReserva_Mesa1" FromRole="Mesa" ToRole="Reserva" />
         </EntityType>
         <EntityType Name="Pago">
           <Key>
@@ -976,13 +968,13 @@
         </EntityType>
         <EntityType Name="Producto_Proveedor">
           <Key>
-            <PropertyRef Name="id_roducto_proveedor" />
+            <PropertyRef Name="codigo_producto" />
+            <PropertyRef Name="codigo_proveedor" />
           </Key>
           <Property Name="codigo_producto" Type="Int32" Nullable="false" />
           <Property Name="codigo_proveedor" Type="Int32" Nullable="false" />
-          <Property Name="fecha_ingreso_producto" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fecha_ingreso_producto" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="cantidad_producto" Type="Int32" Nullable="false" />
-          <Property Name="id_roducto_proveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Producto" Relationship="Self.fk_Producto_has_Proveedor_Producto1" FromRole="Producto_Proveedor" ToRole="Producto" />
           <NavigationProperty Name="Proveedor" Relationship="Self.fk_Producto_has_Proveedor_Proveedor1" FromRole="Producto_Proveedor" ToRole="Proveedor" />
         </EntityType>
@@ -1000,15 +992,16 @@
           <NavigationProperty Name="Producto_Proveedor" Relationship="Self.fk_Producto_has_Proveedor_Proveedor1" FromRole="Proveedor" ToRole="Producto_Proveedor" />
           <NavigationProperty Name="TipoProducto" Relationship="Self.fk_Proveedor_TipoProducto1" FromRole="Proveedor" ToRole="TipoProducto" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
+        <EntityType Name="Reserva">
           <Key>
-            <PropertyRef Name="diagram_id" />
+            <PropertyRef Name="codigo_reserva" />
           </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="codigo_reserva" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="numero_mesa" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre_reserva" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fecha_reser" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="hora_reser" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Mesa" Relationship="Self.fk_MesaReserva_Mesa1" FromRole="Reserva" ToRole="Mesa" />
         </EntityType>
         <EntityType Name="TamanoP">
           <Key>
@@ -1328,6 +1321,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_MesaReserva_Mesa1">
+          <End Role="Mesa" Type="Self.Mesa" Multiplicity="1" />
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mesa">
+              <PropertyRef Name="numero_mesa" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="numero_mesa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_Pago_TipoPago1">
           <End Role="TipoPago" Type="Self.TipoPago" Multiplicity="1" />
           <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
@@ -1424,7 +1429,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="bd9" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="bd11" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Asignar_Menu" EntityType="Self.Asignar_Menu" />
           <EntitySet Name="BoletaComanda" EntityType="Self.BoletaComanda" />
           <EntitySet Name="Caja" EntityType="Self.Caja" />
@@ -1445,7 +1450,7 @@
           <EntitySet Name="Producto" EntityType="Self.Producto" />
           <EntitySet Name="Producto_Proveedor" EntityType="Self.Producto_Proveedor" />
           <EntitySet Name="Proveedor" EntityType="Self.Proveedor" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Reserva" EntityType="Self.Reserva" />
           <EntitySet Name="TamanoP" EntityType="Self.TamanoP" />
           <EntitySet Name="TipoPago" EntityType="Self.TipoPago" />
           <EntitySet Name="TipoProducto" EntityType="Self.TipoProducto" />
@@ -1536,6 +1541,10 @@
             <End Role="TamanoP" EntitySet="TamanoP" />
             <End Role="Menu" EntitySet="Menu" />
           </AssociationSet>
+          <AssociationSet Name="fk_MesaReserva_Mesa1" Association="Self.fk_MesaReserva_Mesa1">
+            <End Role="Mesa" EntitySet="Mesa" />
+            <End Role="Reserva" EntitySet="Reserva" />
+          </AssociationSet>
           <AssociationSet Name="fk_Pago_TipoPago1" Association="Self.fk_Pago_TipoPago1">
             <End Role="TipoPago" EntitySet="TipoPago" />
             <End Role="Pago" EntitySet="Pago" />
@@ -1568,41 +1577,13 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Turno" EntitySet="Turno" />
           </AssociationSet>
-          <EntitySet Name="Reserva" EntityType="PizzaEModel.Reserva" />
-          <AssociationSet Name="fk_MesaReserva_Mesa1" Association="PizzaEModel.fk_MesaReserva_Mesa1">
-            <End Role="Mesa" EntitySet="Mesa" />
-            <End Role="Reserva" EntitySet="Reserva" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Reserva">
-          <Key>
-            <PropertyRef Name="codigo_reserva" />
-          </Key>
-          <Property Name="codigo_reserva" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="numero_mesa" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="nombre_reserva" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="fecha_reser" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="hora_reser" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Mesa" Relationship="PizzaEModel.fk_MesaReserva_Mesa1" FromRole="Reserva" ToRole="Mesa" />
-        </EntityType>
-        <Association Name="fk_MesaReserva_Mesa1">
-          <End Type="PizzaEModel.Mesa" Role="Mesa" Multiplicity="1" />
-          <End Type="PizzaEModel.Reserva" Role="Reserva" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Mesa">
-              <PropertyRef Name="numero_mesa" />
-            </Principal>
-            <Dependent Role="Reserva">
-              <PropertyRef Name="numero_mesa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="PizzaEModelStoreContainer" CdmEntityContainer="bd9">
+        <EntityContainerMapping StorageEntityContainer="PizzaEModelStoreContainer" CdmEntityContainer="bd11">
           <EntitySetMapping Name="Asignar_Menu">
             <EntityTypeMapping TypeName="PizzaEModel.Asignar_Menu">
               <MappingFragment StoreEntitySet="Asignar_Menu">
@@ -1679,8 +1660,9 @@
               <MappingFragment StoreEntitySet="Detalle_Mesa">
                 <ScalarProperty Name="codigo_menu" ColumnName="codigo_menu" />
                 <ScalarProperty Name="codigo_comanda" ColumnName="codigo_comanda" />
-                <ScalarProperty Name="cant_Menu" ColumnName="cant_Menu" />
+                <ScalarProperty Name="fecha_comanda" ColumnName="fecha_comanda" />
                 <ScalarProperty Name="precio_total" ColumnName="precio_total" />
+                <ScalarProperty Name="cant_Menu" ColumnName="cant_Menu" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1786,7 +1768,6 @@
                 <ScalarProperty Name="codigo_proveedor" ColumnName="codigo_proveedor" />
                 <ScalarProperty Name="fecha_ingreso_producto" ColumnName="fecha_ingreso_producto" />
                 <ScalarProperty Name="cantidad_producto" ColumnName="cantidad_producto" />
-                <ScalarProperty Name="id_roducto_proveedor" ColumnName="id_roducto_proveedor" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1803,14 +1784,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="PizzaEModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
+          <EntitySetMapping Name="Reserva">
+            <EntityTypeMapping TypeName="PizzaEModel.Reserva">
+              <MappingFragment StoreEntitySet="Reserva">
+                <ScalarProperty Name="codigo_reserva" ColumnName="codigo_reserva" />
+                <ScalarProperty Name="numero_mesa" ColumnName="numero_mesa" />
+                <ScalarProperty Name="nombre_reserva" ColumnName="nombre_reserva" />
+                <ScalarProperty Name="fecha_reser" ColumnName="fecha_reser" />
+                <ScalarProperty Name="hora_reser" ColumnName="hora_reser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1866,17 +1847,6 @@
                 <ScalarProperty Name="contraseña_usuario" ColumnName="contraseña_usuario" />
                 <ScalarProperty Name="rut_usuario" ColumnName="rut_usuario" />
                 <ScalarProperty Name="email_usuario" ColumnName="email_usuario" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Reserva">
-            <EntityTypeMapping TypeName="PizzaEModel.Reserva">
-              <MappingFragment StoreEntitySet="Reserva">
-                <ScalarProperty Name="hora_reser" ColumnName="hora_reser" />
-                <ScalarProperty Name="fecha_reser" ColumnName="fecha_reser" />
-                <ScalarProperty Name="nombre_reserva" ColumnName="nombre_reserva" />
-                <ScalarProperty Name="numero_mesa" ColumnName="numero_mesa" />
-                <ScalarProperty Name="codigo_reserva" ColumnName="codigo_reserva" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -18,7 +18,6 @@ namespace Pizza_Express_visual.Models
         public int codigo_proveedor { get; set; }
         public System.DateTime fecha_ingreso_producto { get; set; }
         public int cantidad_producto { get; set; }
-        public int id_roducto_proveedor { get; set; }
     
         public virtual Producto Producto { get; set; }
         public virtual Proveedor Proveedor { get; set; }

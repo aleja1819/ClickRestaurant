@@ -123,8 +123,9 @@ namespace Pizza_Express_visual.Components
                     string hor = thora.Text;
 
                     DateTime date = Convert.ToDateTime(tfecha.Text);
+                    
                     DateTime hora = Convert.ToDateTime(thora.Text);
-
+                    
                     //TimeZone time = Convert.ToDateTime(thora.Text);
                     //GUARDAR LOS DATOS EN LA LISTA
                     accesoReservas.addReserva(new Models.Reserva
@@ -133,7 +134,7 @@ namespace Pizza_Express_visual.Components
                         numero_mesa = nuMesa,
                         nombre_reserva = nombre_R,
                         fecha_reser = date,
-                        hora_reser = hora
+                        hora_reser = hora.TimeOfDay
 
                     }) ; 
 
