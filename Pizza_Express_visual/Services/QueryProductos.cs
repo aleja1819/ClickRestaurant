@@ -1,9 +1,7 @@
-﻿using System;
+﻿using Pizza_Express_visual.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-
-using Pizza_Express_visual.Models;
 namespace Pizza_Express_visual.Services
 {
     public class QueryProductos
@@ -14,7 +12,7 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd11 contexto = new bd11())
+                using (Pizza_BD1 contexto = new Pizza_BD1())
                 {
 
                     var pro = from p in contexto.Producto
@@ -22,7 +20,7 @@ namespace Pizza_Express_visual.Services
                               on p.codigo_producto equals pp.codigo_producto
                               join prov in contexto.Proveedor
                               on pp.codigo_proveedor equals prov.codigo_proveedor
-                              select new { p.codigo_producto,p.nombre_producto, prov.rut_proveedor, pp.fecha_ingreso_producto, pp.cantidad_producto};
+                              select new { p.codigo_producto, p.nombre_producto, prov.rut_proveedor, pp.fecha_ingreso_producto, pp.cantidad_producto };
 
                     return pro.ToList<object>();
 
@@ -35,59 +33,56 @@ namespace Pizza_Express_visual.Services
             }
         }
 
-        //AGREGAR PROVEEDOR
-        public bool addProducto(Producto prod, ref int idprod)
-       { 
+        public bool addProducto(Producto producto, ref int idproducto)
+        {
 
             try
             {
-                using (bd11 contexto = new bd11())
+                using (Pizza_BD1 contexto = new Pizza_BD1())
                 {
 
-                    contexto.Producto.Add(prod);
+                    contexto.Producto.Add(producto);
                     contexto.SaveChanges();
 
-                    int respuestas = contexto.SaveChanges(); 
-                    idprod = prod.codigo_producto;
-                    return respuestas == 1; 
+                    int respuestas = contexto.SaveChanges();
+                    idproducto = producto.codigo_producto;
+                    return respuestas == 1;
                 }
             }
             catch (Exception e)
+            {
+
+                return e.Equals("");
+            }
+        }
+        public bool addProd_Prove(Producto_Proveedor producto_proveedor)
+        {
+
+            try
+            {
+                using (Pizza_BD1 contexto = new Pizza_BD1())
+                {
+
+                    contexto.Producto_Proveedor.Add(producto_proveedor);
+                    contexto.SaveChanges();
+
+                    int respuestas = contexto.SaveChanges();
+
+                    return respuestas == 1;
+                }
+            }
+            catch (Exception)
             {
 
                 return false;
             }
         }
 
-        //AGREGAR FORANEA PRODUCTO-PROVEEDOR
-        public bool addProd_Prove(Producto_Proveedor prod_prove)
-        {
-
-            try
-            {
-                using (bd11 contexto = new bd11())
-                {
-
-                    contexto.Producto_Proveedor.Add(prod_prove);
-                    contexto.SaveChanges();
-
-                    int respuestas = contexto.SaveChanges(); 
-
-                    return respuestas == 1; 
-                }
-            }
-            catch (Exception e)
-            {
-
-                return false;
-            }
-        }
-
-        public int codigoProvee(string rut)
+        public int codigoProveedor(string rut)
         {
             try
             {
-                using (bd11 contexto = new bd11())
+                using (Pizza_BD1 contexto = new Pizza_BD1())
                 {
                     int cod = contexto.Proveedor.First(x => x.rut_proveedor.Equals(rut)).codigo_proveedor;
                     return cod;
@@ -100,16 +95,15 @@ namespace Pizza_Express_visual.Services
 
         }
 
-        //ELIMINAR
-        public bool eliminarProducto(int id_prod)
+        public bool eliminarProducto(int idProducto)
         {
 
             try
             {
-                int idP = Convert.ToInt32(id_prod);
-                using (bd11 contexto = new bd11())
+                int idProduct = Convert.ToInt32(idProducto);
+                using (Pizza_BD1 contexto = new Pizza_BD1())
                 {
-                    var user = contexto.Producto.First(p => p.codigo_producto == idP);
+                    var user = contexto.Producto.First(p => p.codigo_producto == idProduct);
 
                     contexto.Producto.Remove(user);
                     contexto.SaveChanges();
@@ -125,15 +119,15 @@ namespace Pizza_Express_visual.Services
 
         }
 
-        public bool eliminarProductoProvee(int id_prod, int cod_prove)
+        public bool eliminarProductoProvee(int idProducto, int idProveedor)
         {
 
             try
             {
-              
-                using (bd11 contexto = new bd11())
+
+                using (Pizza_BD1 contexto = new Pizza_BD1())
                 {
-                    var user = contexto.Producto_Proveedor.First(prod => prod.codigo_proveedor == cod_prove && prod.codigo_producto == id_prod);
+                    var user = contexto.Producto_Proveedor.First(prod => prod.codigo_proveedor == idProveedor && prod.codigo_producto == idProducto);
 
                     contexto.Producto_Proveedor.Remove(user);
                     contexto.SaveChanges();
@@ -152,27 +146,27 @@ namespace Pizza_Express_visual.Services
 
         public List<object> BuscarProductos(string dato, int filtro)
         {
-            using (bd11 contexto = new bd11())
+            using (Pizza_BD1 contexto = new Pizza_BD1())
             {
 
-                int cod_prod = 0; //TIENE QUE VER CON EL CONBOBOX
-                int.TryParse(dato, out cod_prod); //PARA CONVERTIR EL RUTBUSCAR
+                int cod_prod = 0; 
+                int.TryParse(dato, out cod_prod); 
 
                 switch (filtro)
                 {
-                    case 0: //BUSCAR POR NOMBRE
-                        var pNombre = from p in contexto.Producto
-                                  where p.nombre_producto.ToLower().StartsWith(dato.ToLower())
-                                  join pp in contexto.Producto_Proveedor
-                                  on p.codigo_producto equals pp.codigo_producto
-                                  join prov in contexto.Proveedor
-                                  on pp.codigo_proveedor equals prov.codigo_proveedor
-                                  select new { p.codigo_producto, p.nombre_producto, prov.rut_proveedor, pp.fecha_ingreso_producto, pp.cantidad_producto};
-                
+                    case 0: 
+                        var retornoNombre = from p in contexto.Producto
+                                      where p.nombre_producto.ToLower().StartsWith(dato.ToLower())
+                                      join pp in contexto.Producto_Proveedor
+                                      on p.codigo_producto equals pp.codigo_producto
+                                      join prov in contexto.Proveedor
+                                      on pp.codigo_proveedor equals prov.codigo_proveedor
+                                      select new { p.codigo_producto, p.nombre_producto, prov.rut_proveedor, pp.fecha_ingreso_producto, pp.cantidad_producto };
 
-                        return pNombre.ToList<object>();
-                    case 1: //BUSCAR POR CODIGO
-                        var pCodigo = from p in contexto.Producto
+
+                        return retornoNombre.ToList<object>();
+                    case 1: 
+                        var retornoCodigo = from p in contexto.Producto
                                       where p.codigo_producto == cod_prod
                                       join pp in contexto.Producto_Proveedor
                                       on p.codigo_producto equals pp.codigo_producto
@@ -180,41 +174,34 @@ namespace Pizza_Express_visual.Services
                                       on pp.codigo_proveedor equals prov.codigo_proveedor
                                       select new { p.codigo_producto, p.nombre_producto, prov.rut_proveedor, pp.fecha_ingreso_producto, pp.cantidad_producto };
 
-                        return pCodigo.ToList<object>();
+                        return retornoCodigo.ToList<object>();
                     default:
-                        var rTodo = from p in contexto.Producto
+                        var retornoTodo = from p in contexto.Producto
                                     join pp in contexto.Producto_Proveedor
                                     on p.codigo_producto equals pp.codigo_producto
                                     join prov in contexto.Proveedor
                                     on pp.codigo_proveedor equals prov.codigo_proveedor
                                     select new { p.codigo_producto, p.nombre_producto, prov.rut_proveedor, pp.fecha_ingreso_producto, pp.cantidad_producto };
 
-                        return rTodo.ToList<object>();
+                        return retornoTodo.ToList<object>();
                 }
-
-
             }
         }
 
-        public bool editarProducto(Producto producto,  int cod_original)
+        public bool editarProducto(Producto producto, int idOriginal)
         {
 
             try
             {
-                int idPro = Convert.ToInt32(cod_original);
-                using (bd11  contexto = new bd11())
+                int idProducto = Convert.ToInt32(idOriginal);
+                using (Pizza_BD1 contexto = new Pizza_BD1())
                 {
 
-                    //BUSCAR EL PRODUCTO EN LA BD
-
-                    var user = contexto.Producto.First(prod => prod.codigo_producto == idPro);
+                    var user = contexto.Producto.First(prod => prod.codigo_producto == idProducto);
 
                     //MODIFICAR LOS CAMPOS QUE NECESITO
-
                     user.nombre_producto = producto.nombre_producto;
-                    
 
-                    //GUARDAR LOS CAMBIOS EN LA TABLA B
                     int respuesta = contexto.SaveChanges();
                     return respuesta == 1;
 
@@ -227,24 +214,20 @@ namespace Pizza_Express_visual.Services
             }
         }
 
-        public bool editarProductoProveedor(Producto_Proveedor prove, int cod_original)
-            {
+        public bool editarProductoProveedor(Producto_Proveedor prove, int idOriginal)
+        {
 
             try
             {
-                int idProve = Convert.ToInt32(cod_original);
-                using (bd11 contexto = new bd11())
+                int idProveedor = Convert.ToInt32(idOriginal);
+                using (Pizza_BD1 contexto = new Pizza_BD1())
                 {
 
-                    //BUSCAR EL PRODUCTO EN LA BD
-                    var user = contexto.Producto_Proveedor.First(prod => prod.codigo_proveedor == prove.codigo_proveedor && prod.codigo_producto == idProve);
+                    var user = contexto.Producto_Proveedor.First(prod => prod.codigo_proveedor == prove.codigo_proveedor && prod.codigo_producto == idProveedor);
 
-                    //MODIFICAR LOS CAMPOS QUE NECESITO
-              
                     user.fecha_ingreso_producto = prove.fecha_ingreso_producto;
                     user.cantidad_producto = prove.cantidad_producto;
 
-                    //GUARDAR LOS CAMBIOS EN LA TABLA B
                     int respuesta = contexto.SaveChanges();
                     return respuesta == 1;
 
@@ -252,8 +235,7 @@ namespace Pizza_Express_visual.Services
             }
             catch (Exception)
             {
-
-                return false;
+             return false;
             }
         }
 

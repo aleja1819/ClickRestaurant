@@ -1,10 +1,8 @@
-﻿using System;
+﻿using Pizza_Express_visual.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.UI.WebControls;
-
-using Pizza_Express_visual.Models;
 
 namespace Pizza_Express_visual.Services
 {
@@ -16,7 +14,7 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd11 contexto = new bd11())
+                using (Pizza_BD1 contexto = new Pizza_BD1())
                 {
 
                     var r = from u in contexto.Usuario
@@ -51,7 +49,7 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd11 contexto = new bd11())
+                using (Pizza_BD1 contexto = new Pizza_BD1())
                 {
 
                     var r = from t in contexto.TipoUsuario
@@ -71,7 +69,7 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd11 contexto = new bd11())
+                using (Pizza_BD1 contexto = new Pizza_BD1())
                 {
 
                     var r = from e in contexto.Estado_Usuario
@@ -87,13 +85,12 @@ namespace Pizza_Express_visual.Services
             }
         }
 
-        //AGREGAR USUARIO
         public bool addUsuario(Usuario user)
         {
 
             try
             {
-                using (bd11 contexto = new bd11())
+                using (Pizza_BD1 contexto = new Pizza_BD1())
                 {
 
                     contexto.Usuario.Add(user);
@@ -111,15 +108,14 @@ namespace Pizza_Express_visual.Services
             }
         }
 
-        //ELIMINAR USUARIO
-        public bool eliminarUsuario(int codigo_user)
+        public bool eliminarUsuario(int idUsuario)
         {
 
             try
             {
-                using (bd11 contexto = new bd11())
+                using (Pizza_BD1 contexto = new Pizza_BD1())
                 {
-                    var user = contexto.Usuario.Find(codigo_user);
+                    var user = contexto.Usuario.Find(idUsuario);
 
                     contexto.Usuario.Remove(user);
                     contexto.SaveChanges();
@@ -134,21 +130,18 @@ namespace Pizza_Express_visual.Services
             }
 
         }
-
-        public bool editarUsuario(Usuario usuario, string cod_original)
+        public bool editarUsuario(Usuario usuario, string idOriginal)
         {
 
             try
             {
-                int idOri = Convert.ToInt32(cod_original);
-                using (bd11 contexto = new bd11())
+                int idOri = Convert.ToInt32(idOriginal);
+                using (Pizza_BD1 contexto = new Pizza_BD1())
                 {
 
-                    //BUSCAR EL PRODUCTO EN LA BD
                     var user = contexto.Usuario.First(usu => usu.codigo_usuario == idOri);
 
                     //MODIFICAR LOS CAMPOS QUE NECESITO
-
                     user.rut_usuario = usuario.rut_usuario;
                     user.nombre_usuario = usuario.nombre_usuario;
                     user.email_usuario = usuario.email_usuario;
@@ -156,7 +149,6 @@ namespace Pizza_Express_visual.Services
                     user.codigo_tipoUsuario = usuario.codigo_tipoUsuario;
                     user.codigo_estado = usuario.codigo_estado;
 
-                    //GUARDAR LOS CAMBIOS EN LA TABLA B
                     int respuesta = contexto.SaveChanges();
                     return respuesta == 1;
 
@@ -169,14 +161,14 @@ namespace Pizza_Express_visual.Services
             }
         }
 
-        public List<object> BuscarrUsuarios(string dato, int filtro)
+        public List<object> BuscarUsuarios(string dato, int filtro)
         {
-            using (bd11 contexto = new bd11())
+            using (Pizza_BD1 contexto = new Pizza_BD1())
             {
                 switch (filtro)
                 {
-                    case 0: //BUSCAR POR RUT
-                        var rRut = from u in contexto.Usuario
+                    case 0: 
+                        var retornoRut = from u in contexto.Usuario
                                    where u.rut_usuario.ToLower().StartsWith(dato.ToLower())
                                    join t in contexto.TipoUsuario
                                    on u.codigo_tipoUsuario equals t.codigo_tipoUsuario
@@ -195,9 +187,9 @@ namespace Pizza_Express_visual.Services
                                        e.nombre_estado
                                    };
 
-                        return rRut.ToList<object>();
-                    case 1: //BUSCAR POR nombre
-                        var rNombre = from u in contexto.Usuario
+                        return retornoRut.ToList<object>();
+                    case 1: 
+                        var retornoNombre = from u in contexto.Usuario
                                       where u.nombre_usuario.ToLower().StartsWith(dato.ToLower())
                                       join t in contexto.TipoUsuario
                                       on u.codigo_tipoUsuario equals t.codigo_tipoUsuario
@@ -216,9 +208,9 @@ namespace Pizza_Express_visual.Services
                                           e.nombre_estado
                                       };
 
-                        return rNombre.ToList<object>();
+                        return retornoNombre.ToList<object>();
                     default:
-                        var rTodo = from u in contexto.Usuario
+                        var retornarTodo = from u in contexto.Usuario
                                     join t in contexto.TipoUsuario
                                     on u.codigo_tipoUsuario equals t.codigo_tipoUsuario
                                     join e in contexto.Estado_Usuario
@@ -236,7 +228,7 @@ namespace Pizza_Express_visual.Services
                                         e.nombre_estado
                                     };
 
-                        return rTodo.ToList<object>();
+                        return retornarTodo.ToList<object>();
                 }
 
             }
@@ -247,15 +239,15 @@ namespace Pizza_Express_visual.Services
 
             try
             {
-                using (bd11 contexto = new bd11())
+                using (Pizza_BD1 contexto = new Pizza_BD1())
                 {
 
 
                     var result = from a in contexto.Asignar_Menu
-                                  join m in contexto.Menu_Link
-                                  on a.idMenu equals m.idMenu
-                                  where a.codigo_tipoUsuario == idRol
-                                  select new { m.linkMenu};
+                                 join m in contexto.Menu_Link
+                                 on a.idMenu equals m.idMenu
+                                 where a.codigo_tipoUsuario == idRol
+                                 select new { m.linkMenu };
 
                     foreach (var sis in result.ToList())
                     {
@@ -266,7 +258,7 @@ namespace Pizza_Express_visual.Services
                                 menu.Visible = true;
                             }
                         }
-                        
+
                     }
 
                     return links;
@@ -281,11 +273,10 @@ namespace Pizza_Express_visual.Services
         public int[] validateUser(string user, string clave)
         {
 
-
             int[] respuesta = new int[5];
             try
             {
-                using (bd11 contexto = new bd11())
+                using (Pizza_BD1 contexto = new Pizza_BD1())
                 {
 
                     var result = from u in contexto.Usuario

@@ -28,7 +28,6 @@
                      <div class="container col-12 offset-2">
                     <div class="row">
 
-                        <%--ALERTA DE MENSAJE--%>
                         <asp:Panel runat="server" ID="Panel1" Visible="false">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -58,7 +57,6 @@
                             </div>
                         </div>
 
-                        <%--CIERRE COLUMNA--%>
 
                         <div class="col-md-2">
                             <asp:LinkButton runat="server" CssClass="btn btn-success" ID="bPDFVentas" OnClick="bPDFVentas_Click" >
@@ -69,7 +67,7 @@
                             <br />
                             <br />
                         </div>
-                        <%--CIERRE COLUMNA--%>
+
                     </div>
                 </div>
                 <div class="container col-10">
@@ -128,7 +126,6 @@
                 <div class="container col-12 offset-2">
                     <div class="row">
 
-                        <%--ALERTA DE MENSAJE--%>
                         <asp:Panel runat="server" ID="alerta" Visible="false">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -158,7 +155,6 @@
                             </div>
                         </div>
 
-                        <%--CIERRE COLUMNA--%>
 
                         <div class="col-md-2">
                             <asp:LinkButton runat="server" CssClass="btn btn-success" ID="bGenerarPdf" OnClick="bGenerarPdf_Click">
@@ -169,7 +165,7 @@
                             <br />
                             <br />
                         </div>
-                        <%--CIERRE COLUMNA--%>
+
                     </div>
                 </div>
                 <div class="container col-10">
@@ -225,8 +221,8 @@
                 </asp:MultiView>
             </div>
     </ContentTemplate>
+        
     <Triggers>
-        <%--<asp:AsyncPostBackTrigger ControlID="bGenerarPDF"  EventName="Click"/>--%>
         <asp:PostBackTrigger ControlID="bGenerarPdf" />
         <asp:PostBackTrigger ControlID="bPDFVentas" />
     </Triggers>

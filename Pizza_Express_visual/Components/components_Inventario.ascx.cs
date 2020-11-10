@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Pizza_Express_visual.Services;
+using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
-using Pizza_Express_visual.Services;
 namespace Pizza_Express_visual.Components
 {
     public partial class components_Inventario : System.Web.UI.UserControl
@@ -17,7 +13,6 @@ namespace Pizza_Express_visual.Components
             if (!IsPostBack)
             {
 
-                //PARA MOSTRAR LOS PRODUCTOS DE LA BASE DE DATOS
                 idTablaInven.DataSource = accesoProductos.filtrarProductos();
                 idTablaInven.DataBind();
 
@@ -35,7 +30,6 @@ namespace Pizza_Express_visual.Components
             }
             else
             {
-                //AL GUARDAR UN PRODUCTO
                 tcantidad.Text = "";
             }
         }
@@ -114,7 +108,7 @@ namespace Pizza_Express_visual.Components
 
                 uContenedorProducto.Update();
                 uModalProducto.Update();
-              
+
 
                 if (cant == 0)
                 {
@@ -149,7 +143,7 @@ namespace Pizza_Express_visual.Components
                     string rut_Prove = trut.Text;
                     string fecha = tfecha.Text;
                     string cantidad = tcantidad.Text;
-                    int cod = accesoProductos.codigoProvee(rut_Prove);
+                    int cod = accesoProductos.codigoProveedor(rut_Prove);
                     int idProd = 0;
                     if (cod == -1)
                     {
@@ -235,4 +229,3 @@ namespace Pizza_Express_visual.Components
         }
     }
 }
-    

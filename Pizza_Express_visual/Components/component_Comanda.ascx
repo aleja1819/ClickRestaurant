@@ -78,9 +78,7 @@
 
                         <div class="tab-pane fade" id="tabPicadillo" role="tabpanel">
                             <div class="btn-group-vertical" role="group">
-                                <asp:LinkButton ID="idPapas" OnClick="idPapas_Click" CssClass=" btn btn-success" runat="server" Text="PAPASFRITAS"></asp:LinkButton><br />
-                                <asp:LinkButton ID="idsalsa" OnClick="idsalsa_Click" CssClass=" btn btn-success" runat="server" Text="SALSAS"></asp:LinkButton><br />
-                                <asp:LinkButton ID="idQueso" OnClick="idQueso_Click" CssClass=" btn btn-success" runat="server" Text="QUESO "></asp:LinkButton>
+                                <asp:LinkButton ID="idQueso" OnClick="idPicadillo_Click" CssClass=" btn btn-success" runat="server" Text="PICADILLO"></asp:LinkButton>
 
                             </div>
                         </div>
@@ -98,8 +96,8 @@
                             <div class="btn-group-vertical" role="group">
                                 <asp:LinkButton ID="idVinos" OnClick="idVinos_Click" CssClass=" btn btn-success" runat="server" Text="VINOS"></asp:LinkButton><br />
                                 <asp:LinkButton ID="idBebidas" OnClick="idBebidas_Click" CssClass=" btn btn-success" runat="server" Text="BEBIDAS"></asp:LinkButton><br />
-                                <asp:LinkButton ID="idJugos" OnClick="idJugos_Click" CssClass=" btn btn-success" runat="server" Text="JUGOS "></asp:LinkButton>
-
+                                <asp:LinkButton ID="idJugos" OnClick="idJugos_Click" CssClass=" btn btn-success" runat="server" Text="JUGOS "></asp:LinkButton><br />
+                                <asp:LinkButton ID="idLicores" OnClick="idLicores_Click" CssClass=" btn btn-success" runat="server" Text="LICORES "></asp:LinkButton>
                             </div>
                         </div>
 
@@ -124,12 +122,14 @@
 
                             </Columns>
                         </asp:GridView>
-                        <%-- OnPageIndexChanging="idTabla_PageIndexChanging";PageSize="2; AllowPaging="true;--%>
                     </div>
                 </div>
             </div>
 
             <div class="row">
+
+
+
                 <div class="col-md-4">
                     <hr />
 
@@ -142,10 +142,17 @@
                     <br />
 
                     <div class="container offset-3">
+
                         <asp:Button runat="server" ID="btnGenerarPDF" OnClick="btnGenerarPDF_Click" Text="Enviar Comanda" CssClass="btn btn-warning" />
-                        <asp:Button runat="server" ID="btnpago" OnClick="btnpago_Click1" Text="Pagar" CssClass="btn btn-danger" />
+                        <asp:Button runat="server" ID="btnpagos" OnClick="btnpago_Click" Text="Pagar" CssClass="btn btn-danger" />
+                       <%-- <asp:LinkButton runat="server" CssClass="btn btn-danger" OnClick="PagarModal_Click" ID="PagarModal" Text="Pagar">
+                            </asp:LinkButton>--%>
                         <asp:Button runat="server" ID="btnNuevo" OnClick="btnNuevo_Click" Text="Nuevo" CssClass="btn btn-info" />
+                              
+                        
+ 
                     </div>
+
                 </div>
                 <div class="col-md-8">
                     <hr />
@@ -165,22 +172,58 @@
 
                             </Columns>
                         </asp:GridView>
-                        <%-- OnPageIndexChanging="idTabla_PageIndexChanging";PageSize="2; AllowPaging="true;--%>
+   
                     </div>
                 </div>
 
             </div>
             <%--FIN ROW--%>
         </div>
+
+
     </ContentTemplate>
 
     <Triggers>
-        <%--<asp:AsyncPostBackTrigger ControlID="bGenerarPDF"  EventName="Click"/>--%>
         <asp:PostBackTrigger ControlID="btnGenerarPDF" />
-        <asp:PostBackTrigger ControlID="btnpago" />
+        <asp:PostBackTrigger ControlID="btnpagos" />
     </Triggers>
 
 </asp:UpdatePanel>
+
+ <div class="modal" id="myModalComanda" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg bg-light" role="document">
+
+                <asp:UpdatePanel ID="uModalComanda" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
+                    <ContentTemplate>
+
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <h5 class="modal-title"><span class="badge badge-pill badge-info badge-center">PROVEEDORES</span></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <div class="modal-body">
+
+                                <%--<div class="form-group">
+                                    <label for="trut">Rut Proveedor (*)</label>
+                                      <div class="input-group mb-2">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text text-info"><i class="fas fa-user"></i></div>
+                                        </div>
+                                        <asp:TextBox runat="server" placeholder="Rut Proveedor" ID="trut" CssClass="form-control bg-secondary"></asp:TextBox>
+                                        <asp:Label runat="server" ID="valida_trut" CssClass="invalid-feedback" Text="Complete campos, Ingrese Rut"></asp:Label>
+                                    </div>
+                                </div>--%>
+
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+        </div>
+
+
 
 
 

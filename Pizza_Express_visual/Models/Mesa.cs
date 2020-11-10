@@ -21,8 +21,9 @@ namespace Pizza_Express_visual.Models
             this.Reserva = new HashSet<Reserva>();
         }
     
-        public string numero_mesa { get; set; }
+        public int idMesa { get; set; }
         public int codigo_estado { get; set; }
+        public string numeroMesa { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ComandaMesa> ComandaMesa { get; set; }

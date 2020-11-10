@@ -1,8 +1,7 @@
-﻿using System;
+﻿using Pizza_Express_visual.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using Pizza_Express_visual.Models;
 
 namespace Pizza_Express_visual.Services
 {
@@ -16,37 +15,38 @@ namespace Pizza_Express_visual.Services
         public int cantidad_P { get; set; }
     }
 
-    public class ventas {
+    public class ventas
+    {
 
         public int codigo_C { get; set; }
         public int cantidad_V { get; set; }
         public string nombre_V { get; set; }
         public DateTime fecha_V { get; set; }
-        public int precio_V { get; set; }       
+        public int precio_V { get; set; }
     }
 
     public class QueryReportes
     {
-        private bd11 contexto = new bd11();
+        private Pizza_BD1 contexto = new Pizza_BD1();
 
-        public List<object> filtrarPorNombre(DateTime date1, DateTime date2)
+        public List<object> filtrarPorNombre(DateTime FechaInicial, DateTime FechaTermino)
         {
             try
             {
-            
-                using (bd11 contexto = new bd11())
+
+                using (Pizza_BD1 contexto = new Pizza_BD1())
                 {
 
-                    var re = from p in contexto.Producto
+                    var retornoReporte = from p in contexto.Producto
                              join pp in contexto.Producto_Proveedor
                              on p.codigo_producto equals pp.codigo_producto
-                             where (pp.fecha_ingreso_producto.Day <=date2.Day && pp.fecha_ingreso_producto.Month <=date2.Month && pp.fecha_ingreso_producto.Year<=date2.Year)                             
-                             && 
-                             (pp.fecha_ingreso_producto.Day >=date1.Day && pp.fecha_ingreso_producto.Month >= date1.Month && pp.fecha_ingreso_producto.Year >= date1.Year)                             
+                             where (pp.fecha_ingreso_producto.Day <= FechaTermino.Day && pp.fecha_ingreso_producto.Month <= FechaTermino.Month && pp.fecha_ingreso_producto.Year <= FechaTermino.Year)
+                             &&
+                             (pp.fecha_ingreso_producto.Day >= FechaInicial.Day && pp.fecha_ingreso_producto.Month >= FechaInicial.Month && pp.fecha_ingreso_producto.Year >= FechaInicial.Year)
                              select new { p.codigo_producto, p.nombre_producto, pp.Proveedor.rut_proveedor, pp.fecha_ingreso_producto, pp.cantidad_producto };
 
-                    int c = re.Count();
-                    return re.ToList<object>();
+                    int c = retornoReporte.Count();
+                    return retornoReporte.ToList<object>();
 
                 }
             }
@@ -57,26 +57,26 @@ namespace Pizza_Express_visual.Services
             }
         }
 
-        public List<object> reporteVenta(DateTime date1, DateTime date2)
+        public List<object> reporteVenta(DateTime FechaInicial, DateTime fechaTermino)
         {
             try
             {
 
-                using (bd11 contexto = new bd11())
+                using (Pizza_BD1 contexto = new Pizza_BD1())
                 {
 
-                    var re = from cc in contexto.ComandaMesa
+                    var retornoReporte = from cc in contexto.ComandaMesa
                              join dm in contexto.Detalle_Mesa
                              on cc.codigo_comanda equals dm.codigo_comanda
                              join m in contexto.Menu
                              on dm.codigo_menu equals m.codigo_menu
-                             where (cc.fecha.Day <= date2.Day && cc.fecha.Month <= date2.Month && cc.fecha.Year <= date2.Year)
+                             where (cc.fecha.Day <= fechaTermino.Day && cc.fecha.Month <= fechaTermino.Month && cc.fecha.Year <= fechaTermino.Year)
                              &&
-                             (cc.fecha.Day >= date1.Day && cc.fecha.Month >= date1.Month && cc.fecha.Year >= date1.Year)
+                             (cc.fecha.Day >= FechaInicial.Day && cc.fecha.Month >= FechaInicial.Month && cc.fecha.Year >= FechaInicial.Year)
                              select new { dm.codigo_comanda, dm.cant_Menu, dm.precio_total, cc.fecha, m.nombre_menu };
 
-                    int c = re.Count();
-                    return re.ToList<object>();
+                    int c = retornoReporte.Count();
+                    return retornoReporte.ToList<object>();
 
                 }
             }
@@ -92,13 +92,13 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd11 contexto = new bd11())
+                using (Pizza_BD1 contexto = new Pizza_BD1())
                 {
 
-                    var re = from p in contexto.Producto join pp in contexto.Producto_Proveedor on p.codigo_producto equals pp.codigo_proveedor select new { p.codigo_producto, p.nombre_producto, pp.Proveedor.rut_proveedor, pp.fecha_ingreso_producto, pp.cantidad_producto };
+                    var retornoReporte = from p in contexto.Producto join pp in contexto.Producto_Proveedor on p.codigo_producto equals pp.codigo_proveedor select new { p.codigo_producto, p.nombre_producto, pp.Proveedor.rut_proveedor, pp.fecha_ingreso_producto, pp.cantidad_producto };
 
 
-                    return re.ToList<object>();
+                    return retornoReporte.ToList<object>();
                 }
             }
             catch (Exception)

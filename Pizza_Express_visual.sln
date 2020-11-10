@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestSprint2", "UnitTestSprint2\UnitTestSprint2.csproj", "{C7BE19C1-74FD-4B9B-AC9D-CDCE97237C97}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pizza_Express_visual", "Pizza_Express_visual\Pizza_Express_visual.csproj", "{F126BB88-1A05-4E3D-A114-30B7F362C321}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestInicioSesion", "TestInicioSesion\TestInicioSesion.csproj", "{26B8AD0E-9821-4D4E-A935-4E7F64378FC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C7BE19C1-74FD-4B9B-AC9D-CDCE97237C97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7BE19C1-74FD-4B9B-AC9D-CDCE97237C97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7BE19C1-74FD-4B9B-AC9D-CDCE97237C97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7BE19C1-74FD-4B9B-AC9D-CDCE97237C97}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F126BB88-1A05-4E3D-A114-30B7F362C321}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F126BB88-1A05-4E3D-A114-30B7F362C321}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F126BB88-1A05-4E3D-A114-30B7F362C321}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F126BB88-1A05-4E3D-A114-30B7F362C321}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26B8AD0E-9821-4D4E-A935-4E7F64378FC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26B8AD0E-9821-4D4E-A935-4E7F64378FC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26B8AD0E-9821-4D4E-A935-4E7F64378FC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26B8AD0E-9821-4D4E-A935-4E7F64378FC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

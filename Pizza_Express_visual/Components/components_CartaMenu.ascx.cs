@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Pizza_Express_visual.Services;
+using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
-using Pizza_Express_visual.Services;
 namespace Pizza_Express_visual.Components
 {
     public partial class components_CartaMenu : System.Web.UI.UserControl
@@ -17,21 +13,19 @@ namespace Pizza_Express_visual.Components
         {
             if (!IsPostBack)
             {
-                //PARA MOSTRAR LOS USUARIOS DE LA BASE DE DATOS
+
                 idTabla.DataSource = accesoMenu.filtrarMenu();
                 idTabla.DataBind();
 
                 uModalMenu.Update();
                 uContenedorMenu.Update();
 
-                //PARA MOSTRAR LOS TAMAÑOS DE PIZZA
                 ftamano.DataSource = accesoMenu.filtrarTamanoP();
                 ftamano.DataBind();
 
                 uModalMenu.Update();
                 uContenedorMenu.Update();
 
-                //PARA CATEGORIAS
                 fcategoria.DataSource = accesoMenu.filtrarCategoria();
                 fcategoria.DataBind();
 
@@ -52,10 +46,10 @@ namespace Pizza_Express_visual.Components
             uContenedorMenu.Update();
         }
 
-        private void limpiarTodo(int op)
+        private void limpiarTodo(int opcion)
         {
 
-            if (op == 1)
+            if (opcion == 1)
             {
                 tnombre.Text = "";
                 tprecio.Text = "";
@@ -70,7 +64,7 @@ namespace Pizza_Express_visual.Components
                 tprecio.Text = "";
                 tingredientes.Text = "";
                 ftamano.SelectedIndex = 0;
-                fcategoria.SelectedIndex = 0; 
+                fcategoria.SelectedIndex = 0;
 
             }
         }
@@ -132,7 +126,7 @@ namespace Pizza_Express_visual.Components
                     correcto = false;
                 }
             }
-        
+
             if (tingredientes.Text.Equals(""))
             {
                 MostrarError(tingredientes, valida_tingrediente, 0);
@@ -161,7 +155,7 @@ namespace Pizza_Express_visual.Components
                     string nombre_P = tnombre.Text;
                     string precio_p = tprecio.Text;
                     string ingredientes_p = tingredientes.Text;
- 
+
                     int idTa = Convert.ToInt32(ftamano.SelectedItem.Value);
                     int idCat = Convert.ToInt32(fcategoria.SelectedItem.Value);
                     int prec = Convert.ToInt32(precio_p);
@@ -275,7 +269,7 @@ namespace Pizza_Express_visual.Components
 
                 cod_orginal.Text = idTabla.Rows[fila].Cells[0].Text;
                 tnombre.Text = idTabla.Rows[fila].Cells[1].Text.Replace("&#241;", "ñ").Replace("&#233;", "é").Replace("&#250;", "ú").Replace("&#237;", "í").Replace("&#243;", "ó").Replace("&#225;", "á");
-                tprecio.Text = idTabla.Rows[fila].Cells[2].Text.Replace(".","").Replace("$","");
+                tprecio.Text = idTabla.Rows[fila].Cells[2].Text.Replace(".", "").Replace("$", "");
                 tingredientes.Text = idTabla.Rows[fila].Cells[3].Text.Replace("&#241;", "ñ").Replace("&#233;", "é").Replace("&#250;", "ú").Replace("&#237;", "í").Replace("&#243;", "ó").Replace("&#225;", "á");
 
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal('show');", true);
@@ -344,8 +338,7 @@ namespace Pizza_Express_visual.Components
             }
             catch (Exception)
             {
-
-
+                
             }
         }
 

@@ -7,9 +7,11 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace Pizza_Express_visual.Components {
-    
-    
-    public partial class component_Bienvenidos {
+namespace Pizza_Express_visual.Components
+{
+
+
+    public partial class component_Bienvenidos
+    {
     }
 }

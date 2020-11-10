@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Pizza_Express_visual.Services;
+using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
-using iTextSharp.text;
-using System.IO;
-using iTextSharp.text.pdf;
-
-using Pizza_Express_visual.Services;
 namespace Pizza_Express_visual.Components
 {
     public partial class components_Reservas : System.Web.UI.UserControl
@@ -22,19 +14,17 @@ namespace Pizza_Express_visual.Components
             if (!IsPostBack)
             {
 
-                //PARA MOSTRAR LOS PROVEEDORES DE LA BASE DE DATOS
                 idTabla.DataSource = accesoReservas.filtrarReservas();
                 idTabla.DataBind();
 
                 uModalReserva.Update();
                 uContenedorReservas.Update();
-
             }
         }
 
         protected void bRegistrarReservarModal_Click(object sender, EventArgs e)
         {
-            alerta.Visible = false; ;
+            alerta.Visible = false; 
             ideditarReservaBoton.Visible = false;
             idregistrarReservas.Visible = true;
 
@@ -91,15 +81,7 @@ namespace Pizza_Express_visual.Components
             {
                 MostrarError(tfecha, valida_tfecha, 1);
             }
-            //if (thora.Text.Equals(""))
-            //{
-            //    MostrarError(thora, valida_thora, 0);
-            //    correcto = false;
-            //}
-            //else
-            //{
-            //    MostrarError(thora, valida_thora, 1));
-            //}
+
             return correcto;
         }
 
@@ -123,36 +105,55 @@ namespace Pizza_Express_visual.Components
                     string hor = thora.Text;
 
                     DateTime date = Convert.ToDateTime(tfecha.Text);
-                    
+                    int numeMesa = Convert.ToInt32(nuMesa);
                     DateTime hora = Convert.ToDateTime(thora.Text);
-                    
-                    //TimeZone time = Convert.ToDateTime(thora.Text);
-                    //GUARDAR LOS DATOS EN LA LISTA
-                    accesoReservas.addReserva(new Models.Reserva
-                    {
 
-                        numero_mesa = nuMesa,
-                        nombre_reserva = nombre_R,
-                        fecha_reser = date,
-                        hora_reser = hora.TimeOfDay
+                    //int cod = accesoReservas.codigoMesaRegistrar(nuMesa);
+                    //int idReser = 0;
+                    //if (cod == -1)
+                    //{
 
-                    }) ; 
+                    //}
+                    //else
+                    //{
 
-                    //MOSTRAR LOS DATOS EN LA TABLA
-                    idTabla.DataSource = accesoReservas.filtrarReservas();
-                    idTabla.DataBind();
+                        //string numerMesa = tnMesa.Text;
+                        accesoReservas.addReserva(new Models.Reserva
+                        {
 
-                    limpiarTodo(3);
+                            idMesa = numeMesa,
+                            nombre_reserva = nombre_R,
+                            fecha_reser = date,
+                            hora_reser = hora.TimeOfDay
 
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal('hide');", true);
-                    uModalReserva.Update();
-                    uContenedorReservas.Update();
+                        } /*ref idReser*/);
 
-                    alerta.Visible = true;
-                    alerta.CssClass = "alert alert-primary animated zoomInUp";
-                    mensaje3.Text = "RESERVA AGREGADA CON EXITO.";
+                        //accesoReservas.addMesa(new Models.Mesa
+                        //{
+
+                        //    numeroMesa = numerMesa,
+                        //    idMesa = cod
+
+                        //});
+
+
+                        //MOSTRAR LOS DATOS EN LA TABLA
+                        idTabla.DataSource = accesoReservas.filtrarReservas();
+                        idTabla.DataBind();
+
+                        limpiarTodo(3);
+
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal('hide');", true);
+                        uModalReserva.Update();
+                        uContenedorReservas.Update();
+
+                        alerta.Visible = true;
+                        alerta.CssClass = "alert alert-primary animated zoomInUp";
+                        mensaje3.Text = "RESERVA AGREGADA CON EXITO.";
+                    }
                 }
-            }
+
+            
             catch (Exception)
             {
                 alerta.Visible = true;
@@ -175,7 +176,6 @@ namespace Pizza_Express_visual.Components
                 tnMesa.Text = idTabla.Rows[fila].Cells[1].Text;
                 tnombre.Text = idTabla.Rows[fila].Cells[2].Text.Replace("&#241;", "ñ").Replace("&#233;", "é").Replace("&#250;", "ú").Replace("&#237;", "í").Replace("&#243;", "ó").Replace("&#225;", "á"); ;
                 tfecha.Text = idTabla.Rows[fila].Cells[3].Text;
-                //thora.Text = idTabla.Rows[fila].Cells[4].Text;
 
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal('show');", true);
                 uModalReserva.Update();
@@ -207,18 +207,12 @@ namespace Pizza_Express_visual.Components
                 tnMesa.Text = "";
                 tnombre.Text = "";
                 tfecha.Text = "";
-                //thora.Text = "";
-
             }
             else
             {
-                //AL GUARDAR UN PRODUCTO
-
                 tnMesa.Text = "";
                 tnombre.Text = "";
                 tfecha.Text = "";
-                //thora.Text = "";
-
             }
         }
 
@@ -238,24 +232,20 @@ namespace Pizza_Express_visual.Components
                     alerta.Visible = false;
 
                     //LEER LOS DATOS INGRESADOS
-                    string nuMesa = tnMesa.Text;
+                    int nuMesa = Convert.ToInt32(tnMesa.Text);
                     string nombre_R = tnombre.Text;
                     string fecha = tfecha.Text;
-                    //string hora = thora.Text;
 
                     string codigo_ori = c_orginal.Text;
                     DateTime date = Convert.ToDateTime(tfecha.Text);
 
                     accesoReservas.editarReservas(new Models.Reserva
                     {
-                        numero_mesa = nuMesa,
+                        idMesa = nuMesa,
                         nombre_reserva = nombre_R,
                         fecha_reser = date,
-                        //hora_reserva = time
-
                     }, codigo_ori);
 
-                    //MOSTRAR LOS DATOS EN LA TABLA
                     idTabla.DataSource = accesoReservas.filtrarReservas();
                     idTabla.DataBind();
 
@@ -278,7 +268,6 @@ namespace Pizza_Express_visual.Components
                 mensaje3.Text = "RESERVA NO MODIFICADA.";
 
             }
-
         }
 
         protected void idBuscarMesa_Click(object sender, EventArgs e)
@@ -288,9 +277,9 @@ namespace Pizza_Express_visual.Components
                 alerta.Visible = false;
                 int filtro = Convert.ToInt32(idOpciones.SelectedValue);
 
-                int cant = accesoReservas.BuscarrReservas(tdatoBuscarReservas.Text, filtro).Count;
+                int cant = accesoReservas.BuscarReservas(tdatoBuscarReservas.Text, filtro).Count;
 
-                idTabla.DataSource = accesoReservas.BuscarrReservas(tdatoBuscarReservas.Text, filtro);
+                idTabla.DataSource = accesoReservas.BuscarReservas(tdatoBuscarReservas.Text, filtro);
                 idTabla.DataBind();
 
                 uModalReserva.Update();
@@ -330,7 +319,6 @@ namespace Pizza_Express_visual.Components
 
             }
         }
-
         protected void btnVolverR_Click(object sender, EventArgs e)
         {
             alerta.Visible = false;
@@ -338,6 +326,6 @@ namespace Pizza_Express_visual.Components
             idTabla.DataBind();
         }
     }
-    }
-    
-    
+}
+
+

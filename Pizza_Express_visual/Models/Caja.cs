@@ -18,23 +18,16 @@ namespace Pizza_Express_visual.Models
         public Caja()
         {
             this.BoletaComanda = new HashSet<BoletaComanda>();
-            this.Pedido = new HashSet<Pedido>();
-            this.PagoRepartidor = new HashSet<PagoRepartidor>();
-            this.Turno = new HashSet<Turno>();
+            this.detalleCaja = new HashSet<detalleCaja>();
         }
     
         public int numero_caja { get; set; }
-        public int monto_caja { get; set; }
         public int codigo_estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BoletaComanda> BoletaComanda { get; set; }
         public virtual Estado_caja Estado_caja { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pedido> Pedido { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PagoRepartidor> PagoRepartidor { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Turno> Turno { get; set; }
+        public virtual ICollection<detalleCaja> detalleCaja { get; set; }
     }
 }

@@ -15,7 +15,7 @@
             <asp:UpdatePanel runat="server" ID="uContenedorProducto" UpdateMode="Conditional" ChildrenAsTriggers="true">
                 <ContentTemplate>
                     <br />
-                    <%--ALERTA DE MENSAJE--%>
+
                     <asp:Panel runat="server" ID="alerta" Visible="false">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -24,7 +24,6 @@
                     </asp:Panel>
                     <br />
 
-                    <%--PRIMERA COLUMNA--%>
                     <div class="row">
                         <div class="col-md-6">
 
@@ -34,7 +33,6 @@
 
                                 <div class="input-group-prepend">
                                     <asp:DropDownList runat="server" ID="idOpciones" CssClass="btn btn-secondary">
-                                        <%--ES UN CONBOBOX--%>
 
                                         <asp:ListItem Value="0" Text="Nombre Producto"></asp:ListItem>
                                         <asp:ListItem Value="1" Text="Código Producto"></asp:ListItem>
@@ -44,7 +42,6 @@
                                 </div>
                             </div>
                         </div>
-                        <%--CIERRE COLUMNA--%>
 
                         <%--SEGUNDA COLUMNA--%>
                         <div class="col-md-3">
@@ -56,7 +53,6 @@
                             <br />
                             <br />
                         </div>
-                        <%--CIERRE COLUMNA--%>
 
                            <div class="col-md-3">
                             <asp:LinkButton runat="server" CssClass="btn btn-primary btn-lg" OnClick="btnVolverPr_Click" ID="btnVolverPr">
@@ -66,8 +62,6 @@
 
                     </div>
 
-
-                    <%--TABLA GRIDVIEW--%>
                     <div class="col align-content-center">
                         <asp:GridView runat="server" ID="idTabla" CssClass="table table-bordered table-center " AutoGenerateColumns="false"
                             OnRowCommand="idTabla_RowCommand" OnPageIndexChanging="idTabla_PageIndexChanging" PageSize="4" AllowPaging="true">
@@ -94,8 +88,6 @@
             </asp:UpdatePanel>
         </div>
 
-
-        <%--ESTETICA DEL MODAL--%>
         <div class="modal" id="myModalUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg bg-light" role="document">
 
@@ -110,10 +102,8 @@
                                 </button>
                             </div>
 
-                            <%--TEXTOS INPUTS--%>
-                            <div class="modal-body">
 
-                                <%--NOMBRE PRODUCTO--%>
+                            <div class="modal-body">
                                 <div class="form-group">
                                     <label for="tnombre">Nombre Producto</label>
                                     <div class="input-group mb-2">
@@ -125,7 +115,6 @@
                                     </div>
                                 </div>
 
-                                <%--RUT PROVEEDOR--%>
                                 <div class="form-group">
                                     <label for="trut">Rut Proveedor</label>
                                     <div class="input-group mb-2">
@@ -137,7 +126,6 @@
                                     </div>
                                 </div>
 
-                                <%--<%--FECHA--%>
                                 <div class="form-group">
                                     <label for="tfecha">Fecha</label>
                                     <div class="input-group mb-2">
@@ -148,7 +136,7 @@
                                         <asp:Label runat="server" ID="valida_tfecha" CssClass="invalid-feedback" Text="Complete Campos, Ingrese Fecha"></asp:Label>
                                     </div>
                                 </div>
-                                <%--CANTIDAD--%>
+                            
                                 <div class="form-group">
                                     <label for="tcantidad">Cantidad Productos</label>
                                     <div class="input-group mb-2">

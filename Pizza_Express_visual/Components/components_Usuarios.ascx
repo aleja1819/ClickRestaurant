@@ -17,7 +17,6 @@
             <asp:UpdatePanel runat="server" ID="uContenedorUsuario" UpdateMode="Conditional" ChildrenAsTriggers="true">
                 <ContentTemplate>
 
-                    <%--ALERTA DE MENSAJE--%>
                     <asp:Panel runat="server" ID="alerta" Visible="false">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -26,7 +25,6 @@
                     </asp:Panel>
                     <br />
 
-                    <%--PRIMERA COLUMNA--%>
                     <div class="row">
                         <div class="col-md-6">
 
@@ -36,21 +34,18 @@
 
                                 <div class="input-group-prepend">
                                     <asp:DropDownList runat="server" ID="idOpciones" CssClass="btn btn-secondary">
-                                        <%--ES UN CONBOBOX--%>
 
                                         <asp:ListItem Value="0" Text="Rut" Selected="True"></asp:ListItem>
                                         <asp:ListItem Value="1" Text="Nombre Usuario"></asp:ListItem>
-                                        <%--LO QUE DENTRO--%>
+
                                     </asp:DropDownList>
 
                                     <asp:Button runat="server" ID="idBuscarUsuario" OnClick="idBuscarUsuario_Click" Text="buscar" CssClass="btn btn-success" />
                                 </div>
                             </div>
                         </div>
-                        <%--CIERRE COLUMNA--%>
 
                         <%--SEGUNDA COLUMNA--%>
-
                         <div class="col-md-3">
 
                             <asp:LinkButton runat="server" CssClass="btn btn-success" OnClick="bRegistrarUsuarioModal_Click" ID="bRegistrarUsuario">
@@ -61,7 +56,7 @@
                             <br />
                             <br />
                         </div>
-                        <%--CIERRE COLUMNA--%>
+
                         <div class="col-md-3">
                             <asp:LinkButton runat="server" CssClass="btn btn-primary btn-lg" OnClick="btnVolverU_Click" ID="btnVolverU">
                        <i class="fas fa-home"></i>
@@ -70,8 +65,6 @@
 
                     </div>
 
-
-                    <%--TABLA GRIDVIEW--%>
                     <div class="col align-content-center">
                         <asp:GridView runat="server" ID="idTabla" CssClass="table table-bordered table-center " AutoGenerateColumns="false"
                             OnRowCommand="idTabla_RowCommand" OnPageIndexChanging="idTabla_PageIndexChanging" PageSize="4" AllowPaging="true">
@@ -91,17 +84,13 @@
                                 <asp:ButtonField ButtonType="Link" CommandName="ideliminar" ControlStyle-CssClass="btn btn-danger" Text="Eliminar" />
 
                             </Columns>
-                        </asp:GridView>
-                       
+                        </asp:GridView>                       
                     </div>
 
                 </ContentTemplate>
             </asp:UpdatePanel>
-
         </div>
 
-
-        <%--ESTETICA DEL MODAL--%>
         <div class="modal" id="myModalUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg bg-light" role="document">
 
@@ -116,10 +105,8 @@
                                 </button>
                             </div>
 
-                            <%--TEXTOS INPUTS--%>
                             <div class="modal-body">
 
-                                <%--RUT USUARIO--%>
                                 <div class="form-group">
                                     <label for="trut">Rut Usuario (*)</label>
                                     <div class="input-group mb-2">
@@ -131,7 +118,6 @@
                                     </div>
                                 </div>
 
-                                <%--NOMBRE USUARIO--%>
                                 <div class="form-group">
                                     <label for="tnombre">Nombre Usuario (*)</label>
                                     <div class="input-group mb-2">
@@ -143,7 +129,6 @@
                                     </div>
                                 </div>
 
-                                <%--EMAIL USUARIO--%>
                                 <div class="form-group">
                                     <label for="temail">Email Usuario(*)</label>
                                     <div class="input-group mb-2">
@@ -155,7 +140,6 @@
                                     </div>
                                 </div>
 
-                                <%--CONTRASEÑA USUARIO--%>
                                 <div class="form-group">
                                     <label for="tclave">Contraseña(*)</label>
                                     <div class="input-group mb-2">
@@ -167,7 +151,6 @@
                                     </div>
                                 </div>
 
-                                <%--TIPO USUARIO--%>
                                 <div class="form-group">
                                     <label for="fTipoUsuario">Tipo Usuario(*)</label>
                                     <br />
@@ -176,7 +159,6 @@
                                     </asp:DropDownList>
                                 </div>
 
-                                <%--ESTADO--%>
                                 <div class="form-group">
                                     <label for="fEstado">Estado(*)</label>
                                     <br />

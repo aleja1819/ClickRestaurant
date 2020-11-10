@@ -36,7 +36,6 @@
 
                                 <div class="input-group-prepend">
                                     <asp:DropDownList runat="server" ID="idOpciones" CssClass="btn btn-secondary">
-                                        <%--ES UN CONBOBOX--%>
 
                                         <asp:ListItem Value="0" Text="Nombre Menu"></asp:ListItem>
 
@@ -46,9 +45,6 @@
                                 </div>
                             </div>
                         </div>
-                        <%--CIERRE COLUMNA--%>
-
-                        
 
                         <div class="col-md-3">
                             <asp:LinkButton runat="server" CssClass="btn btn-success" OnClick="bRegistrarMenu_Click" ID="bRegistrarMenu">
@@ -68,10 +64,9 @@
                     </div>
 
                         <%--SEGUNDA COLUMNA--%>
-                    <%--TABLA GRIDVIEW--%>
                     <div class="col align-content-center">
                         <asp:GridView runat="server" ID="idTabla" CssClass="table table-bordered table-center " AutoGenerateColumns="false"
-                            OnRowCommand="idTabla_RowCommand" OnPageIndexChanging="idTabla_PageIndexChanging" PageSize="4" AllowPaging="true">
+                            OnRowCommand="idTabla_RowCommand" OnPageIndexChanging="idTabla_PageIndexChanging" PageSize="5" AllowPaging="true">
                             <HeaderStyle CssClass="btn-success" ForeColor="White" Font-Bold="true" />
 
                             <Columns>
@@ -83,7 +78,6 @@
                                 <asp:BoundField DataField="nombre_tamanoP" HeaderText="Tamaño" />
                                 <asp:BoundField DataField="nombre_categoria" HeaderText="Categoria" />
 
-
                                 <asp:ButtonField ButtonType="Link" CommandName="ideditar" ControlStyle-CssClass="btn btn-dark" Text="Editar" />
                                 <asp:ButtonField ButtonType="Link" CommandName="ideliminar" ControlStyle-CssClass="btn btn-danger" Text="Eliminar" />
 
@@ -92,13 +86,11 @@
                         <%--  --%>
                     </div>
 
-
                 </ContentTemplate>
             </asp:UpdatePanel>
 
         </div>
 
-        <%--ESTETICA DEL MODAL--%>
         <div class="modal" id="myModalUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg bg-light" role="document">
 
@@ -113,10 +105,8 @@
                                 </button>
                             </div>
 
-                            <%--TEXTOS INPUTS--%>
                             <div class="modal-body">
 
-                                <%--NOMBRE MENU--%>
                                 <div class="form-group">
                                     <label for="tnombre">Nombre Menú (*)</label>
                                     <div class="input-group mb-2">
@@ -128,7 +118,7 @@
                                         <asp:Label runat="server" ID="valida_tnombre" CssClass="invalid-feedback" Text="Complete campos vacios, Ingrese Nombre"></asp:Label>
                                     </div>
                                 </div>
-                                <%--NOMBRE USUARIO--%>
+
                                 <div class="form-group">
                                     <label for="tprecio">Precio Menú (*)</label>
                                     <div class="input-group mb-2">
@@ -140,7 +130,7 @@
                                     <asp:Label runat="server" ID="valida_tprecio" CssClass="invalid-feedback" Text="Complete campos vacios, Ingrese Precio"></asp:Label>
                                 </div>
                                     </div>
-                                <%--EMAIL USUARIO--%>
+
                                 <div class="form-group">
                                     <label for="tingredientes">Ingredientes (*)</label>
                                          <div class="input-group mb-2">                      
@@ -151,7 +141,7 @@
                                     <asp:Label runat="server" ID="valida_tingrediente" CssClass="invalid-feedback" Text="Complete campos vacios, Ingrese Ingredientes"></asp:Label>
                                 </div>
                                     </div>
-                                <%--TAMAÑO PIZZA--%>
+
                                 <div class="form-group">
                                     <label for="ftamano">Tamaño (*)</label>
                                     <br />
@@ -160,7 +150,7 @@
                                     </asp:DropDownList>
                                 </div>
 
-                                <%--CATEGORIA--%>
+
                                 <div class="form-group">
                                     <label for="fcategoria">Categoria (*)</label>
                                     <br />

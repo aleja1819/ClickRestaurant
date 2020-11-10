@@ -11,7 +11,7 @@
         <br />
         <br />
 
-      <img src="../Imagenes/PIZZZA.jpg" class="img-thumbnail img-rounded shadow-lg" style="width: 41rem"/>
+        <img src="../Imagenes/LOGO%20APP.png" /> <class="img-thumbnail img-rounded shadow-lg" style="width: 41rem"/>
     </div> 
 </div>
 

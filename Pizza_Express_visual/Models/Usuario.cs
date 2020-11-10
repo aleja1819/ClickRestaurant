@@ -17,11 +17,9 @@ namespace Pizza_Express_visual.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Usuario()
         {
-            this.Comanda_reparto = new HashSet<Comanda_reparto>();
             this.ComandaMesa = new HashSet<ComandaMesa>();
-            this.PagoRepartidor = new HashSet<PagoRepartidor>();
+            this.detalleCaja = new HashSet<detalleCaja>();
             this.Producto = new HashSet<Producto>();
-            this.Turno = new HashSet<Turno>();
         }
     
         public int codigo_usuario { get; set; }
@@ -33,16 +31,12 @@ namespace Pizza_Express_visual.Models
         public string email_usuario { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comanda_reparto> Comanda_reparto { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ComandaMesa> ComandaMesa { get; set; }
-        public virtual Estado_Usuario Estado_Usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PagoRepartidor> PagoRepartidor { get; set; }
+        public virtual ICollection<detalleCaja> detalleCaja { get; set; }
+        public virtual Estado_Usuario Estado_Usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Producto> Producto { get; set; }
         public virtual TipoUsuario TipoUsuario { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Turno> Turno { get; set; }
     }
 }

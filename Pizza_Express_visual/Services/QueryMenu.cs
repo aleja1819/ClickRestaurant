@@ -1,9 +1,7 @@
-﻿using System;
+﻿using Pizza_Express_visual.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-
-using Pizza_Express_visual.Models;
 namespace Pizza_Express_visual.Services
 {
     public class QueryMenu
@@ -13,7 +11,7 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd11 contexto = new bd11())
+                using (Pizza_BD1 contexto = new Pizza_BD1())
                 {
 
                     var r = from m in contexto.Menu
@@ -47,7 +45,7 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd11 contexto = new bd11())
+                using (Pizza_BD1 contexto = new Pizza_BD1())
                 {
 
                     var r = from t in contexto.TamanoP
@@ -67,7 +65,7 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd11 contexto = new bd11())
+                using (Pizza_BD1 contexto = new Pizza_BD1())
                 {
 
                     var r = from c in contexto.Categoria
@@ -88,7 +86,7 @@ namespace Pizza_Express_visual.Services
 
             try
             {
-                using (bd11 contexto = new bd11())
+                using (Pizza_BD1 contexto = new Pizza_BD1())
                 {
 
                     contexto.Menu.Add(menu);
@@ -106,14 +104,14 @@ namespace Pizza_Express_visual.Services
             }
         }
 
-        public bool eliminarMenu(int cod_Menu)
+        public bool eliminarMenu(int codigoMenu)
         {
 
             try
             {
-                using (bd11 contexto = new bd11())
+                using (Pizza_BD1 contexto = new Pizza_BD1())
                 {
-                    var user = contexto.Menu.Find(cod_Menu);
+                    var user = contexto.Menu.Find(codigoMenu);
 
                     contexto.Menu.Remove(user);
                     contexto.SaveChanges();
@@ -129,19 +127,16 @@ namespace Pizza_Express_visual.Services
 
         }
 
-        public bool editarMenu(Menu usuario, string cod_original)
+        public bool editarMenu(Menu usuario, string codigoOriginal)
         {
 
             try
             {
-                int idOri = Convert.ToInt32(cod_original);
-                using (bd11 contexto = new bd11())
+                int idOriginal = Convert.ToInt32(codigoOriginal);
+                using (Pizza_BD1 contexto = new Pizza_BD1())
                 {
 
-                    //BUSCAR EL PRODUCTO EN LA BD
-                    var user = contexto.Menu.First(men => men.codigo_menu == idOri);
-
-                    //MODIFICAR LOS CAMPOS QUE NECESITO
+                    var user = contexto.Menu.First(men => men.codigo_menu == idOriginal);
 
                     user.nombre_menu = usuario.nombre_menu;
                     user.precio_menu = usuario.precio_menu;
@@ -164,12 +159,12 @@ namespace Pizza_Express_visual.Services
 
         public List<object> BuscarMenu(string dato, int filtro)
         {
-            using (bd11 contexto = new bd11())
+            using (Pizza_BD1 contexto = new Pizza_BD1())
             {
                 switch (filtro)
                 {
-                    case 0: //BUSCAR NOMBRE MENU
-                        var rNombre = from m in contexto.Menu
+                    case 0: 
+                        var RetornarNombre = from m in contexto.Menu
                                       join c in contexto.Categoria
                                       on m.codigo_categoria equals c.codigo_categoria
                                       where m.nombre_menu.ToLower().StartsWith(dato.ToLower())
@@ -187,9 +182,9 @@ namespace Pizza_Express_visual.Services
                                           t.nombre_tamanoP
                                       };
 
-                        return rNombre.ToList<object>();
+                        return RetornarNombre.ToList<object>();
                     default:
-                        var rTodo = from m in contexto.Menu
+                        var RetornarTodo = from m in contexto.Menu
                                     join c in contexto.Categoria
                                     on m.codigo_categoria equals c.codigo_categoria
                                     join t in contexto.TamanoP
@@ -206,7 +201,7 @@ namespace Pizza_Express_visual.Services
                                         t.nombre_tamanoP
                                     };
 
-                        return rTodo.ToList<object>();
+                        return RetornarTodo.ToList<object>();
                 }
 
 

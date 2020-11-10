@@ -1,24 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using Pizza_Express_visual.Services;
-using iTextSharp.text;
-using System.IO;
+﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
+using Pizza_Express_visual.Services;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Web.UI.WebControls;
 
 namespace Pizza_Express_visual.Components
 {
     public partial class components_Reportes : System.Web.UI.UserControl
     {
 
-       private QueryReportes aR = new QueryReportes();
-       static List<object> prod_dispo = new List<object>();
-       static List<Services.reporte> ListaReporte = new List<reporte>();
-       static List<Services.ventas> ListaVentas = new List<ventas>();
-       private QueryReportes accesoReportes = new QueryReportes();
+        //private QueryReportes aR = new QueryReportes();
+        //static List<object> prod_dispo = new List<object>();
+        static List<Services.reporte> ListaReporte = new List<reporte>();
+        static List<Services.ventas> ListaVentas = new List<ventas>();
+        private QueryReportes accesoReportes = new QueryReportes();
 
         void active(int switch_on)
         {
@@ -109,7 +107,7 @@ namespace Pizza_Express_visual.Components
 
 
             PdfPCell cell0 = new PdfPCell();
-            foreach (var regist in ListaReporte )
+            foreach (var regist in ListaReporte)
             {
                 cell0.Phrase = new Phrase(regist.codigo_P.ToString());
                 table.AddCell(cell0);
@@ -139,40 +137,29 @@ namespace Pizza_Express_visual.Components
             Response.ClearHeaders();
             Response.ContentType = "application/pdf";
             Response.AddHeader("Content-Disposition", "attachment; filename=" + strS);
-            //Response.AddHeader("Content-Disposition", "inline; filename=" + strS);
-            // Response.ContentType = "application/octectstream";
             Response.TransmitFile(strS);
             Response.End();
             Response.Flush();
             Response.Clear();
         }
-    
+
         protected void bBuscarNombre_Click(object sender, EventArgs e)
         {
             try
             {
 
-                DateTime date11 = Convert.ToDateTime(tfechaini.Text);
-                DateTime date21 = Convert.ToDateTime(tfechafin.Text);
+                DateTime FechaInicial = Convert.ToDateTime(tfechaini.Text);
+                DateTime FechaFinal = Convert.ToDateTime(tfechafin.Text);
 
-                int cant = accesoReportes.filtrarPorNombre(date11, date21).Count;
+                int cant = accesoReportes.filtrarPorNombre(FechaInicial, FechaFinal).Count;
 
-                idTablaEnvio.DataSource = accesoReportes.filtrarPorNombre(date11, date21);
+                idTablaEnvio.DataSource = accesoReportes.filtrarPorNombre(FechaInicial, FechaFinal);
                 idTablaEnvio.DataBind();
-
-                //if (cant == 0 || string.IsNullOrEmpty(tfechaini.Text) || string.IsNullOrEmpty(tfechafin.Text))
-                //{
-                //    alerta.Visible = true;
-                //    alerta.CssClass = "alert alert-danger animated zoomInUp";
-                //    mensaje3.Text = "PRODUCTO NO ENCONTRADO.";
-                //    idTabla.DataSource = accesoReportes.listartodo();
-                //    idTabla.DataBind();
-                //}
             }
             catch (Exception)
             {
-            
-               
+
+
             }
 
         }
@@ -205,7 +192,7 @@ namespace Pizza_Express_visual.Components
                     if (carro_comp.cantidad_P > 1)
                     {
                         //restar stock
-                        int cantidadActual = carro_comp.cantidad_P;                                
+                        int cantidadActual = carro_comp.cantidad_P;
                     }
                     else
                     {
@@ -247,7 +234,7 @@ namespace Pizza_Express_visual.Components
                     //AGREGAR PRODUCTO AL CARRO
                     reporte carro_comp = new reporte();
                     carro_comp = ListaReporte.First(p => p.codigo_P == codM);
-                   
+
 
                     cargaReporte.DataSource = ListaReporte;
                     cargaReporte.DataBind();
@@ -270,7 +257,7 @@ namespace Pizza_Express_visual.Components
                     codigo_pro = "";
 
                 }
-                
+
             }
         }
 
@@ -289,22 +276,14 @@ namespace Pizza_Express_visual.Components
             try
             {
 
-                DateTime date11 = Convert.ToDateTime(tfechaI.Text);
-                DateTime date21 = Convert.ToDateTime(tfechaF.Text);
+                DateTime fechaInicial = Convert.ToDateTime(tfechaI.Text);
+                DateTime fechaFinal = Convert.ToDateTime(tfechaF.Text);
 
-                int cant = accesoReportes.reporteVenta(date11, date21).Count;
+                int cant = accesoReportes.reporteVenta(fechaInicial, fechaFinal).Count;
 
-                idVentaSelect.DataSource = accesoReportes.reporteVenta(date11, date21);
+                idVentaSelect.DataSource = accesoReportes.reporteVenta(fechaInicial, fechaFinal);
                 idVentaSelect.DataBind();
 
-                //if (cant == 0 || string.IsNullOrEmpty(tfechaini.Text) || string.IsNullOrEmpty(tfechafin.Text))
-                //{
-                //    alerta.Visible = true;
-                //    alerta.CssClass = "alert alert-danger animated zoomInUp";
-                //    mensaje3.Text = "PRODUCTO NO ENCONTRADO.";
-                //    idTabla.DataSource = accesoReportes.listartodo();
-                //    idTabla.DataBind();
-                //}
             }
             catch (Exception)
             {
@@ -322,15 +301,15 @@ namespace Pizza_Express_visual.Components
                 string codigo_Ven = "";
                 string canti_Ven = "";
                 string nombre_Ven = "";
-                string fecha_Ven = ""; 
+                string fecha_Ven = "";
                 string precio_Ven = "";
                 try
                 {
                     codigo_Ven = idVentaSelect.Rows[fila].Cells[0].Text;
                     canti_Ven = idVentaSelect.Rows[fila].Cells[1].Text;
-                    nombre_Ven = idVentaSelect.Rows[fila].Cells[2].Text.Replace("&#243;", "ó").Replace("&#233;", "é").Replace("&#241;", "ñ").Replace(".", "");              
+                    nombre_Ven = idVentaSelect.Rows[fila].Cells[2].Text.Replace("&#243;", "ó").Replace("&#233;", "é").Replace("&#241;", "ñ").Replace(".", "");
                     fecha_Ven = idVentaSelect.Rows[fila].Cells[3].Text;
-                    precio_Ven = idVentaSelect.Rows[fila].Cells[4].Text.Replace("$","").Replace(".","");
+                    precio_Ven = idVentaSelect.Rows[fila].Cells[4].Text.Replace("$", "").Replace(".", "");
 
                     int codV = Convert.ToInt32(codigo_Ven);
                     int cantidad = Convert.ToInt32(canti_Ven);
@@ -348,7 +327,7 @@ namespace Pizza_Express_visual.Components
 
                     int codV = Convert.ToInt32(codigo_Ven);
                     int cantidad = Convert.ToInt32(canti_Ven);
-                    int precio = Convert.ToInt32(precio_Ven); 
+                    int precio = Convert.ToInt32(precio_Ven);
                     DateTime fecha = Convert.ToDateTime(fecha_Ven);
 
                     ListaVentas.Add(new ventas { codigo_C = codV, cantidad_V = cantidad, nombre_V = nombre_Ven, fecha_V = fecha, precio_V = precio });
@@ -383,7 +362,7 @@ namespace Pizza_Express_visual.Components
                     canti_Ven = CargarVentasReporte.Rows[fila].Cells[1].Text;
                     nombre_Ven = CargarVentasReporte.Rows[fila].Cells[2].Text.Replace("&#243;", "ó").Replace("&#233;", "é").Replace("&#241;", "ñ").Replace(".", "");
                     fecha_Ven = CargarVentasReporte.Rows[fila].Cells[3].Text;
-                    precio_Ven = CargarVentasReporte.Rows[fila].Cells[4].Text.Replace("$","").Replace(".", "");
+                    precio_Ven = CargarVentasReporte.Rows[fila].Cells[4].Text.Replace("$", "").Replace(".", "");
 
                     int codV = Convert.ToInt32(codigo_Ven);
                     int cantidad = Convert.ToInt32(canti_Ven);
@@ -476,7 +455,7 @@ namespace Pizza_Express_visual.Components
                 cell0.Phrase = new Phrase(regist.fecha_V.ToString());
                 table.AddCell(cell0);
 
-                cell0.Phrase = new Phrase("$ "+ regist.precio_V.ToString());
+                cell0.Phrase = new Phrase("$ " + regist.precio_V.ToString());
                 table.AddCell(cell0);
 
             }
@@ -492,12 +471,10 @@ namespace Pizza_Express_visual.Components
             Response.ClearHeaders();
             Response.ContentType = "application/pdf";
             Response.AddHeader("Content-Disposition", "attachment; filename=" + strS);
-            //Response.AddHeader("Content-Disposition", "inline; filename=" + strS);
-            // Response.ContentType = "application/octectstream";
             Response.TransmitFile(strS);
             Response.End();
             Response.Flush();
             Response.Clear();
         }
     }
-  }
+}

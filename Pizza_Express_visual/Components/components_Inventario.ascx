@@ -20,7 +20,7 @@
             <asp:UpdatePanel runat="server" ID="uContenedorProducto" UpdateMode="Conditional" ChildrenAsTriggers="true">
                 <ContentTemplate>
                     <br />
-                    <%--ALERTA DE MENSAJE--%>
+
                     <asp:Panel runat="server" ID="alerta" Visible="false">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -29,7 +29,7 @@
                     </asp:Panel>
 
                     <br />
-                    <%--PRIMERA COLUMNA--%>
+
                     <div class="row">
                         <div class="col-md-8">
 
@@ -39,7 +39,6 @@
 
                                 <div class="input-group-prepend">
                                     <asp:DropDownList runat="server" ID="idOpciones" CssClass="btn btn-secondary">
-                                        <%--ES UN CONBOBOX--%>
 
                                         <asp:ListItem Value="0" Text="Nombre Producto"></asp:ListItem>
                                         <asp:ListItem Value="1" Text="Código Producto"></asp:ListItem>
@@ -49,7 +48,6 @@
                                 </div>
                             </div>
                         </div>
-                        <%--CIERRE COLUMNA--%>
 
                                      <div class="col-md-4">
                             <asp:LinkButton runat="server" CssClass="btn btn-primary btn-lg" OnClick="btnVolver_Click" ID="btnVolver">
@@ -66,7 +64,6 @@
   
                         <%--SEGUNDA COLUMNA--%>
 
-                        <%--TABLA GRIDVIEW--%>
                         <div class="col align-content-center">
                             <asp:GridView runat="server" ID="idTablaInven" CssClass="table table-bordered table-center" AutoGenerateColumns="false"
                                 OnRowCommand="idTabla_RowCommand" OnPageIndexChanging="idTablaInven_PageIndexChanging" PageSize="4" AllowPaging="true">
@@ -91,8 +88,6 @@
             </asp:UpdatePanel>
         </div>
 
-
-        <%--ESTETICA DEL MODAL--%>
         <div class="modal" id="myModalUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg bg-light" role="document">
 
@@ -107,10 +102,9 @@
                                 </button>
                             </div>
 
-                            <%--TEXTOS INPUTS--%>
                             <div class="modal-body">
 
-                                <%--NOMBRE PRODUCTO--%>
+
                                 <div class="form-group">
 
                                     <asp:TextBox runat="server" placeholder="Nombre Producto" Visible="false" ID="tnombre" CssClass="form-control bg-secondary"></asp:TextBox>
@@ -119,7 +113,6 @@
 
                                     <asp:TextBox runat="server" placeholder="Fecha" ID="tfecha" Visible="false" TextMode="Date" CssClass="form-control bg-secondary"></asp:TextBox>
 
-                                    <%--CANTIDAD--%>
                                     <div class="form-group">
                                         <label for="tcantidad">Cantidad Productos</label>
                                         <div class="input-group mb-2">

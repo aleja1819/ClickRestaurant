@@ -1,16 +1,12 @@
-﻿using System;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using Pizza_Express_visual.Services;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
-using iTextSharp.text;
-using System.IO;
-using iTextSharp.text.pdf;
-
-using Pizza_Express_visual.Services;
 namespace Pizza_Express_visual.Components
 {
 
@@ -19,7 +15,7 @@ namespace Pizza_Express_visual.Components
 
 
         QueryComanda accesoComanda = new QueryComanda();
-        static List<object> prod_dispo = new List<object>();
+        static List<object> productoDisponible = new List<object>();
         static List<Services.carro> carroCompra = new List<Services.carro>();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -27,6 +23,8 @@ namespace Pizza_Express_visual.Components
             if (!IsPostBack)
             {
                 carroCompra.Clear();
+
+                uModalComanda.Update();
             }
         }
 
@@ -35,21 +33,6 @@ namespace Pizza_Express_visual.Components
             carroCompra.Clear();
         }
 
-        protected void tabGrande_Click(object sender, EventArgs e)
-        {
-
-            try
-            {
-
-                prod_dispo = accesoComanda.filtrarCategoriaMenu(8, 2);
-                idMostrarMenu.DataSource = prod_dispo;
-                idMostrarMenu.DataBind();
-            }
-            catch (Exception)
-            {
-
-            }
-        }
 
         private void calcularTotal()
         {
@@ -67,24 +50,24 @@ namespace Pizza_Express_visual.Components
             if (e.CommandName.Equals("idselected"))
             {
                 string codigoMenu = "";
-                string nombre_menu = "";
-                string precio_Menu = "";
-                string ingre = "";
+                string nombreMenu = "";
+                string precioMenu = "";
+                string ingredientes = "";
 
                 try
                 {
                     codigoMenu = idMostrarMenu.Rows[fila].Cells[0].Text;
-                    nombre_menu = idMostrarMenu.Rows[fila].Cells[1].Text.Replace("&#243;", "ó").Replace("&#233;", "é").Replace("&#241;", "ñ").Replace(".", "");
-                    precio_Menu = idMostrarMenu.Rows[fila].Cells[2].Text.Replace("$", "").Replace(".", "");
-                    ingre = idMostrarMenu.Rows[fila].Cells[4].Text.Replace("&#243;", "ó").Replace("&#233;", "é").Replace("&#241;", "ñ").Replace(".", "");
+                    nombreMenu = idMostrarMenu.Rows[fila].Cells[1].Text.Replace("&#243;", "ó").Replace("&#233;", "é").Replace("&#241;", "ñ").Replace(".", "");
+                    precioMenu = idMostrarMenu.Rows[fila].Cells[2].Text.Replace("$", "").Replace(".", "");
+                    ingredientes = idMostrarMenu.Rows[fila].Cells[4].Text.Replace("&#243;", "ó").Replace("&#233;", "é").Replace("&#241;", "ñ").Replace(".", "");
 
                     int codM = Convert.ToInt32(codigoMenu);
-                    int precio = Convert.ToInt32(precio_Menu);
+                    int precio = Convert.ToInt32(precioMenu);
                     //AGREGAR PRODUCTO AL CARRO
-                    carro carro_comp = new carro();
-                    carro_comp = carroCompra.First(p => p.codigo_M == codM);
-                    carroCompra[carroCompra.IndexOf(carro_comp)].cantidad += 1;
-                    carroCompra[carroCompra.IndexOf(carro_comp)].precio_M += precio;
+                    carro carro_compra = new carro();
+                    carro_compra = carroCompra.First(p => p.codigo_M == codM);
+                    carroCompra[carroCompra.IndexOf(carro_compra)].cantidad += 1;
+                    carroCompra[carroCompra.IndexOf(carro_compra)].precio_M += precio;
 
                     idCargarSeleccion.DataSource = carroCompra;
                     idCargarSeleccion.DataBind();
@@ -94,9 +77,9 @@ namespace Pizza_Express_visual.Components
                 {
 
                     int codM = Convert.ToInt32(codigoMenu);
-                    int precioM = Convert.ToInt32(precio_Menu);
+                    int precioM = Convert.ToInt32(precioMenu);
 
-                    carroCompra.Add(new carro { codigo_M = codM, nombre_M = nombre_menu, precio_M = precioM, ingre_M = ingre, cantidad = 1 });
+                    carroCompra.Add(new carro { codigo_M = codM, nombre_M = nombreMenu, precio_M = precioM, ingre_M = ingredientes, cantidad = 1 });
 
                 }
                 finally
@@ -110,13 +93,29 @@ namespace Pizza_Express_visual.Components
             }
         }
 
+        protected void tabGrande_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+
+                productoDisponible = accesoComanda.filtrarCategoriaMenu(2, 1);
+                idMostrarMenu.DataSource = productoDisponible;
+                idMostrarMenu.DataBind();
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
         protected void tabmediana_Click(object sender, EventArgs e)
         {
             try
             {
 
-                prod_dispo = accesoComanda.filtrarCategoriaMenu(8, 3);
-                idMostrarMenu.DataSource = prod_dispo;
+                productoDisponible = accesoComanda.filtrarCategoriaMenu(2, 2);
+                idMostrarMenu.DataSource = productoDisponible;
                 idMostrarMenu.DataBind();
             }
             catch (Exception)
@@ -131,8 +130,8 @@ namespace Pizza_Express_visual.Components
             try
             {
 
-                prod_dispo = accesoComanda.filtrarCategoriaMenu(8, 4);
-                idMostrarMenu.DataSource = prod_dispo;
+                productoDisponible = accesoComanda.filtrarCategoriaMenu(2, 3);
+                idMostrarMenu.DataSource = productoDisponible;
                 idMostrarMenu.DataBind();
             }
             catch (Exception)
@@ -141,6 +140,149 @@ namespace Pizza_Express_visual.Components
             }
         }
 
+        protected void idTablas_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+
+                productoDisponible = accesoComanda.filtrarCategoriaMenu(3, 1);
+                idMostrarMenu.DataSource = productoDisponible;
+                idMostrarMenu.DataBind();
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        protected void idsandiwch_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+
+                productoDisponible = accesoComanda.filtrarCategoriaMenu(4, 1);
+                idMostrarMenu.DataSource = productoDisponible;
+                idMostrarMenu.DataBind();
+            }
+            catch (Exception)
+            {
+            }
+
+        }
+
+        protected void idPicadillo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                productoDisponible = accesoComanda.filtrarCategoriaMenu(5, 1);
+                idMostrarMenu.DataSource = productoDisponible;
+                idMostrarMenu.DataBind();
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        protected void idPlato_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                productoDisponible = accesoComanda.filtrarCategoriaMenu(6, 1);
+                idMostrarMenu.DataSource = productoDisponible;
+                idMostrarMenu.DataBind();
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        protected void idAgregado_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                productoDisponible = accesoComanda.filtrarCategoriaMenu(9, 1);
+                idMostrarMenu.DataSource = productoDisponible;
+                idMostrarMenu.DataBind();
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        protected void idEnsalda_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                productoDisponible = accesoComanda.filtrarCategoriaMenu(10, 1);
+                idMostrarMenu.DataSource = productoDisponible;
+                idMostrarMenu.DataBind();
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        protected void idVinos_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                productoDisponible = accesoComanda.filtrarCategoriaMenu(12, 1);
+                idMostrarMenu.DataSource = productoDisponible;
+                idMostrarMenu.DataBind();
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        protected void idBebidas_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                productoDisponible = accesoComanda.filtrarCategoriaMenu(7, 1);
+                idMostrarMenu.DataSource = productoDisponible;
+                idMostrarMenu.DataBind();
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        protected void idJugos_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                productoDisponible = accesoComanda.filtrarCategoriaMenu(11, 1);
+                idMostrarMenu.DataSource = productoDisponible;
+                idMostrarMenu.DataBind();
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        protected void idLicores_Click(object sender, EventArgs e)
+        {
+            productoDisponible = accesoComanda.filtrarCategoriaMenu(13, 1);
+            idMostrarMenu.DataSource = productoDisponible;
+            idMostrarMenu.DataBind();
+        }
         protected void idCargarSeleccion_RowCommand(object sender, GridViewCommandEventArgs e)
         {
 
@@ -196,12 +338,6 @@ namespace Pizza_Express_visual.Components
             }
         }
 
-        protected void btnpago_Click(object sender, EventArgs e)
-        {
-
-           
-        }
-
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
 
@@ -226,10 +362,6 @@ namespace Pizza_Express_visual.Components
             tif.ScalePercent(13f, 9f);
             tif.Alignment = iTextSharp.text.Image.ALIGN_RIGHT;
             doc.Add(tif);
-
-            //itsEvents ev = new itsEvents();
-            //pdfWrite.PageEvent = ev;
-            //doc.Open();
 
             iTextSharp.text.Font verdana = FontFactory.GetFont("Verdana", 18, iTextSharp.text.Font.BOLDITALIC, BaseColor.RED);
             Paragraph paragraph = new Paragraph(@"COCINA", verdana);
@@ -287,21 +419,20 @@ namespace Pizza_Express_visual.Components
             Response.ClearHeaders();
             Response.ContentType = "application/pdf";
             Response.AddHeader("Content-Disposition", "attachment; filename=" + strS);
-            //Response.AddHeader("Content-Disposition", "inline; filename=" + strS);
-            // Response.ContentType = "application/octectstream";
             Response.TransmitFile(strS);
             Response.End();
             Response.Flush();
             Response.Clear();
         }
 
-        protected void btnpago_Click1(object sender, EventArgs e)
+        protected void btnpago_Click(object sender, EventArgs e)
         {
+
 
             int id = Convert.ToInt32(Session["idUser"]);
             accesoComanda.addcomanda(
 
-                carroCompra, "1", 9
+                carroCompra, 3, 4
             );
 
             var doc = new Document(PageSize.A5);
@@ -312,13 +443,9 @@ namespace Pizza_Express_visual.Components
 
             doc.Open();
             iTextSharp.text.Image tif = iTextSharp.text.Image.GetInstance(path + "/PIZZZA.jpg");
-            tif.ScalePercent(8f, 6f);
+            tif.ScalePercent(13f, 9f);
             tif.Alignment = iTextSharp.text.Image.ALIGN_RIGHT;
             doc.Add(tif);
-
-            //itsEvents ev = new itsEvents();
-            //pdfWrite.PageEvent = ev;
-            //doc.Open();
 
             iTextSharp.text.Font verdana = FontFactory.GetFont("Verdana", 11, iTextSharp.text.Font.BOLDITALIC, BaseColor.RED);
             Paragraph paragraph = new Paragraph(@"PIZZA EXPRESS", verdana);
@@ -386,7 +513,6 @@ namespace Pizza_Express_visual.Components
                 cell0.Phrase = new Phrase(regist.precio_M.ToString());
                 table.AddCell(cell0);
 
-
             }
 
             doc.Add(table);
@@ -410,197 +536,33 @@ namespace Pizza_Express_visual.Components
             doc.Add(noVali);
 
             doc.Close();
-
             LimpiarCarro();
+            eShowPdf((path + nombre));
 
-            ShowPdfP((path + nombre));
+
+
         }
 
-        private void ShowPdfP(string strS)
+        //  protected void PagarModal_Click(object sender, EventArgs e)
+        //{
+        //    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalComanda", "$('#myModalComanda').modal();", true);
+        //    uModalComanda.Update();
+        //}
+        private void eShowPdf(string strS)
         {
             Response.ClearContent();
             Response.ClearHeaders();
             Response.ContentType = "application/pdf";
             Response.AddHeader("Content-Disposition", "attachment; filename=" + strS);
-            //Response.AddHeader("Content-Disposition", "inline; filename=" + strS);
-            // Response.ContentType = "application/octectstream";
             Response.TransmitFile(strS);
             Response.End();
             Response.Flush();
             Response.Clear();
         }
 
-        protected void idTablas_Click(object sender, EventArgs e)
-        {
-
-            try
-            {
-
-                prod_dispo = accesoComanda.filtrarCategoriaMenu(11, 1);
-                idMostrarMenu.DataSource = prod_dispo;
-                idMostrarMenu.DataBind();
-            }
-            catch (Exception)
-            {
-
-            }
-        }
-
-        protected void idsandiwch_Click(object sender, EventArgs e)
-        {
-
-            try
-            {
-
-                prod_dispo = accesoComanda.filtrarCategoriaMenu(10, 1);
-                idMostrarMenu.DataSource = prod_dispo;
-                idMostrarMenu.DataBind();
-            }
-            catch (Exception)
-            {
-            }
-
-        }
-
-        protected void idPapas_Click(object sender, EventArgs e)
-
-        {
-            try
-            {
-
-                prod_dispo = accesoComanda.filtrarCategoriaMenu(9, 4);
-                idMostrarMenu.DataSource = prod_dispo;
-                idMostrarMenu.DataBind();
-            }
-            catch (Exception)
-            {
-
-            }
-        }
-
-
-        protected void idQueso_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                prod_dispo = accesoComanda.filtrarCategoriaMenu(9, 1);
-                idMostrarMenu.DataSource = prod_dispo;
-                idMostrarMenu.DataBind();
-            }
-            catch (Exception)
-            {
-
-            }
-        }
-
-        protected void idsalsa_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                prod_dispo = accesoComanda.filtrarCategoriaMenu(9, 1);
-                idMostrarMenu.DataSource = prod_dispo;
-                idMostrarMenu.DataBind();
-            }
-            catch (Exception)
-            {
-
-            }
-        }
-
-        protected void idPlato_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                prod_dispo = accesoComanda.filtrarCategoriaMenu(12, 1);
-                idMostrarMenu.DataSource = prod_dispo;
-                idMostrarMenu.DataBind();
-            }
-            catch (Exception)
-            {
-
-            }
-        }
-
-        protected void idAgregado_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                prod_dispo = accesoComanda.filtrarCategoriaMenu(12, 1);
-                idMostrarMenu.DataSource = prod_dispo;
-                idMostrarMenu.DataBind();
-            }
-            catch (Exception)
-            {
-
-            }
-        }
-
-        protected void idEnsalda_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                prod_dispo = accesoComanda.filtrarCategoriaMenu(12, 3);
-                idMostrarMenu.DataSource = prod_dispo;
-                idMostrarMenu.DataBind();
-            }
-            catch (Exception)
-            {
-
-            }
-        }
-
-        protected void idVinos_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                prod_dispo = accesoComanda.filtrarCategoriaMenu(13, 2);
-                idMostrarMenu.DataSource = prod_dispo;
-                idMostrarMenu.DataBind();
-            }
-            catch (Exception)
-            {
-
-            }
-        }
-
-        protected void idBebidas_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                prod_dispo = accesoComanda.filtrarCategoriaMenu(13, 2);
-                idMostrarMenu.DataSource = prod_dispo;
-                idMostrarMenu.DataBind();
-            }
-            catch (Exception)
-            {
-
-            }
-        }
-
-        protected void idJugos_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                prod_dispo = accesoComanda.filtrarCategoriaMenu(13, 2);
-                idMostrarMenu.DataSource = prod_dispo;
-                idMostrarMenu.DataBind();
-            }
-            catch (Exception)
-            {
-
-            }
-        }
     }
 }
 
-    
+
 
 

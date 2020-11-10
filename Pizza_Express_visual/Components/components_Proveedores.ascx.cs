@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Pizza_Express_visual.Services;
+using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
-using Pizza_Express_visual.Services;
 namespace Pizza_Express_visual.Components
 {
     public partial class components_Proveedores : System.Web.UI.UserControl
@@ -45,8 +41,6 @@ namespace Pizza_Express_visual.Components
             }
             else
             {
-
-                //AL GUARDAR UN PRODUCTO
 
                 trut.Text = "";
                 tnombre.Text = "";
@@ -138,7 +132,7 @@ namespace Pizza_Express_visual.Components
             uModalProveedor.Update();
             uContenedorProveedor.Update();
 
-                   }
+        }
 
         protected void idregistrarProveedor_Click(object sender, EventArgs e)
         {
@@ -153,7 +147,6 @@ namespace Pizza_Express_visual.Components
                 else
                 {
 
-                    //LEER LOS DATOS INGRESADOS
                     string rut_u = trut.Text;
                     string nombre_u = tnombre.Text;
                     string apellP = tapellidoP.Text;
@@ -162,7 +155,6 @@ namespace Pizza_Express_visual.Components
 
                     int id = Convert.ToInt32(fTipoProducto.SelectedItem.Value);
 
-                    //GUARDAR LOS DATOS EN LA LISTA
                     accesoProveedor.addProveedor(new Models.Proveedor
                     {
 
@@ -220,7 +212,6 @@ namespace Pizza_Express_visual.Components
                 uModalProveedor.Update();
                 uContenedorProveedor.Update();
 
-
             }
             else if (e.CommandName.Equals("ideliminar"))
             {
@@ -250,9 +241,9 @@ namespace Pizza_Express_visual.Components
                 }
                 else
                 {
+
                 }
 
-                //LEER LOS DATOS INGRESADOS
                 string rut_p = trut.Text;
                 string nombre_p = tnombre.Text;
                 string apellidoP_p = tapellidoP.Text;
@@ -302,7 +293,7 @@ namespace Pizza_Express_visual.Components
 
         protected void idBuscarProveedor_Click(object sender, EventArgs e)
         {
-            
+
 
             try
             {
@@ -357,10 +348,10 @@ namespace Pizza_Express_visual.Components
             alerta.Visible = false;
             idTabla.DataSource = accesoProveedor.filtrarProveedor();
             idTabla.DataBind();
-                
+
         }
     }
 }
 
-    
-    
+
+

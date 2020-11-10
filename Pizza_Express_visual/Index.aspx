@@ -10,19 +10,14 @@
 <%@ Register Src="~/Components/component_Bienvenidos.ascx" TagPrefix="uc1" TagName="component_Bienvenidos" %>
 <%@ Register Src="~/Components/components_CartaMenu.ascx" TagPrefix="uc1" TagName="components_CartaMenu" %>
 <%@ Register Src="~/Components/components_Inventario.ascx" TagPrefix="uc1" TagName="components_Inventario" %>
-<%@ Register Src="~/Components/components_montoInicial.ascx" TagPrefix="uc1" TagName="components_montoInicial" %>
-<%@ Register Src="~/Components/components_NumeroMesa.ascx" TagPrefix="uc1" TagName="components_NumeroMesa" %>
 <%@ Register Src="~/Components/components_Proveedores.ascx" TagPrefix="uc1" TagName="components_Proveedores" %>
 <%@ Register Src="~/Components/components_RegistrarProductos.ascx" TagPrefix="uc1" TagName="components_RegistrarProductos" %>
 <%@ Register Src="~/Components/components_Reportes.ascx" TagPrefix="uc1" TagName="components_Reportes" %>
 <%@ Register Src="~/Components/components_Reservas.ascx" TagPrefix="uc1" TagName="components_Reservas" %>
 <%@ Register Src="~/Components/components_Usuarios.ascx" TagPrefix="uc1" TagName="components_Usuarios" %>
 <%@ Register Src="~/Components/component_Comanda.ascx" TagPrefix="uc1" TagName="component_Comanda" %>
-<%--<%@ Register Src="~/Components/WebUserControl1.ascx" TagPrefix="uc1" TagName="WebUserControl1" %>--%>
+<%@ Register Src="~/Components/component_Caja.ascx" TagPrefix="uc1" TagName="component_Caja" %>
 
-
-
-<%--<%@ Register Src="~/Components/WebUserControl1.ascx" TagPrefix="uc1" TagName="WebUserControl1" %>--%>
 
 
 <!DOCTYPE html>
@@ -42,36 +37,29 @@
 
         <asp:ScriptManager runat="server"></asp:ScriptManager>
 
-        <%--ESTO ES UNA LIBRERIA PARA CARGAR EL PANEL--%>
         <asp:UpdatePanel runat="server" ID="uBarraMenu" UpdateMode="Conditional" ChildrenAsTriggers="true">
-            <%--Para evitar un panel dentro de otro panel = childreaAsTriggers--%>
-
+      
             <ContentTemplate>
 
                 <div class="row ">
                     <div class="col">
 
-                        <!-- Barra de navegación -->
                         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                            <%--<nav class="navbar navbar-expand-lg navbar-dark bg-danger">--%>
-                            <!-- Brand -->
+
                             <a class="navbar-brand" href="#">
-                                <img src="Imagenes/PIZZZA.jpg" class="img-thumbnail img-rounded shadow-lg" style="width: 4rem" />
+                                <img src="Imagenes/LOGO APP.png" class="img-thumbnail img-rounded shadow-lg" style="width: 4rem" />
                             </a>
                             <br />
 
-                            <!-- Toggler/collapsibe Button -->
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
 
-                            <!-- Navbar links -->
                             <div class="collapse navbar-collapse" id="collapsibleNavbar">
                                 <ul class="navbar-nav">
                                 </ul>
                             </div>
 
-                            <%--HOME--%>
                             <asp:LinkButton runat="server" Visible="false" OnClick="Menu_home_Click1" CssClass="navbar-brand" ID="Menu_home">
                                 <div class="btn-group-toggle">
                                     <i class="fas fa-home fa-2x"></i> Home
@@ -86,11 +74,9 @@
                                     <asp:LinkButton Style="color: white" Class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" Visible="false" ID="Menu_ventas" runat="server"
                                         aria-haspopup="true" aria-expanded="false"><i class="fas fa-dollar-sign fa-2x"></i> Ventas</asp:LinkButton>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <asp:LinkButton runat="server" CssClass="dropdown-item" ID="Menu_MontoInicial" OnClick="Menu_MontoInicial_Click">Monto Inicial</asp:LinkButton>
                                         <asp:LinkButton runat="server" ID="Menu_Reservas" OnClick="Menu_Reservas_Click" CssClass="dropdown-item">Reservas</asp:LinkButton>
-                                        <asp:LinkButton runat="server" ID="Menu_NumeroMesa" OnClick="Menu_NumeroMesa_Click" CssClass="dropdown-item">Número de mesa</asp:LinkButton>
                                         <asp:LinkButton runat="server" ID="Menu_comanda" OnClick="Menu_comanda_Click" CssClass="dropdown-item">Comanda</asp:LinkButton>
-                                        
+                                        <asp:LinkButton runat="server" ID="Menu_Caja" OnClick="Menu_Caja_Click" CssClass="dropdown-item">Apertura Caja</asp:LinkButton>
                                     </div>
                                 </li>
                             </ul>
@@ -120,8 +106,6 @@
                                          </div>
                             </asp:LinkButton>
 
-                            <%--BIENVENIDOS--%>
-
                             <asp:Panel runat="server" CssClass="btn-group" ID="mostrar_usuario" Visible="false">
 
                                 <asp:LinkButton runat="server" CssClass="nav-link  badge badge-pill badge-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ID="idCerrarSesion">
@@ -146,7 +130,6 @@
                 </div>
             </ContentTemplate>
         </asp:UpdatePanel>
-
 
         <asp:UpdatePanel runat="server" UpdateMode="Conditional" ID="uContenido" ChildrenAsTriggers="true">
             <ContentTemplate>
@@ -207,14 +190,8 @@
                 <%--VISTAS--%>
                 <asp:MultiView runat="server" ID="mcontenedor">
 
-                    <asp:View runat="server" ID="vMonto_Inicial">
-                        <uc1:components_montoInicial runat="server" ID="components_montoInicial" />
-                    </asp:View>
                     <asp:View runat="server" ID="vReservas">
                         <uc1:components_Reservas runat="server" ID="components_Reservas" />
-                    </asp:View>
-                    <asp:View runat="server" ID="vNumero_mesa">
-                        <uc1:components_NumeroMesa runat="server" ID="components_NumeroMesa" />
                     </asp:View>
                     <asp:View runat="server" ID="vUsuarios">
                         <uc1:components_Usuarios runat="server" ID="components_Usuarios" />
@@ -240,13 +217,15 @@
                     <asp:View runat="server" ID="vComanda">
                         <uc1:component_Comanda runat="server" ID="component_Comanda" />
                     </asp:View>
-   
+                    <asp:View runat="server" ID="vCaja">
+                        <uc1:component_Caja runat="server" ID="component_Caja" />
+                    </asp:View>
+
                 </asp:MultiView>
 
             </ContentTemplate>
         </asp:UpdatePanel>
 
-        <%--ESTETICA DEL MODAL--%>
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-sm bg-light" role="document">
 
@@ -268,16 +247,14 @@
                                         <div class="input-group-prepend">
                                             <div class="input-group-text text-info"><i class="fas fa-user"></i></div>
                                         </div>
-                                        <asp:TextBox runat="server" placeholder="nombre usuario" ID="tnombre" CssClass="form-control"></asp:TextBox>
+                                        <asp:TextBox runat="server" placeholder="nombre usuario" ID="tnombres" CssClass="form-control"></asp:TextBox>
                                     </div>
-                                    <%--VALIDADOR DE CAMPOS REQUERIDOS--%>
-
 
                                     <asp:RequiredFieldValidator runat="server"
                                         ForeColor="Red"
                                         Display="Dynamic"
                                         ErrorMessage="Usuario Requerido"
-                                        ControlToValidate="tnombre"
+                                        ControlToValidate="tnombres"
                                         ValidationGroup="grupo1"></asp:RequiredFieldValidator>
 
                                 </div>
@@ -290,8 +267,6 @@
                                         </div>
                                         <asp:TextBox runat="server" ID="tclave" TextMode="Password" placeholder="Clave" CssClass="form-control"></asp:TextBox>
                                     </div>
-                                    <%--VALIDADOR DE CAMPOS REQUERIDOS--%>
-
 
                                     <asp:RequiredFieldValidator runat="server"
                                         ForeColor="Red"
@@ -302,8 +277,8 @@
 
                                 </div>
 
-                                <asp:Label runat="server" ID="mensaje" Text="Mensaje" Visible="false"></asp:Label>
-
+                                <asp:Label runat="server" ID="ErrorInicioSesion" Text="Mensaje" Visible="false"></asp:Label>
+                                
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Cerrar</button>

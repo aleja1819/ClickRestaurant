@@ -1,9 +1,7 @@
-﻿using System;
+﻿using Pizza_Express_visual.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-
-using Pizza_Express_visual.Models;
 namespace Pizza_Express_visual.Services
 {
     public class QueryProveedor
@@ -15,13 +13,13 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd11 contexto = new bd11())
+                using (Pizza_BD1 contexto = new Pizza_BD1())
                 {
 
                     var pro = from p in contexto.Proveedor
-                              join t in contexto.TipoProducto  
+                              join t in contexto.TipoProducto
                               on p.codigo_tipoProducto equals t.codigo_tipoProducto
-                                                          
+
                               select new { p.codigo_proveedor, p.rut_proveedor, p.nombre_proveedor, p.apellido_paterno_proveedor, p.apellido_materno_proveedor, p.direccion_proveedor, t.nombre_tipoProducto, t.codigo_tipoProducto };
 
                     return pro.ToList<object>();
@@ -39,7 +37,7 @@ namespace Pizza_Express_visual.Services
         {
             try
             {
-                using (bd11 contexto = new bd11())
+                using (Pizza_BD1 contexto = new Pizza_BD1())
                 {
 
                     var pro = from t in contexto.TipoProducto
@@ -56,13 +54,12 @@ namespace Pizza_Express_visual.Services
             }
         }
 
-        //AGREGAR PROVEEDOR
         public bool addProveedor(Proveedor prove)
         {
 
             try
             {
-                using (bd11 contexto = new bd11())
+                using (Pizza_BD1 contexto = new Pizza_BD1())
                 {
 
                     contexto.Proveedor.Add(prove);
@@ -80,14 +77,13 @@ namespace Pizza_Express_visual.Services
             }
         }
 
-        //ELIMNAR 
-        public bool eliminarProveedor(int id_prov)
+        public bool eliminarProveedor(int idProveedor)
         {
             try
             {
-                using (bd11 contexto = new bd11())
+                using (Pizza_BD1 contexto = new Pizza_BD1())
                 {
-                    var user = contexto.Proveedor.Find(id_prov);
+                    var user = contexto.Proveedor.Find(idProveedor);
 
                     contexto.Proveedor.Remove(user);
                     contexto.SaveChanges();
@@ -103,15 +99,14 @@ namespace Pizza_Express_visual.Services
 
         }
 
-        //BUSCAR
         public List<object> BuscarProveedor(string dato, int filtro)
         {
-            using (bd11 contexto = new bd11())
+            using (Pizza_BD1 contexto = new Pizza_BD1())
             {
                 switch (filtro)
                 {
-                    case 0: //BUSCAR POR RUT
-                        var pRut = from p in contexto.Proveedor
+                    case 0: 
+                        var RetornarRut = from p in contexto.Proveedor
                                    where p.rut_proveedor.ToLower().StartsWith(dato.ToLower())
                                    join t in contexto.TipoProducto
                                    on p.codigo_tipoProducto equals t.codigo_tipoProducto
@@ -127,10 +122,10 @@ namespace Pizza_Express_visual.Services
                                        t.nombre_tipoProducto
                                    };
 
-                        return pRut.ToList<object>();
+                        return RetornarRut.ToList<object>();
 
-                    case 1: //BUSCAR POR nombre
-                        var pNombre = from p in contexto.Proveedor
+                    case 1: 
+                        var RetornarNombre = from p in contexto.Proveedor
                                       where p.nombre_proveedor.ToLower().StartsWith(dato.ToLower())
                                       join t in contexto.TipoProducto
                                       on p.codigo_tipoProducto equals t.codigo_tipoProducto
@@ -146,53 +141,57 @@ namespace Pizza_Express_visual.Services
                                           t.nombre_tipoProducto
                                       };
 
-                        return pNombre.ToList<object>();
+                        return RetornarNombre.ToList<object>();
                     default:
                         var pTodo = from p in contexto.Proveedor
                                     join t in contexto.TipoProducto
                                     on p.codigo_tipoProducto equals t.codigo_tipoProducto
-                                    select new { p.codigo_proveedor, p.rut_proveedor, p.nombre_proveedor, p.apellido_paterno_proveedor,
-                                    p.apellido_materno_proveedor, p.direccion_proveedor, t.codigo_tipoProducto, t.nombre_tipoProducto};
+                                    select new
+                                    {
+                                        p.codigo_proveedor,
+                                        p.rut_proveedor,
+                                        p.nombre_proveedor,
+                                        p.apellido_paterno_proveedor,
+                                        p.apellido_materno_proveedor,
+                                        p.direccion_proveedor,
+                                        t.codigo_tipoProducto,
+                                        t.nombre_tipoProducto
+                                    };
 
                         return pTodo.ToList<object>();
                 }
             }
         }
 
-            public bool editarProveedor(Proveedor proveedor, string cod_original)
+        public bool editarProveedor(Proveedor proveedor, string idOriginal)
+        {
+
+            try
             {
-
-                try
-                {
-                    int idOri = Convert.ToInt32(cod_original);
-                    using (bd11 contexto = new bd11())
-                    {
-
-                    //BUSCAR EL PRODUCTO EN LA BD
-
-                    var user = contexto.Proveedor.First(pro => pro.codigo_proveedor == idOri);
-
-                        //MODIFICAR LOS CAMPOS QUE NECESITO
-
-                        user.rut_proveedor = proveedor.rut_proveedor;
-                        user.nombre_proveedor = proveedor.nombre_proveedor;
-                        user.apellido_paterno_proveedor = proveedor.apellido_paterno_proveedor;
-                        user.apellido_materno_proveedor = proveedor.apellido_materno_proveedor;
-                        user.direccion_proveedor = proveedor.direccion_proveedor;
-                        user.codigo_tipoProducto = proveedor.codigo_tipoProducto;
-
-                        //GUARDAR LOS CAMBIOS EN LA TABLA B
-                        int respuesta = contexto.SaveChanges();
-                        return respuesta == 1;
-
-                    }
-                }
-                catch (Exception)
+                int codigoOriginal = Convert.ToInt32(idOriginal);
+                using (Pizza_BD1 contexto = new Pizza_BD1())
                 {
 
-                    return false;
+                    var user = contexto.Proveedor.First(pro => pro.codigo_proveedor == codigoOriginal);
+
+                    user.rut_proveedor = proveedor.rut_proveedor;
+                    user.nombre_proveedor = proveedor.nombre_proveedor;
+                    user.apellido_paterno_proveedor = proveedor.apellido_paterno_proveedor;
+                    user.apellido_materno_proveedor = proveedor.apellido_materno_proveedor;
+                    user.direccion_proveedor = proveedor.direccion_proveedor;
+                    user.codigo_tipoProducto = proveedor.codigo_tipoProducto;
+
+                    int respuesta = contexto.SaveChanges();
+                    return respuesta == 1;
+
                 }
             }
-        }
+            catch (Exception)
+            {
 
+                return false;
+            }
+        }
     }
+
+}

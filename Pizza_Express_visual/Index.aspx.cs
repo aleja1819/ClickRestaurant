@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-using Pizza_Express_visual.Services;
+
+
 namespace Pizza_Express_visual
 {
     public partial class Index : System.Web.UI.Page
-    {
+    { 
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -19,8 +20,8 @@ namespace Pizza_Express_visual
 
                     if (!Session["idUser"].Equals("") || !Session["idUser"].Equals(null))
                     {
-                        int idR = Convert.ToInt32(Session["rol_user"]);
-                        cargarMenu(idR);
+                        int idRol = Convert.ToInt32(Session["rol_user"]);
+                        cargarMenuUsuarios(idRol);
                         vBienvenida.Visible = true;
                         mcontenedor.SetActiveView(vBienvenida);
                     }
@@ -29,12 +30,12 @@ namespace Pizza_Express_visual
             }
             catch (Exception)
             {
-                Session["name_user"] = "visita.cl";
+                Session["name_user"] = "Usuario no Registrado";
                 login.Visible = true;
             }
 
 
-            mensaje.Text = "";
+            ErrorInicioSesion.Text = "";
         }
 
         protected void login_Click(object sender, EventArgs e)
@@ -46,13 +47,6 @@ namespace Pizza_Express_visual
         protected void Menu_home_Click(object sender, EventArgs e)
         {
             mcontenedor.SetActiveView(vBienvenida);
-            uContenido.Update();
-        }
-
-        protected void Menu_MontoInicial_Click(object sender, EventArgs e)
-        {
-            alerta.Visible = false;
-            mcontenedor.SetActiveView(vMonto_Inicial);
             uContenido.Update();
         }
 
@@ -69,12 +63,6 @@ namespace Pizza_Express_visual
             uContenido.Update();
         }
 
-        protected void Menu_NumeroMesa_Click(object sender, EventArgs e)
-        {
-            alerta.Visible = false;
-            mcontenedor.SetActiveView(vNumero_mesa);
-            uContenido.Update();
-        }
 
         protected void Menu_Proveedores_Click(object sender, EventArgs e)
         {
@@ -111,10 +99,22 @@ namespace Pizza_Express_visual
             uContenido.Update();
         }
 
-        void cargarMenu(int idRol)
+        protected void Menu_comanda_Click(object sender, EventArgs e)
         {
+            alerta.Visible = false;
+            mcontenedor.SetActiveView(vComanda);
+            uContenido.Update();
+        }
 
-            //PARTE 1
+        protected void Menu_Caja_Click(object sender, EventArgs e)
+        {
+            alerta.Visible = false;
+            mcontenedor.SetActiveView(vCaja);
+            uContenido.Update();
+        }
+
+        void cargarMenuUsuarios(int idRol)
+        {
 
             Services.QueryUsuario queryUsuario = new Services.QueryUsuario();
             List<LinkButton> ListaMenu = new List<LinkButton>();
@@ -130,10 +130,6 @@ namespace Pizza_Express_visual
             login.Visible = false;
             idCerrarSesion.Visible = true;
 
-            //Menu_administracion.Visible = true;
-            //Menu_ventas.Visible = true;
-            //Menu_home.Visible = true;
-
         }
 
         protected void bingresar_login_Click(object sender, EventArgs e)
@@ -141,37 +137,32 @@ namespace Pizza_Express_visual
             try
             {
                 Services.QueryUsuario user = new Services.QueryUsuario();
-                int[] respuestas = user.validateUser(tnombre.Text.Trim(), tclave.Text.Trim());
-                mensaje.CssClass = "text-danger";
-                mensaje.Visible = true;
+                int[] respuestas = user.validateUser(tnombres.Text.Trim(), tclave.Text.Trim());
+                ErrorInicioSesion.CssClass = "text-danger";
+                ErrorInicioSesion.Visible = true;
                 if (respuestas[0] == 0)
                 {
-                    mensaje.Visible = true;
-                    mensaje.Text = "Clave o Usuario Incorrecto";
+                    ErrorInicioSesion.Visible = true;
+                    ErrorInicioSesion.Text = "Clave o Usuario Incorrecto";
                 }
                 else
                 {
                     if (respuestas[1] == 0)
                     {
-                        mensaje.Text = "Usuario no existe";
+                        ErrorInicioSesion.Text = "Usuario no existe";
                     }
                     else
                     {
-                        if (respuestas[2] == 0)
-                        {
-                            mensaje.Text = "Usuario Bloqueado";
-                        }
-                        else
                         {
                             //AQUI EL USUARIO PUEDE INGRESAR AL SISTEMA
 
                             Session["idUser"] = respuestas[4];
-                            Session["name_user"] = tnombre.Text;
+                            Session["name_user"] = tnombres.Text;
                             Session["rol_user"] = respuestas[3];
 
 
                             //HABILITAR MENUS SEGUN EL ROL DEL USUARIO
-                            cargarMenu(respuestas[3]);
+                            cargarMenuUsuarios(respuestas[3]);
                             login.Visible = false;
                             MostrarLogo.Visible = false;
 
@@ -199,20 +190,12 @@ namespace Pizza_Express_visual
             }
         }
 
-        protected void Menu_comanda_Click(object sender, EventArgs e)
-        {
-            alerta.Visible = false;
-            mcontenedor.SetActiveView(vComanda);
-            uContenido.Update();
-        }
-
-
         protected void bCerrarSesion_Click(object sender, EventArgs e)
         {
-          
+
             Session.Clear();
             Session.Abandon();
-            
+
             Menu_administracion.Visible = false;
             Menu_ventas.Visible = false;
             Menu_home.Visible = false;
@@ -227,11 +210,12 @@ namespace Pizza_Express_visual
             uContenido.Update();
             uModal.Update();
         }
-
         protected void Menu_home_Click1(object sender, EventArgs e)
         {
             mcontenedor.SetActiveView(vBienvenida);
             uContenido.Update();
         }
+
+        
     }
 }

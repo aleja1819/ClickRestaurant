@@ -16,7 +16,6 @@
                 <ContentTemplate>
                     <br />
 
-                    <%--ALERTA DE MENSAJE--%>
                     <asp:Panel runat="server" ID="alerta" Visible="false">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -36,18 +35,16 @@
 
                                 <div class="input-group-prepend">
                                     <asp:DropDownList runat="server" ID="idOpciones" CssClass="btn btn-secondary">
-                                        <%--ES UN CONBOBOX--%>
 
                                         <asp:ListItem Value="0" Text="Rut" Selected="True"></asp:ListItem>
                                         <asp:ListItem Value="1" Text="Nombre"></asp:ListItem>
-                                        <%--LO QUE DENTRO--%>
+
                                     </asp:DropDownList>
 
                                     <asp:Button runat="server" ID="idBuscarProveedor" OnClick="idBuscarProveedor_Click" Text="buscar" CssClass="btn btn-success" />
                                 </div>
                             </div>
                         </div>
-                        <%--CIERRE COLUMNA--%>
 
                         <%--SEGUNDA COLUMNA--%>
                         <div class="col-md-3">
@@ -59,7 +56,6 @@
                             <br />
                             <br />
                         </div>
-                        <%--CIERRE COLUMNA--%>
 
                          <div class="col-md-3">
                             <asp:LinkButton runat="server" CssClass="btn btn-primary btn-lg" OnClick="btnVolverP_Click" ID="btnVolverP">
@@ -68,7 +64,6 @@
                     </div>
 
                     </div>
-
 
                     <%--TABLA GRIDVIEW--%>
                     <div class="col align-content-center">
@@ -100,7 +95,6 @@
         </div>
 
 
-        <%--ESTETICA DEL MODAL--%>
         <div class="modal" id="myModalUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg bg-light" role="document">
 
@@ -116,10 +110,8 @@
                                 </button>
                             </div>
 
-                            <%--TEXTOS INPUTS--%>
                             <div class="modal-body">
 
-                                <%--RUT PROVEEDOR--%>
                                 <div class="form-group">
                                     <label for="trut">Rut Proveedor (*)</label>
                                       <div class="input-group mb-2">
@@ -131,7 +123,6 @@
                                     </div>
                                 </div>
 
-                                <%--NOMBRE PROVEEDOR--%>
                                 <div class="form-group">
                                     <label for="tnombre">Nombre Proveedor (*)</label>
                                     <div class="input-group mb-2">
@@ -143,7 +134,6 @@
                                     </div>
                                 </div>
 
-                                <%--APELLIDO PATERNO--%>
                                 <div class="form-group">
                                     <label for="tapellidoP">Apellido Paterno (*)</label>
                                     <div class="input-group mb-2">
@@ -155,7 +145,6 @@
                                     </div>
                                 </div>
 
-                                <%--APELLIDO MATERNO--%>
                                 <div class="form-group">
                                     <label for="tapellidoM">Apellido Materno (*)</label>
                                     <div class="input-group mb-2">
@@ -167,7 +156,6 @@
                                     </div>
                                 </div>
 
-                                <%--DIRECCION--%>
                                 <div class="form-group">
                                     <label for="tdireccion">Dirección (*)</label>
                                     <div class="input-group mb-2">
@@ -179,7 +167,6 @@
                                     </div>
                                 </div>
 
-                                <%--TIPO Producto--%>
                                 <div class="form-group">
                                     <label for="fTipoProducto">Tipo Producto (*)</label>
                                     <br />

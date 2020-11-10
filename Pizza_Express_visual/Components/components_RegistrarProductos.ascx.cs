@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Pizza_Express_visual.Services;
+using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
-using Pizza_Express_visual.Services;
 namespace Pizza_Express_visual.Components
 {
     public partial class components_RegistrarProductos : System.Web.UI.UserControl
@@ -17,7 +13,6 @@ namespace Pizza_Express_visual.Components
             if (!IsPostBack)
             {
 
-                //PARA MOSTRAR LOS PRODUCTOS DE LA BASE DE DATOS
                 idTabla.DataSource = accesoProductos.filtrarProductos();
                 idTabla.DataBind();
 
@@ -37,7 +32,7 @@ namespace Pizza_Express_visual.Components
             }
             else
             {
-                //AL GUARDAR UN PRODUCTO
+
                 trut.Text = "";
                 tnombre.Text = "";
                 tfecha.Text = "";
@@ -138,11 +133,11 @@ namespace Pizza_Express_visual.Components
                 {
 
                     //LEER LOS DATOS INGRESADOS
-                    string nombre_Produc = tnombre.Text;
-                    string rut_Prove = trut.Text;
+                    string nombreProducto = tnombre.Text;
+                    string rutProveedor = trut.Text;
                     string fecha = tfecha.Text;
                     string cantidad = tcantidad.Text;
-                    int cod = accesoProductos.codigoProvee(rut_Prove);
+                    int cod = accesoProductos.codigoProveedor(rutProveedor);
                     int idProd = 0;
                     if (cod == -1)
                     {
@@ -150,13 +145,12 @@ namespace Pizza_Express_visual.Components
                     }
                     else
                     {
-
                         //GUARDAR LOS DATOS EN LA LISTA
                         accesoProductos.addProducto(new Models.Producto
                         {
 
-                            nombre_producto = nombre_Produc,
-                            codigo_usuario = 2
+                            nombre_producto = nombreProducto,
+                            codigo_usuario = 4
 
                         }, ref idProd);
 
@@ -172,7 +166,7 @@ namespace Pizza_Express_visual.Components
                             codigo_producto = idProd,
                             cantidad_producto = cant,
                             codigo_proveedor = cod
-                        }); ;
+                        }); 
 
                         //MOSTRAR LOS DATOS EN LA TABLA
                         idTabla.DataSource = accesoProductos.filtrarProductos();
@@ -203,12 +197,12 @@ namespace Pizza_Express_visual.Components
 
         protected void idTabla_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            
+
             alerta.Visible = false;
             beditarProductoBoton.Visible = true;
-            
+
             int fila = Convert.ToInt32(e.CommandArgument);
-           
+
             if (e.CommandName.Equals("ideditar"))
             {
                 cod_OriProve.Text = idTabla.Rows[fila].Cells[0].Text;
@@ -227,11 +221,11 @@ namespace Pizza_Express_visual.Components
             else if (e.CommandName.Equals("ideliminar"))
             {
                 // ELIMINAR UN PROVEEDOR
-                string codigoProd = idTabla.Rows[fila].Cells[0].Text;
-                string RutProve = idTabla.Rows[fila].Cells[2].Text;
+                string codigoProducto = idTabla.Rows[fila].Cells[0].Text;
+                string RutProveedor = idTabla.Rows[fila].Cells[2].Text;
 
-                int idProd = Convert.ToInt32(codigoProd);
-                int idProve = accesoProductos.codigoProvee(RutProve);
+                int idProd = Convert.ToInt32(codigoProducto);
+                int idProve = accesoProductos.codigoProveedor(RutProveedor);
 
                 accesoProductos.eliminarProductoProvee(idProd, idProve);
 
@@ -299,12 +293,11 @@ namespace Pizza_Express_visual.Components
                 else
                 {
 
-                    //LEER LOS DATOS INGRESADOS
                     string nombre_Produc = tnombre.Text;
                     string rut_Prove = trut.Text;
                     string fecha = tfecha.Text;
                     string cantidad = tcantidad.Text;
-                    int cod = accesoProductos.codigoProvee(rut_Prove);
+                    int cod = accesoProductos.codigoProveedor(rut_Prove);
                     int idProd = 0;
                     if (cod == -1)
                     {
@@ -317,7 +310,6 @@ namespace Pizza_Express_visual.Components
                         int cod_O = Convert.ToInt32(codigo_original);
                         int cod_prov = Convert.ToInt32(cod_prove);
 
-                        //EDITAR LOS DATOS
                         accesoProductos.editarProducto(new Models.Producto
                         {
 
@@ -340,7 +332,6 @@ namespace Pizza_Express_visual.Components
 
                         }, cod_prov);
 
-                        //MOSTRAR LOS DATOS EN LA TABLA
                         idTabla.DataSource = accesoProductos.filtrarProductos();
                         idTabla.DataBind();
 
@@ -354,7 +345,7 @@ namespace Pizza_Express_visual.Components
                         alerta.CssClass = "alert alert-primary animated zoomInUp";
                         mensaje3.Text = "PRODUCTO ACTUALIZADO CON EXITO.";
 
-                        
+
                     }
                 }
 
@@ -365,7 +356,7 @@ namespace Pizza_Express_visual.Components
                 alerta.CssClass = "alert alert-danger animated zoomInUp";
                 mensaje3.Text = "PRODUCTO NO ACTUALIZADO.";
             }
-            }
+        }
 
         protected void btnVolverPr_Click(object sender, EventArgs e)
         {
@@ -374,7 +365,6 @@ namespace Pizza_Express_visual.Components
             idTabla.DataBind();
 
         }
-
         protected void idTabla_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             try
@@ -392,6 +382,6 @@ namespace Pizza_Express_visual.Components
             }
         }
     }
-    }
+}
 
 
