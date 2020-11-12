@@ -14,60 +14,40 @@ Y agregamos en el package.json lo siguiente:
 */
 import express from 'express';
 import router from './routes/index.js';
-import db from './config/db.js'; 
-import bodyParser from 'body-parser';
-import path from 'path';
-import configs from './config';
-import routes from './routes';
+import db from './config/db.js';
 
-require('dotenv').config({ path: '.env' });
+const app = express();
 
 // Conectar la base de datos
 db.authenticate()
     .then( () => console.log('Base de datos conectada!'))
     .catch( error => console.log(error));
 
-const app = express();
+/**Puerto y Host para la app */
+
+// Definir host 
+const host = process.env.HOST || '0.0.0.0';
+// Definir puerto
+const port = process.env.PORT || 4000;
 
 // Habilitar Pug
 app.set('view engine', 'pug');
-
-// añadir las vistas
-app.set('views', path.join(__dirname, './views'));
-
-// Definir directorio public
-app.use(express.static('public'));
-
-const config = configs[app.get('env')];
-
-app.locals.titulo = configs.nombresitio;
 
 // Obtener el año actual
 app.use( (req, res, next) => {
     const year = new Date();
 
     res.locals.actualYear = year.getFullYear();
-    // res.locals.nombresitio = "Agencia de Viajes";
-    res.locals.ruta = req.path;
+    res.locals.nombresitio = "Agencia de Viajes";
 
     return next();
 })
 
-app.use(bodyParser.urlencoded({extended: true}));
-
-
-app.use('/', routes());
-
-
-/**Puerto y Host para la app */
-// Definir host 
-const host = process.env.HOST || '0.0.0.0';
-// Definir puerto
-const port = process.env.PORT || 4000;
-
-
 // Agregar bodyParser para leer los datos del formulario
-// app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({extended: true}));
+
+// Definir directorio public
+app.use(express.static('public'));
 
 // Agregar Router
 /*
@@ -78,7 +58,7 @@ const port = process.env.PORT || 4000;
     -patch
     -delete
 */
-
+app.use('/', router);
 
 
 
