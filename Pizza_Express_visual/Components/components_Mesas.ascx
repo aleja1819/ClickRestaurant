@@ -9,6 +9,7 @@
 <h1>CAMBIO PARA PRUEBA DE GIT</h1>
 <h1>Otro Cambio</h1>
    
+
 <div class="container">
     <div class="row">
         <div class="col-md-2">
@@ -139,9 +140,12 @@
     </div>
 
 </div>
-        <asp:UpdatePanel ID="uContenido" runat="server" UpdateMode="Conditional" ChildrenASTrigger="true">
+     
+<asp:UpdatePanel ID="mContenido" runat="server" UpdateMode="Conditional" ChildrenASTrigger="true">
     <ContentTemplate>
-        <asp:MultiView ID="mContenedor" runat="server">
+
+
+        <asp:MultiView ID="meContenedor" runat="server">
             <asp:View runat="server" ID="vComanda">
                 <uc1:component_Comanda runat="server" ID="component_Comanda" />
             </asp:View>
