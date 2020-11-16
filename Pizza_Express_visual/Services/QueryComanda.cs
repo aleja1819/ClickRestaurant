@@ -44,19 +44,19 @@ namespace Pizza_Express_visual.Services
                 {
 
                     var categoriasMenu = from u in contexto.Menu
-                                         join c in contexto.Categoria
-                                         on u.codigo_categoria equals c.codigo_categoria
-                                         join t in contexto.TamanoP
-                                               on u.codigo_tamanoP equals t.codigo_tamanoP
-                                         where u.codigo_categoria == idcategoria && u.codigo_tamanoP == idtamano
-                                         select new
-                                         {
-                                             u.codigo_menu,
-                                             u.nombre_menu,
-                                             u.precio_menu,
-                                             u.ingredientes_menu,
-                                             t.nombre_tamanoP
-                                         };
+                                 join c in contexto.Categoria
+                                 on u.codigo_categoria equals c.codigo_categoria
+                                 join t in contexto.TamanoP
+                                       on u.codigo_tamanoP equals t.codigo_tamanoP
+                                 where u.codigo_categoria == idcategoria && u.codigo_tamanoP == idtamano
+                                 select new
+                                 {
+                                     u.codigo_menu,
+                                     u.nombre_menu,
+                                     u.precio_menu,
+                                     u.ingredientes_menu,
+                                     t.nombre_tamanoP
+                                 };
 
                     return categoriasMenu.ToList<object>();
 
@@ -75,11 +75,11 @@ namespace Pizza_Express_visual.Services
 
             using (Pizza_BD1 c = new Pizza_BD1())
             {
-                ComandaMesa comanda = new ComandaMesa { codigo_usuario = idUser, idMesa = numeroMesa, fecha = DateTime.Now };
+                ComandaMesa comanda = new ComandaMesa { codigo_usuario = idUser, idMesa= numeroMesa, fecha = DateTime.Now };
                 c.ComandaMesa.Add(comanda);
                 c.SaveChanges();
                 cod_comanda = comanda.codigo_comanda;
-            }
+            }  
 
             using (Pizza_BD1 c = new Pizza_BD1())
             {
@@ -97,56 +97,6 @@ namespace Pizza_Express_visual.Services
 
             }
             return true;
-        }
-
-        //CARGA TABLA DETALLE PAGO
-
-        public List<object> filtrarTipoPago()
-        {
-            try
-            {
-                using (Pizza_BD1 contexto = new Pizza_BD1())
-                {
-
-                    var formaPago = from tp in contexto.TipoPago
-                                    select new
-                                    {
-                                        tp.codigo_tipoPago,
-                                        tp.nombre
-                                    };
-
-                    return formaPago.ToList<object>();
-
-                }
-            }
-            catch (Exception)
-            {
-                return null;
-
-            }
-        }
-
-        public bool addPago(Detalle_Pago pago)
-        {
-
-            try
-            {
-                using (Pizza_BD1 contexto = new Pizza_BD1())
-                {
-
-                    contexto.Detalle_Pago.Add(pago);
-                    contexto.SaveChanges();
-
-                    int respuestas = contexto.SaveChanges(); //INSERTA EN LA TABLA DE BASE DE DATOS
-
-                    return respuestas == 1; //VALIDA SI LO ANGREGA O NO, SI ES UN 1 ES TRUE SI NO AGREGAR NADA ES FALSE
-                }
-            }
-            catch (Exception)
-            {
-
-                return false;
-            }
         }
     }
 }

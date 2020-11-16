@@ -102,8 +102,16 @@ namespace Pizza_Express_visual
         protected void Menu_comanda_Click(object sender, EventArgs e)
         {
             alerta.Visible = false;
+
+            // Direcciona a la selección de mesa para tomar el pedido
+            mcontenedor.SetActiveView(vMesas);
+            uContenido.Update();
+
+            // direcciona a la selección de comanda
+            /*
             mcontenedor.SetActiveView(vComanda);
             uContenido.Update();
+            */
         }
 
         protected void Menu_Caja_Click(object sender, EventArgs e)
@@ -216,6 +224,10 @@ namespace Pizza_Express_visual
             uContenido.Update();
         }
 
-        
+        protected void Menu_Mesas_Click1(object sender, EventArgs e)
+        {
+            mcontenedor.SetActiveView(vMesas);
+            uContenido.Update();
+        }
     }
 }

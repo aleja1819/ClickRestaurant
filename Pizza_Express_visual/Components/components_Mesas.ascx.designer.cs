@@ -11,214 +11,205 @@ namespace Pizza_Express_visual.Components
 {
 
 
-    public partial class component_Comanda
+    public partial class components_Mesas
     {
 
         /// <summary>
-        /// Control uContenedorUsuario1.
+        /// Control bMesa1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel uContenedorUsuario1;
+        protected global::System.Web.UI.WebControls.LinkButton bMesa1;
 
         /// <summary>
-        /// Control alerta.
+        /// Control bMesa2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel alerta;
+        protected global::System.Web.UI.WebControls.LinkButton bMesa2;
 
         /// <summary>
-        /// Control mensaje3.
+        /// Control bMesa3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label mensaje3;
+        protected global::System.Web.UI.WebControls.LinkButton bMesa3;
 
         /// <summary>
-        /// Control idGrande.
+        /// Control bMesa4.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton idGrande;
+        protected global::System.Web.UI.WebControls.LinkButton bMesa4;
 
         /// <summary>
-        /// Control idMediana.
+        /// Control bMesa5.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton idMediana;
+        protected global::System.Web.UI.WebControls.LinkButton bMesa5;
 
         /// <summary>
-        /// Control idIndividual.
+        /// Control bMesa6.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton idIndividual;
+        protected global::System.Web.UI.WebControls.LinkButton bMesa6;
 
         /// <summary>
-        /// Control idTablas.
+        /// Control bMesa7.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton idTablas;
+        protected global::System.Web.UI.WebControls.LinkButton bMesa7;
 
         /// <summary>
-        /// Control idsandiwch.
+        /// Control bMesa8.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton idsandiwch;
+        protected global::System.Web.UI.WebControls.LinkButton bMesa8;
 
         /// <summary>
-        /// Control idQueso.
+        /// Control bMesa9.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton idQueso;
+        protected global::System.Web.UI.WebControls.LinkButton bMesa9;
 
         /// <summary>
-        /// Control idPlato.
+        /// Control bMesa10.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton idPlato;
+        protected global::System.Web.UI.WebControls.LinkButton bMesa10;
 
         /// <summary>
-        /// Control idAgregado.
+        /// Control bMesa11.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton idAgregado;
+        protected global::System.Web.UI.WebControls.LinkButton bMesa11;
 
         /// <summary>
-        /// Control idEnsalda.
+        /// Control bMesa12.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton idEnsalda;
+        protected global::System.Web.UI.WebControls.LinkButton bMesa12;
 
         /// <summary>
-        /// Control idVinos.
+        /// Control bMesa13.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton idVinos;
+        protected global::System.Web.UI.WebControls.LinkButton bMesa13;
 
         /// <summary>
-        /// Control idBebidas.
+        /// Control bMesa14.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton idBebidas;
+        protected global::System.Web.UI.WebControls.LinkButton bMesa14;
 
         /// <summary>
-        /// Control idJugos.
+        /// Control bMesa15.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton idJugos;
+        protected global::System.Web.UI.WebControls.LinkButton bMesa15;
 
         /// <summary>
-        /// Control idLicores.
+        /// Control bMesa16.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton idLicores;
+        protected global::System.Web.UI.WebControls.LinkButton bMesa16;
 
         /// <summary>
-        /// Control idMostrarMenu.
+        /// Control bMesa17.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView idMostrarMenu;
+        protected global::System.Web.UI.WebControls.LinkButton bMesa17;
 
         /// <summary>
-        /// Control ltotal.
+        /// Control bMesa18.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ltotal;
+        protected global::System.Web.UI.WebControls.LinkButton bMesa18;
 
         /// <summary>
-        /// Control btnGenerarPDF.
+        /// Control uContenido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGenerarPDF;
+        protected global::System.Web.UI.UpdatePanel uContenido;
 
         /// <summary>
-        /// Control btnpagos.
+        /// Control mContenedor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnpagos;
+        protected global::System.Web.UI.WebControls.MultiView mContenedor;
 
         /// <summary>
-        /// Control btnNuevo.
+        /// Control vComanda.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNuevo;
+        protected global::System.Web.UI.WebControls.View vComanda;
 
         /// <summary>
-        /// Control idCargarSeleccion.
+        /// Control component_Comanda.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView idCargarSeleccion;
-
-        /// <summary>
-        /// Control uModalComanda.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel uModalComanda;
+        protected global::Pizza_Express_visual.Components.component_Comanda component_Comanda;
     }
 }
