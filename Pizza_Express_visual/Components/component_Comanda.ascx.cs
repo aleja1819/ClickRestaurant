@@ -17,6 +17,7 @@ namespace Pizza_Express_visual.Components
         QueryComanda accesoComanda = new QueryComanda();
         static List<object> productoDisponible = new List<object>();
         static List<Services.carro> carroCompra = new List<Services.carro>();
+      
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,7 +25,13 @@ namespace Pizza_Express_visual.Components
             {
                 carroCompra.Clear();
 
+                //MOSTRAR LA LISTA DE LOS FORMAS DE PAPGO DE LA BASE DE DATOS
+                ftipoPago.DataSource = accesoComanda.filtrarTipoPago();
+                ftipoPago.DataBind();
+
+                uContenedorUsuario1.Update();
                 uModalComanda.Update();
+
             }
         }
 
@@ -36,13 +43,47 @@ namespace Pizza_Express_visual.Components
 
         private void calcularTotal()
         {
+            
             int suma = 0;
             foreach (var item in carroCompra)
             {
                 suma += item.precio_M;
             }
             ltotal.Text = "Total a pagar $" + suma;
+            
         }
+
+        private void calcularTotalPago()
+        {
+            int suma = 0;
+            foreach (var item in carroCompra)
+            {
+
+             suma += item.precio_M;
+
+              
+            }
+            LTotalCancelar.Text = "Total a Cancelar $" + suma;
+
+        }
+
+  
+
+        private void cacularVuelto() {
+
+            int resta = 0;
+
+            int cCancelar = Convert.ToInt32(tcancelar.Text);
+
+            foreach (var item in carroCompra)
+            {
+                resta -= item.precio_M - cCancelar;
+            }
+
+            Lvuelto.Text = "Vuelto $" + resta;
+
+        }
+                            
         protected void idMostrarMenu_RowCommand(object sender, GridViewCommandEventArgs e)
         {
 
@@ -90,6 +131,7 @@ namespace Pizza_Express_visual.Components
 
                 }
                 calcularTotal();
+                
             }
         }
 
@@ -330,6 +372,7 @@ namespace Pizza_Express_visual.Components
                     idCargarSeleccion.DataSource = carroCompra;
                     idCargarSeleccion.DataBind();
                     calcularTotal();
+                   
                 }
                 catch (Exception ex)
                 {
@@ -348,33 +391,9 @@ namespace Pizza_Express_visual.Components
 
         }
 
-        private void agregarComanda(int numeroMesa)
-        {
-
-        }
-
         protected void btnGenerarPDF_Click(object sender, EventArgs e)
-        {    
-            
-            // Cambiar el color de la mesa
 
-            string mesaSeleccionada = System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]+"";
-
-            switch (mesaSeleccionada)
-            {
-                case "mesa1":
-                    //
-                    agregarComanda(1);
-
-                    break;
-                case "mesa2":
-
-                    break;
-
-                
-            }
-
-
+        {
             var doc = new Document(PageSize.A5);
             string path = Server.MapPath("Files");
             Random r = new Random();
@@ -449,140 +468,287 @@ namespace Pizza_Express_visual.Components
             Response.Clear();
         }
 
-        protected void btnpago_Click(object sender, EventArgs e)
+        //protected void btnpago_Click(object sender, EventArgs e)
+        //{
+
+
+        //    int id = Convert.ToInt32(Session["idUser"]);
+        //    accesoComanda.addcomanda(
+
+        //        carroCompra, 3, 4
+        //    );
+
+        //    var doc = new Document(PageSize.A5);
+        //    string path = Server.MapPath("Files");
+        //    Random r = new Random();
+        //    string nombre = "Prod_" + r.Next(1, 500) + "_" + DateTime.Now.Second;
+        //    PdfWriter pdfWrite = PdfWriter.GetInstance(doc, new FileStream(path + nombre, FileMode.OpenOrCreate));
+
+        //    doc.Open();
+        //    iTextSharp.text.Image tif = iTextSharp.text.Image.GetInstance(path + "/PIZZZA.jpg");
+        //    tif.ScalePercent(13f, 9f);
+        //    tif.Alignment = iTextSharp.text.Image.ALIGN_RIGHT;
+        //    doc.Add(tif);
+
+        //    iTextSharp.text.Font verdana = FontFactory.GetFont("Verdana", 11, iTextSharp.text.Font.BOLDITALIC, BaseColor.RED);
+        //    Paragraph paragraph = new Paragraph(@"PIZZA EXPRESS", verdana);
+        //    paragraph.Alignment = Element.ALIGN_CENTER;
+        //    doc.Add(paragraph);
+
+        //    Paragraph espacio = new Paragraph(" ");
+        //    espacio.Alignment = Element.ALIGN_LEFT;
+        //    doc.Add(espacio);
+
+        //    iTextSharp.text.Font verda = FontFactory.GetFont("Verdana", 11, iTextSharp.text.Font.BOLDITALIC, BaseColor.BLACK);
+        //    Paragraph direccion = new Paragraph(@"Maipu #380 Linares", verda);
+        //    Paragraph telefono = new Paragraph(@"Telefóno  (73) 222101", verda);
+        //    direccion.Alignment = Element.ALIGN_CENTER;
+        //    telefono.Alignment = Element.ALIGN_CENTER;
+        //    doc.Add(direccion);
+        //    doc.Add(telefono);
+
+        //    Paragraph paragraph2 = new Paragraph("Fecha: " + DateTime.Now.ToString());
+        //    Random m = new Random();
+        //    Paragraph mesa = new Paragraph("N° Mesa: " + m.Next(1, 20));
+        //    Paragraph garzon = new Paragraph("Garzón: GARZÓN PIZZERIA");
+        //    Random c = new Random();
+        //    Paragraph comanda = new Paragraph("Comanda: " + c.Next(1, 5000));
+        //    paragraph2.Alignment = Element.ALIGN_LEFT;
+        //    paragraph2.PaddingTop = 1;
+        //    doc.Add(paragraph2);
+        //    doc.Add(mesa);
+        //    doc.Add(garzon);
+        //    doc.Add(comanda);
+
+        //    iTextSharp.text.Font letra = FontFactory.GetFont("Verdana", 11, iTextSharp.text.Font.BOLDITALIC, BaseColor.RED);
+        //    Paragraph titulo = new Paragraph(@"DETALLE MESA", letra);
+        //    titulo.Alignment = Element.ALIGN_CENTER;
+        //    doc.Add(titulo);
+
+        //    Paragraph paragraph3 = new Paragraph(" ");
+        //    paragraph3.Alignment = Element.ALIGN_LEFT;
+        //    doc.Add(paragraph3);
+
+        //    PdfPTable table = new PdfPTable(3);
+        //    PdfPCell cell = new PdfPCell();
+        //    cell.HorizontalAlignment = 1; //0=Left, 1=Centre, 2=Right
+        //    cell.BorderColor = BaseColor.BLACK;
+        //    cell.BackgroundColor = BaseColor.RED;
+
+        //    iTextSharp.text.Font letraBlanca = FontFactory.GetFont("Verdana", 12, iTextSharp.text.Font.BOLDITALIC, BaseColor.WHITE);
+        //    cell.Phrase = new Phrase("Cantidad", letraBlanca);
+        //    table.AddCell(cell);
+        //    cell.Phrase = new Phrase("Articulo", letraBlanca);
+        //    table.AddCell(cell);
+        //    cell.Phrase = new Phrase("Precio", letraBlanca);
+        //    table.AddCell(cell);
+
+
+        //    PdfPCell cell0 = new PdfPCell();
+        //    foreach (var regist in carroCompra)
+        //    {
+        //        cell0.Phrase = new Phrase(regist.cantidad.ToString());
+        //        table.AddCell(cell0);
+
+        //        cell0.Phrase = new Phrase(regist.nombre_M);
+        //        table.AddCell(cell0);
+
+        //        cell0.Phrase = new Phrase(regist.precio_M.ToString());
+        //        table.AddCell(cell0);
+
+        //    }
+
+        //    doc.Add(table);
+
+        //    Paragraph subtotal = new Paragraph(ltotal.Text);
+        //    Paragraph desc = new Paragraph("Dscto $" + 0);
+        //    Paragraph Propina = new Paragraph("Propina $" + 0);
+        //    Paragraph pagarT = new Paragraph(ltotal.Text);
+        //    subtotal.Alignment = Element.ALIGN_RIGHT;
+        //    desc.Alignment = Element.ALIGN_RIGHT;
+        //    Propina.Alignment = Element.ALIGN_RIGHT;
+        //    pagarT.Alignment = Element.ALIGN_RIGHT;
+        //    paragraph2.PaddingTop = 1;
+        //    doc.Add(subtotal);
+        //    doc.Add(desc);
+        //    doc.Add(Propina);
+        //    doc.Add(pagarT);
+
+        //    Paragraph noVali = new Paragraph("NO VALIDO COMO BOLETA");
+        //    noVali.Alignment = Element.ALIGN_CENTER;
+        //    doc.Add(noVali);
+
+        //    doc.Close();
+        //    LimpiarCarro();
+        //    eShowPdf((path + nombre));
+
+
+
+        //}
+
+        protected void PagarModal_Click(object sender, EventArgs e)
+        {
+            
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalComanda", "$('#myModalComanda').modal();", true);
+            uModalComanda.Update();
+            uContenedorUsuario1.Update();
+            calcularTotalPago(); //ME CALCULA EL TOTAL EN EL MODAL
+
+        }
+
+        private void limpiarTodo(int op)
         {
 
-
-            int id = Convert.ToInt32(Session["idUser"]);
-            accesoComanda.addcomanda(
-
-                carroCompra, 3, 4
-            );
-
-            var doc = new Document(PageSize.A5);
-            string path = Server.MapPath("Files");
-            Random r = new Random();
-            string nombre = "Prod_" + r.Next(1, 500) + "_" + DateTime.Now.Second;
-            PdfWriter pdfWrite = PdfWriter.GetInstance(doc, new FileStream(path + nombre, FileMode.OpenOrCreate));
-
-            doc.Open();
-            iTextSharp.text.Image tif = iTextSharp.text.Image.GetInstance(path + "/PIZZZA.jpg");
-            tif.ScalePercent(13f, 9f);
-            tif.Alignment = iTextSharp.text.Image.ALIGN_RIGHT;
-            doc.Add(tif);
-
-            iTextSharp.text.Font verdana = FontFactory.GetFont("Verdana", 11, iTextSharp.text.Font.BOLDITALIC, BaseColor.RED);
-            Paragraph paragraph = new Paragraph(@"PIZZA EXPRESS", verdana);
-            paragraph.Alignment = Element.ALIGN_CENTER;
-            doc.Add(paragraph);
-
-            Paragraph espacio = new Paragraph(" ");
-            espacio.Alignment = Element.ALIGN_LEFT;
-            doc.Add(espacio);
-
-            iTextSharp.text.Font verda = FontFactory.GetFont("Verdana", 11, iTextSharp.text.Font.BOLDITALIC, BaseColor.BLACK);
-            Paragraph direccion = new Paragraph(@"Maipu #380 Linares", verda);
-            Paragraph telefono = new Paragraph(@"Telefóno  (73) 222101", verda);
-            direccion.Alignment = Element.ALIGN_CENTER;
-            telefono.Alignment = Element.ALIGN_CENTER;
-            doc.Add(direccion);
-            doc.Add(telefono);
-
-            Paragraph paragraph2 = new Paragraph("Fecha: " + DateTime.Now.ToString());
-            Random m = new Random();
-            Paragraph mesa = new Paragraph("N° Mesa: " + m.Next(1, 20));
-            Paragraph garzon = new Paragraph("Garzón: GARZÓN PIZZERIA");
-            Random c = new Random();
-            Paragraph comanda = new Paragraph("Comanda: " + c.Next(1, 5000));
-            paragraph2.Alignment = Element.ALIGN_LEFT;
-            paragraph2.PaddingTop = 1;
-            doc.Add(paragraph2);
-            doc.Add(mesa);
-            doc.Add(garzon);
-            doc.Add(comanda);
-
-            iTextSharp.text.Font letra = FontFactory.GetFont("Verdana", 11, iTextSharp.text.Font.BOLDITALIC, BaseColor.RED);
-            Paragraph titulo = new Paragraph(@"DETALLE MESA", letra);
-            titulo.Alignment = Element.ALIGN_CENTER;
-            doc.Add(titulo);
-
-            Paragraph paragraph3 = new Paragraph(" ");
-            paragraph3.Alignment = Element.ALIGN_LEFT;
-            doc.Add(paragraph3);
-
-            PdfPTable table = new PdfPTable(3);
-            PdfPCell cell = new PdfPCell();
-            cell.HorizontalAlignment = 1; //0=Left, 1=Centre, 2=Right
-            cell.BorderColor = BaseColor.BLACK;
-            cell.BackgroundColor = BaseColor.RED;
-
-            iTextSharp.text.Font letraBlanca = FontFactory.GetFont("Verdana", 12, iTextSharp.text.Font.BOLDITALIC, BaseColor.WHITE);
-            cell.Phrase = new Phrase("Cantidad", letraBlanca);
-            table.AddCell(cell);
-            cell.Phrase = new Phrase("Articulo", letraBlanca);
-            table.AddCell(cell);
-            cell.Phrase = new Phrase("Precio", letraBlanca);
-            table.AddCell(cell);
-
-
-            PdfPCell cell0 = new PdfPCell();
-            foreach (var regist in carroCompra)
+            if (op == 1)
             {
-                cell0.Phrase = new Phrase(regist.cantidad.ToString());
-                table.AddCell(cell0);
+                tpropina.Text = "";
+                tdescuento.Text = "";
+                tcancelar.Text = "";
+                ftipoPago.SelectedIndex = 0;
+            }
+            else
+            {
 
-                cell0.Phrase = new Phrase(regist.nombre_M);
-                table.AddCell(cell0);
-
-                cell0.Phrase = new Phrase(regist.precio_M.ToString());
-                table.AddCell(cell0);
+                tpropina.Text = "";
+                tdescuento.Text = "";
+                tcancelar.Text = "";
+                ftipoPago.SelectedIndex = 0;
 
             }
-
-            doc.Add(table);
-
-            Paragraph subtotal = new Paragraph(ltotal.Text);
-            Paragraph desc = new Paragraph("Dscto $" + 0);
-            Paragraph Propina = new Paragraph("Propina $" + 0);
-            Paragraph pagarT = new Paragraph(ltotal.Text);
-            subtotal.Alignment = Element.ALIGN_RIGHT;
-            desc.Alignment = Element.ALIGN_RIGHT;
-            Propina.Alignment = Element.ALIGN_RIGHT;
-            pagarT.Alignment = Element.ALIGN_RIGHT;
-            paragraph2.PaddingTop = 1;
-            doc.Add(subtotal);
-            doc.Add(desc);
-            doc.Add(Propina);
-            doc.Add(pagarT);
-
-            Paragraph noVali = new Paragraph("NO VALIDO COMO BOLETA");
-            noVali.Alignment = Element.ALIGN_CENTER;
-            doc.Add(noVali);
-
-            doc.Close();
-            LimpiarCarro();
-            eShowPdf((path + nombre));
-
-
-
         }
 
-        //  protected void PagarModal_Click(object sender, EventArgs e)
-        //{
-        //    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalComanda", "$('#myModalComanda').modal();", true);
-        //    uModalComanda.Update();
-        //}
-        private void eShowPdf(string strS)
+        private void MostrarError(TextBox t, Label l, int r)
         {
-            Response.ClearContent();
-            Response.ClearHeaders();
-            Response.ContentType = "application/pdf";
-            Response.AddHeader("Content-Disposition", "attachment; filename=" + strS);
-            Response.TransmitFile(strS);
-            Response.End();
-            Response.Flush();
-            Response.Clear();
+
+            if (r == 0)
+            {
+                t.CssClass = "form-control is-invalid";
+                l.CssClass = "invalid-feedback";
+            }
+            else
+            {
+                t.CssClass = "form-control is-valid";
+                l.CssClass = "valid-feedback";
+            }
         }
+
+
+        private bool validaCampos()
+        {
+
+            bool correcto = true;
+
+            if (tpropina.Text.Equals(""))
+            {
+                MostrarError(tpropina, validar_tpropina, 0);
+                correcto = false;
+            }
+            else
+            {
+                MostrarError(tpropina, validar_tpropina, 1);
+            }
+            if (tdescuento.Text.Equals(""))
+            {
+                MostrarError(tdescuento, validar_tdescuento, 0);
+                correcto = false;
+            }
+            else
+            {
+                MostrarError(tdescuento, validar_tdescuento, 1);
+            };
+
+            if (tcancelar.Text.Equals(""))
+            {
+                MostrarError(tcancelar, validar_tcancelar, 0);
+                correcto = false;
+            }
+            else
+            {
+                MostrarError(tcancelar, validar_tcancelar, 1);
+            }
+
+            if (tcancelar.Text.Equals(""))
+            {
+                MostrarError(tcancelar, validar_tcancelar, 0);
+                correcto = false;
+            }
+            else
+            {
+                try
+                {
+                    Convert.ToInt32(tcancelar.Text);
+                    MostrarError(tcancelar, validar_tcancelar, 1);
+                }
+                catch (Exception)
+                {
+                    MostrarError(tcancelar, validar_tcancelar, 0);
+                    correcto = false;
+                }
+            }
+            return correcto;
+        }
+
+               
+        protected void idregistrarPago_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                if (validaCampos() == false)
+                {
+
+                }
+                else
+                {
+                       
+                    int idtipoPago = Convert.ToInt32(ftipoPago.SelectedItem.Value);
+
+                    int descuento = Convert.ToInt32(tdescuento.Text);
+                    int propina = Convert.ToInt32(tpropina.Text);
+                    int cancelar = Convert.ToInt32(tcancelar.Text);
+
+                    //GUARDAR LOS DATOS EN LA LISTA
+                    accesoComanda.addPago(new Models.Detalle_Pago
+                    {
+
+                        descuento = descuento,
+                        propina = propina,
+                        codigo_tipoPago = idtipoPago,
+
+                    }); 
+
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalComanda", "$('#myModalComanda').modal('hide');", true);
+                    uModalComanda.Update();
+                    uContenedorUsuario1.Update();
+
+                    limpiarTodo(2);
+                    //cacularVuelto();
+                    alerta.Visible = true;
+                    alerta.CssClass = "alert alert-primary animated zoomInUp";
+                    mensaje3.Text = "PAGO AGREGADO CON EXITO.";
+
+                }
+            }
+            catch (Exception)
+            {
+                alerta.Visible = true;
+                alerta.CssClass = "alert alert-danger animated zoomInUp";
+                mensaje3.Text = "PAGO NO REGISTRADO.";
+            }
+
+        }
+
+        //private void eShowPdf(string strS)
+        //{
+        //    Response.ClearContent();
+        //    Response.ClearHeaders();
+        //    Response.ContentType = "application/pdf";
+        //    Response.AddHeader("Content-Disposition", "attachment; filename=" + strS);
+        //    Response.TransmitFile(strS);
+        //    Response.End();
+        //    Response.Flush();
+        //    Response.Clear();
+        //}
 
     }
 }

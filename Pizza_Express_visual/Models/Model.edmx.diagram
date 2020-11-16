@@ -11,7 +11,6 @@
         <EntityTypeShape EntityType="PizzaEModel.Categoria" Width="1.5" PointX="9" PointY="2.5" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaEModel.ComandaMesa" Width="1.5" PointX="8.25" PointY="9.5" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaEModel.Detalle_Mesa" Width="1.5" PointX="13.5" PointY="9.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="PizzaEModel.Detalle_Pago" Width="1.5" PointX="10.5" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaEModel.detalleCaja" Width="1.5" PointX="11.25" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaEModel.Estado_caja" Width="1.5" PointX="6.75" PointY="14.375" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaEModel.Estado_Mesa" Width="1.5" PointX="3.75" PointY="3.125" IsExpanded="true" />
@@ -34,7 +33,6 @@
         <AssociationConnector Association="PizzaEModel.fk_Asignar_Menu_TipoUsuario" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaEModel.fk_BoletaComanda_Caja1" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaEModel.fk_BoletaComanda_Detalle_Mesa1" ManuallyRouted="false" />
-        <AssociationConnector Association="PizzaEModel.fk_BoletaComanda_Pago1" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaEModel.FK_Caja_Estado_caja" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaEModel.FK_detalleCaja_Caja" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaEModel.fk_CartaMenu_Categoria1" ManuallyRouted="false" />
@@ -42,10 +40,8 @@
         <AssociationConnector Association="PizzaEModel.FK_ComandaMesa_Estado_Pago" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaEModel.FK_ComandaMesa_Mesa" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaEModel.fk_ComandaMesa_Usuario1" ManuallyRouted="false" />
-        <AssociationConnector Association="PizzaEModel.FK_Detalle_Pago_ComandaMesa" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaEModel.fk_Menu_has_ComandaMesa_ComandaMesa1" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaEModel.fk_Menu_has_ComandaMesa_Menu1" ManuallyRouted="false" />
-        <AssociationConnector Association="PizzaEModel.fk_Pago_TipoPago1" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaEModel.FK_detalleCaja_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaEModel.fk_Mesa_Estado_Mesa1" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaEModel.fk_Usuario_Estado_Usuario" ManuallyRouted="false" />
@@ -56,6 +52,10 @@
         <AssociationConnector Association="PizzaEModel.fk_Producto_has_Proveedor_Proveedor1" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaEModel.fk_Proveedor_TipoProducto1" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaEModel.fk_Usuario_TipoUsuario" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PizzaEModel.Detalle_Pago" Width="1.5" PointX="10.5" PointY="6.375" />
+        <AssociationConnector Association="PizzaEModel.fk_BoletaComanda_Pago1" />
+        <AssociationConnector Association="PizzaEModel.FK_Detalle_Pago_ComandaMesa" />
+        <AssociationConnector Association="PizzaEModel.fk_Pago_TipoPago1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
