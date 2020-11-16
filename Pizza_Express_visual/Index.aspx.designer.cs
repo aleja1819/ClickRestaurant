@@ -60,13 +60,13 @@ namespace Pizza_Express_visual
         protected global::System.Web.UI.WebControls.LinkButton Menu_Reservas;
 
         /// <summary>
-        /// Control Menu_comanda.
+        /// Control Menu_Mesas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Menu_comanda;
+        protected global::System.Web.UI.WebControls.LinkButton Menu_Mesas;
 
         /// <summary>
         /// Control Menu_Caja.
@@ -400,6 +400,24 @@ namespace Pizza_Express_visual
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::Pizza_Express_visual.Components.component_Caja component_Caja;
+
+        /// <summary>
+        /// Control vMesas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View vMesas;
+
+        /// <summary>
+        /// Control components_Mesas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::Pizza_Express_visual.Components.components_Mesas components_Mesas;
 
         /// <summary>
         /// Control uModal.

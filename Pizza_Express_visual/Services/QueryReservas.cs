@@ -32,7 +32,7 @@ namespace Pizza_Express_visual.Services
             }
         }
 
-        public bool addReserva(Reserva reserva, ref int idreserva)
+        public bool addReserva(Reserva reserva /*ref int idreserva*/)
         {
 
             try
@@ -44,7 +44,7 @@ namespace Pizza_Express_visual.Services
                     contexto.SaveChanges();
 
                     int respuestas = contexto.SaveChanges();
-                    idreserva = reserva.codigo_reserva;
+                    //idreserva = reserva.codigo_reserva;
 
                     return respuestas == 1;
                 }
@@ -56,22 +56,46 @@ namespace Pizza_Express_visual.Services
             }
         }
 
-        public int codigoMesaRegistrar(string nMesa)
-        {
-            try
-            {
-                using (Pizza_BD1 contexto = new Pizza_BD1())
-                {
-                    int cod = contexto.Mesa.First(x => x.numeroMesa.Equals(nMesa)).idMesa;
-                    return cod;
-                }
-            }
-            catch (Exception)
-            {
-                return -1;
-            }
+        
+        //public bool addMesa(Mesa mesa)
+        //{
 
-        }
+        //    try
+        //    {
+        //        using (Pizza_BD1 contexto = new Pizza_BD1())
+        //        {
+
+        //            contexto.Mesa.Add(mesa);
+        //            contexto.SaveChanges();
+
+        //            int respuestas = contexto.SaveChanges();
+
+        //            return respuestas == 1;
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+
+        //        return false;
+        //    }
+        //}
+
+        //public int codigoMesaRegistrar(string nMesa)
+        //{
+        //    try
+        //    {
+        //        using (Pizza_BD1 contexto = new Pizza_BD1())
+        //        {
+        //            int cod = contexto.Mesa.First(x => x.numeroMesa.Equals(nMesa)).idMesa;
+        //            return cod;
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return -1;
+        //    }
+
+        //}
         public bool eliminarReserva(int codigoReserva)
         {
 
