@@ -348,9 +348,33 @@ namespace Pizza_Express_visual.Components
 
         }
 
-        protected void btnGenerarPDF_Click(object sender, EventArgs e)
-
+        private void agregarComanda(int numeroMesa)
         {
+
+        }
+
+        protected void btnGenerarPDF_Click(object sender, EventArgs e)
+        {    
+            
+            // Cambiar el color de la mesa
+
+            string mesaSeleccionada = System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]+"";
+
+            switch (mesaSeleccionada)
+            {
+                case "mesa1":
+                    //
+                    agregarComanda(1);
+
+                    break;
+                case "mesa2":
+
+                    break;
+
+                
+            }
+
+
             var doc = new Document(PageSize.A5);
             string path = Server.MapPath("Files");
             Random r = new Random();
