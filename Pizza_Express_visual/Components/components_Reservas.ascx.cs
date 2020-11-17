@@ -108,35 +108,28 @@ namespace Pizza_Express_visual.Components
                     int numeMesa = Convert.ToInt32(nuMesa);
                     DateTime hora = Convert.ToDateTime(thora.Text);
 
-                    //int cod = accesoReservas.codigoMesaRegistrar(nuMesa);
-                    //int idReser = 0;
-                    //if (cod == -1)
-                    //{
+                    int cod = accesoReservas.codigoMesaRegistrar(nuMesa);
+                    int idReser = 0;
+                    if (cod == -1)
+                    {
 
-                    //}
-                    //else
-                    //{
+                    }
+                    else
+                    {
 
-                        //string numerMesa = tnMesa.Text;
+                        string numerMesa = tnMesa.Text;
                         accesoReservas.addReserva(new Models.Reserva
                         {
 
-                            idMesa = numeMesa,
+                            idMesa = cod,
                             nombre_reserva = nombre_R,
                             fecha_reser = date,
                             hora_reser = hora.TimeOfDay
+                            
 
-                        } /*ref idReser*/);
+                        }, ref idReser);
 
-                        //accesoReservas.addMesa(new Models.Mesa
-                        //{
-
-                        //    numeroMesa = numerMesa,
-                        //    idMesa = cod
-
-                        //});
-
-
+                       
                         //MOSTRAR LOS DATOS EN LA TABLA
                         idTabla.DataSource = accesoReservas.filtrarReservas();
                         idTabla.DataBind();
@@ -153,7 +146,7 @@ namespace Pizza_Express_visual.Components
                     }
                 }
 
-            
+            }
             catch (Exception)
             {
                 alerta.Visible = true;

@@ -7,7 +7,7 @@ namespace Pizza_Express_visual.Services
     public class QueryMenu
     {
         //LINQ TO ENTITY
-        public List<object> filtrarMenu()
+             public List<object> filtrarMenu()
         {
             try
             {
