@@ -6,7 +6,6 @@
 <h1 class="text-center">Presentación de Mesas</h1>
 <br />
 
-
 <div class="container">
     <div class="row">
         <div class="col-md-2">
