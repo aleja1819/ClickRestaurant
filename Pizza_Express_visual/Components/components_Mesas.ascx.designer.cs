@@ -177,22 +177,22 @@ namespace Pizza_Express_visual.Components
         protected global::System.Web.UI.WebControls.LinkButton bMesa18;
 
         /// <summary>
-        /// Control mContenido.
+        /// Control uContenido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel mContenido;
+        protected global::System.Web.UI.UpdatePanel uContenido;
 
         /// <summary>
-        /// Control meContenedor.
+        /// Control mContenedor.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.MultiView meContenedor;
+        protected global::System.Web.UI.WebControls.MultiView mContenedor;
 
         /// <summary>
         /// Control vComanda.

@@ -16,9 +16,7 @@ namespace Pizza_Express_visual.Components
 
         protected void bMesa1_Click(object sender, EventArgs e)
         {
-      
-            meContenedor.SetActiveView(vComanda);
-            mContenido.Update();
+            
         }
 
         protected void bMesa2_Click(object sender, EventArgs e)
