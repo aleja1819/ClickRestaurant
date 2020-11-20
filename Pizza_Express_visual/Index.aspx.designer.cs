@@ -366,24 +366,6 @@ namespace Pizza_Express_visual
         protected global::Pizza_Express_visual.Components.component_Bienvenidos component_Bienvenidos;
 
         /// <summary>
-        /// Control vComanda.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View vComanda;
-
-        /// <summary>
-        /// Control component_Comanda.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::Pizza_Express_visual.Components.component_Comanda component_Comanda;
-
-        /// <summary>
         /// Control vCaja.
         /// </summary>
         /// <remarks>

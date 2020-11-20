@@ -15,7 +15,6 @@
 <%@ Register Src="~/Components/components_Reportes.ascx" TagPrefix="uc1" TagName="components_Reportes" %>
 <%@ Register Src="~/Components/components_Reservas.ascx" TagPrefix="uc1" TagName="components_Reservas" %>
 <%@ Register Src="~/Components/components_Usuarios.ascx" TagPrefix="uc1" TagName="components_Usuarios" %>
-<%@ Register Src="~/Components/component_Comanda.ascx" TagPrefix="uc1" TagName="component_Comanda" %>
 <%@ Register Src="~/Components/component_Caja.ascx" TagPrefix="uc1" TagName="component_Caja" %>
 <%@ Register Src="~/Components/components_Mesas.ascx" TagPrefix="uc1" TagName="components_Mesas" %>
 
@@ -80,7 +79,7 @@
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                         <asp:LinkButton runat="server" ID="Menu_Reservas" OnClick="Menu_Reservas_Click" CssClass="dropdown-item">Reservas</asp:LinkButton>
                                         <%--<asp:LinkButton runat="server" ID="Menu_comanda" OnClick="Menu_comanda_Click" CssClass="dropdown-item">Toma de Pedido</asp:LinkButton>--%>
-                                        <asp:LinkButton runat="server" ID="Menu_Mesas" OnClick="Menu_Mesas_Click1" CssClass="dropdown-item">Toma de Pëdidos</asp:LinkButton>
+                                        <asp:LinkButton runat="server" ID="Menu_Mesas" OnClick="Menu_Mesas_Click" CssClass="dropdown-item">Toma de Pedidos</asp:LinkButton>
                                         <asp:LinkButton runat="server" ID="Menu_Caja" OnClick="Menu_Caja_Click" CssClass="dropdown-item">Apertura Caja</asp:LinkButton>
                                     </div>
                                 </li>
@@ -218,9 +217,6 @@
                     </asp:View>
                     <asp:View runat="server" ID="vBienvenida">
                         <uc1:component_Bienvenidos runat="server" ID="component_Bienvenidos" />
-                    </asp:View>
-                    <asp:View runat="server" ID="vComanda">
-                        <uc1:component_Comanda runat="server" ID="component_Comanda" />
                     </asp:View>
                     <asp:View runat="server" ID="vCaja">
                         <uc1:component_Caja runat="server" ID="component_Caja" />

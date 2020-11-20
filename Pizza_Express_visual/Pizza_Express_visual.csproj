@@ -132,7 +132,6 @@
     <Content Include="Components\components_Usuarios.ascx" />
     <Content Include="Components\component_Bienvenidos.ascx" />
     <Content Include="Components\component_Caja.ascx" />
-    <Content Include="Components\component_Comanda.ascx" />
     <Content Include="Config\ObjectContainer.xml" />
     <Content Include="Content\animate.css" />
     <Content Include="Content\animate.min.css" />
@@ -289,13 +288,6 @@
     <Compile Include="Components\component_Caja.ascx.designer.cs">
       <DependentUpon>component_Caja.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Components\component_Comanda.ascx.cs">
-      <DependentUpon>component_Comanda.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Components\component_Comanda.ascx.designer.cs">
-      <DependentUpon>component_Comanda.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -396,6 +388,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\QueryComanda.cs" />
     <Compile Include="Services\QueryMenu.cs" />
+    <Compile Include="Services\QueryMesas.cs" />
     <Compile Include="Services\QueryProductos.cs" />
     <Compile Include="Services\QueryProveedor.cs" />
     <Compile Include="Services\QueryReport.cs" />
