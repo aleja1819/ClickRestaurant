@@ -694,5 +694,15 @@ namespace Pizza_Express_visual.Components
             Response.Clear();
 
         }
+
+        protected void PagarModal_Click(object sender, EventArgs e)
+        {
+
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalComanda", "$('#myModalComanda').modal();", true);
+            uModalComanda.Update();
+            //uContenedorUsuario1.Update();
+            //calcularTotalPago(); //ME CALCULA EL TOTAL EN EL MODAL
+
+        }
     }
 }

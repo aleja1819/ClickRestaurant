@@ -149,10 +149,10 @@
                             <div class="container offset-3">                                
                                 <asp:LinkButton ID="btnGenerarPDF" OnClick="btnGenerarPDF_Click" runat="server" CssClass="btn btn-warning">Enviar Comanda</asp:LinkButton>
                                 <%--<asp:Button runat="server" ID="btnGenerarPDF" OnClick="btnGenerarPDF_Click" Text="Enviar Comanda" CssClass="btn btn-warning" />--%>
-                                <asp:Button runat="server" ID="btnpagos" OnClick="btnpagos_Click" Text="Pagar" CssClass="btn btn-danger" />
-                                <%-- <asp:LinkButton runat="server" CssClass="btn btn-danger" OnClick="PagarModal_Click" ID="PagarModal" Text="Pagar">
-                            </asp:LinkButton>--%>
-                                <asp:Button runat="server" ID="btnNuevo" OnClick="btnNuevo_Click" Text="Nuevo" CssClass="btn btn-info" />
+                               <%-- <asp:Button runat="server" ID="btnpagos" OnClick="btnpagos_Click" Text="Pagar" CssClass="btn btn-danger" />--%>
+                                 <asp:LinkButton runat="server" CssClass="btn btn-danger" OnClick="PagarModal_Click" ID="PagarModal" Text="Emitir Pago">
+                            </asp:LinkButton>
+                                <asp:Button runat="server" ID="btnNuevo" OnClick="btnNuevo_Click" Text="Resetear" CssClass="btn btn-info" />
 
 
 
@@ -336,7 +336,7 @@
 
                     <triggers>
                     <asp:PostBackTrigger ControlID="btnGenerarPDF" />
-                    <asp:PostBackTrigger ControlID="btnpagos" />
+               <%--     <asp:PostBackTrigger ControlID="btnpagos" />--%>
                 </triggers>
 
 </asp:UpdatePanel>
@@ -352,7 +352,7 @@
                                 <div class="modal-content">
 
                                     <div class="modal-header">
-                                        <h5 class="modal-title"><span class="badge badge-pill badge-info badge-center">PROVEEDORES</span></h5>
+                                        <h5 class="modal-title"><span class="badge badge-pill badge-info badge-center">PAGO</span></h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
