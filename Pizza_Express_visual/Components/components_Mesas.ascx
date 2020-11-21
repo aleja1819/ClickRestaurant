@@ -13,7 +13,7 @@
 <asp:UpdatePanel ID="uContenido" runat="server" UpdateMode="Conditional" ChildrenASTrigger="true">
     <ContentTemplate>
         <asp:MultiView ID="mContenedor" runat="server">
-            
+
             <%--Vista Menú Comanda--%>
             <asp:View runat="server" ID="vComanda">
 
@@ -26,9 +26,10 @@
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <asp:Label ID="mensaje3" runat="server"></asp:Label>
+                             <asp:Label ID="mensaje3" runat="server"></asp:Label> 
                         </asp:Panel>
                     </div>
+
                     <div class="row">
                         <div class="col-md-1">
                             <div class="d-flex flex-row mt-2">
@@ -146,12 +147,12 @@
                                 <asp:Label runat="server" ID="ltotal" Text="Total a pagar $0"></asp:Label></h3>
                             <br />
 
-                            <div class="container offset-3">                                
+                            <div class="container offset-3">
                                 <asp:LinkButton ID="btnGenerarPDF" OnClick="btnGenerarPDF_Click" runat="server" CssClass="btn btn-warning">Enviar Comanda</asp:LinkButton>
                                 <%--<asp:Button runat="server" ID="btnGenerarPDF" OnClick="btnGenerarPDF_Click" Text="Enviar Comanda" CssClass="btn btn-warning" />--%>
-                               <%-- <asp:Button runat="server" ID="btnpagos" OnClick="btnpagos_Click" Text="Pagar" CssClass="btn btn-danger" />--%>
-                                 <asp:LinkButton runat="server" CssClass="btn btn-danger" OnClick="PagarModal_Click" ID="PagarModal" Text="Emitir Pago">
-                            </asp:LinkButton>
+                                <%-- <asp:Button runat="server" ID="btnpagos" OnClick="btnpagos_Click" Text="Pagar" CssClass="btn btn-danger" />--%>
+                                <asp:LinkButton runat="server" CssClass="btn btn-danger" OnClick="PagarModal_Click" ID="PagarModal" Text="Emitir Pago">
+                                </asp:LinkButton>
                                 <asp:Button runat="server" ID="btnNuevo" OnClick="btnNuevo_Click" Text="Resetear" CssClass="btn btn-info" />
 
 
@@ -334,33 +335,86 @@
         </asp:MultiView>
     </ContentTemplate>
 
-                    <triggers>
-                    <asp:PostBackTrigger ControlID="btnGenerarPDF" />
-               <%--     <asp:PostBackTrigger ControlID="btnpagos" />--%>
-                </triggers>
+    <Triggers>
+        <asp:PostBackTrigger ControlID="btnGenerarPDF" />
+        <%--     <asp:PostBackTrigger ControlID="btnpagos" />--%>
+    </Triggers>
 
 </asp:UpdatePanel>
 
-                <%-- Modal Pago --%>
+<%-- Modal Pago --%>
 
-                <div class="modal" id="myModalComanda" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg bg-light" role="document">
+<div class="modal" id="myModalComanda" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg bg-light" role="document">
 
-                        <asp:UpdatePanel ID="uModalComanda" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
-                            <ContentTemplate>
+        <asp:UpdatePanel ID="uModalComanda" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
+            <ContentTemplate>
 
-                                <div class="modal-content">
+                <div class="modal-content">
 
-                                    <div class="modal-header">
-                                        <h5 class="modal-title"><span class="badge badge-pill badge-info badge-center">PAGO</span></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
+                    <div class="modal-header">
+                        <h5 class="modal-title"><span class="badge badge-pill badge-info badge-center">PAGO</span></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
 
-                                    <div class="modal-body">
+                    <div class="modal-body">
+                        <br />
 
-                            </ContentTemplate>
-                        </asp:UpdatePanel>
+                        <h3 class="text-dark text-center">
+                            <asp:Label runat="server" ID="LTotalCancelar"></asp:Label></h3>
+                        <br />
+                        <br />
+
+                        <%--Tipo Pago--%>
+                        <div class="form-group">
+                            <label for="fTipoProducto">Forma de Pago (*)</label>
+                            <br />
+                            <asp:DropDownList runat="server" ID="ftipoPago" CssClass="form-control"
+                                DataTextField="nombre" DataValueField="codigo_tipoPago">
+                            </asp:DropDownList>
+                        </div>
+
+                        <%--Propina--%>
+                        <div class="form-group">
+                            <label for="tpropina">Propina (*)</label>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-info"><i class="fa fa-usd"></i></div>
+                                </div>
+                                <asp:TextBox runat="server" OnTextChanged="TextBox1_TextChanged" placeholder="$" ID="tpropina"
+                                    AutoPostBack="true" CssClass="form-control bg-secondary"></asp:TextBox>
+                                <asp:Label runat="server" ID="validar_tpropina" CssClass="invalid-feedback" Text="Complete campos, Ingrese propina"></asp:Label>
+                            </div>
+                        </div>
+
+                        <%--Descuento--%>
+                        <div class="form-group">
+                            <label for="tdescuento">Descuento (*)</label>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-info"><i class="fa fa-usd"></i></div>
+                                </div>
+                                <asp:TextBox runat="server" placeholder="$" ID="tdescuento" CssClass="form-control bg-secondary"
+                                    OnTextChanged="tdescuento_TextChanged" AutoPostBack="true"></asp:TextBox>
+                                 <asp:Label runat="server" ID="validar_tdescuento" CssClass="invalid-feedback" Text="Complete campos, Ingrese descuento"></asp:Label>
+                            </div>
+                        </div>
+
+
+                        <div class="modal-footer">
+
+                            <asp:Label runat="server" ID="codigo_orginal" CssClass="ocultarCol"></asp:Label>
+                            <asp:Button runat="server" ID="idregistrarPago" Visible="true" OnClick="idregistrarPago_Click" Text="Pagar" CssClass="btn btn-success float-right" />
+                        </div>
                     </div>
                 </div>
+            </ContentTemplate>
+            <Triggers>
+                <asp:AsyncPostBackTrigger ControlID="tpropina" EventName="TextChanged" />
+                <asp:AsyncPostBackTrigger ControlID="tdescuento" EventName="TextChanged" />
+            </Triggers>
+        </asp:UpdatePanel>
+    </div>
+</div>

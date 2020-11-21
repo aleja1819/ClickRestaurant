@@ -98,5 +98,56 @@ namespace Pizza_Express_visual.Services
             }
             return true;
         }
+
+        //CARGA TABLA DETALLE PAGO
+        public List<object> filtrarTipoPago()
+        {
+            try
+            {
+                using (Pizza_BD1 contexto = new Pizza_BD1())
+                {
+
+                    var formaPago = from tp in contexto.TipoPago
+                                    select new
+                                    {
+                                        tp.codigo_tipoPago,
+                                        tp.nombre
+                                    };
+
+                    return formaPago.ToList<object>();
+
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+
+            }
+        }
+
+        //AGREGAR DATOS A DETALLE PAGO
+
+        public bool addPago(Detalle_Pago pago)
+        {
+
+            try
+            {
+                using (Pizza_BD1 contexto = new Pizza_BD1())
+                {
+
+                    contexto.Detalle_Pago.Add(pago);
+                    contexto.SaveChanges();
+
+                    int respuestas = contexto.SaveChanges(); //INSERTA EN LA TABLA DE BASE DE DATOS
+
+                    return respuestas == 1; //VALIDA SI LO ANGREGA O NO, SI ES UN 1 ES TRUE SI NO AGREGAR NADA ES FALSE
+                }
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
     }
 }

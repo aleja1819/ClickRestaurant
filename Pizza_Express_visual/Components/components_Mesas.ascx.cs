@@ -35,6 +35,10 @@ namespace Pizza_Express_visual.Components
 
                 carroCompra.Clear();
                 uModalComanda.Update();
+
+                //MOSTRAR LA LISTA DE LOS FORMAS DE PAPGO DE LA BASE DE DATOS
+                ftipoPago.DataSource = accesoComanda.filtrarTipoPago();
+                ftipoPago.DataBind();
             }
         }
 
@@ -167,6 +171,7 @@ namespace Pizza_Express_visual.Components
             carroCompra.Clear();
         }
 
+        //TOTAL VISTA COMANDA
         private void calcularTotal()
         {
             int suma = 0;
@@ -614,10 +619,6 @@ namespace Pizza_Express_visual.Components
             Response.Clear();
         }
 
-
-
-
-
         private void generarPDF()
         {
             // Generar Pdf
@@ -695,14 +696,163 @@ namespace Pizza_Express_visual.Components
 
         }
 
+        //TOTAL VISTA MODAL
+        private void calcularTotalPago()
+        {
+
+            int suma = 0;
+            foreach (var item in carroCompra)
+            {
+
+                suma += item.precio_M;
+
+
+            }
+            LTotalCancelar.Text = "Total a Cancelar $" + suma;
+
+        }
         protected void PagarModal_Click(object sender, EventArgs e)
         {
 
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalComanda", "$('#myModalComanda').modal();", true);
             uModalComanda.Update();
             //uContenedorUsuario1.Update();
-            //calcularTotalPago(); //ME CALCULA EL TOTAL EN EL MODAL
+            calcularTotalPago(); //ME CALCULA EL TOTAL EN EL MODAL
 
+        }
+
+        protected void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+            int suma = 0;
+            foreach (var item in carroCompra)
+            {
+
+                suma += item.precio_M;
+
+            }
+            LTotalCancelar.Text = "Total a Cancelar $" + suma;
+
+            int monto = Convert.ToInt32(tpropina.Text) + suma;
+            LTotalCancelar.Text = "Total a Cancelar $" + monto.ToString();
+        }
+
+        protected void tdescuento_TextChanged(object sender, EventArgs e)
+        {
+            int suma = 0;
+            foreach (var item in carroCompra)
+            {
+
+                suma += item.precio_M;
+
+            }
+
+            int propina = Convert.ToInt32(tpropina.Text);
+
+            LTotalCancelar.Text = "Total a Cancelar $" + suma;
+            int monto = suma - Convert.ToInt32(tdescuento.Text) + propina;
+            LTotalCancelar.Text = "Total a Cancelar $" + monto.ToString();
+        }
+
+        private void MostrarError(TextBox t, Label l, int r)
+        {
+
+            if (r == 0)
+            {
+                t.CssClass = "form-control is-invalid";
+                l.CssClass = "invalid-feedback";
+            }
+            else
+            {
+                t.CssClass = "form-control is-valid";
+                l.CssClass = "valid-feedback";
+            }
+        }
+        private bool validaCampos()
+        {
+
+            bool correcto = true;
+
+            if (tpropina.Text.Equals(""))
+            {
+                MostrarError(tpropina, validar_tpropina, 0);
+                correcto = false;
+            }
+            else
+            {
+                MostrarError(tpropina, validar_tpropina, 1);
+            }
+            if (tdescuento.Text.Equals(""))
+            {
+                MostrarError(tdescuento, validar_tdescuento, 0);
+                correcto = false;
+            }
+            else
+            {
+                MostrarError(tdescuento, validar_tdescuento, 1);
+            }
+                return correcto;
+            }
+        private void limpiarTodo(int op)
+        {
+
+            if (op == 1)
+            {
+                tpropina.Text = "";
+                tdescuento.Text = "";
+                ftipoPago.SelectedIndex = 0;
+            }
+            else
+            {
+
+                tpropina.Text = "";
+                tdescuento.Text = "";
+                ftipoPago.SelectedIndex = 0;
+
+            }
+        }
+        protected void idregistrarPago_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (validaCampos() == false)
+                {
+
+                }
+                else
+                {
+
+                    int idtipoPago = Convert.ToInt32(ftipoPago.SelectedItem.Value);
+
+                    int descuento = Convert.ToInt32(tdescuento.Text);
+                    int propina = Convert.ToInt32(tpropina.Text);
+
+                    //GUARDAR LOS DATOS EN LA LISTA
+                    accesoComanda.addPago(new Models.Detalle_Pago
+                    {
+
+                        descuento = descuento,
+                        propina = propina,
+                        codigo_tipoPago = idtipoPago,
+
+                    });
+
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalComanda", "$('#myModalComanda').modal('hide');", true);
+                    uModalComanda.Update();
+                    uContenido.Update();
+
+                    limpiarTodo(2);
+                    alerta.Visible = true;
+                    alerta.CssClass = "alert alert-primary animated zoomInUp";
+                    mensaje3.Text = "PAGO AGREGADO CON EXITO.";
+
+                }
+            }
+            catch (Exception)
+            {
+                alerta.Visible = true;
+                alerta.CssClass = "alert alert-danger animated zoomInUp";
+                mensaje3.Text = "PAGO NO REGISTRADO.";
+            }
         }
     }
 }
