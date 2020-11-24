@@ -10,18 +10,22 @@ namespace Pizza_Express_visual.Services
     public class QueryMesas
     {
 
-        // Consulta el numero de la mesa
-        public int numeroMesa(int idMesa)
+        /* Recibe el numero de la mesa que ha sido seleccionada, devolviendo entonces el estado de esa mesa
+         * 
+            1 = disponible
+            2 = ocupado
+         */
+        public int estadoMesa(int idMesa)
         {
             try
             {
                 using(Pizza_BD1 bd = new Pizza_BD1())
                 {
-                    var valEstado = (from m in bd.Mesa
+                    var estadoMesa = (from m in bd.Mesa
                                       where m.idMesa.Equals(idMesa)
                                       select new { Estado = m.codigo_estado }).First().Estado;
 
-                    return valEstado;
+                    return estadoMesa;
                 }
             }
             catch
@@ -29,19 +33,34 @@ namespace Pizza_Express_visual.Services
                 return -1;
             }
         }
-        
-        // Consulta el estado de pago de la mesa, si 1 == Cancelado, si es 2 == No Cancelado
-        public List<Object> estadoPago(int idMesa)
+
+        public List<int> estadoPagoMesas()
         {
+
+            /* Consulta el estado de pago de todos los pedidos
+             * 
+             * 1 == Cancelado 
+             * 2 == No Cancelado 
+             *
+             * Devolviendo una lista con los numeros de mesa que están pendientes de pago, y asignarle color rojo           
+             * 
+             */
             try
             {
                 using(Pizza_BD1 db = new Pizza_BD1())
                 {
-                    var estPago = from p in db.ComandaMesa
-                                  where p.idMesa == idMesa && p.idEstadoPago == 2
-                                  select new { p.idEstadoPago };
+                    var mesasNoCanceladas = from p in db.ComandaMesa
+                        where p.idEstadoPago == 2
+                        select new { p.codigo_comanda, p.idMesa };
 
-                    return estPago.ToList<Object>();
+                    var listaMesas = new List<int>();                    
+
+                    foreach (var mesa in mesasNoCanceladas)
+                    {
+                        listaMesas.Add(mesa.idMesa);
+                    }
+
+                    return listaMesas.ToList<int>();
                 }
             }
             catch

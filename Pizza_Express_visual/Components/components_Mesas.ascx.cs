@@ -36,9 +36,50 @@ namespace Pizza_Express_visual.Components
                 carroCompra.Clear();
                 uModalComanda.Update();
 
-                //MOSTRAR LA LISTA DE LOS FORMAS DE PAPGO DE LA BASE DE DATOS
+                //MOSTRAR LA LISTA DE LOS FORMAS DE PAGO DE LA BASE DE DATOS
                 ftipoPago.DataSource = accesoComanda.filtrarTipoPago();
                 ftipoPago.DataBind();
+
+
+                try
+                {
+                    /*  Verifica el estado de pago de las mesas y aplica estilo rojo para las impagas
+
+                        **  En la tabla comanda mesa buscará todos los registros que tengan como estado = 2 (no cancelado)
+                        *   Cuando tenga el estado 2 inmediatamente también tengo el numero de mesa asociado ( mesa 1 no cancelada )
+                        *   Cuando tenga el estado 2 y el n° de mesa guardo también el pk codigo comanda ( N° Pedido 124, mesa = 1, 2 no cancelado )
+                        *   
+                     */
+
+                    List<int> listaMesasImpagas = accesoMesas.estadoPagoMesas();
+                    List<string> listaMesas = new List<string>();
+
+                    foreach (var mesa in listaMesasImpagas)
+                    {
+                        switch (mesa)
+                        {
+                            case 1: bMesa1.CssClass = "btn btn-danger"; break;
+                            case 2: bMesa2.CssClass = "btn btn-danger"; break;
+                            case 3: bMesa3.CssClass = "btn btn-danger"; break;
+                            case 4: bMesa4.CssClass = "btn btn-danger"; break;
+                            case 5: bMesa5.CssClass = "btn btn-danger"; break;
+                            case 6: bMesa6.CssClass = "btn btn-danger"; break;
+                            case 7: bMesa7.CssClass = "btn btn-danger"; break;
+                            case 8: bMesa8.CssClass = "btn btn-danger"; break;
+                            case 9: bMesa9.CssClass = "btn btn-danger"; break;
+                            case 10: bMesa10.CssClass = "btn btn-danger"; break;
+                            case 11: bMesa11.CssClass = "btn btn-danger"; break;
+                            case 12: bMesa12.CssClass = "btn btn-danger"; break;
+                            case 13: bMesa13.CssClass = "btn btn-danger"; break;
+                            case 14: bMesa14.CssClass = "btn btn-danger"; break;
+                            case 15: bMesa15.CssClass = "btn btn-danger"; break;
+                            case 16: bMesa16.CssClass = "btn btn-danger"; break;
+                            case 17: bMesa17.CssClass = "btn btn-danger"; break;
+                            case 18: bMesa18.CssClass = "btn btn-danger"; break;
+                        }
+                    }
+                }
+                catch{}
             }
         }
 
@@ -55,24 +96,24 @@ namespace Pizza_Express_visual.Components
 
             int nMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
 
-            int estadoMesa = accesoMesas.numeroMesa(nMesa);
+            int estadoMesa = accesoMesas.estadoMesa(nMesa);
 
             if(estadoMesa == 2) // ocupada
             {
                 bMesa1.CssClass = "btn btn-danger";
-                var mesasImpagas = accesoMesas.estadoPago(nMesa);
-
-                foreach (var mesa in mesasImpagas)
-                {
-                    // Muestra cada elemento de la lista obtenida 
-                }
-
+                /*
+                    **  Al cargar vComanda debe cargar una vista de pedidos pendientes por pagar con su detalle
+                    *   o en su defecto la lista con ambos pedidos fusionados.
+                    **  Habilita el pago del pedido
+                    **  Si ha pagado todos los pedidos de la mesa, cambia el color de la mesa
+                    *
+                 */
             }
             else
             {
                 bMesa1.CssClass = "btn btn-success";
             }
-        }
+           }
 
         protected void bMesa2_Click(object sender, EventArgs e)
         {
