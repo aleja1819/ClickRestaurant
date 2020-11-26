@@ -151,6 +151,9 @@
                                 <asp:LinkButton runat="server" CssClass="btn btn-danger" OnClick="PagarModal_Click" ID="PagarModal" Text="Emitir Pago">
                                 </asp:LinkButton>
                                 <asp:Button runat="server" ID="btnNuevo" OnClick="btnNuevo_Click" Text="Resetear" CssClass="btn btn-info" />
+
+
+
                             </div>
 
                         </div>
