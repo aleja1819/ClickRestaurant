@@ -402,6 +402,15 @@ namespace Pizza_Express_visual.Components
         protected global::System.Web.UI.WebControls.LinkButton bMesa18;
 
         /// <summary>
+        /// Control vPendiente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View vPendiente;
+
+        /// <summary>
         /// Control uModalComanda.
         /// </summary>
         /// <remarks>

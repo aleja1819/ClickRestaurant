@@ -1,6 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="components_Mesas.ascx.cs" Inherits="Pizza_Express_visual.Components.components_Mesas" %>
 
-
 <h1 class="text-center">Presentación de Mesas</h1>
 <br />
 
@@ -149,14 +148,9 @@
 
                             <div class="container offset-3">
                                 <asp:LinkButton ID="btnGenerarPDF" OnClick="btnGenerarPDF_Click" runat="server" CssClass="btn btn-warning">Enviar Comanda</asp:LinkButton>
-                                <%--<asp:Button runat="server" ID="btnGenerarPDF" OnClick="btnGenerarPDF_Click" Text="Enviar Comanda" CssClass="btn btn-warning" />--%>
-                                <%-- <asp:Button runat="server" ID="btnpagos" OnClick="btnpagos_Click" Text="Pagar" CssClass="btn btn-danger" />--%>
                                 <asp:LinkButton runat="server" CssClass="btn btn-danger" OnClick="PagarModal_Click" ID="PagarModal" Text="Emitir Pago">
                                 </asp:LinkButton>
                                 <asp:Button runat="server" ID="btnNuevo" OnClick="btnNuevo_Click" Text="Resetear" CssClass="btn btn-info" />
-
-
-
                             </div>
 
                         </div>
@@ -193,7 +187,6 @@
             </asp:View>
 
             <%--Vista Mesas--%>
-
             <asp:View runat="server" ID="vMesas">
                 <div class="container">
 
@@ -328,9 +321,13 @@
                 </div>
             </asp:View>
 
+            <%-- Vista Pedidos Pendientes --%>
+            <asp:View ID="vPendiente" runat="server">
+                <div class="container">
+                    <h1> Pedidos pendientes para la mesa x</h1>                    
 
-
-
+                </div>
+            </asp:View>
 
         </asp:MultiView>
     </ContentTemplate>
@@ -343,7 +340,6 @@
 </asp:UpdatePanel>
 
 <%-- Modal Pago --%>
-
 <div class="modal" id="myModalComanda" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg bg-light" role="document">
 

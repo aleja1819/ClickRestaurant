@@ -69,6 +69,7 @@ namespace Pizza_Express_visual.Services
             }
         }
 
+        // parece que no se usará
         public bool addcomanda(List<carro> listaCarro, int numeroMesa, int idUser)
         {
             int cod_comanda = 0;
@@ -85,12 +86,12 @@ namespace Pizza_Express_visual.Services
             {
                 foreach (var item in listaCarro)
                 {
-                    c.Detalle_Mesa.Add(new Detalle_Mesa
+                    c.Detalle_Mesa_Pedido.Add(new Detalle_Mesa_Pedido
                     {
                         codigo_comanda = cod_comanda,
-                        codigo_menu = item.codigo_M,
+                        //codigo_menu = item.codigo_M,
                         precio_total = item.precio_M,
-                        cant_Menu = item.cantidad
+                        //cant_Menu = item.cantidad
                     });
                     c.SaveChanges();
                 }
@@ -149,5 +150,67 @@ namespace Pizza_Express_visual.Services
                 return false;
             }
         }
+
+        /* Inserta la comanda a la bd*/
+        public bool addComandaMesa(ComandaMesa comandaMesa)
+        {
+            try
+            {
+                using(Pizza_BD1 db = new Pizza_BD1())
+                {
+                    db.ComandaMesa.Add(comandaMesa);
+
+                    int resp = db.SaveChanges();
+
+                    return resp == 1;
+                }
+            }
+            catch(Exception)
+            {
+                return false;
+            }
+        }
+
+        /* Inserta el detalle del pedido en la bd */
+        public bool addDetalleMesaPedido(Detalle_Mesa_Pedido pedidoMesa)
+        {
+            try
+            {
+                using (Pizza_BD1 db = new Pizza_BD1())
+                {
+                    db.Detalle_Mesa_Pedido.Add(pedidoMesa);
+
+                    int resp = db.SaveChanges();
+                    return resp == 1;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        
+        /* Consulta el numero de la comanda recien creada */
+        public int comandaCreada(DateTime fechaHoy)
+        {
+            try
+            {
+                using (Pizza_BD1 db = new Pizza_BD1())
+                {
+                    int comanda = (from c in db.ComandaMesa
+                            where c.fecha.Equals(fechaHoy)
+                            select new { c.codigo_comanda }).First().codigo_comanda;
+
+                    return comanda;
+
+                }
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+        }
+
+
     }
 }

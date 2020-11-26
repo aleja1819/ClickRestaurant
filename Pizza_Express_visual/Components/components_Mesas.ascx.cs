@@ -51,69 +51,159 @@ namespace Pizza_Express_visual.Components
                         *   
                      */
 
-                    List<int> listaMesasImpagas = accesoMesas.estadoPagoMesas();
-                    List<string> listaMesas = new List<string>();
+                    List<int> listaMesasImpagas = accesoMesas.estadoPagoMesas();                    
 
                     foreach (var mesa in listaMesasImpagas)
                     {
-                        switch (mesa)
-                        {
-                            case 1: bMesa1.CssClass = "btn btn-danger"; break;
-                            case 2: bMesa2.CssClass = "btn btn-danger"; break;
-                            case 3: bMesa3.CssClass = "btn btn-danger"; break;
-                            case 4: bMesa4.CssClass = "btn btn-danger"; break;
-                            case 5: bMesa5.CssClass = "btn btn-danger"; break;
-                            case 6: bMesa6.CssClass = "btn btn-danger"; break;
-                            case 7: bMesa7.CssClass = "btn btn-danger"; break;
-                            case 8: bMesa8.CssClass = "btn btn-danger"; break;
-                            case 9: bMesa9.CssClass = "btn btn-danger"; break;
-                            case 10: bMesa10.CssClass = "btn btn-danger"; break;
-                            case 11: bMesa11.CssClass = "btn btn-danger"; break;
-                            case 12: bMesa12.CssClass = "btn btn-danger"; break;
-                            case 13: bMesa13.CssClass = "btn btn-danger"; break;
-                            case 14: bMesa14.CssClass = "btn btn-danger"; break;
-                            case 15: bMesa15.CssClass = "btn btn-danger"; break;
-                            case 16: bMesa16.CssClass = "btn btn-danger"; break;
-                            case 17: bMesa17.CssClass = "btn btn-danger"; break;
-                            case 18: bMesa18.CssClass = "btn btn-danger"; break;
-                        }
+                        estadoOcupado(mesa);
                     }
                 }
                 catch{}
             }
         }
 
-
+        private void estadoOcupado(int idMesa)
+        {
+            switch (idMesa)
+            {
+                case 1: bMesa1.CssClass = "btn btn-danger"; break;
+                case 2: bMesa2.CssClass = "btn btn-danger"; break;
+                case 3: bMesa3.CssClass = "btn btn-danger"; break;
+                case 4: bMesa4.CssClass = "btn btn-danger"; break;
+                case 5: bMesa5.CssClass = "btn btn-danger"; break;
+                case 6: bMesa6.CssClass = "btn btn-danger"; break;
+                case 7: bMesa7.CssClass = "btn btn-danger"; break;
+                case 8: bMesa8.CssClass = "btn btn-danger"; break;
+                case 9: bMesa9.CssClass = "btn btn-danger"; break;
+                case 10: bMesa10.CssClass = "btn btn-danger"; break;
+                case 11: bMesa11.CssClass = "btn btn-danger"; break;
+                case 12: bMesa12.CssClass = "btn btn-danger"; break;
+                case 13: bMesa13.CssClass = "btn btn-danger"; break;
+                case 14: bMesa14.CssClass = "btn btn-danger"; break;
+                case 15: bMesa15.CssClass = "btn btn-danger"; break;
+                case 16: bMesa16.CssClass = "btn btn-danger"; break;
+                case 17: bMesa17.CssClass = "btn btn-danger"; break;
+                case 18: bMesa18.CssClass = "btn btn-danger"; break;
+            }
+        }
 
         // Funciones para Mesas
 
         protected void bMesa1_Click(object sender, EventArgs e)
         {
-            mContenedor.SetActiveView(vComanda);
-            uContenido.Update();
+
+            /*
+                **  Al cargar vComanda debe cargar una vista de pedidos pendientes por pagar con su detalle
+                *   o en su defecto la lista con ambos pedidos fusionados.
+                **  Habilita el pago del pedido
+                **  Si ha pagado todos los pedidos de la mesa, cambia el color de la mesa
+                *
+             */
 
             System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"] = "1";
-
             int nMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
 
-            int estadoMesa = accesoMesas.estadoMesa(nMesa);
+            /* Recibo la lista de pedidos por mesa */
+            List<int> listaPedidosMesa = accesoMesas.estadoPagoMesaSeleccionada(nMesa);          
 
-            if(estadoMesa == 2) // ocupada
+            switch (listaPedidosMesa.Count)
             {
-                bMesa1.CssClass = "btn btn-danger";
-                /*
-                    **  Al cargar vComanda debe cargar una vista de pedidos pendientes por pagar con su detalle
-                    *   o en su defecto la lista con ambos pedidos fusionados.
-                    **  Habilita el pago del pedido
-                    **  Si ha pagado todos los pedidos de la mesa, cambia el color de la mesa
-                    *
-                 */
+                case 0:
+                    /* Si no se han realizado pedidos para esta mesa */
+                    mContenedor.SetActiveView(vComanda);
+                    uContenido.Update();
+                    break;
+                case 1:
+                    /* La mesa tiene 1 */
+                    mContenedor.SetActiveView(vPendiente);
+                    uContenido.Update();
+                    break;
+                default:
+                    /* La mesa tiene más de 1 pedido*/
+                    mContenedor.SetActiveView(vPendiente);
+                    uContenido.Update();
+                    break;
+            }
+
+
+        }
+
+        // Enviar Comanada y cambiar de color la mesa
+        protected void btnGenerarPDF_Click(object sender, EventArgs e)
+        {
+            if (ltotal.Text == "Total a pagar $0")
+            {
+                /* No se ha seleccionado ningún pedido */                
+                alerta.Visible = true;
+                alerta.CssClass = "alert alert-danger animated zoomInUp";
+                mensaje3.Text = "DEBE AGREGAR POR LO MENOS UN PEDIDO";
             }
             else
             {
-                bMesa1.CssClass = "btn btn-success";
+                /* Guarda en la bd y vuelve a la vista*/
+
+                /* Inserta en la tabla ComandaMesa para crear el numero de comanda */
+                int codigo_usuario = Convert.ToInt32(Session["idUser"]);
+                int idMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
+                int idEstadoPago = 2;
+                int idDetalleCaja = 1; // Debe ser obtenido desde una variable de sesion
+                DateTime fechaHoy = DateTime.Now;                
+                
+                accesoComanda.addComandaMesa(new Models.ComandaMesa
+                {
+                    codigo_usuario = codigo_usuario,
+                    idMesa = idMesa,
+                    fecha = fechaHoy,
+                    idEstadoPago = idEstadoPago,
+                    id_DetalleCaja = idDetalleCaja
+                });
+
+                /*Toma el codigo de la comanda recien creada*/
+                int codigo_comanda = accesoComanda.comandaCreada(fechaHoy);
+
+                /* Cambiar el estado de la mesa a 2 ocupado*/
+                accesoMesas.cambiarEstadoMesa(idMesa, idEstadoPago);
+                estadoOcupado(idMesa);
+
+                /* Tengo cuantos productos ha seleccionado */
+                int filas = idCargarSeleccion.Rows.Count;
+
+                List<string> listaPedidosMesa = new List<String>(33);
+                listaPedidosMesa.Add(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
+                listaPedidosMesa.Add(codigo_comanda+"");
+                listaPedidosMesa.Add(Session["suma"]+"");
+
+                for (int i=0; i<filas; i++)
+                {
+                    listaPedidosMesa.Add(idCargarSeleccion.Rows[i].Cells[0].Text);
+                }
+
+                for (int i = (filas+3); i <=33; i++)
+                {
+                    listaPedidosMesa.Add(null);
+                }
+
+                accesoComanda.addDetalleMesaPedido(new Models.Detalle_Mesa_Pedido
+                {
+                    idMesa = Convert.ToInt32(listaPedidosMesa[0]),
+                    codigo_comanda = Convert.ToInt32(listaPedidosMesa[1]),
+                    precio_total = Convert.ToInt32(listaPedidosMesa[2]),
+                    menu1 = Convert.ToInt32(listaPedidosMesa[3]),menu2 = Convert.ToInt32(listaPedidosMesa[4]), menu3 = Convert.ToInt32(listaPedidosMesa[5]), menu4 = Convert.ToInt32(listaPedidosMesa[6]), menu5 = Convert.ToInt32(listaPedidosMesa[7]), menu6 = Convert.ToInt32(listaPedidosMesa[8]), menu7 = Convert.ToInt32(listaPedidosMesa[9]), menu8 = Convert.ToInt32(listaPedidosMesa[10]), menu9 = Convert.ToInt32(listaPedidosMesa[11]), menu10 = Convert.ToInt32(listaPedidosMesa[12]), 
+                    menu11 = Convert.ToInt32(listaPedidosMesa[13]), menu12 = Convert.ToInt32(listaPedidosMesa[14]), menu13 = Convert.ToInt32(listaPedidosMesa[15]), menu14 = Convert.ToInt32(listaPedidosMesa[16]), menu15 = Convert.ToInt32(listaPedidosMesa[17]), menu16 = Convert.ToInt32(listaPedidosMesa[18]), menu17 = Convert.ToInt32(listaPedidosMesa[19]), menu18 = Convert.ToInt32(listaPedidosMesa[20]), menu19 = Convert.ToInt32(listaPedidosMesa[21]), menu20 = Convert.ToInt32(listaPedidosMesa[22]), 
+                    menu21 = Convert.ToInt32(listaPedidosMesa[23]), menu22 = Convert.ToInt32(listaPedidosMesa[24]), menu23 = Convert.ToInt32(listaPedidosMesa[25]), menu24 = Convert.ToInt32(listaPedidosMesa[26]), menu25 = Convert.ToInt32(listaPedidosMesa[27]), menu26 = Convert.ToInt32(listaPedidosMesa[28]), menu27 = Convert.ToInt32(listaPedidosMesa[29]), menu28 = Convert.ToInt32(listaPedidosMesa[30]), menu29 = Convert.ToInt32(listaPedidosMesa[31]), menu30 = Convert.ToInt32(listaPedidosMesa[32])
+                });
+
+                mContenedor.SetActiveView(vMesas);
+                uContenido.Update();
+
+                /*
+                    alerta.Visible = true;
+                    alerta.CssClass = "alert alert-primary animated zoomInUp";
+                    mensaje3.Text = $"EL PEDIDO SE HA GUARDADO EXITOSAMENTE CON EL ID {codigo_comanda}";
+                */
             }
-           }
+
+        }
 
         protected void bMesa2_Click(object sender, EventArgs e)
         {
@@ -123,86 +213,72 @@ namespace Pizza_Express_visual.Components
             System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"] = "2";
         }
 
+        
         protected void bMesa3_Click(object sender, EventArgs e)
         {
 
         }
-
         protected void bMesa4_Click(object sender, EventArgs e)
         {
 
         }
-
         protected void bMesa5_Click(object sender, EventArgs e)
         {
 
         }
-
         protected void bMesa6_Click(object sender, EventArgs e)
         {
 
         }
-
         protected void bMesa7_Click(object sender, EventArgs e)
         {
 
         }
-
         protected void bMesa8_Click(object sender, EventArgs e)
         {
 
         }
-
         protected void bMesa9_Click(object sender, EventArgs e)
         {
 
         }
-
         protected void bMesa10_Click(object sender, EventArgs e)
         {
 
         }
-
         protected void bMesa11_Click(object sender, EventArgs e)
         {
 
         }
-
         protected void bMesa12_Click(object sender, EventArgs e)
         {
 
         }
-
         protected void bMesa13_Click(object sender, EventArgs e)
         {
 
         }
-
         protected void bMesa14_Click(object sender, EventArgs e)
         {
 
         }
-
         protected void bMesa15_Click(object sender, EventArgs e)
         {
 
         }
-
         protected void bMesa16_Click(object sender, EventArgs e)
         {
 
         }
-
         protected void bMesa17_Click(object sender, EventArgs e)
         {
 
         }
-
         protected void bMesa18_Click(object sender, EventArgs e)
         {
 
         }
-
+        
 
         // Funciones Para la Comanda
 
@@ -222,6 +298,7 @@ namespace Pizza_Express_visual.Components
             }
 
             ltotal.Text = "Total a pagar $" + suma;
+            Session["suma"] = suma;
         }
 
         protected void idGrande_Click(object sender, EventArgs e)
@@ -401,35 +478,7 @@ namespace Pizza_Express_visual.Components
         }
 
 
-        // Enviar Comanada y cambiar de color la mesa
-        protected void btnGenerarPDF_Click(object sender, EventArgs e)
-        {
-            // Cambiar el color de la mesa       
 
-            int mesaSeleccionada = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
-
-            switch (mesaSeleccionada)
-            {
-                case 1:
-                    mContenedor.SetActiveView(vMesas);
-                    uContenido.Update();
-
-
-                    //generarPDF();
-                    break;
-                case 2:
-
-                    break;
-
-
-            }
-
-
-           
-
-
-
-        }
 
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
@@ -493,6 +542,7 @@ namespace Pizza_Express_visual.Components
         protected void idCargarSeleccion_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int fila = Convert.ToInt32(e.CommandArgument);
+
             if (e.CommandName.Equals("ideditar"))
             {
                 string codigoMenu = "";
@@ -660,6 +710,7 @@ namespace Pizza_Express_visual.Components
             Response.Clear();
         }
 
+        /* NO se utiliza */
         private void generarPDF()
         {
             // Generar Pdf
@@ -724,6 +775,7 @@ namespace Pizza_Express_visual.Components
             doc.Close();
             ShowPdf((path + nombre));
         }
+
         private void ShowPdf(string strS)
         {
             Response.ClearContent();
@@ -750,7 +802,7 @@ namespace Pizza_Express_visual.Components
 
             }
             LTotalCancelar.Text = "Total a Cancelar $" + suma;
-
+            
         }
         protected void PagarModal_Click(object sender, EventArgs e)
         {
@@ -761,7 +813,6 @@ namespace Pizza_Express_visual.Components
             calcularTotalPago(); //ME CALCULA EL TOTAL EN EL MODAL
 
         }
-
         protected void TextBox1_TextChanged(object sender, EventArgs e)
         {
             int suma = 0;
@@ -776,7 +827,6 @@ namespace Pizza_Express_visual.Components
             int monto = Convert.ToInt32(tpropina.Text) + suma;
             LTotalCancelar.Text = "Total a Cancelar $" + monto.ToString();
         }
-
         protected void tdescuento_TextChanged(object sender, EventArgs e)
         {
             int suma = 0;
@@ -793,7 +843,6 @@ namespace Pizza_Express_visual.Components
             int monto = suma - Convert.ToInt32(tdescuento.Text) + propina;
             LTotalCancelar.Text = "Total a Cancelar $" + monto.ToString();
         }
-
         private void MostrarError(TextBox t, Label l, int r)
         {
 
@@ -895,5 +944,6 @@ namespace Pizza_Express_visual.Components
                 mensaje3.Text = "PAGO NO REGISTRADO.";
             }
         }
+
     }
 }

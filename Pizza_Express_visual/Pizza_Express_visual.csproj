@@ -313,7 +313,7 @@
     <Compile Include="Models\detalleCaja.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Detalle_Mesa.cs">
+    <Compile Include="Models\Detalle_Mesa_Pedido.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Detalle_Pago.cs">
@@ -365,9 +365,6 @@
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Reserva.cs">
-      <DependentUpon>Models.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TamanoP.cs">

@@ -10,30 +10,27 @@ namespace Pizza_Express_visual.Services
     public class QueryMesas
     {
 
-        /* Recibe el numero de la mesa que ha sido seleccionada, devolviendo entonces el estado de esa mesa
-         * 
-            1 = disponible
-            2 = ocupado
-         */
-        public int estadoMesa(int idMesa)
+        public List<int> estadoPagoMesaSeleccionada(int idMesa)
         {
             try
             {
-                using(Pizza_BD1 bd = new Pizza_BD1())
+                using (Pizza_BD1 bd = new Pizza_BD1())
                 {
-                    var estadoMesa = (from m in bd.Mesa
-                                      where m.idMesa.Equals(idMesa)
-                                      select new { Estado = m.codigo_estado }).First().Estado;
+                    var estadoPagoMesa = from m in bd.ComandaMesa
+                                         where m.idMesa.Equals(idMesa) && m.idEstadoPago == 2
+                                         select new { m.codigo_comanda };
 
-                    return estadoMesa;
+                    var listaPedidosMesa = new List<int>();
+                    foreach (var pedido in estadoPagoMesa)
+                    {
+                        listaPedidosMesa.Add(pedido.codigo_comanda);
+                    }
+
+                    return listaPedidosMesa.ToList<int>();
                 }
             }
-            catch
-            {
-                return -1;
-            }
+            catch { return null; }
         }
-
         public List<int> estadoPagoMesas()
         {
 
@@ -47,13 +44,13 @@ namespace Pizza_Express_visual.Services
              */
             try
             {
-                using(Pizza_BD1 db = new Pizza_BD1())
+                using (Pizza_BD1 db = new Pizza_BD1())
                 {
                     var mesasNoCanceladas = from p in db.ComandaMesa
-                        where p.idEstadoPago == 2
-                        select new { p.codigo_comanda, p.idMesa };
+                                            where p.idEstadoPago == 2
+                                            select new { p.codigo_comanda, p.idMesa };
 
-                    var listaMesas = new List<int>();                    
+                    var listaMesas = new List<int>();
 
                     foreach (var mesa in mesasNoCanceladas)
                     {
@@ -68,6 +65,20 @@ namespace Pizza_Express_visual.Services
                 return null;
             }
         }
-        
+        public void cambiarEstadoMesa(int idMesa, int idEstadoPago)
+        {
+            try
+            {
+                using (Pizza_BD1 db = new Pizza_BD1())
+                {
+                    var mesa = db.Mesa.First(u => u.idMesa == idMesa);
+
+                    mesa.codigo_estado = idEstadoPago;
+
+                    db.SaveChanges();
+                }                
+            }
+            catch { }
+        }
     }
 }

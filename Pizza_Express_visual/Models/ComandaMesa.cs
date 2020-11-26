@@ -17,8 +17,8 @@ namespace Pizza_Express_visual.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ComandaMesa()
         {
+            this.Detalle_Mesa_Pedido = new HashSet<Detalle_Mesa_Pedido>();
             this.Detalle_Pago = new HashSet<Detalle_Pago>();
-            this.Detalle_Mesa = new HashSet<Detalle_Mesa>();
         }
     
         public int codigo_comanda { get; set; }
@@ -28,13 +28,13 @@ namespace Pizza_Express_visual.Models
         public Nullable<int> idEstadoPago { get; set; }
         public Nullable<int> id_DetalleCaja { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Detalle_Mesa_Pedido> Detalle_Mesa_Pedido { get; set; }
         public virtual detalleCaja detalleCaja { get; set; }
         public virtual Estado_Pago Estado_Pago { get; set; }
         public virtual Mesa Mesa { get; set; }
         public virtual Usuario Usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Detalle_Pago> Detalle_Pago { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Detalle_Mesa> Detalle_Mesa { get; set; }
     }
 }
