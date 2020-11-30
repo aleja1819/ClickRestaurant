@@ -59,7 +59,7 @@
 
 
                         <div class="col-md-2">
-                            <asp:LinkButton runat="server" CssClass="btn btn-success" ID="bPDFVentas" OnClick="bPDFVentas_Click" >
+                                <asp:LinkButton runat="server" CssClass="btn btn-success" ID="bPDFVentas" OnClick="bPDFVentas_Click">
                          Generar PDF
                             </asp:LinkButton>
                             <br />
@@ -81,14 +81,13 @@
                                     <HeaderStyle CssClass="btn-dark" ForeColor="White" Font-Bold="true" />
                                     <Columns>
 
-                                        <asp:BoundField DataField="codigo_comanda" HeaderText="Código"
-                                            HeaderStyle-CssClass="ocultarCol" ItemStyle-CssClass="ocultarCol" />
-                                        <asp:BoundField DataField="cant_Menu" HeaderText="Cantidad" />
-                                        <asp:BoundField DataField="nombre_menu" HeaderText="Nombre Menú" />
-                                        <asp:BoundField DataField="fecha" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy}"/>
-                                        <asp:BoundField DataField="precio_total" HeaderText="Precio"  DataFormatString="${0:N0}"/>
+                                            <asp:BoundField DataField="codigo_comanda" HeaderText="Código"
+                                                HeaderStyle-CssClass="ocultarCol" ItemStyle-CssClass="ocultarCol" />
+                                            <asp:BoundField DataField="nombre_menu" HeaderText="Nombre Menú" />
+                                            <asp:BoundField DataField="fecha" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy}" />
+                                            <asp:BoundField DataField="precio_total" HeaderText="Precio" DataFormatString="${0:N0}" />
 
-                                        <asp:ButtonField ButtonType="Link" CommandName="idseleccionar" ControlStyle-CssClass="btn btn-danger" Text="+" />
+                                            <asp:ButtonField ButtonType="Link" CommandName="idseleccionar" ControlStyle-CssClass="btn btn-danger" Text="+" />
 
                                     </Columns>
                                 </asp:GridView>
@@ -103,14 +102,13 @@
                                     <HeaderStyle CssClass="btn-success" ForeColor="White" Font-Bold="true" />
 
                                     <Columns>
-                                        <asp:BoundField DataField="codigo_C" HeaderText="Código"
-                                            HeaderStyle-CssClass="ocultarCol" ItemStyle-CssClass="ocultarCol" />
-                                        <asp:BoundField DataField="cantidad_V" HeaderText="Cantidad" />
-                                        <asp:BoundField DataField="nombre_V" HeaderText="Nombre Menú" />
-                                        <asp:BoundField DataField="fecha_V" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy}"/>
-                                        <asp:BoundField DataField="precio_V" HeaderText="Precio" />
+                                            <asp:BoundField DataField="codigo_C" HeaderText="Código"
+                                                HeaderStyle-CssClass="ocultarCol" ItemStyle-CssClass="ocultarCol" />
+                                            <asp:BoundField DataField="nombre_V" HeaderText="Nombre Menú" />
+                                            <asp:BoundField DataField="fecha_V" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy}" />
+                                            <asp:BoundField DataField="precio_V" HeaderText="Precio" />
 
-                                        <asp:ButtonField ButtonType="Link" CommandName="ideditar" Visible="false"  ControlStyle-CssClass="btn btn-danger" Text="-" />
+                                            <asp:ButtonField ButtonType="Link" CommandName="ideditar" Visible="false" ControlStyle-CssClass="btn btn-danger" Text="-" />
 
                                     </Columns>
                                 </asp:GridView>
@@ -187,7 +185,7 @@
                                         <asp:BoundField DataField="fecha_ingreso_producto" HeaderText="Fecha ingreso" DataFormatString="{0:dd/MM/yyyy}" />
                                         <asp:BoundField DataField="cantidad_producto" HeaderText="Cantidad Producto" />
 
-                                        <asp:ButtonField ButtonType="Link" CommandName="idseleccionar" ControlStyle-CssClass="btn btn-danger" Text="+" />
+                                            <asp:ButtonField ButtonType="Link" CommandName="ideditar" Visible="false" ControlStyle-CssClass="btn btn-danger" Text="-" />
 
                                     </Columns>
                                 </asp:GridView>

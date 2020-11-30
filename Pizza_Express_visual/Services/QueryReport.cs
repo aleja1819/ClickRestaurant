@@ -66,14 +66,15 @@ namespace Pizza_Express_visual.Services
                 {
 
                     var retornoReporte = from cc in contexto.ComandaMesa
-                             join dm in contexto.Detalle_Mesa_Pedido
-                             on cc.codigo_comanda equals dm.codigo_comanda
-                             join m in contexto.Menu
-                             on dm.codigo_comanda equals m.codigo_menu
-                             where (cc.fecha.Day <= fechaTermino.Day && cc.fecha.Month <= fechaTermino.Month && cc.fecha.Year <= fechaTermino.Year)
-                             &&
-                             (cc.fecha.Day >= FechaInicial.Day && cc.fecha.Month >= FechaInicial.Month && cc.fecha.Year >= FechaInicial.Year)
-                             select new { dm.codigo_comanda, dm.precio_total, cc.fecha, m.nombre_menu };
+                                         join dm in contexto.Detalle_Mesa_Pedido
+                                         on cc.codigo_comanda equals dm.codigo_comanda
+                                         join m in contexto.Menu
+                                         on dm.idMesa equals m.codigo_menu
+                                         where (cc.fecha.Day <= fechaTermino.Day && cc.fecha.Month <= fechaTermino.Month && cc.fecha.Year <= fechaTermino.Year)
+                                         &&
+                                         (cc.fecha.Day >= FechaInicial.Day && cc.fecha.Month >= FechaInicial.Month && cc.fecha.Year >= FechaInicial.Year)
+                                         select new { dm.codigo_comanda, dm.precio_total, cc.fecha, m.nombre_menu };
+
 
                     int c = retornoReporte.Count();
                     return retornoReporte.ToList<object>();
