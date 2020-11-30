@@ -299,20 +299,20 @@ namespace Pizza_Express_visual.Components
             if (e.CommandName.Equals("idseleccionar"))
             {
                 string codigo_Ven = "";
-                //string canti_Ven = "";
+                string canti_Ven = "";
                 string nombre_Ven = "";
                 string fecha_Ven = "";
                 string precio_Ven = "";
                 try
                 {
                     codigo_Ven = idVentaSelect.Rows[fila].Cells[0].Text;
-                    //canti_Ven = idVentaSelect.Rows[fila].Cells[1].Text;
-                    nombre_Ven = idVentaSelect.Rows[fila].Cells[1].Text.Replace("&#243;", "ó").Replace("&#233;", "é").Replace("&#241;", "ñ").Replace(".", "");
-                    fecha_Ven = idVentaSelect.Rows[fila].Cells[2].Text;
-                    precio_Ven = idVentaSelect.Rows[fila].Cells[3].Text.Replace("$", "").Replace(".", "");
+                    canti_Ven = idVentaSelect.Rows[fila].Cells[1].Text;
+                    nombre_Ven = idVentaSelect.Rows[fila].Cells[2].Text.Replace("&#243;", "ó").Replace("&#233;", "é").Replace("&#241;", "ñ").Replace(".", "");
+                    fecha_Ven = idVentaSelect.Rows[fila].Cells[3].Text;
+                    precio_Ven = idVentaSelect.Rows[fila].Cells[4].Text.Replace("$", "").Replace(".", "");
 
                     int codV = Convert.ToInt32(codigo_Ven);
-                    //int cantidad = Convert.ToInt32(canti_Ven);
+                    int cantidad = Convert.ToInt32(canti_Ven);
                     int precio = Convert.ToInt32(precio_Ven);
                     //AGREGAR PRODUCTO AL CARRO
                     ventas carro_comp = new ventas();
@@ -326,11 +326,11 @@ namespace Pizza_Express_visual.Components
                 {
 
                     int codV = Convert.ToInt32(codigo_Ven);
-                    //int cantidad = Convert.ToInt32(canti_Ven);
+                    int cantidad = Convert.ToInt32(canti_Ven);
                     int precio = Convert.ToInt32(precio_Ven);
                     DateTime fecha = Convert.ToDateTime(fecha_Ven);
 
-                    ListaVentas.Add(new ventas { codigo_C = codV, nombre_V = nombre_Ven, fecha_V = fecha, precio_V = precio });
+                    ListaVentas.Add(new ventas { codigo_C = codV, cantidad_V = cantidad, nombre_V = nombre_Ven, fecha_V = fecha, precio_V = precio });
 
                 }
                 finally
@@ -350,7 +350,7 @@ namespace Pizza_Express_visual.Components
             if (e.CommandName.Equals("ideditar"))
             {
                 string codigo_Ven = "";
-                //string canti_Ven = "";
+                string canti_Ven = "";
                 string nombre_Ven = "";
                 string fecha_Ven = "";
                 string precio_Ven = "";
@@ -359,13 +359,13 @@ namespace Pizza_Express_visual.Components
                 {
 
                     codigo_Ven = CargarVentasReporte.Rows[fila].Cells[0].Text;
-                    //canti_Ven = CargarVentasReporte.Rows[fila].Cells[1].Text;
-                    nombre_Ven = CargarVentasReporte.Rows[fila].Cells[1].Text.Replace("&#243;", "ó").Replace("&#233;", "é").Replace("&#241;", "ñ").Replace(".", "");
-                    fecha_Ven = CargarVentasReporte.Rows[fila].Cells[2].Text;
-                    precio_Ven = CargarVentasReporte.Rows[fila].Cells[3].Text.Replace("$", "").Replace(".", "");
+                    canti_Ven = CargarVentasReporte.Rows[fila].Cells[1].Text;
+                    nombre_Ven = CargarVentasReporte.Rows[fila].Cells[2].Text.Replace("&#243;", "ó").Replace("&#233;", "é").Replace("&#241;", "ñ").Replace(".", "");
+                    fecha_Ven = CargarVentasReporte.Rows[fila].Cells[3].Text;
+                    precio_Ven = CargarVentasReporte.Rows[fila].Cells[4].Text.Replace("$", "").Replace(".", "");
 
                     int codV = Convert.ToInt32(codigo_Ven);
-                    //int cantidad = Convert.ToInt32(canti_Ven);
+                    int cantidad = Convert.ToInt32(canti_Ven);
                     int precio = Convert.ToInt32(precio_Ven);
                     ventas carro_comp = new ventas();
                     carro_comp = ListaVentas.First(v => v.codigo_C == codV);
@@ -426,13 +426,15 @@ namespace Pizza_Express_visual.Components
             paragraph3.Alignment = Element.ALIGN_LEFT;
             doc.Add(paragraph3);
 
-            PdfPTable table = new PdfPTable(3);
+            PdfPTable table = new PdfPTable(4);
             PdfPCell cell = new PdfPCell();
             cell.HorizontalAlignment = 1; //0=Left, 1=Centre, 2=Right
             cell.BorderColor = BaseColor.BLACK;
             cell.BackgroundColor = BaseColor.RED;
 
             iTextSharp.text.Font letraBlanca = FontFactory.GetFont("Verdana", 12, iTextSharp.text.Font.BOLDITALIC, BaseColor.WHITE);
+            cell.Phrase = new Phrase("Cantidad", letraBlanca);
+            table.AddCell(cell);
             cell.Phrase = new Phrase("Nombre", letraBlanca);
             table.AddCell(cell);
             cell.Phrase = new Phrase("Fecha Ingreso", letraBlanca);
@@ -444,6 +446,8 @@ namespace Pizza_Express_visual.Components
             PdfPCell cell0 = new PdfPCell();
             foreach (var regist in ListaVentas)
             {
+                cell0.Phrase = new Phrase(regist.cantidad_V.ToString());
+                table.AddCell(cell0);
 
                 cell0.Phrase = new Phrase(regist.nombre_V);
                 table.AddCell(cell0);
