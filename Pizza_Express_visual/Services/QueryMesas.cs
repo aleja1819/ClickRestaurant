@@ -25,12 +25,120 @@ namespace Pizza_Express_visual.Services
                     {
                         listaPedidosMesa.Add(pedido.codigo_comanda);
                     }
-
+                    
                     return listaPedidosMesa.ToList<int>();
                 }
             }
             catch { return null; }
         }
+
+        public int precioTotal(List<int> listaPedidosMesa)
+        {
+            try
+            {
+                using (Pizza_BD1 bd = new Pizza_BD1())
+                {
+                    int ptotal = 0;
+                    foreach (var el in listaPedidosMesa)
+                    {
+                        var estadoPagoMesa = from m in bd.Detalle_Mesa_Pedido
+                                             where m.codigo_comanda.Equals(el)
+                                             select new { m.precio_total };
+
+                        ptotal += estadoPagoMesa.First().precio_total;
+
+                    }
+                        return ptotal;
+
+                }
+            }
+            catch { return -1; }
+        }
+
+        public List<object> objetoUnPedido(int nMesa)
+        {
+            try
+            {
+                using (Pizza_BD1 bd = new Pizza_BD1())
+                {
+
+                    //foreach (var el in listaPedidosMesa)
+                    //{
+                    var pedido = from m in bd.PedidosActivos
+                                 where m.idMesa == nMesa && m.idEstadoPago == 2
+                                 select new { m.codigo_comanda, m.codigo_menu, m.nombre_menu, m.precio_menu, m.cantidad, m.subtotal };
+
+                        
+                        return pedido.ToList<object>();
+                    //}
+                    
+
+                }
+            }
+            catch { return null; }
+        }
+
+
+        public List<String> objetoPedidos(List<int> listaPedidosMesa)
+        {
+            try
+            {
+                using (Pizza_BD1 bd = new Pizza_BD1())
+                {
+                    var listaPedidosMesa2 = new List<String>();
+                    
+                    foreach (var el in listaPedidosMesa)
+                    {
+                        var estadoPagoMesa = from m in bd.Detalle_Mesa_Pedido
+                                             where m.codigo_comanda.Equals(el) 
+                                             select new { 
+                                                          m.menu1, m.menu2, m.menu3, m.menu4, m.menu5, m.menu6, m.menu7, m.menu8, m.menu9, m.menu10, 
+                                                          m.menu11, m.menu12, m.menu13, m.menu14, m.menu15, m.menu16, m.menu17, m.menu18, m.menu19, m.menu20, 
+                                                          m.menu21, m.menu22, m.menu23, m.menu24, m.menu25, m.menu26, m.menu27, m.menu28, m.menu29, m.menu30 
+                                                        };
+
+                        foreach (var menu in estadoPagoMesa)
+                        {
+                            listaPedidosMesa2.Add(menu.menu1);
+                            listaPedidosMesa2.Add(menu.menu2);
+                            listaPedidosMesa2.Add(menu.menu3);
+                            listaPedidosMesa2.Add(menu.menu4);
+                            listaPedidosMesa2.Add(menu.menu5);
+                            listaPedidosMesa2.Add(menu.menu6);
+                            listaPedidosMesa2.Add(menu.menu7);
+                            listaPedidosMesa2.Add(menu.menu8);
+                            listaPedidosMesa2.Add(menu.menu9);
+                            listaPedidosMesa2.Add(menu.menu10);
+                            listaPedidosMesa2.Add(menu.menu11);
+                            listaPedidosMesa2.Add(menu.menu12);
+                            listaPedidosMesa2.Add(menu.menu13);
+                            listaPedidosMesa2.Add(menu.menu14);
+                            listaPedidosMesa2.Add(menu.menu15);
+                            listaPedidosMesa2.Add(menu.menu16);
+                            listaPedidosMesa2.Add(menu.menu17);
+                            listaPedidosMesa2.Add(menu.menu18);
+                            listaPedidosMesa2.Add(menu.menu19);
+                            listaPedidosMesa2.Add(menu.menu20);
+                            listaPedidosMesa2.Add(menu.menu21);
+                            listaPedidosMesa2.Add(menu.menu22);
+                            listaPedidosMesa2.Add(menu.menu23);
+                            listaPedidosMesa2.Add(menu.menu24);
+                            listaPedidosMesa2.Add(menu.menu25);
+                            listaPedidosMesa2.Add(menu.menu26);
+                            listaPedidosMesa2.Add(menu.menu27);
+                            listaPedidosMesa2.Add(menu.menu28);
+                            listaPedidosMesa2.Add(menu.menu29);
+                            listaPedidosMesa2.Add(menu.menu30);
+                        }
+
+                    }
+                        return listaPedidosMesa2.ToList<String>();
+                    
+                }
+            }
+            catch { return null; }
+        }
+
         public List<int> estadoPagoMesas()
         {
 

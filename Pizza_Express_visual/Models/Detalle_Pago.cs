@@ -29,7 +29,6 @@ namespace Pizza_Express_visual.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BoletaComanda> BoletaComanda { get; set; }
-        public virtual ComandaMesa ComandaMesa { get; set; }
         public virtual TipoPago TipoPago { get; set; }
     }
 }

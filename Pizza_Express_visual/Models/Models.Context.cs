@@ -40,6 +40,7 @@ namespace Pizza_Express_visual.Models
         public virtual DbSet<Menu> Menu { get; set; }
         public virtual DbSet<Menu_Link> Menu_Link { get; set; }
         public virtual DbSet<Mesa> Mesa { get; set; }
+        public virtual DbSet<PedidosActivos> PedidosActivos { get; set; }
         public virtual DbSet<Producto> Producto { get; set; }
         public virtual DbSet<Producto_Proveedor> Producto_Proveedor { get; set; }
         public virtual DbSet<Proveedor> Proveedor { get; set; }

@@ -151,7 +151,7 @@ namespace Pizza_Express_visual.Services
             }
         }
 
-        /* Inserta la comanda a la bd*/
+        /* Inserta la comanda a la bd => tabla Comanda Mesa*/
         public bool addComandaMesa(ComandaMesa comandaMesa)
         {
             try
@@ -171,7 +171,7 @@ namespace Pizza_Express_visual.Services
             }
         }
 
-        /* Inserta el detalle del pedido en la bd */
+        /* Inserta el detalle del pedido en la bd => tabla DetalleMesaPedido */
         public bool addDetalleMesaPedido(Detalle_Mesa_Pedido pedidoMesa)
         {
             try
@@ -211,6 +211,23 @@ namespace Pizza_Express_visual.Services
             }
         }
 
+        public bool addPedidosActivos(PedidosActivos pedidosMesaX)
+        {
+            try
+            {
+                using (Pizza_BD1 db = new Pizza_BD1())
+                {
+                    db.PedidosActivos.Add(pedidosMesaX);
+
+                    int resp = db.SaveChanges();
+                    return resp == 1;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
 
     }
 }

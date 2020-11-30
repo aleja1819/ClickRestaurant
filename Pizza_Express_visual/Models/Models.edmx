@@ -45,10 +45,11 @@
             <PropertyRef Name="codigo_comanda" />
           </Key>
           <Property Name="codigo_comanda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="codigo_usuario" Type="int" Nullable="false" />
           <Property Name="idMesa" Type="int" Nullable="false" />
-          <Property Name="fecha" Type="date" Nullable="false" />
           <Property Name="idEstadoPago" Type="int" />
+          <Property Name="fecha" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="precio_total" Type="int" Nullable="false" />
+          <Property Name="codigo_usuario" Type="int" Nullable="false" />
           <Property Name="id_DetalleCaja" Type="int" />
         </EntityType>
         <EntityType Name="Detalle_Mesa_Pedido">
@@ -59,36 +60,66 @@
           <Property Name="idMesa" Type="int" Nullable="false" />
           <Property Name="codigo_comanda" Type="int" Nullable="false" />
           <Property Name="precio_total" Type="int" Nullable="false" />
-          <Property Name="menu1" Type="int" />
-          <Property Name="menu2" Type="int" />
-          <Property Name="menu3" Type="int" />
-          <Property Name="menu4" Type="int" />
-          <Property Name="menu5" Type="int" />
-          <Property Name="menu6" Type="int" />
-          <Property Name="menu7" Type="int" />
-          <Property Name="menu8" Type="int" />
-          <Property Name="menu9" Type="int" />
-          <Property Name="menu10" Type="int" />
-          <Property Name="menu11" Type="int" />
-          <Property Name="menu12" Type="int" />
-          <Property Name="menu13" Type="int" />
-          <Property Name="menu14" Type="int" />
-          <Property Name="menu15" Type="int" />
-          <Property Name="menu16" Type="int" />
-          <Property Name="menu17" Type="int" />
-          <Property Name="menu18" Type="int" />
-          <Property Name="menu19" Type="int" />
-          <Property Name="menu20" Type="int" />
-          <Property Name="menu21" Type="int" />
-          <Property Name="menu22" Type="int" />
-          <Property Name="menu23" Type="int" />
-          <Property Name="menu24" Type="int" />
-          <Property Name="menu25" Type="int" />
-          <Property Name="menu26" Type="int" />
-          <Property Name="menu27" Type="int" />
-          <Property Name="menu28" Type="int" />
-          <Property Name="menu29" Type="int" />
-          <Property Name="menu30" Type="int" />
+          <Property Name="menu1" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m1" Type="int" />
+          <Property Name="menu2" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m2" Type="int" />
+          <Property Name="menu3" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m3" Type="int" />
+          <Property Name="menu4" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m4" Type="int" />
+          <Property Name="menu5" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m5" Type="int" />
+          <Property Name="menu6" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m6" Type="int" />
+          <Property Name="menu7" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m7" Type="int" />
+          <Property Name="menu8" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m8" Type="int" />
+          <Property Name="menu9" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m9" Type="int" />
+          <Property Name="menu10" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m10" Type="int" />
+          <Property Name="menu11" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m11" Type="int" />
+          <Property Name="menu12" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m12" Type="int" />
+          <Property Name="menu13" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m13" Type="int" />
+          <Property Name="menu14" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m14" Type="int" />
+          <Property Name="menu15" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m15" Type="int" />
+          <Property Name="menu16" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m16" Type="int" />
+          <Property Name="menu17" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m17" Type="int" />
+          <Property Name="menu18" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m18" Type="int" />
+          <Property Name="menu19" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m19" Type="int" />
+          <Property Name="menu20" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m20" Type="int" />
+          <Property Name="menu21" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m21" Type="int" />
+          <Property Name="menu22" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m22" Type="int" />
+          <Property Name="menu23" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m23" Type="int" />
+          <Property Name="menu24" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m24" Type="int" />
+          <Property Name="menu25" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m25" Type="int" />
+          <Property Name="menu26" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m26" Type="int" />
+          <Property Name="menu27" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m27" Type="int" />
+          <Property Name="menu28" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m28" Type="int" />
+          <Property Name="menu29" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m29" Type="int" />
+          <Property Name="menu30" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m30" Type="int" />
         </EntityType>
         <EntityType Name="Detalle_Pago">
           <Key>
@@ -165,6 +196,22 @@
           <Property Name="idMesa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="codigo_estado" Type="int" Nullable="false" />
           <Property Name="numeroMesa" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PedidosActivos">
+          <Key>
+            <PropertyRef Name="idMesa" />
+            <PropertyRef Name="codigo_comanda" />
+            <PropertyRef Name="idEstadoPago" />
+            <PropertyRef Name="codigo_menu" />
+          </Key>
+          <Property Name="idMesa" Type="int" Nullable="false" />
+          <Property Name="codigo_comanda" Type="int" Nullable="false" />
+          <Property Name="idEstadoPago" Type="int" Nullable="false" />
+          <Property Name="codigo_menu" Type="int" Nullable="false" />
+          <Property Name="nombre_menu" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="precio_menu" Type="int" Nullable="false" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
+          <Property Name="subtotal" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Producto">
           <Key>
@@ -330,15 +377,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_codigo_comanda">
+        <Association Name="fk_codigo_comanda_ComandaMesa">
           <End Role="ComandaMesa" Type="Self.ComandaMesa" Multiplicity="1" />
-          <End Role="Detalle_Mesa_Pedido" Type="Self.Detalle_Mesa_Pedido" Multiplicity="*" />
+          <End Role="PedidosActivos" Type="Self.PedidosActivos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ComandaMesa">
               <PropertyRef Name="codigo_comanda" />
             </Principal>
-            <Dependent Role="Detalle_Mesa_Pedido">
+            <Dependent Role="PedidosActivos">
               <PropertyRef Name="codigo_comanda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_codigo_menu">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+          <End Role="PedidosActivos" Type="Self.PedidosActivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="codigo_menu" />
+            </Principal>
+            <Dependent Role="PedidosActivos">
+              <PropertyRef Name="codigo_menu" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -390,18 +449,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Detalle_Pago_ComandaMesa">
-          <End Role="ComandaMesa" Type="Self.ComandaMesa" Multiplicity="0..1" />
-          <End Role="Detalle_Pago" Type="Self.Detalle_Pago" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ComandaMesa">
-              <PropertyRef Name="codigo_comanda" />
-            </Principal>
-            <Dependent Role="Detalle_Pago">
-              <PropertyRef Name="codigo_comanda" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_detalleCaja_Caja">
           <End Role="Caja" Type="Self.Caja" Multiplicity="0..1" />
           <End Role="detalleCaja" Type="Self.detalleCaja" Multiplicity="*" />
@@ -426,6 +473,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_idEstadoPago">
+          <End Role="Estado_Pago" Type="Self.Estado_Pago" Multiplicity="1" />
+          <End Role="PedidosActivos" Type="Self.PedidosActivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado_Pago">
+              <PropertyRef Name="idEstadoPago" />
+            </Principal>
+            <Dependent Role="PedidosActivos">
+              <PropertyRef Name="idEstadoPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_idMesa_Mesa">
           <End Role="Mesa" Type="Self.Mesa" Multiplicity="1" />
           <End Role="Detalle_Mesa_Pedido" Type="Self.Detalle_Mesa_Pedido" Multiplicity="*" />
@@ -434,6 +493,18 @@
               <PropertyRef Name="idMesa" />
             </Principal>
             <Dependent Role="Detalle_Mesa_Pedido">
+              <PropertyRef Name="idMesa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_idMesaPedido_Mesa">
+          <End Role="Mesa" Type="Self.Mesa" Multiplicity="1" />
+          <End Role="PedidosActivos" Type="Self.PedidosActivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mesa">
+              <PropertyRef Name="idMesa" />
+            </Principal>
+            <Dependent Role="PedidosActivos">
               <PropertyRef Name="idMesa" />
             </Dependent>
           </ReferentialConstraint>
@@ -562,6 +633,7 @@
           <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Menu_Link" EntityType="Self.Menu_Link" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mesa" EntityType="Self.Mesa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PedidosActivos" EntityType="Self.PedidosActivos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Producto_Proveedor" EntityType="Self.Producto_Proveedor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Proveedor" EntityType="Self.Proveedor" Schema="dbo" store:Type="Tables" />
@@ -599,9 +671,13 @@
             <End Role="TamanoP" EntitySet="TamanoP" />
             <End Role="Menu" EntitySet="Menu" />
           </AssociationSet>
-          <AssociationSet Name="fk_codigo_comanda" Association="Self.fk_codigo_comanda">
+          <AssociationSet Name="fk_codigo_comanda_ComandaMesa" Association="Self.fk_codigo_comanda_ComandaMesa">
             <End Role="ComandaMesa" EntitySet="ComandaMesa" />
-            <End Role="Detalle_Mesa_Pedido" EntitySet="Detalle_Mesa_Pedido" />
+            <End Role="PedidosActivos" EntitySet="PedidosActivos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_codigo_menu" Association="Self.fk_codigo_menu">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="PedidosActivos" EntitySet="PedidosActivos" />
           </AssociationSet>
           <AssociationSet Name="FK_ComandaMesa_detalleCaja1" Association="Self.FK_ComandaMesa_detalleCaja1">
             <End Role="detalleCaja" EntitySet="detalleCaja" />
@@ -619,10 +695,6 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="ComandaMesa" EntitySet="ComandaMesa" />
           </AssociationSet>
-          <AssociationSet Name="FK_Detalle_Pago_ComandaMesa" Association="Self.FK_Detalle_Pago_ComandaMesa">
-            <End Role="ComandaMesa" EntitySet="ComandaMesa" />
-            <End Role="Detalle_Pago" EntitySet="Detalle_Pago" />
-          </AssociationSet>
           <AssociationSet Name="FK_detalleCaja_Caja" Association="Self.FK_detalleCaja_Caja">
             <End Role="Caja" EntitySet="Caja" />
             <End Role="detalleCaja" EntitySet="detalleCaja" />
@@ -631,9 +703,17 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="detalleCaja" EntitySet="detalleCaja" />
           </AssociationSet>
+          <AssociationSet Name="fk_idEstadoPago" Association="Self.fk_idEstadoPago">
+            <End Role="Estado_Pago" EntitySet="Estado_Pago" />
+            <End Role="PedidosActivos" EntitySet="PedidosActivos" />
+          </AssociationSet>
           <AssociationSet Name="fk_idMesa_Mesa" Association="Self.fk_idMesa_Mesa">
             <End Role="Mesa" EntitySet="Mesa" />
             <End Role="Detalle_Mesa_Pedido" EntitySet="Detalle_Mesa_Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="fk_idMesaPedido_Mesa" Association="Self.fk_idMesaPedido_Mesa">
+            <End Role="Mesa" EntitySet="Mesa" />
+            <End Role="PedidosActivos" EntitySet="PedidosActivos" />
           </AssociationSet>
           <AssociationSet Name="fk_Mesa_Estado_Mesa1" Association="Self.fk_Mesa_Estado_Mesa1">
             <End Role="Estado_Mesa" EntitySet="Estado_Mesa" />
@@ -725,17 +805,17 @@
             <PropertyRef Name="codigo_comanda" />
           </Key>
           <Property Name="codigo_comanda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="codigo_usuario" Type="Int32" Nullable="false" />
           <Property Name="idMesa" Type="Int32" Nullable="false" />
-          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="idEstadoPago" Type="Int32" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="precio_total" Type="Int32" Nullable="false" />
+          <Property Name="codigo_usuario" Type="Int32" Nullable="false" />
           <Property Name="id_DetalleCaja" Type="Int32" />
-          <NavigationProperty Name="Detalle_Mesa_Pedido" Relationship="Self.fk_codigo_comanda" FromRole="ComandaMesa" ToRole="Detalle_Mesa_Pedido" />
+          <NavigationProperty Name="PedidosActivos" Relationship="Self.fk_codigo_comanda_ComandaMesa" FromRole="ComandaMesa" ToRole="PedidosActivos" />
           <NavigationProperty Name="detalleCaja" Relationship="Self.FK_ComandaMesa_detalleCaja1" FromRole="ComandaMesa" ToRole="detalleCaja" />
           <NavigationProperty Name="Estado_Pago" Relationship="Self.FK_ComandaMesa_Estado_Pago" FromRole="ComandaMesa" ToRole="Estado_Pago" />
           <NavigationProperty Name="Mesa" Relationship="Self.FK_ComandaMesa_Mesa" FromRole="ComandaMesa" ToRole="Mesa" />
           <NavigationProperty Name="Usuario" Relationship="Self.fk_ComandaMesa_Usuario1" FromRole="ComandaMesa" ToRole="Usuario" />
-          <NavigationProperty Name="Detalle_Pago" Relationship="Self.FK_Detalle_Pago_ComandaMesa" FromRole="ComandaMesa" ToRole="Detalle_Pago" />
         </EntityType>
         <EntityType Name="Detalle_Mesa_Pedido">
           <Key>
@@ -745,37 +825,66 @@
           <Property Name="idMesa" Type="Int32" Nullable="false" />
           <Property Name="codigo_comanda" Type="Int32" Nullable="false" />
           <Property Name="precio_total" Type="Int32" Nullable="false" />
-          <Property Name="menu1" Type="Int32" />
-          <Property Name="menu2" Type="Int32" />
-          <Property Name="menu3" Type="Int32" />
-          <Property Name="menu4" Type="Int32" />
-          <Property Name="menu5" Type="Int32" />
-          <Property Name="menu6" Type="Int32" />
-          <Property Name="menu7" Type="Int32" />
-          <Property Name="menu8" Type="Int32" />
-          <Property Name="menu9" Type="Int32" />
-          <Property Name="menu10" Type="Int32" />
-          <Property Name="menu11" Type="Int32" />
-          <Property Name="menu12" Type="Int32" />
-          <Property Name="menu13" Type="Int32" />
-          <Property Name="menu14" Type="Int32" />
-          <Property Name="menu15" Type="Int32" />
-          <Property Name="menu16" Type="Int32" />
-          <Property Name="menu17" Type="Int32" />
-          <Property Name="menu18" Type="Int32" />
-          <Property Name="menu19" Type="Int32" />
-          <Property Name="menu20" Type="Int32" />
-          <Property Name="menu21" Type="Int32" />
-          <Property Name="menu22" Type="Int32" />
-          <Property Name="menu23" Type="Int32" />
-          <Property Name="menu24" Type="Int32" />
-          <Property Name="menu25" Type="Int32" />
-          <Property Name="menu26" Type="Int32" />
-          <Property Name="menu27" Type="Int32" />
-          <Property Name="menu28" Type="Int32" />
-          <Property Name="menu29" Type="Int32" />
-          <Property Name="menu30" Type="Int32" />
-          <NavigationProperty Name="ComandaMesa" Relationship="Self.fk_codigo_comanda" FromRole="Detalle_Mesa_Pedido" ToRole="ComandaMesa" />
+          <Property Name="menu1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m1" Type="Int32" />
+          <Property Name="menu2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m2" Type="Int32" />
+          <Property Name="menu3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m3" Type="Int32" />
+          <Property Name="menu4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m4" Type="Int32" />
+          <Property Name="menu5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m5" Type="Int32" />
+          <Property Name="menu6" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m6" Type="Int32" />
+          <Property Name="menu7" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m7" Type="Int32" />
+          <Property Name="menu8" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m8" Type="Int32" />
+          <Property Name="menu9" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m9" Type="Int32" />
+          <Property Name="menu10" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m10" Type="Int32" />
+          <Property Name="menu11" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m11" Type="Int32" />
+          <Property Name="menu12" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m12" Type="Int32" />
+          <Property Name="menu13" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m13" Type="Int32" />
+          <Property Name="menu14" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m14" Type="Int32" />
+          <Property Name="menu15" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m15" Type="Int32" />
+          <Property Name="menu16" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m16" Type="Int32" />
+          <Property Name="menu17" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m17" Type="Int32" />
+          <Property Name="menu18" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m18" Type="Int32" />
+          <Property Name="menu19" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m19" Type="Int32" />
+          <Property Name="menu20" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m20" Type="Int32" />
+          <Property Name="menu21" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m21" Type="Int32" />
+          <Property Name="menu22" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m22" Type="Int32" />
+          <Property Name="menu23" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m23" Type="Int32" />
+          <Property Name="menu24" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m24" Type="Int32" />
+          <Property Name="menu25" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m25" Type="Int32" />
+          <Property Name="menu26" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m26" Type="Int32" />
+          <Property Name="menu27" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m27" Type="Int32" />
+          <Property Name="menu28" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m28" Type="Int32" />
+          <Property Name="menu29" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m29" Type="Int32" />
+          <Property Name="menu30" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m30" Type="Int32" />
           <NavigationProperty Name="Mesa" Relationship="Self.fk_idMesa_Mesa" FromRole="Detalle_Mesa_Pedido" ToRole="Mesa" />
         </EntityType>
         <EntityType Name="Detalle_Pago">
@@ -789,7 +898,6 @@
           <Property Name="descuento" Type="Int32" Nullable="false" />
           <Property Name="codigo_comanda" Type="Int32" />
           <NavigationProperty Name="BoletaComanda" Relationship="Self.fk_BoletaComanda_Pago1" FromRole="Detalle_Pago" ToRole="BoletaComanda" />
-          <NavigationProperty Name="ComandaMesa" Relationship="Self.FK_Detalle_Pago_ComandaMesa" FromRole="Detalle_Pago" ToRole="ComandaMesa" />
           <NavigationProperty Name="TipoPago" Relationship="Self.fk_Pago_TipoPago1" FromRole="Detalle_Pago" ToRole="TipoPago" />
         </EntityType>
         <EntityType Name="detalleCaja">
@@ -829,6 +937,7 @@
           <Property Name="idEstadoPago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="ComandaMesa" Relationship="Self.FK_ComandaMesa_Estado_Pago" FromRole="Estado_Pago" ToRole="ComandaMesa" />
+          <NavigationProperty Name="PedidosActivos" Relationship="Self.fk_idEstadoPago" FromRole="Estado_Pago" ToRole="PedidosActivos" />
         </EntityType>
         <EntityType Name="Estado_Usuario">
           <Key>
@@ -850,6 +959,7 @@
           <Property Name="codigo_tamanoP" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Categoria" Relationship="Self.fk_CartaMenu_Categoria1" FromRole="Menu" ToRole="Categoria" />
           <NavigationProperty Name="TamanoP" Relationship="Self.fk_CartaMenu_tamanoP" FromRole="Menu" ToRole="TamanoP" />
+          <NavigationProperty Name="PedidosActivos" Relationship="Self.fk_codigo_menu" FromRole="Menu" ToRole="PedidosActivos" />
         </EntityType>
         <EntityType Name="Menu_Link">
           <Key>
@@ -869,7 +979,28 @@
           <NavigationProperty Name="ComandaMesa" Relationship="Self.FK_ComandaMesa_Mesa" FromRole="Mesa" ToRole="ComandaMesa" />
           <NavigationProperty Name="Detalle_Mesa_Pedido" Relationship="Self.fk_idMesa_Mesa" FromRole="Mesa" ToRole="Detalle_Mesa_Pedido" />
           <NavigationProperty Name="Estado_Mesa" Relationship="Self.fk_Mesa_Estado_Mesa1" FromRole="Mesa" ToRole="Estado_Mesa" />
+          <NavigationProperty Name="PedidosActivos" Relationship="Self.fk_idMesaPedido_Mesa" FromRole="Mesa" ToRole="PedidosActivos" />
           <NavigationProperty Name="Reserva" Relationship="Self.FK_Reserva_Mesa" FromRole="Mesa" ToRole="Reserva" />
+        </EntityType>
+        <EntityType Name="PedidosActivos">
+          <Key>
+            <PropertyRef Name="idMesa" />
+            <PropertyRef Name="codigo_comanda" />
+            <PropertyRef Name="idEstadoPago" />
+            <PropertyRef Name="codigo_menu" />
+          </Key>
+          <Property Name="idMesa" Type="Int32" Nullable="false" />
+          <Property Name="codigo_comanda" Type="Int32" Nullable="false" />
+          <Property Name="idEstadoPago" Type="Int32" Nullable="false" />
+          <Property Name="codigo_menu" Type="Int32" Nullable="false" />
+          <Property Name="nombre_menu" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="precio_menu" Type="Int32" Nullable="false" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <Property Name="subtotal" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ComandaMesa" Relationship="Self.fk_codigo_comanda_ComandaMesa" FromRole="PedidosActivos" ToRole="ComandaMesa" />
+          <NavigationProperty Name="Estado_Pago" Relationship="Self.fk_idEstadoPago" FromRole="PedidosActivos" ToRole="Estado_Pago" />
+          <NavigationProperty Name="Menu" Relationship="Self.fk_codigo_menu" FromRole="PedidosActivos" ToRole="Menu" />
+          <NavigationProperty Name="Mesa" Relationship="Self.fk_idMesaPedido_Mesa" FromRole="PedidosActivos" ToRole="Mesa" />
         </EntityType>
         <EntityType Name="Producto">
           <Key>
@@ -1052,14 +1183,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_codigo_comanda">
+        <Association Name="fk_codigo_comanda_ComandaMesa">
           <End Role="ComandaMesa" Type="Self.ComandaMesa" Multiplicity="1" />
-          <End Role="Detalle_Mesa_Pedido" Type="Self.Detalle_Mesa_Pedido" Multiplicity="*" />
+          <End Role="PedidosActivos" Type="Self.PedidosActivos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ComandaMesa">
               <PropertyRef Name="codigo_comanda" />
             </Principal>
-            <Dependent Role="Detalle_Mesa_Pedido">
+            <Dependent Role="PedidosActivos">
               <PropertyRef Name="codigo_comanda" />
             </Dependent>
           </ReferentialConstraint>
@@ -1112,18 +1243,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Detalle_Pago_ComandaMesa">
-          <End Role="ComandaMesa" Type="Self.ComandaMesa" Multiplicity="0..1" />
-          <End Role="Detalle_Pago" Type="Self.Detalle_Pago" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ComandaMesa">
-              <PropertyRef Name="codigo_comanda" />
-            </Principal>
-            <Dependent Role="Detalle_Pago">
-              <PropertyRef Name="codigo_comanda" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_idMesa_Mesa">
           <End Role="Mesa" Type="Self.Mesa" Multiplicity="1" />
           <End Role="Detalle_Mesa_Pedido" Type="Self.Detalle_Mesa_Pedido" Multiplicity="*" />
@@ -1172,6 +1291,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_idEstadoPago">
+          <End Role="Estado_Pago" Type="Self.Estado_Pago" Multiplicity="1" />
+          <End Role="PedidosActivos" Type="Self.PedidosActivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado_Pago">
+              <PropertyRef Name="idEstadoPago" />
+            </Principal>
+            <Dependent Role="PedidosActivos">
+              <PropertyRef Name="idEstadoPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_Usuario_Estado_Usuario">
           <End Role="Estado_Usuario" Type="Self.Estado_Usuario" Multiplicity="1" />
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
@@ -1193,6 +1324,30 @@
             </Principal>
             <Dependent Role="Menu">
               <PropertyRef Name="codigo_tamanoP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_codigo_menu">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+          <End Role="PedidosActivos" Type="Self.PedidosActivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="codigo_menu" />
+            </Principal>
+            <Dependent Role="PedidosActivos">
+              <PropertyRef Name="codigo_menu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_idMesaPedido_Mesa">
+          <End Role="Mesa" Type="Self.Mesa" Multiplicity="1" />
+          <End Role="PedidosActivos" Type="Self.PedidosActivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mesa">
+              <PropertyRef Name="idMesa" />
+            </Principal>
+            <Dependent Role="PedidosActivos">
+              <PropertyRef Name="idMesa" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1284,6 +1439,7 @@
           <EntitySet Name="Menu" EntityType="Self.Menu" />
           <EntitySet Name="Menu_Link" EntityType="Self.Menu_Link" />
           <EntitySet Name="Mesa" EntityType="Self.Mesa" />
+          <EntitySet Name="PedidosActivos" EntityType="Self.PedidosActivos" />
           <EntitySet Name="Producto" EntityType="Self.Producto" />
           <EntitySet Name="Producto_Proveedor" EntityType="Self.Producto_Proveedor" />
           <EntitySet Name="Proveedor" EntityType="Self.Proveedor" />
@@ -1321,9 +1477,9 @@
             <End Role="Categoria" EntitySet="Categoria" />
             <End Role="Menu" EntitySet="Menu" />
           </AssociationSet>
-          <AssociationSet Name="fk_codigo_comanda" Association="Self.fk_codigo_comanda">
+          <AssociationSet Name="fk_codigo_comanda_ComandaMesa" Association="Self.fk_codigo_comanda_ComandaMesa">
             <End Role="ComandaMesa" EntitySet="ComandaMesa" />
-            <End Role="Detalle_Mesa_Pedido" EntitySet="Detalle_Mesa_Pedido" />
+            <End Role="PedidosActivos" EntitySet="PedidosActivos" />
           </AssociationSet>
           <AssociationSet Name="FK_ComandaMesa_detalleCaja1" Association="Self.FK_ComandaMesa_detalleCaja1">
             <End Role="detalleCaja" EntitySet="detalleCaja" />
@@ -1341,10 +1497,6 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="ComandaMesa" EntitySet="ComandaMesa" />
           </AssociationSet>
-          <AssociationSet Name="FK_Detalle_Pago_ComandaMesa" Association="Self.FK_Detalle_Pago_ComandaMesa">
-            <End Role="ComandaMesa" EntitySet="ComandaMesa" />
-            <End Role="Detalle_Pago" EntitySet="Detalle_Pago" />
-          </AssociationSet>
           <AssociationSet Name="fk_idMesa_Mesa" Association="Self.fk_idMesa_Mesa">
             <End Role="Mesa" EntitySet="Mesa" />
             <End Role="Detalle_Mesa_Pedido" EntitySet="Detalle_Mesa_Pedido" />
@@ -1361,6 +1513,10 @@
             <End Role="Estado_Mesa" EntitySet="Estado_Mesa" />
             <End Role="Mesa" EntitySet="Mesa" />
           </AssociationSet>
+          <AssociationSet Name="fk_idEstadoPago" Association="Self.fk_idEstadoPago">
+            <End Role="Estado_Pago" EntitySet="Estado_Pago" />
+            <End Role="PedidosActivos" EntitySet="PedidosActivos" />
+          </AssociationSet>
           <AssociationSet Name="fk_Usuario_Estado_Usuario" Association="Self.fk_Usuario_Estado_Usuario">
             <End Role="Estado_Usuario" EntitySet="Estado_Usuario" />
             <End Role="Usuario" EntitySet="Usuario" />
@@ -1368,6 +1524,14 @@
           <AssociationSet Name="fk_CartaMenu_tamanoP" Association="Self.fk_CartaMenu_tamanoP">
             <End Role="TamanoP" EntitySet="TamanoP" />
             <End Role="Menu" EntitySet="Menu" />
+          </AssociationSet>
+          <AssociationSet Name="fk_codigo_menu" Association="Self.fk_codigo_menu">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="PedidosActivos" EntitySet="PedidosActivos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_idMesaPedido_Mesa" Association="Self.fk_idMesaPedido_Mesa">
+            <End Role="Mesa" EntitySet="Mesa" />
+            <End Role="PedidosActivos" EntitySet="PedidosActivos" />
           </AssociationSet>
           <AssociationSet Name="FK_Reserva_Mesa" Association="Self.FK_Reserva_Mesa">
             <End Role="Mesa" EntitySet="Mesa" />
@@ -1443,10 +1607,11 @@
             <EntityTypeMapping TypeName="PizzaE_nov.ComandaMesa">
               <MappingFragment StoreEntitySet="ComandaMesa">
                 <ScalarProperty Name="codigo_comanda" ColumnName="codigo_comanda" />
-                <ScalarProperty Name="codigo_usuario" ColumnName="codigo_usuario" />
                 <ScalarProperty Name="idMesa" ColumnName="idMesa" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="idEstadoPago" ColumnName="idEstadoPago" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="precio_total" ColumnName="precio_total" />
+                <ScalarProperty Name="codigo_usuario" ColumnName="codigo_usuario" />
                 <ScalarProperty Name="id_DetalleCaja" ColumnName="id_DetalleCaja" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1458,35 +1623,65 @@
                 <ScalarProperty Name="codigo_comanda" ColumnName="codigo_comanda" />
                 <ScalarProperty Name="precio_total" ColumnName="precio_total" />
                 <ScalarProperty Name="menu1" ColumnName="menu1" />
+                <ScalarProperty Name="cantidad_m1" ColumnName="cantidad_m1" />
                 <ScalarProperty Name="menu2" ColumnName="menu2" />
+                <ScalarProperty Name="cantidad_m2" ColumnName="cantidad_m2" />
                 <ScalarProperty Name="menu3" ColumnName="menu3" />
+                <ScalarProperty Name="cantidad_m3" ColumnName="cantidad_m3" />
                 <ScalarProperty Name="menu4" ColumnName="menu4" />
+                <ScalarProperty Name="cantidad_m4" ColumnName="cantidad_m4" />
                 <ScalarProperty Name="menu5" ColumnName="menu5" />
+                <ScalarProperty Name="cantidad_m5" ColumnName="cantidad_m5" />
                 <ScalarProperty Name="menu6" ColumnName="menu6" />
+                <ScalarProperty Name="cantidad_m6" ColumnName="cantidad_m6" />
                 <ScalarProperty Name="menu7" ColumnName="menu7" />
+                <ScalarProperty Name="cantidad_m7" ColumnName="cantidad_m7" />
                 <ScalarProperty Name="menu8" ColumnName="menu8" />
+                <ScalarProperty Name="cantidad_m8" ColumnName="cantidad_m8" />
                 <ScalarProperty Name="menu9" ColumnName="menu9" />
+                <ScalarProperty Name="cantidad_m9" ColumnName="cantidad_m9" />
                 <ScalarProperty Name="menu10" ColumnName="menu10" />
+                <ScalarProperty Name="cantidad_m10" ColumnName="cantidad_m10" />
                 <ScalarProperty Name="menu11" ColumnName="menu11" />
+                <ScalarProperty Name="cantidad_m11" ColumnName="cantidad_m11" />
                 <ScalarProperty Name="menu12" ColumnName="menu12" />
+                <ScalarProperty Name="cantidad_m12" ColumnName="cantidad_m12" />
                 <ScalarProperty Name="menu13" ColumnName="menu13" />
+                <ScalarProperty Name="cantidad_m13" ColumnName="cantidad_m13" />
                 <ScalarProperty Name="menu14" ColumnName="menu14" />
+                <ScalarProperty Name="cantidad_m14" ColumnName="cantidad_m14" />
                 <ScalarProperty Name="menu15" ColumnName="menu15" />
+                <ScalarProperty Name="cantidad_m15" ColumnName="cantidad_m15" />
                 <ScalarProperty Name="menu16" ColumnName="menu16" />
+                <ScalarProperty Name="cantidad_m16" ColumnName="cantidad_m16" />
                 <ScalarProperty Name="menu17" ColumnName="menu17" />
+                <ScalarProperty Name="cantidad_m17" ColumnName="cantidad_m17" />
                 <ScalarProperty Name="menu18" ColumnName="menu18" />
+                <ScalarProperty Name="cantidad_m18" ColumnName="cantidad_m18" />
                 <ScalarProperty Name="menu19" ColumnName="menu19" />
+                <ScalarProperty Name="cantidad_m19" ColumnName="cantidad_m19" />
                 <ScalarProperty Name="menu20" ColumnName="menu20" />
+                <ScalarProperty Name="cantidad_m20" ColumnName="cantidad_m20" />
                 <ScalarProperty Name="menu21" ColumnName="menu21" />
+                <ScalarProperty Name="cantidad_m21" ColumnName="cantidad_m21" />
                 <ScalarProperty Name="menu22" ColumnName="menu22" />
+                <ScalarProperty Name="cantidad_m22" ColumnName="cantidad_m22" />
                 <ScalarProperty Name="menu23" ColumnName="menu23" />
+                <ScalarProperty Name="cantidad_m23" ColumnName="cantidad_m23" />
                 <ScalarProperty Name="menu24" ColumnName="menu24" />
+                <ScalarProperty Name="cantidad_m24" ColumnName="cantidad_m24" />
                 <ScalarProperty Name="menu25" ColumnName="menu25" />
+                <ScalarProperty Name="cantidad_m25" ColumnName="cantidad_m25" />
                 <ScalarProperty Name="menu26" ColumnName="menu26" />
+                <ScalarProperty Name="cantidad_m26" ColumnName="cantidad_m26" />
                 <ScalarProperty Name="menu27" ColumnName="menu27" />
+                <ScalarProperty Name="cantidad_m27" ColumnName="cantidad_m27" />
                 <ScalarProperty Name="menu28" ColumnName="menu28" />
+                <ScalarProperty Name="cantidad_m28" ColumnName="cantidad_m28" />
                 <ScalarProperty Name="menu29" ColumnName="menu29" />
+                <ScalarProperty Name="cantidad_m29" ColumnName="cantidad_m29" />
                 <ScalarProperty Name="menu30" ColumnName="menu30" />
+                <ScalarProperty Name="cantidad_m30" ColumnName="cantidad_m30" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1572,6 +1767,20 @@
                 <ScalarProperty Name="idMesa" ColumnName="idMesa" />
                 <ScalarProperty Name="codigo_estado" ColumnName="codigo_estado" />
                 <ScalarProperty Name="numeroMesa" ColumnName="numeroMesa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PedidosActivos">
+            <EntityTypeMapping TypeName="PizzaE_nov.PedidosActivos">
+              <MappingFragment StoreEntitySet="PedidosActivos">
+                <ScalarProperty Name="idMesa" ColumnName="idMesa" />
+                <ScalarProperty Name="codigo_comanda" ColumnName="codigo_comanda" />
+                <ScalarProperty Name="idEstadoPago" ColumnName="idEstadoPago" />
+                <ScalarProperty Name="codigo_menu" ColumnName="codigo_menu" />
+                <ScalarProperty Name="nombre_menu" ColumnName="nombre_menu" />
+                <ScalarProperty Name="precio_menu" ColumnName="precio_menu" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="subtotal" ColumnName="subtotal" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
