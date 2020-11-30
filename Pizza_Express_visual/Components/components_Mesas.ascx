@@ -1,6 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="components_Mesas.ascx.cs" Inherits="Pizza_Express_visual.Components.components_Mesas" %>
+<link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cerulean/bootstrap.min.css" rel="stylesheet" integrity="sha384-C++cugH8+Uf86JbNOnQoBweHHAe/wVKN/mb0lTybu/NZ9sEYbd+BbbYtNpWYAsNP" crossorigin="anonymous">
 
-<h1 class="text-center">Presentación de Mesas</h1>
+<h1 class="text-center">Presentación de Mesas y Pedidos</h1>
 <br />
 
 <style>
@@ -15,7 +16,6 @@
 
             <%--Vista Menú Comanda--%>
             <asp:View runat="server" ID="vComanda">
-
 
                 <div class="container col-md-12">
 
@@ -132,9 +132,6 @@
                     </div>
 
                     <div class="row">
-
-
-
                         <div class="col-md-4">
                             <hr />
 
@@ -148,12 +145,8 @@
 
                             <div class="container offset-3">
                                 <asp:LinkButton ID="btnGenerarPDF" OnClick="btnGenerarPDF_Click" runat="server" CssClass="btn btn-warning">Enviar Comanda</asp:LinkButton>
-                                <asp:LinkButton runat="server" CssClass="btn btn-danger" OnClick="PagarModal_Click" ID="PagarModal" Text="Emitir Pago">
-                                </asp:LinkButton>
                                 <asp:Button runat="server" ID="btnNuevo" OnClick="btnNuevo_Click" Text="Resetear" CssClass="btn btn-info" />
-
-
-
+                                <asp:LinkButton ID="btnCancelar" runat="server" CssClass="btn btn-danger" OnClick="btnCancelar_Click">Volver</asp:LinkButton>
                             </div>
 
                         </div>
@@ -164,7 +157,6 @@
                             <div class="col align-content-center">
                                 <asp:GridView runat="server" ID="idCargarSeleccion" CssClass="table table-bordered table-center " AutoGenerateColumns="false" OnRowCommand="idCargarSeleccion_RowCommand">
                                     <HeaderStyle CssClass="btn-dark" />
-
                                     <Columns>
                                         <asp:BoundField DataField="codigo_M" HeaderText="Código" />
                                         <asp:BoundField DataField="cantidad" HeaderText="Cantidad" />
@@ -172,22 +164,15 @@
                                         <asp:BoundField DataField="precio_M" HeaderText="Precio" />
 
                                         <asp:ButtonField ButtonType="Link" CommandName="ideditar" ControlStyle-CssClass="btn btn-danger" Text="-" />
-
                                     </Columns>
                                 </asp:GridView>
-
                             </div>
                         </div>
-
                     </div>
                     <%--FIN ROW--%>
                 </div>
-
-
-
-
-
             </asp:View>
+
 
             <%--Vista Mesas--%>
             <asp:View runat="server" ID="vMesas">
@@ -323,14 +308,42 @@
 
                 </div>
             </asp:View>
-
+            
             <%-- Vista Pedidos Pendientes --%>
             <asp:View ID="vPendiente" runat="server">
-                <div class="container">
-                    <h1> Pedidos pendientes para la mesa x</h1>                    
+
+                    <div class="col-md-2">
+                        <asp:LinkButton ID="Nuevo_Pedido" OnClick="Nuevo_Pedido_Click" runat="server" CssClass="btn btn-success">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                            <span style="font-size: 15px"><strong>Nuevo Pedido</strong></span>             
+                        </asp:LinkButton>
+                    </div>
+                <%--<div class="container">                </div>--%>
+                <div class="col align-content-center">
+
+                    <%-- GridView para solo un pedido en una mesa --%>
+                    <h2>Pedidos</h2>
+
+                    <asp:GridView ID="gridUnPedido" runat="server" CssClass="table table-bordered table-center " AutoGenerateColumns="False" OnRowCommand="gridUnPedido_RowCommand">
+                        <HeaderStyle CssClass="btn-dark" />
+                        <Columns>
+                            <asp:BoundField DataField="codigo_comanda" HeaderText="ID PEDIDO" />
+                            <asp:BoundField DataField="codigo_menu" HeaderText="Codigo Menu" />
+                            <asp:BoundField DataField="nombre_menu" HeaderText="Pedido" />
+                            <asp:BoundField DataField="precio_menu" HeaderText="Valor Unitario" />
+                            <asp:BoundField DataField="cantidad" HeaderText="Cantidad" />
+                            <asp:BoundField DataField="subtotal" HeaderText="SubTotal" />
+                        </Columns>
+                    </asp:GridView>
+
+                    <%-- Area de Pago --%>
+                    <h2><span class="text-danger">Total a Cancelar: <%=Session["precioTotal"]%></span></h2>
+                    <asp:LinkButton runat="server" CssClass="btn btn-danger" OnClick="PagarModal_Click" ID="PagarModal" Text="Emitir Pago"></asp:LinkButton>
+
+                    <asp:LinkButton ID="btnVolverMesas" runat="server" CssClass="btn btn-danger" OnClick="btnVolverMesas_Click">Volver</asp:LinkButton>
 
                 </div>
-            </asp:View>
+                 </asp:View>
 
         </asp:MultiView>
     </ContentTemplate>
@@ -362,7 +375,8 @@
                         <br />
 
                         <h3 class="text-dark text-center">
-                            <asp:Label runat="server" ID="LTotalCancelar"></asp:Label></h3>
+                            Total a Cancelar $<asp:Label runat="server" ID="LTotalCancelar"></asp:Label>                            
+                        </h3>
                         <br />
                         <br />
 
@@ -382,8 +396,7 @@
                                 <div class="input-group-prepend">
                                     <div class="input-group-text text-info"><i class="fa fa-usd"></i></div>
                                 </div>
-                                <asp:TextBox runat="server" OnTextChanged="TextBox1_TextChanged" placeholder="$" ID="tpropina"
-                                    AutoPostBack="true" CssClass="form-control bg-secondary"></asp:TextBox>
+                                <asp:TextBox ID="tpropina" runat="server" OnTextChanged="tpropina_TextChanged" placeholder="$" AutoPostBack="true" CssClass="form-control bg-secondary"></asp:TextBox>
                                 <asp:Label runat="server" ID="validar_tpropina" CssClass="invalid-feedback" Text="Complete campos, Ingrese propina"></asp:Label>
                             </div>
                         </div>
@@ -395,7 +408,7 @@
                                 <div class="input-group-prepend">
                                     <div class="input-group-text text-info"><i class="fa fa-usd"></i></div>
                                 </div>
-                                <asp:TextBox runat="server" placeholder="$" ID="tdescuento" CssClass="form-control bg-secondary"
+                                <asp:TextBox ID="tdescuento" runat="server" placeholder="$"  CssClass="form-control bg-secondary"
                                     OnTextChanged="tdescuento_TextChanged" AutoPostBack="true"></asp:TextBox>
                                  <asp:Label runat="server" ID="validar_tdescuento" CssClass="invalid-feedback" Text="Complete campos, Ingrese descuento"></asp:Label>
                             </div>
@@ -403,7 +416,6 @@
 
 
                         <div class="modal-footer">
-
                             <asp:Label runat="server" ID="codigo_orginal" CssClass="ocultarCol"></asp:Label>
                             <asp:Button runat="server" ID="idregistrarPago" Visible="true" OnClick="idregistrarPago_Click" Text="Pagar" CssClass="btn btn-success float-right" />
                         </div>

@@ -4,31 +4,32 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="790953310a4347ff90d71a025708c704" Name="Diagram1">
-        <EntityTypeShape EntityType="PizzaE_nov.Asignar_Menu" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="PizzaE_nov.BoletaComanda" Width="1.5" PointX="15.75" PointY="10.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="PizzaE_nov.Caja" Width="1.5" PointX="9" PointY="15.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="PizzaE_nov.Categoria" Width="1.5" PointX="12.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="PizzaE_nov.ComandaMesa" Width="1.5" PointX="8.25" PointY="10.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="PizzaE_nov.Detalle_Mesa_Pedido" Width="1.5" PointX="10.5" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="PizzaE_nov.Detalle_Pago" Width="1.5" PointX="13.5" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PizzaE_nov.detalleCaja" Width="1.5" PointX="11.25" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PizzaE_nov.Estado_caja" Width="1.5" PointX="6.75" PointY="15.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="PizzaE_nov.Estado_Mesa" Width="1.5" PointX="3.75" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="PizzaE_nov.Estado_Pago" Width="1.5" PointX="6" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="PizzaE_nov.Estado_Usuario" Width="1.5" PointX="3.75" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="PizzaE_nov.Menu" Width="1.5" PointX="15" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="PizzaE_nov.Menu_Link" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="PizzaE_nov.Mesa" Width="1.5" PointX="6" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PizzaE_nov.Producto" Width="1.5" PointX="8.25" PointY="18.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PizzaE_nov.Producto_Proveedor" Width="1.5" PointX="10.5" PointY="18.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="PizzaE_nov.Proveedor" Width="1.5" PointX="8.25" PointY="22.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="PizzaE_nov.Reserva" Width="1.5" PointX="8.25" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="PizzaE_nov.TamanoP" Width="1.5" PointX="12.75" PointY="17.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="PizzaE_nov.TipoPago" Width="1.5" PointX="11.25" PointY="14.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="PizzaE_nov.TipoProducto" Width="1.5" PointX="6" PointY="22.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="PizzaE_nov.TipoUsuario" Width="1.5" PointX="0.75" PointY="11.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="PizzaE_nov.Usuario" Width="1.5" PointX="6" PointY="10.5" IsExpanded="true" />
+      <Diagram DiagramId="b65c1f9e771d478684cc93f3a94f5da9" Name="Diagram1" ZoomLevel="40">
+        <EntityTypeShape EntityType="PizzaE_nov.Asignar_Menu" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzaE_nov.BoletaComanda" Width="1.5" PointX="16.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzaE_nov.Caja" Width="1.5" PointX="9" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzaE_nov.Categoria" Width="1.5" PointX="9" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzaE_nov.ComandaMesa" Width="1.5" PointX="8.25" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzaE_nov.Detalle_Mesa_Pedido" Width="1.5" PointX="8.25" PointY="27.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzaE_nov.Detalle_Pago" Width="1.5" PointX="14" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzaE_nov.detalleCaja" Width="1.5" PointX="11.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzaE_nov.Estado_caja" Width="1.5" PointX="6.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzaE_nov.Estado_Mesa" Width="1.5" PointX="3.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzaE_nov.Estado_Pago" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzaE_nov.Estado_Usuario" Width="1.5" PointX="3.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzaE_nov.Menu" Width="1.5" PointX="11.25" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzaE_nov.Menu_Link" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzaE_nov.Mesa" Width="1.5" PointX="6" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzaE_nov.PedidosActivos" Width="1.5" PointX="13.5" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzaE_nov.Producto" Width="1.5" PointX="8.25" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzaE_nov.Producto_Proveedor" Width="1.5" PointX="10.5" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzaE_nov.Proveedor" Width="1.5" PointX="8.25" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzaE_nov.Reserva" Width="1.5" PointX="8.25" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzaE_nov.TamanoP" Width="1.5" PointX="9" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzaE_nov.TipoPago" Width="1.5" PointX="11.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzaE_nov.TipoProducto" Width="1.5" PointX="6" PointY="24.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzaE_nov.TipoUsuario" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzaE_nov.Usuario" Width="1.5" PointX="6" PointY="7" IsExpanded="true" />
         <AssociationConnector Association="PizzaE_nov.fk_Asignar_Menu_Menu_Link" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaE_nov.fk_Asignar_Menu_TipoUsuario" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaE_nov.fk_BoletaComanda_Caja1" ManuallyRouted="false" />
@@ -36,18 +37,20 @@
         <AssociationConnector Association="PizzaE_nov.FK_Caja_Estado_caja" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaE_nov.FK_detalleCaja_Caja" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaE_nov.fk_CartaMenu_Categoria1" ManuallyRouted="false" />
-        <AssociationConnector Association="PizzaE_nov.fk_codigo_comanda" ManuallyRouted="false" />
+        <AssociationConnector Association="PizzaE_nov.fk_codigo_comanda_ComandaMesa" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaE_nov.FK_ComandaMesa_detalleCaja1" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaE_nov.FK_ComandaMesa_Estado_Pago" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaE_nov.FK_ComandaMesa_Mesa" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaE_nov.fk_ComandaMesa_Usuario1" ManuallyRouted="false" />
-        <AssociationConnector Association="PizzaE_nov.FK_Detalle_Pago_ComandaMesa" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaE_nov.fk_idMesa_Mesa" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaE_nov.fk_Pago_TipoPago1" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaE_nov.FK_detalleCaja_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaE_nov.fk_Mesa_Estado_Mesa1" ManuallyRouted="false" />
+        <AssociationConnector Association="PizzaE_nov.fk_idEstadoPago" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaE_nov.fk_Usuario_Estado_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaE_nov.fk_CartaMenu_tamanoP" ManuallyRouted="false" />
+        <AssociationConnector Association="PizzaE_nov.fk_codigo_menu" ManuallyRouted="false" />
+        <AssociationConnector Association="PizzaE_nov.fk_idMesaPedido_Mesa" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaE_nov.FK_Reserva_Mesa" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaE_nov.fk_Producto_has_Proveedor_Producto1" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaE_nov.fk_Producto_Usuario1" ManuallyRouted="false" />

@@ -12,12 +12,12 @@
 <asp:UpdatePanel runat="server" ID="uConteReport">
     <ContentTemplate>
 
-        <ul id="tabIndice" class="nav nav-tabs">
-            <li class="nav-item">
-                <asp:LinkButton runat="server" ID="venta" OnClick="venta_Click" CssClass="nav-link small text-uppercase">Reporte Ventas</asp:LinkButton></li>
-            <li class="nav-item">
-                <asp:LinkButton runat="server" ID="producto" OnClick="producto_Click" CssClass="nav-link small text-uppercase">Reporte Productos</asp:LinkButton></li>
-        </ul>
+                <ul id="tabIndice" class="nav nav-tabs">
+                    <li class="nav-item">
+                        <asp:LinkButton runat="server" ID="venta" OnClick="venta_Click" CssClass="nav-link small text-uppercase">Reporte Ventas</asp:LinkButton></li>
+                    <li class="nav-item">
+                        <asp:LinkButton runat="server" ID="producto" OnClick="producto_Click" CssClass="nav-link small text-uppercase">Reporte Productos</asp:LinkButton></li>
+                </ul>   
         <br />
         <div class="tab-content" id="nav-tabContent">
             <asp:MultiView runat="server" ID="mcontenedor">
