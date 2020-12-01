@@ -66,7 +66,7 @@ namespace Pizza_Express_visual.Services
                     //{
                     var pedido = from m in bd.PedidosActivos
                                  where m.idMesa == nMesa && m.idEstadoPago == 2
-                                 select new { m.codigo_comanda, m.codigo_menu, m.nombre_menu, m.precio_menu, m.cantidad, m.subtotal };
+                                 select new { m.codigo_comanda, m.nombre_menu, m.precio_menu, m.cantidad, m.subtotal };
 
                         
                         return pedido.ToList<object>();

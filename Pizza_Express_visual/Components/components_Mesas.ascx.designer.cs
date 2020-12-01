@@ -411,15 +411,6 @@ namespace Pizza_Express_visual.Components
         protected global::System.Web.UI.WebControls.View vPendiente;
 
         /// <summary>
-        /// Control Nuevo_Pedido.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Nuevo_Pedido;
-
-        /// <summary>
         /// Control gridUnPedido.
         /// </summary>
         /// <remarks>
@@ -427,6 +418,15 @@ namespace Pizza_Express_visual.Components
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gridUnPedido;
+
+        /// <summary>
+        /// Control Nuevo_Pedido.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Nuevo_Pedido;
 
         /// <summary>
         /// Control PagarModal.
