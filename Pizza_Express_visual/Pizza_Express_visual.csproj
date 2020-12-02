@@ -386,6 +386,9 @@
     <Compile Include="Models\Proveedor.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ReportesVentas.cs">
+      <DependentUpon>Models.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Reserva.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>

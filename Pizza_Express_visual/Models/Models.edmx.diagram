@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="817f2e73c42d41f79697cad5f8de7ffa" Name="Diagram1">
+      <Diagram DiagramId="817f2e73c42d41f79697cad5f8de7ffa" Name="Diagram1" ZoomLevel="64">
         <EntityTypeShape EntityType="PizzaE_nov.Asignar_Menu" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaE_nov.BoletaComanda" Width="1.5" PointX="16.25" PointY="2.375" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaE_nov.Caja" Width="1.5" PointX="9" PointY="3.625" IsExpanded="true" />
@@ -57,6 +57,10 @@
         <AssociationConnector Association="PizzaE_nov.fk_Producto_has_Proveedor_Proveedor1" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaE_nov.fk_Proveedor_TipoProducto1" ManuallyRouted="false" />
         <AssociationConnector Association="PizzaE_nov.fk_Usuario_TipoUsuario" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PizzaE_nov.ReportesVentas" Width="1.5" PointX="13.5" PointY="13.125" />
+        <AssociationConnector Association="PizzaE_nov.fk_Re_codigo_comanda_ComandaMesa" />
+        <AssociationConnector Association="PizzaE_nov.fk_Re_codigo_menu" />
+        <AssociationConnector Association="PizzaE_nov.fk_Re_idMesaPedido_Mesa" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

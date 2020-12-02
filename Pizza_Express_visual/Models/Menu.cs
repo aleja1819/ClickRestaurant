@@ -18,6 +18,7 @@ namespace Pizza_Express_visual.Models
         public Menu()
         {
             this.PedidosActivos = new HashSet<PedidosActivos>();
+            this.ReportesVentas = new HashSet<ReportesVentas>();
         }
     
         public int codigo_menu { get; set; }
@@ -31,5 +32,7 @@ namespace Pizza_Express_visual.Models
         public virtual TamanoP TamanoP { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PedidosActivos> PedidosActivos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ReportesVentas> ReportesVentas { get; set; }
     }
 }

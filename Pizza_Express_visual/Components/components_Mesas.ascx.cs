@@ -225,8 +225,23 @@ namespace Pizza_Express_visual.Components
                         subtotal = Convert.ToInt32(pedidosMesaX[7])
 
                     });
-                    pedidosMesaX.Clear();                            
+
+                    /* Guarda en la tabla definitiva de los reportesVentas */
+                    accesoComanda.addReportesVentas(new Models.ReportesVentas
+                    {
+                        idMesa = Convert.ToInt32(pedidosMesaX[0]),
+                        codigo_comanda = Convert.ToInt32(pedidosMesaX[1]),
+                        codigo_menu = Convert.ToInt32(pedidosMesaX[3]),
+                        nombre_menu = pedidosMesaX[4],
+                        precio_menu = Convert.ToInt32(pedidosMesaX[5]),
+                        cantidad = Convert.ToInt32(pedidosMesaX[6]),
+                    });
+
+                    pedidosMesaX.Clear();
                 }
+
+
+
 
                 for (int i = (filas+3); i <=63; i++)
                 {

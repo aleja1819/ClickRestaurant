@@ -229,5 +229,23 @@ namespace Pizza_Express_visual.Services
             }
         }
 
+        public bool addReportesVentas(ReportesVentas pedidosMesaX)
+        {
+            try
+            {
+                using (Pizza_BD1 db = new Pizza_BD1())
+                {
+                    db.ReportesVentas.Add(pedidosMesaX);
+
+                    int resp = db.SaveChanges();
+                    return resp == 1;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
     }
 }

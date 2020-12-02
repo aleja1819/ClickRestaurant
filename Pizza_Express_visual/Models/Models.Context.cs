@@ -50,5 +50,6 @@ namespace Pizza_Express_visual.Models
         public virtual DbSet<TipoProducto> TipoProducto { get; set; }
         public virtual DbSet<TipoUsuario> TipoUsuario { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<ReportesVentas> ReportesVentas { get; set; }
     }
 }
