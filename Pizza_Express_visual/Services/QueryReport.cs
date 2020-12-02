@@ -66,9 +66,9 @@ namespace Pizza_Express_visual.Services
                 {
 
                     var retornoReporte = from cc in contexto.ComandaMesa
-                                         join dm in contexto.PedidosActivos
+                                         join dm in contexto.ReportesVentas
                                          on cc.codigo_comanda equals dm.codigo_comanda
-                                         join m in contexto.PedidosActivos
+                                         join m in contexto.ReportesVentas
                                          on dm.codigo_menu equals m.codigo_menu
                                          where (cc.fecha.Day <= fechaTermino.Day && cc.fecha.Month <= fechaTermino.Month && cc.fecha.Year <= fechaTermino.Year)
                                          &&
