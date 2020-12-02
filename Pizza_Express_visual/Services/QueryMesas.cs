@@ -9,6 +9,40 @@ namespace Pizza_Express_visual.Services
 
     public class QueryMesas
     {
+        public List<int> pagarPedidos(List<int> pedidosAPagar)
+        {
+            try
+            {
+                using (Pizza_BD1 bd = new Pizza_BD1())
+                {
+                    //int cantidadPedidosConDeuda = pedidosAPagar.Count();
+                    var pedidosPagados = new List<int>();
+
+                    foreach (var pedidoConDeuda in pedidosAPagar)
+                    {
+                        //AQUI ESTOY
+                        var pagarPedidos = bd.PedidosActivos.Find(pedidoConDeuda);
+
+
+                        bd.PedidosActivos.Remove(pagarPedidos);
+                        bd.SaveChanges();
+
+                        int respuesta = bd.SaveChanges();
+
+
+                        pedidosPagados.Add(pagarPedidos.codigo_comanda);
+
+
+                    }
+
+                    return pedidosPagados.ToList<int>();
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
         public List<int> estadoPagoMesaSeleccionada(int idMesa)
         {
@@ -31,6 +65,31 @@ namespace Pizza_Express_visual.Services
             }
             catch { return null; }
         }
+
+
+        public List<int> pedidosAPagar(int idMesa)
+        {
+            try
+            {
+                using (Pizza_BD1 bd = new Pizza_BD1())
+                {
+                    var estadoPagoMesa = from m in bd.PedidosActivos
+                                         where m.idMesa.Equals(idMesa) && m.idEstadoPago == 2
+                                         select new { m.idPedidosActivos };
+
+                    var listaPedidosMesa = new List<int>();
+                    foreach (var pedido in estadoPagoMesa)
+                    {
+                        listaPedidosMesa.Add(pedido.idPedidosActivos);
+                    }
+
+                    return listaPedidosMesa.ToList<int>();
+
+                }
+            }
+            catch { return null; }
+        }
+
 
         public int precioTotal(List<int> listaPedidosMesa)
         {
@@ -55,24 +114,18 @@ namespace Pizza_Express_visual.Services
             catch { return -1; }
         }
 
-        public List<object> objetoUnPedido(int nMesa)
+        public List<object> pedidosPendientes(int nMesa)
         {
             try
             {
                 using (Pizza_BD1 bd = new Pizza_BD1())
                 {
 
-                    //foreach (var el in listaPedidosMesa)
-                    //{
                     var pedido = from m in bd.PedidosActivos
                                  where m.idMesa == nMesa && m.idEstadoPago == 2
                                  select new { m.codigo_comanda, m.nombre_menu, m.precio_menu, m.cantidad, m.subtotal };
-
                         
-                        return pedido.ToList<object>();
-                    //}
-                    
-
+                        return pedido.ToList<object>();                
                 }
             }
             catch { return null; }
@@ -99,36 +152,9 @@ namespace Pizza_Express_visual.Services
 
                         foreach (var menu in estadoPagoMesa)
                         {
-                            listaPedidosMesa2.Add(menu.menu1);
-                            listaPedidosMesa2.Add(menu.menu2);
-                            listaPedidosMesa2.Add(menu.menu3);
-                            listaPedidosMesa2.Add(menu.menu4);
-                            listaPedidosMesa2.Add(menu.menu5);
-                            listaPedidosMesa2.Add(menu.menu6);
-                            listaPedidosMesa2.Add(menu.menu7);
-                            listaPedidosMesa2.Add(menu.menu8);
-                            listaPedidosMesa2.Add(menu.menu9);
-                            listaPedidosMesa2.Add(menu.menu10);
-                            listaPedidosMesa2.Add(menu.menu11);
-                            listaPedidosMesa2.Add(menu.menu12);
-                            listaPedidosMesa2.Add(menu.menu13);
-                            listaPedidosMesa2.Add(menu.menu14);
-                            listaPedidosMesa2.Add(menu.menu15);
-                            listaPedidosMesa2.Add(menu.menu16);
-                            listaPedidosMesa2.Add(menu.menu17);
-                            listaPedidosMesa2.Add(menu.menu18);
-                            listaPedidosMesa2.Add(menu.menu19);
-                            listaPedidosMesa2.Add(menu.menu20);
-                            listaPedidosMesa2.Add(menu.menu21);
-                            listaPedidosMesa2.Add(menu.menu22);
-                            listaPedidosMesa2.Add(menu.menu23);
-                            listaPedidosMesa2.Add(menu.menu24);
-                            listaPedidosMesa2.Add(menu.menu25);
-                            listaPedidosMesa2.Add(menu.menu26);
-                            listaPedidosMesa2.Add(menu.menu27);
-                            listaPedidosMesa2.Add(menu.menu28);
-                            listaPedidosMesa2.Add(menu.menu29);
-                            listaPedidosMesa2.Add(menu.menu30);
+                            listaPedidosMesa2.Add(menu.menu1); listaPedidosMesa2.Add(menu.menu2); listaPedidosMesa2.Add(menu.menu3); listaPedidosMesa2.Add(menu.menu4); listaPedidosMesa2.Add(menu.menu5); listaPedidosMesa2.Add(menu.menu6); listaPedidosMesa2.Add(menu.menu7); listaPedidosMesa2.Add(menu.menu8); listaPedidosMesa2.Add(menu.menu9); listaPedidosMesa2.Add(menu.menu10);
+                            listaPedidosMesa2.Add(menu.menu11); listaPedidosMesa2.Add(menu.menu12); listaPedidosMesa2.Add(menu.menu13); listaPedidosMesa2.Add(menu.menu14); listaPedidosMesa2.Add(menu.menu15); listaPedidosMesa2.Add(menu.menu16); listaPedidosMesa2.Add(menu.menu17); listaPedidosMesa2.Add(menu.menu18); listaPedidosMesa2.Add(menu.menu19); listaPedidosMesa2.Add(menu.menu20); 
+                            listaPedidosMesa2.Add(menu.menu21); listaPedidosMesa2.Add(menu.menu22); listaPedidosMesa2.Add(menu.menu23); listaPedidosMesa2.Add(menu.menu24); listaPedidosMesa2.Add(menu.menu25); listaPedidosMesa2.Add(menu.menu26); listaPedidosMesa2.Add(menu.menu27); listaPedidosMesa2.Add(menu.menu28); listaPedidosMesa2.Add(menu.menu29); listaPedidosMesa2.Add(menu.menu30);
                         }
 
                     }
@@ -187,6 +213,28 @@ namespace Pizza_Express_visual.Services
                 }                
             }
             catch { }
+        }
+
+        public void cambiarEstadoPagoComanda(List<int> comandasImpagas, int idEstadoPago)
+        {
+            try
+            {
+                using(Pizza_BD1 db = new Pizza_BD1())
+                {
+                    foreach( var ComandaMesa in comandasImpagas)
+                    {
+                        var comanda = db.ComandaMesa.First(c => c.codigo_comanda == ComandaMesa);
+
+                        comanda.idEstadoPago = idEstadoPago;
+
+                        db.SaveChanges();
+                    }
+                }
+            }
+            catch
+            {
+
+            }
         }
     }
 }

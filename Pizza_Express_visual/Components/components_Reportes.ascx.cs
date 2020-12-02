@@ -396,7 +396,7 @@ namespace Pizza_Express_visual.Components
             var doc = new Document(PageSize.A5);
             string path = Server.MapPath("Files");
             Random r = new Random();
-            string nombre = "Prod_" + r.Next(1, 500) + "_" + DateTime.Now.Second;
+            string nombre = "Prod_" + r.Next(1, 500) + "_" + DateTime.Now.Second+".pdf";
             PdfWriter pdfWrite = PdfWriter.GetInstance(doc, new FileStream(path + nombre, FileMode.OpenOrCreate));
 
             doc.Open();

@@ -118,7 +118,7 @@
                                     <HeaderStyle CssClass="btn-dark" />
 
                                     <Columns>
-                                        <asp:BoundField DataField="codigo_menu" HeaderText="Código" />
+                                        <asp:BoundField DataField="codigo_menu" HeaderText="Código Interno" />
                                         <asp:BoundField DataField="nombre_menu" HeaderText="Nombre" />
                                         <asp:BoundField DataField="precio_menu" HeaderText="Precio" DataFormatString="${0:N0}" />
                                         <asp:BoundField DataField="ingredientes_menu" HeaderText="Ingredientes" />
@@ -158,7 +158,7 @@
                                 <asp:GridView runat="server" ID="idCargarSeleccion" CssClass="table table-bordered table-center " AutoGenerateColumns="false" OnRowCommand="idCargarSeleccion_RowCommand">
                                     <HeaderStyle CssClass="btn-dark" />
                                     <Columns>
-                                        <asp:BoundField DataField="codigo_M" HeaderText="Código" />
+                                        <asp:BoundField DataField="codigo_M" HeaderText="Código Interno" />
                                         <asp:BoundField DataField="cantidad" HeaderText="Cantidad" />
                                         <asp:BoundField DataField="nombre_M" HeaderText="Nombre" />
                                         <asp:BoundField DataField="precio_M" HeaderText="Precio" />
@@ -320,11 +320,11 @@
 
                             <%-- GridView para solo un pedido en una mesa --%>
                             <div class="row">
-                                <div class="col-md-3 text-center">
-                                    <h2><span class="text-danger"><strong>Pedidos Mesa : <%=System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]%></strong></span></h2>
+                                <div class="col-md-4 text-center">
+                                    <h2><span class="text-danger"><strong>Pedidos Mesa N° <%=System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]%></strong></span></h2>
                                 </div>
                             
-                                <div class="col-md-9 text-center">                                
+                                <div class="col-md-8 text-center">                                
                                     <h2><span class="text-danger"><strong> Total a Cancelar: <%=Session["precioTotal"]%></strong></span></h2>
                                 </div>
                             </div><br />

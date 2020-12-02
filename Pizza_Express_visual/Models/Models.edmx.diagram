@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b65c1f9e771d478684cc93f3a94f5da9" Name="Diagram1">
+      <Diagram DiagramId="817f2e73c42d41f79697cad5f8de7ffa" Name="Diagram1">
         <EntityTypeShape EntityType="PizzaE_nov.Asignar_Menu" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaE_nov.BoletaComanda" Width="1.5" PointX="16.25" PointY="2.375" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaE_nov.Caja" Width="1.5" PointX="9" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaE_nov.Categoria" Width="1.5" PointX="9" PointY="18.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaE_nov.ComandaMesa" Width="1.5" PointX="8.25" PointY="7" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaE_nov.Detalle_Mesa_Pedido" Width="1.5" PointX="8.25" PointY="27.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="PizzaE_nov.Detalle_Pago" Width="1.5" PointX="14" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzaE_nov.Detalle_Pago" Width="1.5" PointX="14" PointY="2" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaE_nov.detalleCaja" Width="1.5" PointX="11.25" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaE_nov.Estado_caja" Width="1.5" PointX="6.75" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaE_nov.Estado_Mesa" Width="1.5" PointX="3.75" PointY="11.75" IsExpanded="true" />
@@ -20,13 +20,13 @@
         <EntityTypeShape EntityType="PizzaE_nov.Menu" Width="1.5" PointX="11.25" PointY="19.25" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaE_nov.Menu_Link" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaE_nov.Mesa" Width="1.5" PointX="6" PointY="11.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="PizzaE_nov.PedidosActivos" Width="1.5" PointX="13.5" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzaE_nov.PedidosActivos" Width="1.5" PointX="13.5" PointY="6.875" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaE_nov.Producto" Width="1.5" PointX="8.25" PointY="15.25" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaE_nov.Producto_Proveedor" Width="1.5" PointX="10.5" PointY="15.125" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaE_nov.Proveedor" Width="1.5" PointX="8.25" PointY="23.875" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaE_nov.Reserva" Width="1.5" PointX="8.25" PointY="11.5" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaE_nov.TamanoP" Width="1.5" PointX="9" PointY="21" IsExpanded="true" />
-        <EntityTypeShape EntityType="PizzaE_nov.TipoPago" Width="1.5" PointX="11.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PizzaE_nov.TipoPago" Width="1.5" PointX="11.75" PointY="2.5" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaE_nov.TipoProducto" Width="1.5" PointX="6" PointY="24.5" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaE_nov.TipoUsuario" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PizzaE_nov.Usuario" Width="1.5" PointX="6" PointY="7" IsExpanded="true" />

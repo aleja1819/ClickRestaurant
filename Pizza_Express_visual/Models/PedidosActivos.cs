@@ -14,6 +14,7 @@ namespace Pizza_Express_visual.Models
     
     public partial class PedidosActivos
     {
+        public int idPedidosActivos { get; set; }
         public int idMesa { get; set; }
         public int codigo_comanda { get; set; }
         public int idEstadoPago { get; set; }

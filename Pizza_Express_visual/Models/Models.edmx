@@ -46,7 +46,7 @@
           </Key>
           <Property Name="codigo_comanda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idMesa" Type="int" Nullable="false" />
-          <Property Name="idEstadoPago" Type="int" />
+          <Property Name="idEstadoPago" Type="int" Nullable="false" />
           <Property Name="fecha" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="precio_total" Type="int" Nullable="false" />
           <Property Name="codigo_usuario" Type="int" Nullable="false" />
@@ -199,11 +199,9 @@
         </EntityType>
         <EntityType Name="PedidosActivos">
           <Key>
-            <PropertyRef Name="idMesa" />
-            <PropertyRef Name="codigo_comanda" />
-            <PropertyRef Name="idEstadoPago" />
-            <PropertyRef Name="codigo_menu" />
+            <PropertyRef Name="idPedidosActivos" />
           </Key>
+          <Property Name="idPedidosActivos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idMesa" Type="int" Nullable="false" />
           <Property Name="codigo_comanda" Type="int" Nullable="false" />
           <Property Name="idEstadoPago" Type="int" Nullable="false" />
@@ -414,7 +412,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ComandaMesa_Estado_Pago">
-          <End Role="Estado_Pago" Type="Self.Estado_Pago" Multiplicity="0..1" />
+          <End Role="Estado_Pago" Type="Self.Estado_Pago" Multiplicity="1" />
           <End Role="ComandaMesa" Type="Self.ComandaMesa" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Estado_Pago">
@@ -806,7 +804,7 @@
           </Key>
           <Property Name="codigo_comanda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="idMesa" Type="Int32" Nullable="false" />
-          <Property Name="idEstadoPago" Type="Int32" />
+          <Property Name="idEstadoPago" Type="Int32" Nullable="false" />
           <Property Name="fecha" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="precio_total" Type="Int32" Nullable="false" />
           <Property Name="codigo_usuario" Type="Int32" Nullable="false" />
@@ -984,11 +982,9 @@
         </EntityType>
         <EntityType Name="PedidosActivos">
           <Key>
-            <PropertyRef Name="idMesa" />
-            <PropertyRef Name="codigo_comanda" />
-            <PropertyRef Name="idEstadoPago" />
-            <PropertyRef Name="codigo_menu" />
+            <PropertyRef Name="idPedidosActivos" />
           </Key>
+          <Property Name="idPedidosActivos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="idMesa" Type="Int32" Nullable="false" />
           <Property Name="codigo_comanda" Type="Int32" Nullable="false" />
           <Property Name="idEstadoPago" Type="Int32" Nullable="false" />
@@ -1208,7 +1204,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ComandaMesa_Estado_Pago">
-          <End Role="Estado_Pago" Type="Self.Estado_Pago" Multiplicity="0..1" />
+          <End Role="Estado_Pago" Type="Self.Estado_Pago" Multiplicity="1" />
           <End Role="ComandaMesa" Type="Self.ComandaMesa" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Estado_Pago">
@@ -1773,6 +1769,7 @@
           <EntitySetMapping Name="PedidosActivos">
             <EntityTypeMapping TypeName="PizzaE_nov.PedidosActivos">
               <MappingFragment StoreEntitySet="PedidosActivos">
+                <ScalarProperty Name="idPedidosActivos" ColumnName="idPedidosActivos" />
                 <ScalarProperty Name="idMesa" ColumnName="idMesa" />
                 <ScalarProperty Name="codigo_comanda" ColumnName="codigo_comanda" />
                 <ScalarProperty Name="idEstadoPago" ColumnName="idEstadoPago" />

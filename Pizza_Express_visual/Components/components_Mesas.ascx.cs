@@ -83,6 +83,31 @@ namespace Pizza_Express_visual.Components
             }
         }
 
+        private void estadoDesocupado(int idMesa)
+        {
+            switch (idMesa)
+            {
+                case 1: bMesa1.CssClass = "btn btn-success"; break;
+                case 2: bMesa2.CssClass = "btn btn-success"; break;
+                case 3: bMesa3.CssClass = "btn btn-success"; break;
+                case 4: bMesa4.CssClass = "btn btn-success"; break;
+                case 5: bMesa5.CssClass = "btn btn-success"; break;
+                case 6: bMesa6.CssClass = "btn btn-success"; break;
+                case 7: bMesa7.CssClass = "btn btn-success"; break;
+                case 8: bMesa8.CssClass = "btn btn-success"; break;
+                case 9: bMesa9.CssClass = "btn btn-success"; break;
+                case 10: bMesa10.CssClass = "btn btn-success"; break;
+                case 11: bMesa11.CssClass = "btn btn-success"; break;
+                case 12: bMesa12.CssClass = "btn btn-success"; break;
+                case 13: bMesa13.CssClass = "btn btn-success"; break;
+                case 14: bMesa14.CssClass = "btn btn-success"; break;
+                case 15: bMesa15.CssClass = "btn btn-success"; break;
+                case 16: bMesa16.CssClass = "btn btn-success"; break;
+                case 17: bMesa17.CssClass = "btn btn-success"; break;
+                case 18: bMesa18.CssClass = "btn btn-success"; break;
+            }
+        }
+
         protected void cargaDatosGrid(int nMesa)
         {
             /* Recibo la lista de pedidos por mesa 142, 143*/
@@ -100,7 +125,7 @@ namespace Pizza_Express_visual.Components
                     /* La mesa tiene 1 o más pedidos */
 
                     Session["precioTotal"] = accesoMesas.precioTotal(listaPedidosMesa);
-                    List<object> pedidosPendientes = accesoMesas.objetoUnPedido(nMesa);
+                    List<object> pedidosPendientes = accesoMesas.pedidosPendientes(nMesa);
 
                     gridUnPedido.DataSource = pedidosPendientes;
                     gridUnPedido.DataBind();
@@ -124,6 +149,7 @@ namespace Pizza_Express_visual.Components
             }
             else
             {
+                
                 /* Guarda en la bd y vuelve a la vista*/
 
                 /* Inserta en la tabla ComandaMesa para crear el numero de comanda */
@@ -147,6 +173,7 @@ namespace Pizza_Express_visual.Components
 
                 /*Toma el codigo de la comanda recien creada*/
                 int codigo_comanda = accesoComanda.comandaCreada(fechaHoy);
+                Session["codigo_comanda"] = codigo_comanda;
 
                 /* Cambiar el estado de la mesa a 2 ocupado en la tabla Mesa de la base de datos */
                 accesoMesas.cambiarEstadoMesa(idMesa, idEstadoPago);
@@ -221,8 +248,14 @@ namespace Pizza_Express_visual.Components
                     cantidad_m21 = Convert.ToInt32(listaPedidosMesa[44]), cantidad_m22 = Convert.ToInt32(listaPedidosMesa[46]), cantidad_m23 = Convert.ToInt32(listaPedidosMesa[48]), cantidad_m24 = Convert.ToInt32(listaPedidosMesa[50]), cantidad_m25 = Convert.ToInt32(listaPedidosMesa[52]), cantidad_m26 = Convert.ToInt32(listaPedidosMesa[54]), cantidad_m27 = Convert.ToInt32(listaPedidosMesa[56]), cantidad_m28 = Convert.ToInt32(listaPedidosMesa[58]), cantidad_m29 = Convert.ToInt32(listaPedidosMesa[60]), cantidad_m30 = Convert.ToInt32(listaPedidosMesa[62])
                 });
 
+                volver();
+
                 mContenedor.SetActiveView(vMesas);
                 uContenido.Update();
+
+                //generarPDF();
+
+
             }
         }
 
@@ -776,49 +809,62 @@ namespace Pizza_Express_visual.Components
             var doc = new Document(PageSize.A5);
             string path = Server.MapPath("Files");
             Random r = new Random();
-            string nombre = "Prod_" + r.Next(1, 500) + "_" + DateTime.Now.Second;
+            string nombre = "_" + r.Next(1, 500) + "_" + DateTime.Now.Second;
             PdfWriter pdfWrite = PdfWriter.GetInstance(doc, new FileStream(path + nombre, FileMode.OpenOrCreate));
 
+            // Carga Imagen
             doc.Open();
             iTextSharp.text.Image tif = iTextSharp.text.Image.GetInstance(path + "/PIZZZA.jpg");
             tif.ScalePercent(13f, 9f);
             tif.Alignment = iTextSharp.text.Image.ALIGN_RIGHT;
             doc.Add(tif);
 
+            // Carga Título "Cocina"
             iTextSharp.text.Font verdana = FontFactory.GetFont("Verdana", 18, iTextSharp.text.Font.BOLDITALIC, BaseColor.RED);
             Paragraph paragraph = new Paragraph(@"COCINA", verdana);
             paragraph.Alignment = Element.ALIGN_CENTER;
             doc.Add(paragraph);
 
+            // Carga Fecha y hora
+            Paragraph esp = new Paragraph(" ");
             Paragraph paragraph2 = new Paragraph("Fecha: " + DateTime.Now.ToString());
             Random m = new Random();
-            Paragraph mesa = new Paragraph("N° Mesa: " + m.Next(1, 20));
+            // Carga numero mesa
+            Paragraph mesa = new Paragraph("N° Mesa: " + System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
+            // Carga Garzón
             Paragraph garzon = new Paragraph("Garzón: GARZÓN PIZZERIA");
             Random c = new Random();
-            Paragraph comanda = new Paragraph("Comanda: " + c.Next(1, 5000));
+            // Carga comanda
+            Paragraph comanda = new Paragraph("Comanda: " + Session["codigo_comanda"]);
             paragraph2.Alignment = Element.ALIGN_LEFT;
             paragraph2.PaddingTop = 1;
+            doc.Add(esp);
             doc.Add(paragraph2);
             doc.Add(mesa);
             doc.Add(garzon);
             doc.Add(comanda);
 
             Paragraph paragraph3 = new Paragraph();
-            paragraph3.Alignment = Element.ALIGN_LEFT;
+            Paragraph espacio = new Paragraph(" ");
+            paragraph3.PaddingTop = 1;
             doc.Add(paragraph3);
+            doc.Add(espacio);
 
+            // Genera la tabla
             PdfPTable table = new PdfPTable(2);
             PdfPCell cell = new PdfPCell();
             cell.HorizontalAlignment = 1; //0=Left, 1=Centre, 2=Right
             cell.BorderColor = BaseColor.BLACK;
             cell.BackgroundColor = BaseColor.RED;
 
+            // Carga los títulos de la tabla
             iTextSharp.text.Font letraBlanca = FontFactory.GetFont("Verdana", 12, iTextSharp.text.Font.BOLDITALIC, BaseColor.WHITE);
             cell.Phrase = new Phrase("Cantidad", letraBlanca);
             table.AddCell(cell);
             cell.Phrase = new Phrase("Detalle", letraBlanca);
             table.AddCell(cell);
 
+            // Carga los elementos de pedido
             PdfPCell cell0 = new PdfPCell();
             foreach (var regist in carroCompra)
             {
@@ -827,11 +873,11 @@ namespace Pizza_Express_visual.Components
 
                 cell0.Phrase = new Phrase(regist.nombre_M);
                 table.AddCell(cell0);
-
             }
 
             doc.Add(table);
             doc.Close();
+
             ShowPdf((path + nombre));
         }
 
@@ -845,7 +891,6 @@ namespace Pizza_Express_visual.Components
             //Response.End();
             Response.Flush();
             Response.Clear();
-
         }
 
         /***************** Funciones para Modal Pago ******************/
@@ -950,21 +995,46 @@ namespace Pizza_Express_visual.Components
                 else
                 {
                     int idtipoPago = Convert.ToInt32(ftipoPago.SelectedItem.Value);
-
+                    int idMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
                     int descuento = Convert.ToInt32(tdescuento.Text);
                     int propina = Convert.ToInt32(tpropina.Text);
+                    int idEstadoPago = 1;
+
+
+                    List<int> pedidosAPagar = accesoMesas.pedidosAPagar(idMesa);
+
+                    List<int> comandasImpagas = accesoMesas.estadoPagoMesaSeleccionada(idMesa);
+
+                    List<int> pedidosPagados = accesoMesas.pagarPedidos(pedidosAPagar);
+
+
+                    accesoMesas.cambiarEstadoMesa(idMesa, idEstadoPago);
+
+                    accesoMesas.cambiarEstadoPagoComanda(comandasImpagas, idEstadoPago);
+
+                    estadoDesocupado(idMesa);
+
+                    //accesoMesas.estadoPagoMesas();
 
                     //GUARDAR LOS DATOS EN LA LISTA
-                    accesoComanda.addPago(new Models.Detalle_Pago
+                    foreach (int pedido in pedidosPagados)
                     {
-                        descuento = descuento,
-                        propina = propina,
-                        codigo_tipoPago = idtipoPago,
 
-                    });
+                        accesoComanda.addPago(new Models.Detalle_Pago
+                        {
+                            codigo_tipoPago = idtipoPago,
+                            numeroTransaccion = 0, // Debe permitir ingresar el numero de voucher emitido por la maquina redcompra
+                            propina = propina,
+                            descuento = descuento,
+                            codigo_comanda = pedido
+                        });
+                    }
 
                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalComanda", "$('#myModalComanda').modal('hide');", true);
                     uModalComanda.Update();
+
+                    volver();
+                    mContenedor.SetActiveView(vMesas);
                     uContenido.Update();
 
                     limpiarTodo(2);
