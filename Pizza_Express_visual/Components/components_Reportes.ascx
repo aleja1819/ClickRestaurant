@@ -83,6 +83,7 @@
 
                                             <asp:BoundField DataField="codigo_comanda" HeaderText="Código"
                                                 HeaderStyle-CssClass="ocultarCol" ItemStyle-CssClass="ocultarCol" />
+                                            <asp:BoundField DataField="cantidad" HeaderText="cantidad" />
                                             <asp:BoundField DataField="nombre_menu" HeaderText="Nombre Menú" />
                                             <asp:BoundField DataField="fecha" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy}" />
                                             <asp:BoundField DataField="precio_menu" HeaderText="Precio" DataFormatString="${0:N0}" />
@@ -104,6 +105,7 @@
                                     <Columns>
                                             <asp:BoundField DataField="codigo_C" HeaderText="Código"
                                                 HeaderStyle-CssClass="ocultarCol" ItemStyle-CssClass="ocultarCol" />
+                                            <asp:BoundField DataField="cantidad_V" HeaderText="cantidad" />
                                             <asp:BoundField DataField="nombre_V" HeaderText="Nombre Menú" />
                                             <asp:BoundField DataField="fecha_V" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy}" />
                                             <asp:BoundField DataField="precio_V" HeaderText="Precio" />

@@ -73,7 +73,7 @@ namespace Pizza_Express_visual.Services
                                          where (cc.fecha.Day <= fechaTermino.Day && cc.fecha.Month <= fechaTermino.Month && cc.fecha.Year <= fechaTermino.Year)
                                          &&
                                          (cc.fecha.Day >= FechaInicial.Day && cc.fecha.Month >= FechaInicial.Month && cc.fecha.Year >= FechaInicial.Year)
-                                         select new { dm.codigo_comanda, m.precio_menu, cc.fecha, m.nombre_menu};
+                                         select new { dm.codigo_comanda, m.precio_menu, cc.fecha, m.nombre_menu, m.cantidad};
 
 
                     int c = retornoReporte.Count();
