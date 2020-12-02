@@ -35,7 +35,7 @@
                                     <asp:DropDownList runat="server" ID="idOpciones" CssClass="btn btn-secondary">
 
                                         <asp:ListItem Value="0" Text="Nombre Producto"></asp:ListItem>
-                                        <asp:ListItem Value="1" Text="Código Producto"></asp:ListItem>
+                                        <%--<asp:ListItem Value="1" Text="Código Producto"></asp:ListItem>--%>
                                     </asp:DropDownList>
 
                                     <asp:Button runat="server" ID="bBuscarProducto" OnClick="bBuscarProducto_Click" Text="buscar" CssClass="btn btn-success" />
@@ -122,7 +122,8 @@
                                             <div class="input-group-text text-info"><i class="fas fa-user"></i></div>
                                         </div>
                                         <asp:TextBox runat="server" placeholder="Rut Proveedor" ID="trut" CssClass="form-control bg-secondary"></asp:TextBox>
-                                        <asp:Label runat="server" ID="valida_trut" CssClass="invalid-feedback" Text="Complete Campos, Ingrese Rut"></asp:Label>
+                                        <asp:Label runat="server" ID="valida_trut" CssClass="invalid-feedback" Text="Complete Campos, Ingrese Rut-Rut Erroneo"></asp:Label>
+                                    <asp:Label runat="server" ID="va" CssClass="invalid-feedback" Text="Rut Erroneo"></asp:Label>
                                     </div>
                                 </div>
 

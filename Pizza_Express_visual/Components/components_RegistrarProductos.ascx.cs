@@ -159,30 +159,36 @@ namespace Pizza_Express_visual.Components
 
                         int cant = Convert.ToInt32(tcantidad.Text);
 
-                        accesoProductos.addProd_Prove(new Models.Producto_Proveedor
-                        {
+                                               
 
-                            fecha_ingreso_producto = t,
-                            codigo_producto = idProd,
-                            cantidad_producto = cant,
-                            codigo_proveedor = cod
-                        }); 
+                            accesoProductos.addProd_Prove(new Models.Producto_Proveedor
+                            {
 
-                        //MOSTRAR LOS DATOS EN LA TABLA
-                        idTabla.DataSource = accesoProductos.filtrarProductos();
-                        idTabla.DataBind();
+                                fecha_ingreso_producto = t,
+                                codigo_producto = idProd,
+                                cantidad_producto = cant,
+                                codigo_proveedor = cod
 
-                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal('hide');", true);
-                        uModalProducto.Update();
-                        uContenedorProducto.Update();
 
-                        limpiarTodo(2);
+                            });
 
-                        alerta.Visible = true;
-                        alerta.CssClass = "alert alert-primary animated zoomInUp";
-                        mensaje3.Text = "PRODUCTO AGREGADO CON EXITO.";
 
-                        bregistrarProducto.Visible = false;
+                            //MOSTRAR LOS DATOS EN LA TABLA
+                            idTabla.DataSource = accesoProductos.filtrarProductos();
+                            idTabla.DataBind();
+
+                            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal('hide');", true);
+                            uModalProducto.Update();
+                            uContenedorProducto.Update();
+
+                            limpiarTodo(2);
+
+                            alerta.Visible = true;
+                            alerta.CssClass = "alert alert-primary animated zoomInUp";
+                            mensaje3.Text = "PRODUCTO AGREGADO CON EXITO.";
+
+                            bregistrarProducto.Visible = false;
+                       
                     }
                 }
             }

@@ -85,7 +85,7 @@
                                                 HeaderStyle-CssClass="ocultarCol" ItemStyle-CssClass="ocultarCol" />
                                             <asp:BoundField DataField="nombre_menu" HeaderText="Nombre Menú" />
                                             <asp:BoundField DataField="fecha" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy}" />
-                                            <asp:BoundField DataField="precio_total" HeaderText="Precio" DataFormatString="${0:N0}" />
+                                            <asp:BoundField DataField="precio_menu" HeaderText="Precio" DataFormatString="${0:N0}" />
 
                                             <asp:ButtonField ButtonType="Link" CommandName="idseleccionar" ControlStyle-CssClass="btn btn-danger" Text="+" />
 
@@ -185,7 +185,7 @@
                                         <asp:BoundField DataField="fecha_ingreso_producto" HeaderText="Fecha ingreso" DataFormatString="{0:dd/MM/yyyy}" />
                                         <asp:BoundField DataField="cantidad_producto" HeaderText="Cantidad Producto" />
 
-                                            <asp:ButtonField ButtonType="Link" CommandName="ideditar" Visible="false" ControlStyle-CssClass="btn btn-danger" Text="-" />
+                                            <asp:ButtonField ButtonType="Link" CommandName="idseleccionar"  ControlStyle-CssClass="btn btn-danger" Text="+" />
 
                                     </Columns>
                                 </asp:GridView>
