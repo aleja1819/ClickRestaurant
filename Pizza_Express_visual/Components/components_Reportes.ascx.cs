@@ -286,7 +286,7 @@ namespace Pizza_Express_visual.Components
 
                 idVentaSelect.DataSource = accesoReportes.reporteVenta(fechaInicial, fechaFinal);
                 idVentaSelect.DataBind();
-                calcularTotalVenta();
+                //calcularTotalVenta();
             }
             catch (Exception)
             {
@@ -364,7 +364,7 @@ namespace Pizza_Express_visual.Components
                     int precio = Convert.ToInt32(precio_Ven);
                     DateTime fecha = Convert.ToDateTime(fecha_Ven);
 
-                    ListaVentas.Add(new ventas { codigo_C = codV, cantidad_V = cantidad, nombre_V = nombre_Ven, fecha_V = fecha, precio_V = precio });
+                    ListaVentas.Add(new ventas { codigo_C = codV, cantidad_V = 1, nombre_V = nombre_Ven, fecha_V = fecha, precio_V = precio });
 
                 }
                 finally

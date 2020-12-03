@@ -235,7 +235,7 @@ namespace Pizza_Express_visual.Components
                         /* Guarda en la tabla definitiva de los reportesVentas */
                         accesoComanda.addReportesVentas(new Models.ReportesVentas
                         {
-                            idMesa = Convert.ToInt32(pedidosMesaX[0]),
+                            //idMesa = Convert.ToInt32(pedidosMesaX[0]),
                             codigo_comanda = Convert.ToInt32(pedidosMesaX[1]),
                             codigo_menu = Convert.ToInt32(pedidosMesaX[3]),
                             nombre_menu = pedidosMesaX[4],

@@ -12,16 +12,12 @@ namespace Pizza_Express_visual.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ReportesVentas
+    public partial class sysdiagrams
     {
-        public int idReportesVentas { get; set; }
-        public int codigo_comanda { get; set; }
-        public int codigo_menu { get; set; }
-        public string nombre_menu { get; set; }
-        public int precio_menu { get; set; }
-        public int cantidad { get; set; }
-    
-        public virtual ComandaMesa ComandaMesa { get; set; }
-        public virtual Menu Menu { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }
