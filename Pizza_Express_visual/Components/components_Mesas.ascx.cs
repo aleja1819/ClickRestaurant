@@ -260,66 +260,12 @@ namespace Pizza_Express_visual.Components
                         idMesa = Convert.ToInt32(listaPedidosMesa[0]),
                         codigo_comanda = Convert.ToInt32(listaPedidosMesa[1]),
                         precio_total = Convert.ToInt32(listaPedidosMesa[2]),
-                        menu1 = listaPedidosMesa[3],
-                        menu2 = listaPedidosMesa[5],
-                        menu3 = listaPedidosMesa[7],
-                        menu4 = listaPedidosMesa[9],
-                        menu5 = listaPedidosMesa[11],
-                        menu6 = listaPedidosMesa[13],
-                        menu7 = listaPedidosMesa[15],
-                        menu8 = listaPedidosMesa[17],
-                        menu9 = listaPedidosMesa[19],
-                        menu10 = listaPedidosMesa[21],
-                        menu11 = listaPedidosMesa[23],
-                        menu12 = listaPedidosMesa[25],
-                        menu13 = listaPedidosMesa[27],
-                        menu14 = listaPedidosMesa[29],
-                        menu15 = listaPedidosMesa[31],
-                        menu16 = listaPedidosMesa[33],
-                        menu17 = listaPedidosMesa[35],
-                        menu18 = listaPedidosMesa[37],
-                        menu19 = listaPedidosMesa[39],
-                        menu20 = listaPedidosMesa[41],
-                        menu21 = listaPedidosMesa[43],
-                        menu22 = listaPedidosMesa[45],
-                        menu23 = listaPedidosMesa[47],
-                        menu24 = listaPedidosMesa[49],
-                        menu25 = listaPedidosMesa[51],
-                        menu26 = listaPedidosMesa[53],
-                        menu27 = listaPedidosMesa[55],
-                        menu28 = listaPedidosMesa[57],
-                        menu29 = listaPedidosMesa[59],
-                        menu30 = listaPedidosMesa[61],
-                        cantidad_m1 = Convert.ToInt32(listaPedidosMesa[4]),
-                        cantidad_m2 = Convert.ToInt32(listaPedidosMesa[6]),
-                        cantidad_m3 = Convert.ToInt32(listaPedidosMesa[8]),
-                        cantidad_m4 = Convert.ToInt32(listaPedidosMesa[10]),
-                        cantidad_m5 = Convert.ToInt32(listaPedidosMesa[12]),
-                        cantidad_m6 = Convert.ToInt32(listaPedidosMesa[14]),
-                        cantidad_m7 = Convert.ToInt32(listaPedidosMesa[16]),
-                        cantidad_m8 = Convert.ToInt32(listaPedidosMesa[18]),
-                        cantidad_m9 = Convert.ToInt32(listaPedidosMesa[20]),
-                        cantidad_m10 = Convert.ToInt32(listaPedidosMesa[22]),
-                        cantidad_m11 = Convert.ToInt32(listaPedidosMesa[24]),
-                        cantidad_m12 = Convert.ToInt32(listaPedidosMesa[26]),
-                        cantidad_m13 = Convert.ToInt32(listaPedidosMesa[28]),
-                        cantidad_m14 = Convert.ToInt32(listaPedidosMesa[30]),
-                        cantidad_m15 = Convert.ToInt32(listaPedidosMesa[32]),
-                        cantidad_m16 = Convert.ToInt32(listaPedidosMesa[34]),
-                        cantidad_m17 = Convert.ToInt32(listaPedidosMesa[36]),
-                        cantidad_m18 = Convert.ToInt32(listaPedidosMesa[38]),
-                        cantidad_m19 = Convert.ToInt32(listaPedidosMesa[40]),
-                        cantidad_m20 = Convert.ToInt32(listaPedidosMesa[42]),
-                        cantidad_m21 = Convert.ToInt32(listaPedidosMesa[44]),
-                        cantidad_m22 = Convert.ToInt32(listaPedidosMesa[46]),
-                        cantidad_m23 = Convert.ToInt32(listaPedidosMesa[48]),
-                        cantidad_m24 = Convert.ToInt32(listaPedidosMesa[50]),
-                        cantidad_m25 = Convert.ToInt32(listaPedidosMesa[52]),
-                        cantidad_m26 = Convert.ToInt32(listaPedidosMesa[54]),
-                        cantidad_m27 = Convert.ToInt32(listaPedidosMesa[56]),
-                        cantidad_m28 = Convert.ToInt32(listaPedidosMesa[58]),
-                        cantidad_m29 = Convert.ToInt32(listaPedidosMesa[60]),
-                        cantidad_m30 = Convert.ToInt32(listaPedidosMesa[62])
+                        menu1 = listaPedidosMesa[3], menu2 = listaPedidosMesa[5], menu3 = listaPedidosMesa[7], menu4 = listaPedidosMesa[9], menu5 = listaPedidosMesa[11], menu6 = listaPedidosMesa[13], menu7 = listaPedidosMesa[15], menu8 = listaPedidosMesa[17], menu9 = listaPedidosMesa[19], menu10 = listaPedidosMesa[21],
+                        menu11 = listaPedidosMesa[23], menu12 = listaPedidosMesa[25], menu13 = listaPedidosMesa[27], menu14 = listaPedidosMesa[29], menu15 = listaPedidosMesa[31], menu16 = listaPedidosMesa[33], menu17 = listaPedidosMesa[35], menu18 = listaPedidosMesa[37], menu19 = listaPedidosMesa[39], menu20 = listaPedidosMesa[41],
+                        menu21 = listaPedidosMesa[43], menu22 = listaPedidosMesa[45], menu23 = listaPedidosMesa[47], menu24 = listaPedidosMesa[49], menu25 = listaPedidosMesa[51], menu26 = listaPedidosMesa[53], menu27 = listaPedidosMesa[55], menu28 = listaPedidosMesa[57], menu29 = listaPedidosMesa[59], menu30 = listaPedidosMesa[61],
+                        cantidad_m1 = Convert.ToInt32(listaPedidosMesa[4]), cantidad_m2 = Convert.ToInt32(listaPedidosMesa[6]), cantidad_m3 = Convert.ToInt32(listaPedidosMesa[8]), cantidad_m4 = Convert.ToInt32(listaPedidosMesa[10]), cantidad_m5 = Convert.ToInt32(listaPedidosMesa[12]), cantidad_m6 = Convert.ToInt32(listaPedidosMesa[14]), cantidad_m7 = Convert.ToInt32(listaPedidosMesa[16]), cantidad_m8 = Convert.ToInt32(listaPedidosMesa[18]), cantidad_m9 = Convert.ToInt32(listaPedidosMesa[20]), cantidad_m10 = Convert.ToInt32(listaPedidosMesa[22]), cantidad_m11 = Convert.ToInt32(listaPedidosMesa[24]), cantidad_m12 = Convert.ToInt32(listaPedidosMesa[26]),
+                        cantidad_m13 = Convert.ToInt32(listaPedidosMesa[28]), cantidad_m14 = Convert.ToInt32(listaPedidosMesa[30]), cantidad_m15 = Convert.ToInt32(listaPedidosMesa[32]), cantidad_m16 = Convert.ToInt32(listaPedidosMesa[34]), cantidad_m17 = Convert.ToInt32(listaPedidosMesa[36]), cantidad_m18 = Convert.ToInt32(listaPedidosMesa[38]), cantidad_m19 = Convert.ToInt32(listaPedidosMesa[40]), cantidad_m20 = Convert.ToInt32(listaPedidosMesa[42]), cantidad_m21 = Convert.ToInt32(listaPedidosMesa[44]), cantidad_m22 = Convert.ToInt32(listaPedidosMesa[46]), cantidad_m23 = Convert.ToInt32(listaPedidosMesa[48]), cantidad_m24 = Convert.ToInt32(listaPedidosMesa[50]),
+                        cantidad_m25 = Convert.ToInt32(listaPedidosMesa[52]), cantidad_m26 = Convert.ToInt32(listaPedidosMesa[54]), cantidad_m27 = Convert.ToInt32(listaPedidosMesa[56]), cantidad_m28 = Convert.ToInt32(listaPedidosMesa[58]), cantidad_m29 = Convert.ToInt32(listaPedidosMesa[60]), cantidad_m30 = Convert.ToInt32(listaPedidosMesa[62])
                     });
 
                     mContenedor.SetActiveView(vMesas);
@@ -1131,18 +1077,24 @@ namespace Pizza_Express_visual.Components
 
                     //accesoMesas.estadoPagoMesas();
 
+                    int xComanda = 0;
                     //GUARDAR LOS DATOS EN LA LISTA         // ============== REVISAR ==================== //
                     foreach (int pedido in pedidosPagados)
                     {
-
-                        accesoComanda.addPago(new Models.Detalle_Pago
+                        if (xComanda != pedido)
                         {
-                            codigo_tipoPago = idtipoPago,
-                            numeroTransaccion = transferencia, // Debe permitir ingresar el numero de voucher emitido por la maquina redcompra
-                            propina = propina,
-                            descuento = descuento,
-                            codigo_comanda = pedido
-                        });
+                            //int pedido=0;
+                            accesoComanda.addPago(new Models.Detalle_Pago
+                            {
+                                codigo_tipoPago = idtipoPago,
+                                numeroTransaccion = transferencia, 
+                                propina = propina,
+                                descuento = descuento,
+                                codigo_comanda = pedido
+                            });
+                            xComanda = pedido;
+
+                        }
                     }
 
                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalComanda", "$('#myModalComanda').modal('hide');", true);
@@ -1174,8 +1126,8 @@ namespace Pizza_Express_visual.Components
             int idMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
             mContenedor.SetActiveView(vMesas);
             uContenido.Update();
-            
 
+            
             if(Convert.ToInt32(Session["envioComanda"]) == 0)
             {
                 alertaMesas.Visible = true;
@@ -1223,11 +1175,13 @@ namespace Pizza_Express_visual.Components
         {
             if (ltotal.Text != "Total a pagar $0")
             {
+                int idMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
                 volver();
                 alerta.Visible = true;
                 alerta.CssClass = "alert alert-primary animated zoomInUp";
                 mensaje3.Text = "PUEDE REALIZAR UN NUEVO PEDIDO A ESTA MISMA MESA";
                 Session["envioComanda"] = 0;
+                estadoOcupado(idMesa);
             }
             else
             {
