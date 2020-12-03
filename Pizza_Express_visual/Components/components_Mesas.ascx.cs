@@ -32,8 +32,11 @@ namespace Pizza_Express_visual.Components
         {
             if (!IsPostBack)
             {
-                volver();
+                Session["envioComanda"] = 0;    // 0 = Primera Vez que se hace click en Generar Ticket Comanda, 1 = Segunda Vez
 
+                volver();
+                alertaMesas.Visible = false;
+                
                 mContenedor.SetActiveView(vMesas);
                 uContenido.Update();
 
@@ -54,6 +57,7 @@ namespace Pizza_Express_visual.Components
                 }
                 catch{}
             }
+            
         }
 
 
@@ -140,137 +144,202 @@ namespace Pizza_Express_visual.Components
         // Enviar Comanada a la bd y cambiar de color la mesa
         protected void btnGenerarPDF_Click(object sender, EventArgs e)
         {
-            if (ltotal.Text == "Total a pagar $0")
+            if (Convert.ToInt32(Session["envioComanda"]) == 0)
             {
-                /* No se ha seleccionado ningún pedido */                
-                alerta.Visible = true;
-                alerta.CssClass = "alert alert-danger animated zoomInUp";
-                mensaje3.Text = "DEBE AGREGAR POR LO MENOS UN PEDIDO";
+                if (ltotal.Text == "Total a pagar $0")
+                {
+                    /* No se ha seleccionado ningún pedido */
+                    alerta.Visible = true;
+                    alerta.CssClass = "alert alert-danger animated zoomInUp";
+                    mensaje3.Text = "DEBE AGREGAR POR LO MENOS UN PEDIDO";
+                }
+                else
+                {
+
+                    /* Guarda en la bd y vuelve a la vista*/
+
+                    /* Inserta en la tabla ComandaMesa para crear el numero de comanda */
+                    int codigo_usuario = Convert.ToInt32(Session["idUser"]);
+                    int idMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
+                    int idEstadoPago = 2;
+                    int precio_total = Convert.ToInt32(Session["suma"]);
+                    int idDetalleCaja = 1; // Debe ser obtenido desde una variable de sesion
+                    DateTime fechaHoy = DateTime.Now;
+
+                    /* Guarda una nueva comanda asignada a la mesa en la tabla ComandaMesa de la base de datos*/
+                    accesoComanda.addComandaMesa(new Models.ComandaMesa
+                    {
+                        idMesa = idMesa,
+                        idEstadoPago = idEstadoPago,
+                        fecha = fechaHoy,
+                        precio_total = precio_total,
+                        codigo_usuario = codigo_usuario,
+                        id_DetalleCaja = idDetalleCaja
+                    });
+
+                    /*Toma el codigo de la comanda recien creada*/
+                    int codigo_comanda = accesoComanda.comandaCreada(fechaHoy);
+                    Session["codigo_comanda"] = codigo_comanda;
+
+                    /* Cambiar el estado de la mesa a 2 ocupado en la tabla Mesa de la base de datos */
+                    accesoMesas.cambiarEstadoMesa(idMesa, idEstadoPago);
+                    estadoOcupado(idMesa);
+
+                    /* Tengo cuantos productos ha seleccionado */
+                    int filas = idCargarSeleccion.Rows.Count;
+
+                    /* Asigna datos a la lista que serán cargados en la base de datos */
+                    List<string> listaPedidosMesa = new List<String>(63);
+                    List<string> pedidosMesaX = new List<string>(8);
+
+                    listaPedidosMesa.Add(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
+                    listaPedidosMesa.Add(codigo_comanda + "");
+                    listaPedidosMesa.Add(Session["suma"] + "");
+
+                    for (int i = 0; i < filas; i++)
+                    {
+                        string nombreMenu = idCargarSeleccion.Rows[i].Cells[2].Text;
+                        string codigoMenu = idCargarSeleccion.Rows[i].Cells[0].Text;
+                        int cantidad = Convert.ToInt32(idCargarSeleccion.Rows[i].Cells[1].Text);
+                        int subtotal = Convert.ToInt32(idCargarSeleccion.Rows[i].Cells[3].Text);
+                        int pMenu = subtotal / cantidad;
+
+                        listaPedidosMesa.Add(nombreMenu);
+                        listaPedidosMesa.Add(cantidad + "");
+
+                        pedidosMesaX.Add(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
+                        pedidosMesaX.Add(codigo_comanda + "");
+                        pedidosMesaX.Add(idEstadoPago + "");
+                        pedidosMesaX.Add(codigoMenu);
+                        pedidosMesaX.Add(nombreMenu);
+                        pedidosMesaX.Add(pMenu + "");
+                        pedidosMesaX.Add(cantidad + "");
+                        pedidosMesaX.Add(subtotal + "");
+
+                        /* Guarda en la tabla temporal el pedidosMesaX según la mesa seleccionada */
+                        int IdMesaPedido = Convert.ToInt32(listaPedidosMesa[0]);
+
+                        accesoComanda.addPedidosActivos(new Models.PedidosActivos
+                        {
+                            idMesa = Convert.ToInt32(pedidosMesaX[0]),
+                            codigo_comanda = Convert.ToInt32(pedidosMesaX[1]),
+                            idEstadoPago = Convert.ToInt32(pedidosMesaX[2]),
+                            codigo_menu = Convert.ToInt32(pedidosMesaX[3]),
+                            nombre_menu = pedidosMesaX[4],
+                            precio_menu = Convert.ToInt32(pedidosMesaX[5]),
+                            cantidad = Convert.ToInt32(pedidosMesaX[6]),
+                            subtotal = Convert.ToInt32(pedidosMesaX[7])
+
+                        });
+
+                        /* Guarda en la tabla definitiva de los reportesVentas */
+                        accesoComanda.addReportesVentas(new Models.ReportesVentas
+                        {
+                            idMesa = Convert.ToInt32(pedidosMesaX[0]),
+                            codigo_comanda = Convert.ToInt32(pedidosMesaX[1]),
+                            codigo_menu = Convert.ToInt32(pedidosMesaX[3]),
+                            nombre_menu = pedidosMesaX[4],
+                            precio_menu = Convert.ToInt32(pedidosMesaX[5]),
+                            cantidad = Convert.ToInt32(pedidosMesaX[6]),
+                        });
+
+                        pedidosMesaX.Clear();
+                    }
+
+
+
+
+                    for (int i = (filas + 3); i <= 63; i++)
+                    {
+                        listaPedidosMesa.Add(null);
+                    }
+
+                    /* Guarda en la tabla DetalleMesaPedido de la base de datos*/
+                    accesoComanda.addDetalleMesaPedido(new Models.Detalle_Mesa_Pedido
+                    {
+                        idMesa = Convert.ToInt32(listaPedidosMesa[0]),
+                        codigo_comanda = Convert.ToInt32(listaPedidosMesa[1]),
+                        precio_total = Convert.ToInt32(listaPedidosMesa[2]),
+                        menu1 = listaPedidosMesa[3],
+                        menu2 = listaPedidosMesa[5],
+                        menu3 = listaPedidosMesa[7],
+                        menu4 = listaPedidosMesa[9],
+                        menu5 = listaPedidosMesa[11],
+                        menu6 = listaPedidosMesa[13],
+                        menu7 = listaPedidosMesa[15],
+                        menu8 = listaPedidosMesa[17],
+                        menu9 = listaPedidosMesa[19],
+                        menu10 = listaPedidosMesa[21],
+                        menu11 = listaPedidosMesa[23],
+                        menu12 = listaPedidosMesa[25],
+                        menu13 = listaPedidosMesa[27],
+                        menu14 = listaPedidosMesa[29],
+                        menu15 = listaPedidosMesa[31],
+                        menu16 = listaPedidosMesa[33],
+                        menu17 = listaPedidosMesa[35],
+                        menu18 = listaPedidosMesa[37],
+                        menu19 = listaPedidosMesa[39],
+                        menu20 = listaPedidosMesa[41],
+                        menu21 = listaPedidosMesa[43],
+                        menu22 = listaPedidosMesa[45],
+                        menu23 = listaPedidosMesa[47],
+                        menu24 = listaPedidosMesa[49],
+                        menu25 = listaPedidosMesa[51],
+                        menu26 = listaPedidosMesa[53],
+                        menu27 = listaPedidosMesa[55],
+                        menu28 = listaPedidosMesa[57],
+                        menu29 = listaPedidosMesa[59],
+                        menu30 = listaPedidosMesa[61],
+                        cantidad_m1 = Convert.ToInt32(listaPedidosMesa[4]),
+                        cantidad_m2 = Convert.ToInt32(listaPedidosMesa[6]),
+                        cantidad_m3 = Convert.ToInt32(listaPedidosMesa[8]),
+                        cantidad_m4 = Convert.ToInt32(listaPedidosMesa[10]),
+                        cantidad_m5 = Convert.ToInt32(listaPedidosMesa[12]),
+                        cantidad_m6 = Convert.ToInt32(listaPedidosMesa[14]),
+                        cantidad_m7 = Convert.ToInt32(listaPedidosMesa[16]),
+                        cantidad_m8 = Convert.ToInt32(listaPedidosMesa[18]),
+                        cantidad_m9 = Convert.ToInt32(listaPedidosMesa[20]),
+                        cantidad_m10 = Convert.ToInt32(listaPedidosMesa[22]),
+                        cantidad_m11 = Convert.ToInt32(listaPedidosMesa[24]),
+                        cantidad_m12 = Convert.ToInt32(listaPedidosMesa[26]),
+                        cantidad_m13 = Convert.ToInt32(listaPedidosMesa[28]),
+                        cantidad_m14 = Convert.ToInt32(listaPedidosMesa[30]),
+                        cantidad_m15 = Convert.ToInt32(listaPedidosMesa[32]),
+                        cantidad_m16 = Convert.ToInt32(listaPedidosMesa[34]),
+                        cantidad_m17 = Convert.ToInt32(listaPedidosMesa[36]),
+                        cantidad_m18 = Convert.ToInt32(listaPedidosMesa[38]),
+                        cantidad_m19 = Convert.ToInt32(listaPedidosMesa[40]),
+                        cantidad_m20 = Convert.ToInt32(listaPedidosMesa[42]),
+                        cantidad_m21 = Convert.ToInt32(listaPedidosMesa[44]),
+                        cantidad_m22 = Convert.ToInt32(listaPedidosMesa[46]),
+                        cantidad_m23 = Convert.ToInt32(listaPedidosMesa[48]),
+                        cantidad_m24 = Convert.ToInt32(listaPedidosMesa[50]),
+                        cantidad_m25 = Convert.ToInt32(listaPedidosMesa[52]),
+                        cantidad_m26 = Convert.ToInt32(listaPedidosMesa[54]),
+                        cantidad_m27 = Convert.ToInt32(listaPedidosMesa[56]),
+                        cantidad_m28 = Convert.ToInt32(listaPedidosMesa[58]),
+                        cantidad_m29 = Convert.ToInt32(listaPedidosMesa[60]),
+                        cantidad_m30 = Convert.ToInt32(listaPedidosMesa[62])
+                    });
+
+                    mContenedor.SetActiveView(vMesas);
+                    uContenido.Update();
+
+                    btnGenerarPDF.Enabled = false;
+
+                    Session["envioComanda"] = 1;
+
+                    generarPDF();
+
+                    volver();
+
+                }
             }
             else
             {
-                
-                /* Guarda en la bd y vuelve a la vista*/
-
-                /* Inserta en la tabla ComandaMesa para crear el numero de comanda */
-                int codigo_usuario = Convert.ToInt32(Session["idUser"]);
-                int idMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
-                int idEstadoPago = 2;
-                int precio_total = Convert.ToInt32(Session["suma"]);
-                int idDetalleCaja = 1; // Debe ser obtenido desde una variable de sesion
-                DateTime fechaHoy = DateTime.Now;                
-                
-                /* Guarda una nueva comanda asignada a la mesa en la tabla ComandaMesa de la base de datos*/
-                accesoComanda.addComandaMesa(new Models.ComandaMesa
-                {
-                    idMesa = idMesa,
-                    idEstadoPago = idEstadoPago,
-                    fecha = fechaHoy,
-                    precio_total =precio_total,
-                    codigo_usuario = codigo_usuario,
-                    id_DetalleCaja = idDetalleCaja
-                });
-
-                /*Toma el codigo de la comanda recien creada*/
-                int codigo_comanda = accesoComanda.comandaCreada(fechaHoy);
-                Session["codigo_comanda"] = codigo_comanda;
-
-                /* Cambiar el estado de la mesa a 2 ocupado en la tabla Mesa de la base de datos */
-                accesoMesas.cambiarEstadoMesa(idMesa, idEstadoPago);
-                estadoOcupado(idMesa);
-
-                /* Tengo cuantos productos ha seleccionado */
-                int filas = idCargarSeleccion.Rows.Count;
-
-                /* Asigna datos a la lista que serán cargados en la base de datos */
-                List<string> listaPedidosMesa = new List<String>(63);
-                List<string> pedidosMesaX = new List<string>(8);
-
-                listaPedidosMesa.Add(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
-                listaPedidosMesa.Add(codigo_comanda+"");
-                listaPedidosMesa.Add(Session["suma"]+"");
-
-                for (int i=0; i<filas; i++)
-                {
-                    string nombreMenu = idCargarSeleccion.Rows[i].Cells[2].Text;
-                    string codigoMenu = idCargarSeleccion.Rows[i].Cells[0].Text;
-                    int cantidad  = Convert.ToInt32(idCargarSeleccion.Rows[i].Cells[1].Text);
-                    int subtotal = Convert.ToInt32(idCargarSeleccion.Rows[i].Cells[3].Text);
-                    int pMenu = subtotal / cantidad;
-
-                    listaPedidosMesa.Add(nombreMenu);
-                    listaPedidosMesa.Add(cantidad+"");
-
-                    pedidosMesaX.Add(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
-                    pedidosMesaX.Add(codigo_comanda + "");
-                    pedidosMesaX.Add(idEstadoPago + "");
-                    pedidosMesaX.Add(codigoMenu);
-                    pedidosMesaX.Add(nombreMenu);
-                    pedidosMesaX.Add(pMenu + "");
-                    pedidosMesaX.Add(cantidad + "");
-                    pedidosMesaX.Add(subtotal + "");
-
-                    /* Guarda en la tabla temporal el pedidosMesaX según la mesa seleccionada */
-                    int IdMesaPedido = Convert.ToInt32(listaPedidosMesa[0]);
-
-                    accesoComanda.addPedidosActivos(new Models.PedidosActivos
-                    {
-                        idMesa = Convert.ToInt32(pedidosMesaX[0]),
-                        codigo_comanda = Convert.ToInt32(pedidosMesaX[1]),
-                        idEstadoPago = Convert.ToInt32(pedidosMesaX[2]),
-                        codigo_menu = Convert.ToInt32(pedidosMesaX[3]),
-                        nombre_menu = pedidosMesaX[4],
-                        precio_menu = Convert.ToInt32(pedidosMesaX[5]),
-                        cantidad = Convert.ToInt32(pedidosMesaX[6]),
-                        subtotal = Convert.ToInt32(pedidosMesaX[7])
-
-                    });
-
-                    /* Guarda en la tabla definitiva de los reportesVentas */
-                    accesoComanda.addReportesVentas(new Models.ReportesVentas
-                    {
-                        idMesa = Convert.ToInt32(pedidosMesaX[0]),
-                        codigo_comanda = Convert.ToInt32(pedidosMesaX[1]),
-                        codigo_menu = Convert.ToInt32(pedidosMesaX[3]),
-                        nombre_menu = pedidosMesaX[4],
-                        precio_menu = Convert.ToInt32(pedidosMesaX[5]),
-                        cantidad = Convert.ToInt32(pedidosMesaX[6]),
-                    });
-
-                    pedidosMesaX.Clear();
-                }
-
-
-
-
-                for (int i = (filas+3); i <=63; i++)
-                {
-                    listaPedidosMesa.Add(null);
-                }
-
-                /* Guarda en la tabla DetalleMesaPedido de la base de datos*/
-                accesoComanda.addDetalleMesaPedido(new Models.Detalle_Mesa_Pedido
-                {
-                    idMesa = Convert.ToInt32(listaPedidosMesa[0]),
-                    codigo_comanda = Convert.ToInt32(listaPedidosMesa[1]),
-                    precio_total = Convert.ToInt32(listaPedidosMesa[2]),
-                    menu1 = listaPedidosMesa[3], menu2 = listaPedidosMesa[5], menu3 = listaPedidosMesa[7], menu4 = listaPedidosMesa[9], menu5 = listaPedidosMesa[11], menu6 = listaPedidosMesa[13], menu7 = listaPedidosMesa[15], menu8 = listaPedidosMesa[17], menu9 = listaPedidosMesa[19], menu10 = listaPedidosMesa[21], 
-                    menu11 = listaPedidosMesa[23], menu12 = listaPedidosMesa[25], menu13 = listaPedidosMesa[27], menu14 = listaPedidosMesa[29], menu15 = listaPedidosMesa[31], menu16 = listaPedidosMesa[33], menu17 = listaPedidosMesa[35], menu18 = listaPedidosMesa[37], menu19 = listaPedidosMesa[39], menu20 = listaPedidosMesa[41], 
-                    menu21 = listaPedidosMesa[43], menu22 = listaPedidosMesa[45], menu23 = listaPedidosMesa[47], menu24 = listaPedidosMesa[49], menu25 = listaPedidosMesa[51], menu26 = listaPedidosMesa[53], menu27 = listaPedidosMesa[55], menu28 = listaPedidosMesa[57], menu29 = listaPedidosMesa[59], menu30 = listaPedidosMesa[61],
-                    cantidad_m1 = Convert.ToInt32(listaPedidosMesa[4]), cantidad_m2 = Convert.ToInt32(listaPedidosMesa[6]), cantidad_m3 = Convert.ToInt32(listaPedidosMesa[8]), cantidad_m4 = Convert.ToInt32(listaPedidosMesa[10]),
-                    cantidad_m5 = Convert.ToInt32(listaPedidosMesa[12]), cantidad_m6 = Convert.ToInt32(listaPedidosMesa[14]), cantidad_m7 = Convert.ToInt32(listaPedidosMesa[16]), cantidad_m8 = Convert.ToInt32(listaPedidosMesa[18]), cantidad_m9 = Convert.ToInt32(listaPedidosMesa[20]), cantidad_m10 = Convert.ToInt32(listaPedidosMesa[22]),
-                    cantidad_m11 = Convert.ToInt32(listaPedidosMesa[24]), cantidad_m12 = Convert.ToInt32(listaPedidosMesa[26]), cantidad_m13 = Convert.ToInt32(listaPedidosMesa[28]), cantidad_m14 = Convert.ToInt32(listaPedidosMesa[30]), cantidad_m15 = Convert.ToInt32(listaPedidosMesa[32]), cantidad_m16 = Convert.ToInt32(listaPedidosMesa[34]), cantidad_m17 = Convert.ToInt32(listaPedidosMesa[36]), cantidad_m18 = Convert.ToInt32(listaPedidosMesa[38]), cantidad_m19 = Convert.ToInt32(listaPedidosMesa[40]), cantidad_m20 = Convert.ToInt32(listaPedidosMesa[42]),
-                    cantidad_m21 = Convert.ToInt32(listaPedidosMesa[44]), cantidad_m22 = Convert.ToInt32(listaPedidosMesa[46]), cantidad_m23 = Convert.ToInt32(listaPedidosMesa[48]), cantidad_m24 = Convert.ToInt32(listaPedidosMesa[50]), cantidad_m25 = Convert.ToInt32(listaPedidosMesa[52]), cantidad_m26 = Convert.ToInt32(listaPedidosMesa[54]), cantidad_m27 = Convert.ToInt32(listaPedidosMesa[56]), cantidad_m28 = Convert.ToInt32(listaPedidosMesa[58]), cantidad_m29 = Convert.ToInt32(listaPedidosMesa[60]), cantidad_m30 = Convert.ToInt32(listaPedidosMesa[62])
-                });
-
-                volver();
-
-                mContenedor.SetActiveView(vMesas);
-                uContenido.Update();
-
-                //generarPDF();
-
-
+                alerta.Visible = true;
+                alerta.CssClass = "alert alert-danger animated zoomInUp";
+                mensaje3.Text = "El Ticket ya ha sido generado, porfavor, presione en 'Finalizar Pedido Actual' para seleccionar otra mesa, o presione en 'Limpiar Pedido Actual' para agregar un nuevo pedido a esta misma mesa";
             }
         }
 
@@ -279,6 +348,7 @@ namespace Pizza_Express_visual.Components
         {
             System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"] = "1";
             int nMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
+            alertaMesas.Visible = false;
 
             cargaDatosGrid(nMesa);
         }
@@ -286,6 +356,7 @@ namespace Pizza_Express_visual.Components
         {
             System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"] = "2";
             int nMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
+            alertaMesas.Visible = false;
 
             cargaDatosGrid(nMesa);
         }     
@@ -293,6 +364,7 @@ namespace Pizza_Express_visual.Components
         {
             System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"] = "3";
             int nMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
+            alertaMesas.Visible = false;
 
             cargaDatosGrid(nMesa);
         }
@@ -300,6 +372,7 @@ namespace Pizza_Express_visual.Components
         {
             System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"] = "4";
             int nMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
+            alertaMesas.Visible = false;
 
             cargaDatosGrid(nMesa);
         }
@@ -307,6 +380,7 @@ namespace Pizza_Express_visual.Components
         {
             System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"] = "5";
             int nMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
+            alertaMesas.Visible = false;
 
             cargaDatosGrid(nMesa);
         }
@@ -314,6 +388,7 @@ namespace Pizza_Express_visual.Components
         {
             System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"] = "6";
             int nMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
+            alertaMesas.Visible = false;
 
             cargaDatosGrid(nMesa);
         }
@@ -321,6 +396,7 @@ namespace Pizza_Express_visual.Components
         {
             System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"] = "7";
             int nMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
+            alertaMesas.Visible = false;
 
             cargaDatosGrid(nMesa);
         }
@@ -328,6 +404,7 @@ namespace Pizza_Express_visual.Components
         {
             System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"] = "8";
             int nMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
+            alertaMesas.Visible = false;
 
             cargaDatosGrid(nMesa);
         }
@@ -335,6 +412,7 @@ namespace Pizza_Express_visual.Components
         {
             System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"] = "9";
             int nMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
+            alertaMesas.Visible = false;
 
             cargaDatosGrid(nMesa);
         }
@@ -342,6 +420,7 @@ namespace Pizza_Express_visual.Components
         {
             System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"] = "10";
             int nMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
+            alertaMesas.Visible = false;
 
             cargaDatosGrid(nMesa);
         }
@@ -349,6 +428,7 @@ namespace Pizza_Express_visual.Components
         {
             System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"] = "11";
             int nMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
+            alertaMesas.Visible = false;
 
             cargaDatosGrid(nMesa);
         }
@@ -356,6 +436,7 @@ namespace Pizza_Express_visual.Components
         {
             System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"] = "12";
             int nMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
+            alertaMesas.Visible = false;
 
             cargaDatosGrid(nMesa);
         }
@@ -363,6 +444,7 @@ namespace Pizza_Express_visual.Components
         {
             System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"] = "13";
             int nMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
+            alertaMesas.Visible = false;
 
             cargaDatosGrid(nMesa);
         }
@@ -370,6 +452,7 @@ namespace Pizza_Express_visual.Components
         {
             System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"] = "14";
             int nMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
+            alertaMesas.Visible = false;
 
             cargaDatosGrid(nMesa);
         }
@@ -377,6 +460,7 @@ namespace Pizza_Express_visual.Components
         {
             System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"] = "15";
             int nMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
+            alertaMesas.Visible = false;
 
             cargaDatosGrid(nMesa);
         }
@@ -384,6 +468,7 @@ namespace Pizza_Express_visual.Components
         {
             System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"] = "16";
             int nMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
+            alertaMesas.Visible = false;
 
             cargaDatosGrid(nMesa);
         }
@@ -391,6 +476,7 @@ namespace Pizza_Express_visual.Components
         {
             System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"] = "17";
             int nMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
+            alertaMesas.Visible = false;
 
             cargaDatosGrid(nMesa);
         }
@@ -398,6 +484,7 @@ namespace Pizza_Express_visual.Components
         {
             System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"] = "18";
             int nMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
+            alertaMesas.Visible = false;
 
             cargaDatosGrid(nMesa);
         }
@@ -413,7 +500,7 @@ namespace Pizza_Express_visual.Components
         {
             carroCompra.Clear();
             idCargarSeleccion.DataSource = carroCompra;
-            idCargarSeleccion.DataBind();
+            idCargarSeleccion.DataBind();            
             calcularTotal();
         }
         private void calcularTotal()
@@ -435,6 +522,7 @@ namespace Pizza_Express_visual.Components
                 productoDisponible = accesoComanda.filtrarCategoriaMenu(2, 1);
                 idMostrarMenu.DataSource = productoDisponible;
                 idMostrarMenu.DataBind();
+                alerta.Visible = false;
             }
             catch (Exception)
             {
@@ -448,6 +536,7 @@ namespace Pizza_Express_visual.Components
                 productoDisponible = accesoComanda.filtrarCategoriaMenu(2, 2);
                 idMostrarMenu.DataSource = productoDisponible;
                 idMostrarMenu.DataBind();
+                alerta.Visible = false;
             }
             catch (Exception)
             {
@@ -461,6 +550,7 @@ namespace Pizza_Express_visual.Components
                 productoDisponible = accesoComanda.filtrarCategoriaMenu(2, 3);
                 idMostrarMenu.DataSource = productoDisponible;
                 idMostrarMenu.DataBind();
+                alerta.Visible = false;
             }
             catch (Exception)
             {
@@ -474,6 +564,7 @@ namespace Pizza_Express_visual.Components
                 productoDisponible = accesoComanda.filtrarCategoriaMenu(3, 1);
                 idMostrarMenu.DataSource = productoDisponible;
                 idMostrarMenu.DataBind();
+                alerta.Visible = false;
             }
             catch (Exception)
             {
@@ -487,6 +578,7 @@ namespace Pizza_Express_visual.Components
                 productoDisponible = accesoComanda.filtrarCategoriaMenu(4, 1);
                 idMostrarMenu.DataSource = productoDisponible;
                 idMostrarMenu.DataBind();
+                alerta.Visible = false;
             }
             catch (Exception)
             {
@@ -500,6 +592,7 @@ namespace Pizza_Express_visual.Components
                 productoDisponible = accesoComanda.filtrarCategoriaMenu(5, 1);
                 idMostrarMenu.DataSource = productoDisponible;
                 idMostrarMenu.DataBind();
+                alerta.Visible = false;
             }
             catch (Exception)
             {
@@ -513,6 +606,7 @@ namespace Pizza_Express_visual.Components
                 productoDisponible = accesoComanda.filtrarCategoriaMenu(6, 1);
                 idMostrarMenu.DataSource = productoDisponible;
                 idMostrarMenu.DataBind();
+                alerta.Visible = false;
             }
             catch (Exception)
             {
@@ -526,6 +620,7 @@ namespace Pizza_Express_visual.Components
                 productoDisponible = accesoComanda.filtrarCategoriaMenu(9, 1);
                 idMostrarMenu.DataSource = productoDisponible;
                 idMostrarMenu.DataBind();
+                alerta.Visible = false;
             }
             catch (Exception)
             {
@@ -539,6 +634,7 @@ namespace Pizza_Express_visual.Components
                 productoDisponible = accesoComanda.filtrarCategoriaMenu(10, 1);
                 idMostrarMenu.DataSource = productoDisponible;
                 idMostrarMenu.DataBind();
+                alerta.Visible = false;
             }
             catch (Exception)
             {
@@ -552,6 +648,7 @@ namespace Pizza_Express_visual.Components
                 productoDisponible = accesoComanda.filtrarCategoriaMenu(12, 1);
                 idMostrarMenu.DataSource = productoDisponible;
                 idMostrarMenu.DataBind();
+                alerta.Visible = false;
             }
             catch (Exception)
             {
@@ -565,6 +662,7 @@ namespace Pizza_Express_visual.Components
                 productoDisponible = accesoComanda.filtrarCategoriaMenu(7, 1);
                 idMostrarMenu.DataSource = productoDisponible;
                 idMostrarMenu.DataBind();
+                alerta.Visible = false;
             }
             catch (Exception)
             {
@@ -578,6 +676,7 @@ namespace Pizza_Express_visual.Components
                 productoDisponible = accesoComanda.filtrarCategoriaMenu(11, 1);
                 idMostrarMenu.DataSource = productoDisponible;
                 idMostrarMenu.DataBind();
+                alerta.Visible = false;
             }
             catch (Exception)
             {
@@ -590,11 +689,7 @@ namespace Pizza_Express_visual.Components
             productoDisponible = accesoComanda.filtrarCategoriaMenu(13, 1);
             idMostrarMenu.DataSource = productoDisponible;
             idMostrarMenu.DataBind();
-        }
-
-        protected void btnNuevo_Click(object sender, EventArgs e)
-        {
-            volver();
+            alerta.Visible = false;
         }
 
         protected void idMostrarMenu_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -607,7 +702,7 @@ namespace Pizza_Express_visual.Components
                 string nombreMenu = "";
                 string precioMenu = "";
                 string ingredientes = "";
-                
+
                 try
                 {
                     codigoMenu = idMostrarMenu.Rows[fila].Cells[0].Text;
@@ -625,7 +720,6 @@ namespace Pizza_Express_visual.Components
 
                     idCargarSeleccion.DataSource = carroCompra;
                     idCargarSeleccion.DataBind();
-
                 }
                 catch (Exception)
                 {
@@ -634,16 +728,16 @@ namespace Pizza_Express_visual.Components
                     int precioM = Convert.ToInt32(precioMenu);
 
                     carroCompra.Add(new carro { codigo_M = codM, nombre_M = nombreMenu, precio_M = precioM, ingre_M = ingredientes, cantidad = 1 });
-
                 }
                 finally
                 {
                     idCargarSeleccion.DataSource = carroCompra;
                     idCargarSeleccion.DataBind();
-                    codigoMenu = "";
-
+                    codigoMenu = "";                    
                 }
+
                 calcularTotal();
+                
             }
 
         }
@@ -894,6 +988,9 @@ namespace Pizza_Express_visual.Components
             doc.Close();
 
             ShowPdf((path + nombre));
+
+            volver();
+
         }
 
         private void ShowPdf(string strS)
@@ -906,6 +1003,7 @@ namespace Pizza_Express_visual.Components
             //Response.End();
             Response.Flush();
             Response.Clear();
+
         }
 
         /***************** Funciones para Modal Pago ******************/
@@ -1033,7 +1131,7 @@ namespace Pizza_Express_visual.Components
 
                     //accesoMesas.estadoPagoMesas();
 
-                    //GUARDAR LOS DATOS EN LA LISTA
+                    //GUARDAR LOS DATOS EN LA LISTA         // ============== REVISAR ==================== //
                     foreach (int pedido in pedidosPagados)
                     {
 
@@ -1055,25 +1153,46 @@ namespace Pizza_Express_visual.Components
                     uContenido.Update();
 
                     limpiarTodo(2);
-                    alerta.Visible = true;
-                    alerta.CssClass = "alert alert-primary animated zoomInUp";
-                    mensaje3.Text = "PAGO AGREGADO CON EXITO.";
+
+                    alertaMesas.Visible = true;
+                    alertaMesas.CssClass = "alert alert-primary animated zoomInUp";
+                    mensajeMesas.Text = "PAGO AGREGADO CON EXITO.";
 
                 }
             }
             catch (Exception)
             {
-                alerta.Visible = true;
-                alerta.CssClass = "alert alert-danger animated zoomInUp";
-                mensaje3.Text = "PAGO NO REGISTRADO.";
+                alertaMesas.Visible = true;
+                alertaMesas.CssClass = "alert alert-danger animated zoomInUp";
+                mensajeMesas.Text = "PAGO NO REGISTRADO.";
             }
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             volver();
+            int idMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
             mContenedor.SetActiveView(vMesas);
             uContenido.Update();
+            
+
+            if(Convert.ToInt32(Session["envioComanda"]) == 0)
+            {
+                alertaMesas.Visible = true;
+                alertaMesas.CssClass = "alert alert-danger animated zoomInUp";
+                alerta.Visible = false;
+                mensajeMesas.Text = "EL PEDIDO ACTUAL, SE HA INTERRUMPIDO ";
+            }
+            else
+            {
+                estadoOcupado(idMesa);
+                alertaMesas.Visible = true;
+                alertaMesas.CssClass = "alert alert-primary animated zoomInUp";
+                alerta.Visible = false;
+                mensajeMesas.Text = "EL PEDIDO ACTUAL HA FINALIZADO EXITOSAMENTE";
+            }
+
+            Session["envioComanda"] = 0;
         }
 
         protected void gridCargaPedidos_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -1097,6 +1216,23 @@ namespace Pizza_Express_visual.Components
             volver();
             mContenedor.SetActiveView(vMesas);
             uContenido.Update();
+            Session["envioComanda"] = 0;
+        }
+
+        protected void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            if (ltotal.Text != "Total a pagar $0")
+            {
+                volver();
+                alerta.Visible = true;
+                alerta.CssClass = "alert alert-primary animated zoomInUp";
+                mensaje3.Text = "PUEDE REALIZAR UN NUEVO PEDIDO A ESTA MISMA MESA";
+                Session["envioComanda"] = 0;
+            }
+            else
+            {
+                alerta.Visible = false;
+            }
         }
     }
 }

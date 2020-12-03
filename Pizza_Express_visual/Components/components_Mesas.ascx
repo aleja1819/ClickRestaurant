@@ -16,8 +16,9 @@
 
             <%--Vista Menú Comanda--%>
             <asp:View runat="server" ID="vComanda">
-
                 <div class="container col-md-12">
+                    <h3><span class="text-warning"><strong>Nuevo Pedido Mesa N° <%=System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]%></strong></span></h3>
+                    <br />
 
                     <%--ALERTA DE MENSAJE--%>
                     <div class="container">
@@ -143,10 +144,43 @@
                                 <asp:Label runat="server" ID="ltotal" Text="Total a pagar $0"></asp:Label></h3>
                             <br />
 
-                            <div class="container offset-3">
-                                <asp:LinkButton ID="btnGenerarPDF" OnClick="btnGenerarPDF_Click" runat="server" CssClass="btn btn-warning">Enviar Comanda</asp:LinkButton>
-                                <asp:Button runat="server" ID="btnNuevo" OnClick="btnNuevo_Click" Text="Resetear" CssClass="btn btn-info" />
-                                <asp:LinkButton ID="btnCancelar" runat="server" CssClass="btn btn-danger" OnClick="btnCancelar_Click">Volver</asp:LinkButton>
+                            <%-- BOTONES DE COMANDA --%>
+                            <div class="container  offset-1">
+                                    <asp:LinkButton ID="btnGenerarPDF" CssClass="btn btn-danger" OnClick="btnGenerarPDF_Click" runat="server">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notes" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                          <rect x="5" y="3" width="14" height="18" rx="2" />
+                                          <line x1="9" y1="7" x2="15" y2="7" />
+                                          <line x1="9" y1="11" x2="15" y2="11" />
+                                          <line x1="9" y1="15" x2="13" y2="15" />
+                                        </svg><br />
+                                        Generar<br /> Ticket Comanda
+
+                                    </asp:LinkButton>
+
+                                <asp:LinkButton ID="btnLimpiar" CssClass="btn btn-warning" OnClick="btnLimpiar_Click" runat="server">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-artboard" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                      <rect x="8" y="8" width="8" height="8" rx="1" />
+                                      <line x1="3" y1="8" x2="4" y2="8" />
+                                      <line x1="3" y1="16" x2="4" y2="16" />
+                                      <line x1="8" y1="3" x2="8" y2="4" />
+                                      <line x1="16" y1="3" x2="16" y2="4" />
+                                      <line x1="20" y1="8" x2="21" y2="8" />
+                                      <line x1="20" y1="16" x2="21" y2="16" />
+                                      <line x1="8" y1="20" x2="8" y2="21" />
+                                      <line x1="16" y1="20" x2="16" y2="21" />
+                                    </svg><br />
+                                    Limpiar<br /> Pedido Actual</asp:LinkButton> 
+
+                                <asp:LinkButton ID="btnCancelar" CssClass="btn btn-info" OnClick="btnCancelar_Click" runat="server" >
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-check" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                      <rect x="4" y="4" width="16" height="16" rx="2" />
+                                      <path d="M9 12l2 2l4 -4" />
+                                    </svg><br />
+                                    Finalizar <br /> Pedido Actual
+                                </asp:LinkButton> 
                             </div>
 
                         </div>
@@ -174,9 +208,19 @@
             </asp:View>
 
 
-            <%--Vista Mesas--%>
+            <%--            ========================== Vista Mesas ===================================--%>
             <asp:View runat="server" ID="vMesas">
                 <div class="container">
+
+                    <div class="container">
+                        <asp:Panel runat="server" ID="alertaMesas" Visible="false">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <asp:Label ID="mensajeMesas" runat="server"></asp:Label>
+                        </asp:Panel>
+                    </div>
+
 
                     <%-- Fila 1 --%>
                     <div class="row">

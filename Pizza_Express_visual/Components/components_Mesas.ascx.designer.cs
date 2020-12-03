@@ -204,13 +204,13 @@ namespace Pizza_Express_visual.Components
         protected global::System.Web.UI.WebControls.LinkButton btnGenerarPDF;
 
         /// <summary>
-        /// Control btnNuevo.
+        /// Control btnLimpiar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNuevo;
+        protected global::System.Web.UI.WebControls.LinkButton btnLimpiar;
 
         /// <summary>
         /// Control btnCancelar.
@@ -238,6 +238,24 @@ namespace Pizza_Express_visual.Components
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.View vMesas;
+
+        /// <summary>
+        /// Control alertaMesas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel alertaMesas;
+
+        /// <summary>
+        /// Control mensajeMesas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label mensajeMesas;
 
         /// <summary>
         /// Control bMesa1.

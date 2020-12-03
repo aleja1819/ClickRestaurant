@@ -213,7 +213,7 @@ namespace Pizza_Express_visual
         {
             alerta.Visible = false;
             mcontenedor.SetActiveView(vMesas);
-            uContenido.Update();
+            uContenido.Update();            
         }
     }
 }

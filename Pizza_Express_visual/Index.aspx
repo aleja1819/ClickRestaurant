@@ -146,8 +146,8 @@
                         </button>
                         <asp:Label ID="mensaje3" runat="server"></asp:Label>
                     </asp:Panel>
-                    </div>
-                    <br />
+                </div>
+                <br />
 
                 <asp:Panel runat="server" ID="MostrarLogo" Visible="true">
                     <br />
