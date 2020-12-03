@@ -23,6 +23,7 @@ namespace Pizza_Express_visual.Services
         public string nombre_V { get; set; }
         public DateTime fecha_V { get; set; }
         public int precio_V { get; set; }
+        public int precioTotal { get; set; }
     }
 
     public class QueryReportes

@@ -408,6 +408,17 @@
                             </asp:DropDownList>
                         </div>
 
+                         <%--Transferencia--%>
+                        <div class="form-group">
+                            <label for="ttransferencia">N° Transferencia (*)</label>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-info"><i class="fa fa-usd"></i></div>
+                                </div>
+                                <asp:TextBox ID="ttransferencia" runat="server"  placeholder="Ingrese N° transferencia, solo si canceló con tarjeta "  CssClass="form-control bg-secondary"></asp:TextBox>
+
+                            </div>
+
                         <%--Propina--%>
                         <div class="form-group">
                             <label for="tpropina">Propina (*)</label>

@@ -984,13 +984,14 @@ namespace Pizza_Express_visual.Components
 
             if (op == 1)
             {
+                ttransferencia.Text = "";
                 tpropina.Text = "";
                 tdescuento.Text = "";
                 ftipoPago.SelectedIndex = 0;
             }
             else
             {
-
+                ttransferencia.Text = "";
                 tpropina.Text = "";
                 tdescuento.Text = "";
                 ftipoPago.SelectedIndex = 0;
@@ -1013,6 +1014,7 @@ namespace Pizza_Express_visual.Components
                     int idMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
                     int descuento = Convert.ToInt32(tdescuento.Text);
                     int propina = Convert.ToInt32(tpropina.Text);
+                    int transferencia = Convert.ToInt32(ttransferencia.Text);
                     int idEstadoPago = 1;
 
 
@@ -1038,7 +1040,7 @@ namespace Pizza_Express_visual.Components
                         accesoComanda.addPago(new Models.Detalle_Pago
                         {
                             codigo_tipoPago = idtipoPago,
-                            numeroTransaccion = 0, // Debe permitir ingresar el numero de voucher emitido por la maquina redcompra
+                            numeroTransaccion = transferencia, // Debe permitir ingresar el numero de voucher emitido por la maquina redcompra
                             propina = propina,
                             descuento = descuento,
                             codigo_comanda = pedido

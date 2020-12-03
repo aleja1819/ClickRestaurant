@@ -41,12 +41,13 @@ namespace Pizza_Express_visual.Components
         {
             if (!IsPostBack)
             {
+
                 idTablaEnvio.DataSource = accesoReportes.listartodo();
                 idTablaEnvio.DataBind();
 
                 active(1);
                 alerta.Visible = false;
-
+                
             }
 
         }
@@ -143,7 +144,7 @@ namespace Pizza_Express_visual.Components
             Response.Clear();
         }
 
-        protected void bBuscarNombre_Click(object sender, EventArgs e)
+        protected void bBuscarNombre_Click(object sender, EventArgs e) //BOTON BUSCAR REPORTES PRODUCTOS
         {
             try
             {
@@ -155,6 +156,7 @@ namespace Pizza_Express_visual.Components
 
                 idTablaEnvio.DataSource = accesoReportes.filtrarPorNombre(FechaInicial, FechaFinal);
                 idTablaEnvio.DataBind();
+                
             }
             catch (Exception)
             {
@@ -271,7 +273,8 @@ namespace Pizza_Express_visual.Components
             active(2);
         }
 
-        protected void buscarVentas_Click(object sender, EventArgs e)
+      
+        protected void buscarVentas_Click(object sender, EventArgs e)   //  BOTTON BUSCAR VENTA
         {
             try
             {
@@ -283,13 +286,39 @@ namespace Pizza_Express_visual.Components
 
                 idVentaSelect.DataSource = accesoReportes.reporteVenta(fechaInicial, fechaFinal);
                 idVentaSelect.DataBind();
-
+                calcularTotalVenta();
             }
             catch (Exception)
             {
 
 
             }
+        }
+
+
+
+        private void calcularTotalVentaSeleccion()
+        {
+            int suma = 0;
+            foreach (var item in ListaVentas)
+            {
+                suma += item.precio_V;
+            }
+
+            ltotalRangoFechaSelección.Text = "Total ventas seleccionadas $" + suma;
+
+        } //CALCULAR VENTAS SELECCIONADAS
+
+        private void calcularTotalVenta() //MOSTRAR EL TOTAL DE LAS VENTAS EN LA SELECCION DE FECHAS INICIAL Y FINAL
+        {
+            int suma = 0;
+            foreach (var item in ListaVentas)
+            {
+                suma += item.precio_V;
+            }
+
+            ltotalRangoFecha.Text = "Total ventas $" + suma;
+
         }
 
 
@@ -318,9 +347,13 @@ namespace Pizza_Express_visual.Components
                     //AGREGAR PRODUCTO AL CARRO
                     ventas carro_comp = new ventas();
                     carro_comp = ListaVentas.First(v => v.codigo_C == codV);
+                    ListaVentas[ListaVentas.IndexOf(carro_comp)].cantidad_V += 1;
+                    ListaVentas[ListaVentas.IndexOf(carro_comp)].precio_V += precio;
 
+                    
                     CargarVentasReporte.DataSource = ListaVentas;
                     CargarVentasReporte.DataBind();
+                    calcularTotalVenta();
 
                 }
                 catch (Exception)
@@ -336,13 +369,19 @@ namespace Pizza_Express_visual.Components
                 }
                 finally
                 {
+                    
                     CargarVentasReporte.DataSource = ListaVentas;
                     CargarVentasReporte.DataBind();
                     codigo_Ven = "";
+                    calcularTotalVenta();
+
+
 
                 }
-
+                calcularTotalVentaSeleccion();
+               
             }
+            
         }
 
         protected void CargarVentasReporte_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -371,6 +410,7 @@ namespace Pizza_Express_visual.Components
                     ventas carro_comp = new ventas();
                     carro_comp = ListaVentas.First(v => v.codigo_C == codV);
 
+
                     if (carro_comp.cantidad_V > 1)
                     {
                         //restar stock
@@ -379,10 +419,13 @@ namespace Pizza_Express_visual.Components
                     else
                     {
 
-                        ListaVentas.Remove(carro_comp);
                     }
                     CargarVentasReporte.DataSource = ListaVentas;
                     CargarVentasReporte.DataBind();
+                    calcularTotalVentaSeleccion();
+                    limpiarTodo(2);
+
+
                 }
                 catch (Exception ex)
                 {
@@ -391,12 +434,13 @@ namespace Pizza_Express_visual.Components
             }
         }
 
+
         protected void bPDFVentas_Click(object sender, EventArgs e)
         {
             var doc = new Document(PageSize.A5);
             string path = Server.MapPath("Files");
             Random r = new Random();
-            string nombre = "Prod_" + r.Next(1, 500) + "_" + DateTime.Now.Second+".pdf";
+            string nombre = "Prod_" + r.Next(1, 500) + "_" + DateTime.Now.Second + ".pdf";
             PdfWriter pdfWrite = PdfWriter.GetInstance(doc, new FileStream(path + nombre, FileMode.OpenOrCreate));
 
             doc.Open();
@@ -474,6 +518,28 @@ namespace Pizza_Express_visual.Components
             Response.End();
             Response.Flush();
             Response.Clear();
+        }
+
+        private void limpiarTodo(int op)
+        {
+            if (op == 1)
+            {
+
+                ltotalRangoFechaSelección.Text = "";
+
+            }
+            ltotalRangoFechaSelección.Text = "Total ventas seleccionadas $0";
+            ListaVentas.Clear();
+               
+        }
+        protected void LinkButtonlimpiarseleccionventa_Click(object sender, EventArgs e)
+        {
+            CargarVentasReporte.DataSource = null;
+            CargarVentasReporte.DataBind();
+
+            limpiarTodo(2);
+
+
         }
     }
 }

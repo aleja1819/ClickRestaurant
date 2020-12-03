@@ -7,11 +7,13 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace Pizza_Express_visual.Components {
-    
-    
-    public partial class components_Reportes {
-        
+namespace Pizza_Express_visual.Components
+{
+
+
+    public partial class components_Reportes
+    {
+
         /// <summary>
         /// Control uConteReport.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Pizza_Express_visual.Components {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel uConteReport;
-        
+
         /// <summary>
         /// Control venta.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Pizza_Express_visual.Components {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton venta;
-        
+
         /// <summary>
         /// Control producto.
         /// </summary>
@@ -38,7 +40,7 @@ namespace Pizza_Express_visual.Components {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton producto;
-        
+
         /// <summary>
         /// Control mcontenedor.
         /// </summary>
@@ -47,7 +49,7 @@ namespace Pizza_Express_visual.Components {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.MultiView mcontenedor;
-        
+
         /// <summary>
         /// Control vVenta.
         /// </summary>
@@ -56,7 +58,7 @@ namespace Pizza_Express_visual.Components {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.View vVenta;
-        
+
         /// <summary>
         /// Control Panel1.
         /// </summary>
@@ -65,7 +67,7 @@ namespace Pizza_Express_visual.Components {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel Panel1;
-        
+
         /// <summary>
         /// Control Label1.
         /// </summary>
@@ -74,7 +76,7 @@ namespace Pizza_Express_visual.Components {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label1;
-        
+
         /// <summary>
         /// Control tfechaI.
         /// </summary>
@@ -83,7 +85,7 @@ namespace Pizza_Express_visual.Components {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tfechaI;
-        
+
         /// <summary>
         /// Control tfechaF.
         /// </summary>
@@ -92,7 +94,7 @@ namespace Pizza_Express_visual.Components {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tfechaF;
-        
+
         /// <summary>
         /// Control buscarVentas.
         /// </summary>
@@ -101,7 +103,7 @@ namespace Pizza_Express_visual.Components {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton buscarVentas;
-        
+
         /// <summary>
         /// Control bPDFVentas.
         /// </summary>
@@ -110,7 +112,16 @@ namespace Pizza_Express_visual.Components {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton bPDFVentas;
-        
+
+        /// <summary>
+        /// Control ltotalRangoFecha.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ltotalRangoFecha;
+
         /// <summary>
         /// Control idVentaSelect.
         /// </summary>
@@ -119,7 +130,25 @@ namespace Pizza_Express_visual.Components {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView idVentaSelect;
-        
+
+        /// <summary>
+        /// Control ltotalRangoFechaSelección.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ltotalRangoFechaSelección;
+
+        /// <summary>
+        /// Control LinkButtonlimpiarseleccionventa.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButtonlimpiarseleccionventa;
+
         /// <summary>
         /// Control CargarVentasReporte.
         /// </summary>
@@ -128,7 +157,7 @@ namespace Pizza_Express_visual.Components {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView CargarVentasReporte;
-        
+
         /// <summary>
         /// Control vProducto.
         /// </summary>
@@ -137,7 +166,7 @@ namespace Pizza_Express_visual.Components {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.View vProducto;
-        
+
         /// <summary>
         /// Control alerta.
         /// </summary>
@@ -146,7 +175,7 @@ namespace Pizza_Express_visual.Components {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel alerta;
-        
+
         /// <summary>
         /// Control mensaje3.
         /// </summary>
@@ -155,7 +184,7 @@ namespace Pizza_Express_visual.Components {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label mensaje3;
-        
+
         /// <summary>
         /// Control tfechaini.
         /// </summary>
@@ -164,7 +193,7 @@ namespace Pizza_Express_visual.Components {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tfechaini;
-        
+
         /// <summary>
         /// Control tfechafin.
         /// </summary>
@@ -173,7 +202,7 @@ namespace Pizza_Express_visual.Components {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tfechafin;
-        
+
         /// <summary>
         /// Control bBuscarNombre.
         /// </summary>
@@ -182,7 +211,7 @@ namespace Pizza_Express_visual.Components {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton bBuscarNombre;
-        
+
         /// <summary>
         /// Control bGenerarPdf.
         /// </summary>
@@ -191,7 +220,7 @@ namespace Pizza_Express_visual.Components {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton bGenerarPdf;
-        
+
         /// <summary>
         /// Control idTablaEnvio.
         /// </summary>
@@ -200,7 +229,7 @@ namespace Pizza_Express_visual.Components {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView idTablaEnvio;
-        
+
         /// <summary>
         /// Control cargaReporte.
         /// </summary>
