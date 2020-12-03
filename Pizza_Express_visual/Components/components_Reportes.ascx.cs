@@ -309,7 +309,7 @@ namespace Pizza_Express_visual.Components
 
         } //CALCULAR VENTAS SELECCIONADAS
 
-        private void calcularTotalVenta() //MOSTRAR EL TOTAL DE LAS VENTAS EN LA SELECCION DE FECHAS INICIAL Y FINAL
+        private void calcularTotalVenta() //MOSTRAR EL TOTAL DE LAS VENTAS EN LA SELECCION DE FECHAS INICIAL Y FINAL....
         {
             int suma = 0;
             foreach (var item in ListaVentas)
