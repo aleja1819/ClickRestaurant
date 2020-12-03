@@ -119,7 +119,7 @@
                                     <HeaderStyle CssClass="btn-dark" />
 
                                     <Columns>
-                                        <asp:BoundField DataField="codigo_menu" HeaderText="Código Interno" />
+                                        <asp:BoundField DataField="codigo_menu" HeaderText="Código Interno" HeaderStyle-CssClass="ocultarCol" ItemStyle-CssClass="ocultarCol"/>
                                         <asp:BoundField DataField="nombre_menu" HeaderText="Nombre" />
                                         <asp:BoundField DataField="precio_menu" HeaderText="Precio" DataFormatString="${0:N0}" />
                                         <asp:BoundField DataField="ingredientes_menu" HeaderText="Ingredientes" />
@@ -133,7 +133,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <hr />
 
                             <h6 class="section-title h6 text-center text-dark">TABLA DETALLE PAGO</h6>
@@ -145,7 +145,7 @@
                             <br />
 
                             <%-- BOTONES DE COMANDA --%>
-                            <div class="container  offset-1">
+                            <div class="container  offset-2">
                                     <asp:LinkButton ID="btnGenerarPDF" CssClass="btn btn-danger" OnClick="btnGenerarPDF_Click" runat="server">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notes" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                           <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -184,7 +184,7 @@
                             </div>
 
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <hr />
                             <h6 class="section-title h6 text-center text-dark">TABLA DETALLE ELECCION DE COMIDA</h6>
                             <%--TABLA GRIDVIEW--%>
@@ -192,7 +192,7 @@
                                 <asp:GridView runat="server" ID="idCargarSeleccion" CssClass="table table-bordered table-center " AutoGenerateColumns="false" OnRowCommand="idCargarSeleccion_RowCommand">
                                     <HeaderStyle CssClass="btn-dark" />
                                     <Columns>
-                                        <asp:BoundField DataField="codigo_M" HeaderText="Código Interno" />
+                                        <asp:BoundField DataField="codigo_M" HeaderText="Código Interno" HeaderStyle-CssClass="ocultarCol" ItemStyle-CssClass="ocultarCol"/>
                                         <asp:BoundField DataField="cantidad" HeaderText="Cantidad" />
                                         <asp:BoundField DataField="nombre_M" HeaderText="Nombre" />
                                         <asp:BoundField DataField="precio_M" HeaderText="Precio" />
