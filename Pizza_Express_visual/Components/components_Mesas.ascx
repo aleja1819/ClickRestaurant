@@ -460,8 +460,9 @@
                                     <div class="input-group-text text-info"><i class="fa fa-usd"></i></div>
                                 </div>
                                 <asp:TextBox ID="ttransferencia" runat="server"  placeholder="Ingrese N° transferencia, solo si canceló con tarjeta "  CssClass="form-control bg-secondary"></asp:TextBox>
-
+                                <asp:Label runat="server" ID="validar_ttransferencia" CssClass="invalid-feedback" Text="Complete campos, Ingrese propina"></asp:Label>
                             </div>
+                        </div>
 
                         <%--Propina--%>
                         <div class="form-group">
@@ -470,7 +471,7 @@
                                 <div class="input-group-prepend">
                                     <div class="input-group-text text-info"><i class="fa fa-usd"></i></div>
                                 </div>
-                                <asp:TextBox ID="tpropina" runat="server" OnTextChanged="tpropina_TextChanged" placeholder="$" AutoPostBack="true" CssClass="form-control bg-secondary"></asp:TextBox>
+                                <asp:TextBox ID="tpropina" runat="server" OnTextChanged="tpropina_TextChanged" placeholder="$" AutoPostBack="true" CssClass="form-control bg-secondary">0</asp:TextBox>
                                 <asp:Label runat="server" ID="validar_tpropina" CssClass="invalid-feedback" Text="Complete campos, Ingrese propina"></asp:Label>
                             </div>
                         </div>
@@ -483,7 +484,7 @@
                                     <div class="input-group-text text-info"><i class="fa fa-usd"></i></div>
                                 </div>
                                 <asp:TextBox ID="tdescuento" runat="server" placeholder="$"  CssClass="form-control bg-secondary"
-                                    OnTextChanged="tdescuento_TextChanged" AutoPostBack="true"></asp:TextBox>
+                                    OnTextChanged="tdescuento_TextChanged" AutoPostBack="true">0</asp:TextBox>
                                  <asp:Label runat="server" ID="validar_tdescuento" CssClass="invalid-feedback" Text="Complete campos, Ingrese descuento"></asp:Label>
                             </div>
                         </div>

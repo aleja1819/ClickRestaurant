@@ -20,7 +20,7 @@ namespace Pizza_Express_visual.Services
 
                     foreach (var pedidoConDeuda in pedidosAPagar)
                     {
-                        //AQUI ESTOY
+                        
                         var pagarPedidos = bd.PedidosActivos.Find(pedidoConDeuda);
 
 

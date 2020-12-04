@@ -1021,23 +1021,25 @@ namespace Pizza_Express_visual.Components
             {
                 MostrarError(tdescuento, validar_tdescuento, 1);
             }
-                return correcto;
-            }
+  
+            return correcto;
+        }
+
         private void limpiarTodo(int op)
         {
 
             if (op == 1)
             {
                 ttransferencia.Text = "";
-                tpropina.Text = "";
-                tdescuento.Text = "";
+                tpropina.Text = "0";
+                tdescuento.Text = "0";
                 ftipoPago.SelectedIndex = 0;
             }
             else
             {
                 ttransferencia.Text = "";
-                tpropina.Text = "";
-                tdescuento.Text = "";
+                tpropina.Text = "0";
+                tdescuento.Text = "0";
                 ftipoPago.SelectedIndex = 0;
 
             }
@@ -1054,48 +1056,88 @@ namespace Pizza_Express_visual.Components
                 }
                 else
                 {
-                    int idtipoPago = Convert.ToInt32(ftipoPago.SelectedItem.Value);
-                    int idMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
-                    int descuento = Convert.ToInt32(tdescuento.Text);
-                    int propina = Convert.ToInt32(tpropina.Text);
-                    int transferencia = Convert.ToInt32(ttransferencia.Text);
-                    int idEstadoPago = 1;
-
-
-                    List<int> pedidosAPagar = accesoMesas.pedidosAPagar(idMesa);
-
-                    List<int> comandasImpagas = accesoMesas.estadoPagoMesaSeleccionada(idMesa);
-
-                    List<int> pedidosPagados = accesoMesas.pagarPedidos(pedidosAPagar);
-
-
-                    accesoMesas.cambiarEstadoMesa(idMesa, idEstadoPago);
-
-                    accesoMesas.cambiarEstadoPagoComanda(comandasImpagas, idEstadoPago);
-
-                    estadoDesocupado(idMesa);
-
-                    //accesoMesas.estadoPagoMesas();
-
-                    int xComanda = 0;
-                    //GUARDAR LOS DATOS EN LA LISTA         // ============== REVISAR ==================== //
-                    foreach (int pedido in pedidosPagados)
+                    if(ftipoPago.SelectedIndex == 1 && ttransferencia.Text.Length > 0 && ttransferencia.Text != "0") // 1 = Tarjeta
                     {
-                        if (xComanda != pedido)
-                        {
-                            //int pedido=0;
-                            accesoComanda.addPago(new Models.Detalle_Pago
-                            {
-                                codigo_tipoPago = idtipoPago,
-                                numeroTransaccion = transferencia, 
-                                propina = propina,
-                                descuento = descuento,
-                                codigo_comanda = pedido
-                            });
-                            xComanda = pedido;
+                        int idtipoPago = Convert.ToInt32(ftipoPago.SelectedItem.Value);
+                        int idMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
+                        int descuento = Convert.ToInt32(tdescuento.Text);
+                        int propina = Convert.ToInt32(tpropina.Text);
+                        int transferencia = Convert.ToInt32(ttransferencia.Text);
+                        int idEstadoPago = 1;
 
+
+                        List<int> pedidosAPagar = accesoMesas.pedidosAPagar(idMesa);
+
+                        List<int> comandasImpagas = accesoMesas.estadoPagoMesaSeleccionada(idMesa);
+
+                        List<int> pedidosPagados = accesoMesas.pagarPedidos(pedidosAPagar);
+
+
+                        accesoMesas.cambiarEstadoMesa(idMesa, idEstadoPago);
+
+                        accesoMesas.cambiarEstadoPagoComanda(comandasImpagas, idEstadoPago);
+
+                        estadoDesocupado(idMesa);
+
+                        int xComanda = 0;
+                        //GUARDAR LOS DATOS EN LA LISTA         
+                        foreach (int pedido in pedidosPagados)
+                        {
+                            if (xComanda != pedido)
+                            {
+                                accesoComanda.addPago(new Models.Detalle_Pago
+                                {
+                                    codigo_tipoPago = idtipoPago,
+                                    numeroTransaccion = transferencia, 
+                                    propina = propina,
+                                    descuento = descuento,
+                                    codigo_comanda = pedido
+                                });
+                                xComanda = pedido;
+                            }
                         }
                     }
+                    else if(ftipoPago.SelectedIndex == 0 && ttransferencia.Text.Length == 0) // 0 = efectivo
+                    {
+                        int idtipoPago = Convert.ToInt32(ftipoPago.SelectedItem.Value);
+                        int idMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
+                        int descuento = Convert.ToInt32(tdescuento.Text);
+                        int propina = Convert.ToInt32(tpropina.Text);
+                        int idEstadoPago = 1;
+
+
+                        List<int> pedidosAPagar = accesoMesas.pedidosAPagar(idMesa);
+
+                        List<int> comandasImpagas = accesoMesas.estadoPagoMesaSeleccionada(idMesa);
+
+                        List<int> pedidosPagados = accesoMesas.pagarPedidos(pedidosAPagar);
+
+
+                        accesoMesas.cambiarEstadoMesa(idMesa, idEstadoPago);
+
+                        accesoMesas.cambiarEstadoPagoComanda(comandasImpagas, idEstadoPago);
+
+                        estadoDesocupado(idMesa);
+
+                        int xComanda = 0;
+                        //GUARDAR LOS DATOS EN LA LISTA         
+                        foreach (int pedido in pedidosPagados)
+                        {
+                            if (xComanda != pedido)
+                            {
+                                accesoComanda.addPago(new Models.Detalle_Pago
+                                {
+                                    codigo_tipoPago = idtipoPago,
+                                    numeroTransaccion = null,
+                                    propina = propina,
+                                    descuento = descuento,
+                                    codigo_comanda = pedido
+                                });
+                                xComanda = pedido;
+                            }
+                        }
+                    }
+
 
                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalComanda", "$('#myModalComanda').modal('hide');", true);
                     uModalComanda.Update();
