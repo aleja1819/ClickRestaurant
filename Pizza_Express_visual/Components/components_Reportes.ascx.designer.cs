@@ -60,24 +60,6 @@ namespace Pizza_Express_visual.Components
         protected global::System.Web.UI.WebControls.View vVenta;
 
         /// <summary>
-        /// Control Panel1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel1;
-
-        /// <summary>
-        /// Control Label1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-
-        /// <summary>
         /// Control tfechaI.
         /// </summary>
         /// <remarks>
@@ -105,13 +87,13 @@ namespace Pizza_Express_visual.Components
         protected global::System.Web.UI.WebControls.LinkButton buscarVentas;
 
         /// <summary>
-        /// Control bPDFVentas.
+        /// Control visibleAlerta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton bPDFVentas;
+        protected global::System.Web.UI.WebControls.Panel visibleAlerta;
 
         /// <summary>
         /// Control ltotalRangoFecha.
@@ -132,6 +114,15 @@ namespace Pizza_Express_visual.Components
         protected global::System.Web.UI.WebControls.GridView idVentaSelect;
 
         /// <summary>
+        /// Control ldetalleSeleccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ldetalleSeleccion;
+
+        /// <summary>
         /// Control ltotalRangoFechaSelección.
         /// </summary>
         /// <remarks>
@@ -139,6 +130,15 @@ namespace Pizza_Express_visual.Components
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label ltotalRangoFechaSelección;
+
+        /// <summary>
+        /// Control bPDFVentas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton bPDFVentas;
 
         /// <summary>
         /// Control LinkButtonlimpiarseleccionventa.

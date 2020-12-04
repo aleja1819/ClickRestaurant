@@ -69,12 +69,10 @@ namespace Pizza_Express_visual.Services
                     var retornoReporte = from cc in contexto.ComandaMesa
                                          join dm in contexto.ReportesVentas
                                          on cc.codigo_comanda equals dm.codigo_comanda
-                                         join m in contexto.ReportesVentas
-                                         on dm.codigo_menu equals m.codigo_menu
                                          where (cc.fecha.Day <= fechaTermino.Day && cc.fecha.Month <= fechaTermino.Month && cc.fecha.Year <= fechaTermino.Year)
                                          &&
                                          (cc.fecha.Day >= FechaInicial.Day && cc.fecha.Month >= FechaInicial.Month && cc.fecha.Year >= FechaInicial.Year)
-                                         select new { dm.codigo_comanda, m.precio_menu, cc.fecha, m.nombre_menu, m.cantidad};
+                                         select new { dm.codigo_comanda, dm.precio_menu, cc.fecha, dm.nombre_menu, dm.cantidad};
 
 
                     int c = retornoReporte.Count();
@@ -89,6 +87,42 @@ namespace Pizza_Express_visual.Services
             }
         }
 
+        //DEVOLVER UNA LISTA CON LOS PRECIOS PARA REPORTES
+        public int listaPrecios(DateTime FechaInicial, DateTime fechaTermino)
+        {
+            try
+            {
+
+                using (Pizza_BD1 contexto = new Pizza_BD1())
+                {
+
+                    var retornoPrecio = from cc in contexto.ComandaMesa
+                                         join dm in contexto.ReportesVentas
+                                         on cc.codigo_comanda equals dm.codigo_comanda
+                                         where (cc.fecha.Day <= fechaTermino.Day && cc.fecha.Month <= fechaTermino.Month && cc.fecha.Year <= fechaTermino.Year)
+                                         &&
+                                         (cc.fecha.Day >= FechaInicial.Day && cc.fecha.Month >= FechaInicial.Month && cc.fecha.Year >= FechaInicial.Year)
+                                         select new { dm.codigo_comanda, dm.precio_menu, cc.fecha, dm.nombre_menu, dm.cantidad };
+
+
+                    int suma = 0;
+                    foreach (var repo in retornoPrecio)
+                    {
+
+                        suma += Convert.ToInt32(repo.precio_menu) * Convert.ToInt32(repo.cantidad);
+
+                    }
+
+                    return suma; 
+
+                }
+            }
+            catch (Exception e)
+            {
+                return -1;
+
+            }
+        }
 
         public List<object> listartodo()
         {
