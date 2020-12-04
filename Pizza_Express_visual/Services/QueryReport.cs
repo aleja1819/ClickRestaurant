@@ -6,7 +6,7 @@ using System.Linq;
 namespace Pizza_Express_visual.Services
 {
 
-    public class reporte
+    public class productos
     {
         public int codigo_P { get; set; }
         public string nombre_P { get; set; }

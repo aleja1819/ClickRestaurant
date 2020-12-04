@@ -213,13 +213,13 @@ namespace Pizza_Express_visual.Components
         protected global::System.Web.UI.WebControls.LinkButton bBuscarNombre;
 
         /// <summary>
-        /// Control bGenerarPdf.
+        /// Control alertaProducto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton bGenerarPdf;
+        protected global::System.Web.UI.WebControls.Panel alertaProducto;
 
         /// <summary>
         /// Control idTablaEnvio.
@@ -229,6 +229,33 @@ namespace Pizza_Express_visual.Components
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView idTablaEnvio;
+
+        /// <summary>
+        /// Control ldetalleSeleciónP.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ldetalleSeleciónP;
+
+        /// <summary>
+        /// Control bGenerarPdf.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton bGenerarPdf;
+
+        /// <summary>
+        /// Control LinkButtonlimpiarseleccionventaPRO.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButtonlimpiarseleccionventaPRO;
 
         /// <summary>
         /// Control cargaReporte.
