@@ -13,10 +13,10 @@ namespace Pizza_Express_visual.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class PizzaE_BD1 : DbContext
+    public partial class Pizza_BD1 : DbContext
     {
-        public PizzaE_BD1()
-            : base("name=PizzaE_BD1")
+        public Pizza_BD1()
+            : base("name=Pizza_BD1")
         {
         }
     

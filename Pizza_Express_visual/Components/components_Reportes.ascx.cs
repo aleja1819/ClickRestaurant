@@ -341,6 +341,21 @@ namespace Pizza_Express_visual.Components
                     fecha_Ven = idVentaSelect.Rows[fila].Cells[3].Text;
                     precio_Ven = idVentaSelect.Rows[fila].Cells[4].Text.Replace("$", "").Replace(".", "");
 
+                    ////Variable donde almacenaremos el resultado de la sumatoria.
+                    //double sumatoria = 0;
+                    ////Método con el que recorreremos todas las filas de nuestro Datagridview
+                    //foreach (var row in idVentaSelect.Rows)
+                    //{
+                    //    //Aquí seleccionaremos la columna que contiene los datos numericos.
+                    //    sumatoria += Convert.ToInt32(idVentaSelect.Rows[fila].Cells[4].Text);
+                    //}
+                    ////Por ultimo asignamos el resultado a el texto de nuestro Label
+                    //ltotalRangoFecha.Text = ""+ Convert.ToString(sumatoria);
+
+
+
+
+
                     int codV = Convert.ToInt32(codigo_Ven);
                     int cantidad = Convert.ToInt32(canti_Ven);
                     int precio = Convert.ToInt32(precio_Ven);

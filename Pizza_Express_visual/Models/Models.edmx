@@ -1502,7 +1502,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="PizzaE_BD1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Pizza_BD1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Asignar_Menu" EntityType="Self.Asignar_Menu" />
           <EntitySet Name="BoletaComanda" EntityType="Self.BoletaComanda" />
           <EntitySet Name="Caja" EntityType="Self.Caja" />
@@ -1651,7 +1651,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="PizzaE_novModelStoreContainer" CdmEntityContainer="PizzaE_BD1">
+        <EntityContainerMapping StorageEntityContainer="PizzaE_novModelStoreContainer" CdmEntityContainer="Pizza_BD1">
           <EntitySetMapping Name="Asignar_Menu">
             <EntityTypeMapping TypeName="PizzaE_novModel.Asignar_Menu">
               <MappingFragment StoreEntitySet="Asignar_Menu">
