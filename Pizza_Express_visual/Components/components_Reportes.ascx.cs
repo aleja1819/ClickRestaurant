@@ -183,6 +183,7 @@ namespace Pizza_Express_visual.Components
                     }
                     cargaReporte.DataSource = ListaProducto;
                     cargaReporte.DataBind();
+                    limpiarTodo(2);
                 }
                 catch (Exception ex)
                 {
@@ -545,6 +546,7 @@ namespace Pizza_Express_visual.Components
             }
             ltotalRangoFechaSelección.Text = "Total ventas seleccionadas $0";
             ListaVentas.Clear();
+            ListaProducto.Clear();
                
         }
         protected void LinkButtonlimpiarseleccionventa_Click(object sender, EventArgs e)
@@ -558,6 +560,19 @@ namespace Pizza_Express_visual.Components
             bPDFVentas.Visible = false;
             ltotalRangoFechaSelección.Visible = false;
 
+        }
+
+        protected void LinkButtonlimpiarseleccionventaPRO_Click(object sender, EventArgs e)
+        {
+            cargaReporte.DataSource = null;
+            cargaReporte.DataBind();
+            LinkButtonlimpiarseleccionventa.Visible = true;
+            limpiarTodo(2);
+
+            LinkButtonlimpiarseleccionventaPRO.Visible = false;
+            ldetalleSeleciónP.Visible = false;
+            bGenerarPdf.Visible = false;
+           
         }
     }
 }

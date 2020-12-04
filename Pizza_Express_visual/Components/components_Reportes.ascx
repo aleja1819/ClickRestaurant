@@ -239,7 +239,7 @@
 
                                         <%--BOTON LIMPIAR--%>
                                         <div class=" col-md-2 ">
-                                            <asp:LinkButton runat="server" Visible="false" CssClass="btn btn-info" ID="LinkButtonlimpiarseleccionventaPRO" OnClick="LinkButtonlimpiarseleccionventa_Click">Limpiar Tabla</asp:LinkButton>
+                                            <asp:LinkButton runat="server" Visible="false" CssClass="btn btn-info" ID="LinkButtonlimpiarseleccionventaPRO" OnClick="LinkButtonlimpiarseleccionventaPRO_Click">Limpiar Tabla</asp:LinkButton>
                                         </div>
                                     </div>
                                 </div>
