@@ -555,12 +555,21 @@ namespace Pizza_Express_visual.Components
         protected global::System.Web.UI.WebControls.Label codigo_orginal;
 
         /// <summary>
-        /// Control idregistrarPago.
+        /// Control btnRegistraPago.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button idregistrarPago;
+        protected global::System.Web.UI.WebControls.LinkButton btnRegistraPago;
+
+        /// <summary>
+        /// Control btnPdfPago.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnPdfPago;
     }
 }

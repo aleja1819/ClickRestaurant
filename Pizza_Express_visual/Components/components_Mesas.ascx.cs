@@ -27,6 +27,7 @@ namespace Pizza_Express_visual.Components
         private QueryComanda accesoComanda = new QueryComanda();
         static List<object> productoDisponible = new List<object>();
         static List<Services.carro> carroCompra = new List<Services.carro>();
+        
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -114,7 +115,7 @@ namespace Pizza_Express_visual.Components
 
         protected void cargaDatosGrid(int nMesa)
         {
-            /* Recibo la lista de pedidos por mesa 142, 143*/
+            /* Recibo la lista de pedidos por mesa, ejemplo: pedido n°142, 143*/
             List<int> listaPedidosMesa = accesoMesas.estadoPagoMesaSeleccionada(nMesa);
 
             switch (listaPedidosMesa.Count)
@@ -275,7 +276,7 @@ namespace Pizza_Express_visual.Components
 
                     Session["envioComanda"] = 1;
 
-                    generarPDF();
+                    generarPDF(idMesa);
 
                     volver();
 
@@ -733,18 +734,13 @@ namespace Pizza_Express_visual.Components
             }
 
         }
-        protected void btnpagos_Click(object sender, EventArgs e)
+
+        private void pdfBoleta(int idMesa, List<ElementoPagado> detalleBoleta)
         {
-            int id = Convert.ToInt32(Session["idUser"]);
-            accesoComanda.addcomanda(
-
-                carroCompra, 3, 4
-            );
-
             var doc = new Document(PageSize.A5);
             string path = Server.MapPath("Files");
             Random r = new Random();
-            string nombre = "Prod_" + r.Next(1, 500) + "_" + DateTime.Now.Second;
+            string nombre = "Pago_" + r.Next(1, 500) + "_" + DateTime.Now.Second;
             PdfWriter pdfWrite = PdfWriter.GetInstance(doc, new FileStream(path + nombre, FileMode.OpenOrCreate));
 
             doc.Open();
@@ -758,9 +754,90 @@ namespace Pizza_Express_visual.Components
             paragraph.Alignment = Element.ALIGN_CENTER;
             doc.Add(paragraph);
 
+            Paragraph esp = new Paragraph(" ");
+            Paragraph fecha = new Paragraph("Fecha: " + DateTime.Now.ToString());
+            Paragraph mesa = new Paragraph("N° Mesa: " + idMesa);
+            Paragraph cajero = new Paragraph("Atendido por: Cajero PIZZERIA");
+            fecha.Alignment = Element.ALIGN_LEFT;
+            fecha.PaddingTop = 1;
+            doc.Add(esp);
+            doc.Add(fecha);
+            doc.Add(mesa);
+            doc.Add(cajero);
+
+            Paragraph paragraph3 = new Paragraph();
             Paragraph espacio = new Paragraph(" ");
-            espacio.Alignment = Element.ALIGN_LEFT;
+            paragraph3.PaddingTop = 1;
+            doc.Add(paragraph3);
             doc.Add(espacio);
+
+            int sum = 0;
+
+            if (detalleBoleta != null)
+            {
+                // Genera la tabla
+                PdfPTable table = new PdfPTable(4);
+                PdfPCell cell = new PdfPCell();
+                cell.HorizontalAlignment = 1; //0=Left, 1=Centre, 2=Right
+                cell.BorderColor = BaseColor.BLACK;
+                cell.BackgroundColor = BaseColor.RED;
+
+                // Carga los títulos de la tabla
+                iTextSharp.text.Font letraBlanca = FontFactory.GetFont("Verdana", 12, iTextSharp.text.Font.BOLDITALIC, BaseColor.WHITE);
+                cell.Phrase = new Phrase("Cantidad", letraBlanca);
+                table.AddCell(cell);
+                cell.Phrase = new Phrase("Producto", letraBlanca);
+                table.AddCell(cell);
+                cell.Phrase = new Phrase("Precio Unitario", letraBlanca);
+                table.AddCell(cell);
+                cell.Phrase = new Phrase("Precio Total", letraBlanca);
+                table.AddCell(cell);
+
+                PdfPCell cell0 = new PdfPCell();
+
+                foreach(var el in detalleBoleta)
+                {
+                    cell0.Phrase = new Phrase(el.cantidad.ToString());
+                    table.AddCell(cell0);
+
+                    cell0.Phrase = new Phrase(el.nombre);
+                    table.AddCell(cell0);
+
+                    cell0.Phrase = new Phrase(el.precio.ToString());
+                    table.AddCell(cell0);
+
+                
+                    cell0.Phrase = new Phrase(el.total.ToString());
+                    table.AddCell(cell0);
+
+                    sum += el.total;
+                }
+                doc.Add(table);
+            }
+
+            Paragraph FormaDePago = new Paragraph("Medio de Pago : "+ftipoPago.SelectedItem.Text);
+            Paragraph TicketTransferencia = new Paragraph("N° Transacción RedCompra : "+ttransferencia.Text);
+            Paragraph subtotal = new Paragraph("Subtotal $"+sum);
+            Paragraph propina = new Paragraph("Propina $" + tpropina.Text);
+            Paragraph descuento = new Paragraph("Dscto $" + tdescuento.Text);
+            Paragraph totalPago = new Paragraph("Total A PAgar $ "+LTotalCancelar.Text);
+            subtotal.Alignment = Element.ALIGN_RIGHT;
+            propina.Alignment = Element.ALIGN_RIGHT;
+            descuento.Alignment = Element.ALIGN_RIGHT;
+            totalPago.Alignment = Element.ALIGN_RIGHT;
+            fecha.PaddingTop = 1;
+            doc.Add(FormaDePago);
+            doc.Add(TicketTransferencia);
+            doc.Add(subtotal);
+            doc.Add(propina);
+            doc.Add(descuento);
+            doc.Add(totalPago);
+
+            Paragraph noVali = new Paragraph("NO VALIDO COMO BOLETA");
+            noVali.Alignment = Element.ALIGN_CENTER;
+            doc.Add(noVali);
+
+
 
             iTextSharp.text.Font verda = FontFactory.GetFont("Verdana", 11, iTextSharp.text.Font.BOLDITALIC, BaseColor.BLACK);
             Paragraph direccion = new Paragraph(@"Maipu #380 Linares", verda);
@@ -770,101 +847,20 @@ namespace Pizza_Express_visual.Components
             doc.Add(direccion);
             doc.Add(telefono);
 
-            Paragraph paragraph2 = new Paragraph("Fecha: " + DateTime.Now.ToString());
-            Random m = new Random();
-            Paragraph mesa = new Paragraph("N° Mesa: " + m.Next(1, 20));
-            Paragraph garzon = new Paragraph("Garzón: GARZÓN PIZZERIA");
-            Random c = new Random();
-            Paragraph comanda = new Paragraph("Comanda: " + c.Next(1, 5000));
-            paragraph2.Alignment = Element.ALIGN_LEFT;
-            paragraph2.PaddingTop = 1;
-            doc.Add(paragraph2);
-            doc.Add(mesa);
-            doc.Add(garzon);
-            doc.Add(comanda);
-
-            iTextSharp.text.Font letra = FontFactory.GetFont("Verdana", 11, iTextSharp.text.Font.BOLDITALIC, BaseColor.RED);
-            Paragraph titulo = new Paragraph(@"DETALLE MESA", letra);
-            titulo.Alignment = Element.ALIGN_CENTER;
-            doc.Add(titulo);
-
-            Paragraph paragraph3 = new Paragraph(" ");
-            paragraph3.Alignment = Element.ALIGN_LEFT;
-            doc.Add(paragraph3);
-
-            PdfPTable table = new PdfPTable(3);
-            PdfPCell cell = new PdfPCell();
-            cell.HorizontalAlignment = 1; //0=Left, 1=Centre, 2=Right
-            cell.BorderColor = BaseColor.BLACK;
-            cell.BackgroundColor = BaseColor.RED;
-
-            iTextSharp.text.Font letraBlanca = FontFactory.GetFont("Verdana", 12, iTextSharp.text.Font.BOLDITALIC, BaseColor.WHITE);
-            cell.Phrase = new Phrase("Cantidad", letraBlanca);
-            table.AddCell(cell);
-            cell.Phrase = new Phrase("Articulo", letraBlanca);
-            table.AddCell(cell);
-            cell.Phrase = new Phrase("Precio", letraBlanca);
-            table.AddCell(cell);
-
-
-            PdfPCell cell0 = new PdfPCell();
-            foreach (var regist in carroCompra)
-            {
-                cell0.Phrase = new Phrase(regist.cantidad.ToString());
-                table.AddCell(cell0);
-
-                cell0.Phrase = new Phrase(regist.nombre_M);
-                table.AddCell(cell0);
-
-                cell0.Phrase = new Phrase(regist.precio_M.ToString());
-                table.AddCell(cell0);
-
-            }
-
-            doc.Add(table);
-
-            Paragraph subtotal = new Paragraph(ltotal.Text);
-            Paragraph desc = new Paragraph("Dscto $" + 0);
-            Paragraph Propina = new Paragraph("Propina $" + 0);
-            Paragraph pagarT = new Paragraph(ltotal.Text);
-            subtotal.Alignment = Element.ALIGN_RIGHT;
-            desc.Alignment = Element.ALIGN_RIGHT;
-            Propina.Alignment = Element.ALIGN_RIGHT;
-            pagarT.Alignment = Element.ALIGN_RIGHT;
-            paragraph2.PaddingTop = 1;
-            doc.Add(subtotal);
-            doc.Add(desc);
-            doc.Add(Propina);
-            doc.Add(pagarT);
-
-            Paragraph noVali = new Paragraph("NO VALIDO COMO BOLETA");
-            noVali.Alignment = Element.ALIGN_CENTER;
-            doc.Add(noVali);
-
             doc.Close();
-            LimpiarCarro();
-            eShowPdf((path + nombre));
-        }
-        private void eShowPdf(String strS)
-        {
-            Response.ClearContent();
-            Response.ClearHeaders();
-            Response.ContentType = "application/pdf";
-            Response.AddHeader("Content-Disposition", "attachment; filename=" + strS);
-            Response.TransmitFile(strS);
-            Response.End();
-            Response.Flush();
-            Response.Clear();
+
+            ShowPdf((path + nombre));
+
         }
 
-        /* NO se utiliza por el momento*/
-        private void generarPDF()
+        /* Genera el Pdf de la comanda que irá a cocina */
+        private void generarPDF(int idMesa)
         {
             // Generar Pdf
             var doc = new Document(PageSize.A5);
             string path = Server.MapPath("Files");
             Random r = new Random();
-            string nombre = "_" + r.Next(1, 500) + "_" + DateTime.Now.Second;
+            string nombre = "Pedido_" + r.Next(1, 500) + "_" + DateTime.Now.Second;
             PdfWriter pdfWrite = PdfWriter.GetInstance(doc, new FileStream(path + nombre, FileMode.OpenOrCreate));
 
             // Carga Imagen
@@ -885,7 +881,7 @@ namespace Pizza_Express_visual.Components
             Paragraph paragraph2 = new Paragraph("Fecha: " + DateTime.Now.ToString());
             Random m = new Random();
             // Carga numero mesa
-            Paragraph mesa = new Paragraph("N° Mesa: " + System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
+            Paragraph mesa = new Paragraph("N° Mesa: " + idMesa);
             // Carga Garzón
             Paragraph garzon = new Paragraph("Garzón: GARZÓN PIZZERIA");
             Random c = new Random();
@@ -946,7 +942,7 @@ namespace Pizza_Express_visual.Components
             Response.ContentType = "application/pdf";
             Response.AddHeader("Content-Disposition", "attachment; filename=" + strS +".pdf");
             Response.TransmitFile(strS);
-            //Response.End();
+            Response.End();
             Response.Flush();
             Response.Clear();
 
@@ -1048,118 +1044,6 @@ namespace Pizza_Express_visual.Components
         /* Genera el pago de los pedidos que existan*/
         protected void idregistrarPago_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (validaCampos() == false)
-                {
-
-                }
-                else
-                {
-                    if(ftipoPago.SelectedIndex == 1 && ttransferencia.Text.Length > 0 && ttransferencia.Text != "0") // 1 = Tarjeta
-                    {
-                        int idtipoPago = Convert.ToInt32(ftipoPago.SelectedItem.Value);
-                        int idMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
-                        int descuento = Convert.ToInt32(tdescuento.Text);
-                        int propina = Convert.ToInt32(tpropina.Text);
-                        int transferencia = Convert.ToInt32(ttransferencia.Text);
-                        int idEstadoPago = 1;
-
-
-                        List<int> pedidosAPagar = accesoMesas.pedidosAPagar(idMesa);
-
-                        List<int> comandasImpagas = accesoMesas.estadoPagoMesaSeleccionada(idMesa);
-
-                        List<int> pedidosPagados = accesoMesas.pagarPedidos(pedidosAPagar);
-
-
-                        accesoMesas.cambiarEstadoMesa(idMesa, idEstadoPago);
-
-                        accesoMesas.cambiarEstadoPagoComanda(comandasImpagas, idEstadoPago);
-
-                        estadoDesocupado(idMesa);
-
-                        int xComanda = 0;
-                        //GUARDAR LOS DATOS EN LA LISTA         
-                        foreach (int pedido in pedidosPagados)
-                        {
-                            if (xComanda != pedido)
-                            {
-                                accesoComanda.addPago(new Models.Detalle_Pago
-                                {
-                                    codigo_tipoPago = idtipoPago,
-                                    numeroTransaccion = transferencia, 
-                                    propina = propina,
-                                    descuento = descuento,
-                                    codigo_comanda = pedido
-                                });
-                                xComanda = pedido;
-                            }
-                        }
-                    }
-                    else if(ftipoPago.SelectedIndex == 0 && ttransferencia.Text.Length == 0) // 0 = efectivo
-                    {
-                        int idtipoPago = Convert.ToInt32(ftipoPago.SelectedItem.Value);
-                        int idMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
-                        int descuento = Convert.ToInt32(tdescuento.Text);
-                        int propina = Convert.ToInt32(tpropina.Text);
-                        int idEstadoPago = 1;
-
-
-                        List<int> pedidosAPagar = accesoMesas.pedidosAPagar(idMesa);
-
-                        List<int> comandasImpagas = accesoMesas.estadoPagoMesaSeleccionada(idMesa);
-
-                        List<int> pedidosPagados = accesoMesas.pagarPedidos(pedidosAPagar);
-
-
-                        accesoMesas.cambiarEstadoMesa(idMesa, idEstadoPago);
-
-                        accesoMesas.cambiarEstadoPagoComanda(comandasImpagas, idEstadoPago);
-
-                        estadoDesocupado(idMesa);
-
-                        int xComanda = 0;
-                        //GUARDAR LOS DATOS EN LA LISTA         
-                        foreach (int pedido in pedidosPagados)
-                        {
-                            if (xComanda != pedido)
-                            {
-                                accesoComanda.addPago(new Models.Detalle_Pago
-                                {
-                                    codigo_tipoPago = idtipoPago,
-                                    numeroTransaccion = null,
-                                    propina = propina,
-                                    descuento = descuento,
-                                    codigo_comanda = pedido
-                                });
-                                xComanda = pedido;
-                            }
-                        }
-                    }
-
-
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalComanda", "$('#myModalComanda').modal('hide');", true);
-                    uModalComanda.Update();
-
-                    volver();
-                    mContenedor.SetActiveView(vMesas);
-                    uContenido.Update();
-
-                    limpiarTodo(2);
-
-                    alertaMesas.Visible = true;
-                    alertaMesas.CssClass = "alert alert-primary animated zoomInUp";
-                    mensajeMesas.Text = "PAGO AGREGADO CON EXITO.";
-
-                }
-            }
-            catch (Exception)
-            {
-                alertaMesas.Visible = true;
-                alertaMesas.CssClass = "alert alert-danger animated zoomInUp";
-                mensajeMesas.Text = "PAGO NO REGISTRADO.";
-            }
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
@@ -1230,5 +1114,134 @@ namespace Pizza_Express_visual.Components
                 alerta.Visible = false;
             }
         }
+
+        protected void btnRegistraPago_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (validaCampos() == false)
+                {
+
+                }
+                else
+                {
+                    int idMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
+                    List<ElementoPagado> detalleBoleta = accesoMesas.detalleBoleta(idMesa);
+
+                    if (ftipoPago.SelectedIndex == 1 && ttransferencia.Text.Length > 0 && ttransferencia.Text != "0") // 1 = Tarjeta
+                    {
+                        int idtipoPago = Convert.ToInt32(ftipoPago.SelectedItem.Value);
+                        int descuento = Convert.ToInt32(tdescuento.Text);
+                        int propina = Convert.ToInt32(tpropina.Text);
+                        int transferencia = Convert.ToInt32(ttransferencia.Text);
+                        int idEstadoPago = 1;
+
+
+                        List<int> pedidosAPagar = accesoMesas.pedidosAPagar(idMesa);
+
+                        List<int> comandasImpagas = accesoMesas.estadoPagoMesaSeleccionada(idMesa);
+
+                        List<int> pedidosPagados = accesoMesas.pagarPedidos(pedidosAPagar);
+
+
+                        accesoMesas.cambiarEstadoMesa(idMesa, idEstadoPago);
+
+                        accesoMesas.cambiarEstadoPagoComanda(comandasImpagas, idEstadoPago);
+
+                        estadoDesocupado(idMesa);
+
+                        int xComanda = 0;
+                        //GUARDAR LOS DATOS EN LA LISTA         
+                        foreach (int pedido in pedidosPagados)
+                        {
+                            if (xComanda != pedido)
+                            {
+                                accesoComanda.addPago(new Models.Detalle_Pago
+                                {
+                                    codigo_tipoPago = idtipoPago,
+                                    numeroTransaccion = transferencia,
+                                    propina = propina,
+                                    descuento = descuento,
+                                    codigo_comanda = pedido
+                                });
+                                xComanda = pedido;
+                            }
+                        }
+                    }
+                    else if (ftipoPago.SelectedIndex == 0 && ttransferencia.Text.Length == 0) // 0 = efectivo
+                    {
+                        int idtipoPago = Convert.ToInt32(ftipoPago.SelectedItem.Value);
+                        int descuento = Convert.ToInt32(tdescuento.Text);
+                        int propina = Convert.ToInt32(tpropina.Text);
+                        int idEstadoPago = 1;
+
+
+                        List<int> pedidosAPagar = accesoMesas.pedidosAPagar(idMesa);
+
+                        List<int> comandasImpagas = accesoMesas.estadoPagoMesaSeleccionada(idMesa);
+
+                        List<int> pedidosPagados = accesoMesas.pagarPedidos(pedidosAPagar);
+
+
+                        accesoMesas.cambiarEstadoMesa(idMesa, idEstadoPago);
+
+                        accesoMesas.cambiarEstadoPagoComanda(comandasImpagas, idEstadoPago);
+
+                        estadoDesocupado(idMesa);
+
+                        int xComanda = 0;
+                        //GUARDAR LOS DATOS EN LA LISTA         
+                        foreach (int pedido in pedidosPagados)
+                        {
+                            if (xComanda != pedido)
+                            {
+                                accesoComanda.addPago(new Models.Detalle_Pago
+                                {
+                                    codigo_tipoPago = idtipoPago,
+                                    numeroTransaccion = null,
+                                    propina = propina,
+                                    descuento = descuento,
+                                    codigo_comanda = pedido
+                                });
+                                xComanda = pedido;
+                            }
+                        }
+                    }
+
+
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalComanda", "$('#myModalComanda').modal('hide');", true);
+                    uModalComanda.Update();
+
+                    volver();
+                    mContenedor.SetActiveView(vMesas);
+                    uContenido.Update();
+
+                    limpiarTodo(2);
+
+
+                    alertaMesas.Visible = true;
+                    alertaMesas.CssClass = "alert alert-primary animated zoomInUp";
+                    mensajeMesas.Text = "PAGO AGREGADO CON EXITO.";
+
+                }
+            }
+            catch (Exception)
+            {
+                alertaMesas.Visible = true;
+                alertaMesas.CssClass = "alert alert-danger animated zoomInUp";
+                mensajeMesas.Text = "PAGO NO REGISTRADO.";
+            }
+
+        }
+
+        protected void btnPdfPago_Click(object sender, EventArgs e)
+        {
+            int idMesa = Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]);
+            List<ElementoPagado> detalleBoleta = accesoMesas.detalleBoleta(idMesa);
+
+            pdfBoleta(idMesa, detalleBoleta);
+
+        }
+
     }
 }

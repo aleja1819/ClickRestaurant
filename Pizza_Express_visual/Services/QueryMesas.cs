@@ -5,7 +5,13 @@ using System.Web;
 using Pizza_Express_visual.Models;
 namespace Pizza_Express_visual.Services
 {
-
+    public class ElementoPagado
+    {
+        public int cantidad { get; set; }
+        public string nombre { get; set; }
+        public int precio { get; set; }
+        public int total { get; set; }
+    }
 
     public class QueryMesas
     {
@@ -15,7 +21,6 @@ namespace Pizza_Express_visual.Services
             {
                 using (Pizza_BD1 bd = new Pizza_BD1())
                 {
-                    //int cantidadPedidosConDeuda = pedidosAPagar.Count();
                     var pedidosPagados = new List<int>();
 
                     foreach (var pedidoConDeuda in pedidosAPagar)
@@ -98,13 +103,17 @@ namespace Pizza_Express_visual.Services
                 using (Pizza_BD1 bd = new Pizza_BD1())
                 {
                     int ptotal = 0;
+
                     foreach (var el in listaPedidosMesa)
                     {
-                        var estadoPagoMesa = from m in bd.Detalle_Mesa_Pedido
+                        var estadoPagoMesa = from m in bd.PedidosActivos
                                              where m.codigo_comanda.Equals(el)
-                                             select new { m.precio_total };
+                                             select new { m.subtotal };
 
-                        ptotal += estadoPagoMesa.First().precio_total;
+                        foreach (var subtotal in estadoPagoMesa)
+                        {
+                            ptotal += subtotal.subtotal;
+                        }
 
                     }
                         return ptotal;
@@ -131,7 +140,37 @@ namespace Pizza_Express_visual.Services
             catch { return null; }
         }
 
+        public List<ElementoPagado> detalleBoleta(int nMesa)
+        {
+            try
+            {
+                using (Pizza_BD1 bd = new Pizza_BD1())
+                {
 
+                    var pedidos = from m in bd.PedidosActivos
+                                 where m.idMesa == nMesa && m.idEstadoPago == 2
+                                 select new { m.codigo_comanda, m.nombre_menu, m.precio_menu, m.cantidad, m.subtotal };
+
+                    List<ElementoPagado> elementosPagados = new List<ElementoPagado>();
+
+                    //elementosPagados.Clear();
+
+                    foreach (var pedido in pedidos)
+                    {
+                        elementosPagados.Add(new ElementoPagado
+                        {
+                            cantidad = pedido.cantidad,
+                            nombre = pedido.nombre_menu,
+                            precio = pedido.precio_menu,
+                            total = pedido.subtotal
+                        });
+                    }
+
+                    return elementosPagados.ToList<ElementoPagado>();
+                }
+            }
+            catch { return null; }
+        }
         public List<String> objetoPedidos(List<int> listaPedidosMesa)
         {
             try

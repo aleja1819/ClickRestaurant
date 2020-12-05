@@ -371,7 +371,7 @@ namespace Pizza_Express_visual.Components
                     DateTime fecha = Convert.ToDateTime(fecha_Ven);
 
                     ListaVentas.Add(new ventas { codigo_C = codV, cantidad_V = cantidad, nombre_V = nombre_Ven, fecha_V = fecha, precio_V = precio });
-                    
+                        
                 }
                 finally
                 {
