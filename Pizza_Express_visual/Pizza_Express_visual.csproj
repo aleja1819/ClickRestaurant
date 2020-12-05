@@ -146,7 +146,6 @@
     <Content Include="Components\components_Proveedores.ascx" />
     <Content Include="Components\components_RegistrarProductos.ascx" />
     <Content Include="Components\components_Reportes.ascx" />
-    <Content Include="Components\components_Reservas.ascx" />
     <Content Include="Components\components_Usuarios.ascx" />
     <Content Include="Components\component_Bienvenidos.ascx" />
     <Content Include="Components\component_Caja.ascx" />
@@ -278,13 +277,6 @@
     <Compile Include="Components\components_Reportes.ascx.designer.cs">
       <DependentUpon>components_Reportes.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Components\components_Reservas.ascx.cs">
-      <DependentUpon>components_Reservas.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Components\components_Reservas.ascx.designer.cs">
-      <DependentUpon>components_Reservas.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Components\components_Usuarios.ascx.cs">
       <DependentUpon>components_Usuarios.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -314,9 +306,6 @@
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\Asignar_Menu.cs">
-      <DependentUpon>Models.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BoletaComanda.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Caja.cs">
@@ -388,9 +377,6 @@
     <Compile Include="Models\ReportesVentas.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Reserva.cs">
-      <DependentUpon>Models.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\TamanoP.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
@@ -413,7 +399,6 @@
     <Compile Include="Services\QueryProductos.cs" />
     <Compile Include="Services\QueryProveedor.cs" />
     <Compile Include="Services\QueryReport.cs" />
-    <Compile Include="Services\QueryReservas.cs" />
     <Compile Include="Services\QueryUsuario.cs" />
     <Compile Include="test.aspx.cs">
       <DependentUpon>test.aspx</DependentUpon>

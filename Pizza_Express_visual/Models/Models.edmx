@@ -13,19 +13,6 @@
           <Property Name="codigo_tipoUsuario" Type="int" Nullable="false" />
           <Property Name="idMenu" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="BoletaComanda">
-          <Key>
-            <PropertyRef Name="codigo_boleta" />
-          </Key>
-          <Property Name="codigo_boleta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="fecha" Type="datetime" Nullable="false" />
-          <Property Name="subTotal" Type="int" Nullable="false" />
-          <Property Name="total" Type="int" Nullable="false" />
-          <Property Name="codigo_menu" Type="int" Nullable="false" />
-          <Property Name="codigo_comanda" Type="int" Nullable="false" />
-          <Property Name="codigo_pago" Type="int" Nullable="false" />
-          <Property Name="numero_caja" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="Caja">
           <Key>
             <PropertyRef Name="numero_caja" />
@@ -127,7 +114,7 @@
           </Key>
           <Property Name="codigo_pago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="codigo_tipoPago" Type="int" Nullable="false" />
-          <Property Name="numeroTransaccion" Type="int" Nullable="false" />
+          <Property Name="numeroTransaccion" Type="int" />
           <Property Name="propina" Type="int" Nullable="false" />
           <Property Name="descuento" Type="int" Nullable="false" />
           <Property Name="codigo_comanda" Type="int" />
@@ -252,16 +239,6 @@
           <Property Name="precio_menu" Type="int" Nullable="false" />
           <Property Name="cantidad" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Reserva">
-          <Key>
-            <PropertyRef Name="codigo_reserva" />
-          </Key>
-          <Property Name="codigo_reserva" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="idMesa" Type="int" Nullable="false" />
-          <Property Name="nombre_reserva" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="fecha_reser" Type="date" Nullable="false" />
-          <Property Name="hora_reser" Type="time" Precision="7" Nullable="false" />
-        </EntityType>
         <EntityType Name="TamanoP">
           <Key>
             <PropertyRef Name="codigo_tamanoP" />
@@ -323,30 +300,6 @@
             </Principal>
             <Dependent Role="Asignar_Menu">
               <PropertyRef Name="codigo_tipoUsuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_BoletaComanda_Caja1">
-          <End Role="Caja" Type="Self.Caja" Multiplicity="1" />
-          <End Role="BoletaComanda" Type="Self.BoletaComanda" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Caja">
-              <PropertyRef Name="numero_caja" />
-            </Principal>
-            <Dependent Role="BoletaComanda">
-              <PropertyRef Name="numero_caja" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_BoletaComanda_Pago1">
-          <End Role="Detalle_Pago" Type="Self.Detalle_Pago" Multiplicity="1" />
-          <End Role="BoletaComanda" Type="Self.BoletaComanda" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Detalle_Pago">
-              <PropertyRef Name="codigo_pago" />
-            </Principal>
-            <Dependent Role="BoletaComanda">
-              <PropertyRef Name="codigo_pago" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -614,18 +567,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Reserva_Mesa">
-          <End Role="Mesa" Type="Self.Mesa" Multiplicity="1" />
-          <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Mesa">
-              <PropertyRef Name="idMesa" />
-            </Principal>
-            <Dependent Role="Reserva">
-              <PropertyRef Name="idMesa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_Usuario_Estado_Usuario">
           <End Role="Estado_Usuario" Type="Self.Estado_Usuario" Multiplicity="1" />
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
@@ -652,7 +593,6 @@
         </Association>
         <EntityContainer Name="PizzaE_novModelStoreContainer">
           <EntitySet Name="Asignar_Menu" EntityType="Self.Asignar_Menu" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="BoletaComanda" EntityType="Self.BoletaComanda" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Caja" EntityType="Self.Caja" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ComandaMesa" EntityType="Self.ComandaMesa" Schema="dbo" store:Type="Tables" />
@@ -671,7 +611,6 @@
           <EntitySet Name="Producto_Proveedor" EntityType="Self.Producto_Proveedor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Proveedor" EntityType="Self.Proveedor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReportesVentas" EntityType="Self.ReportesVentas" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Reserva" EntityType="Self.Reserva" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TamanoP" EntityType="Self.TamanoP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoPago" EntityType="Self.TipoPago" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoProducto" EntityType="Self.TipoProducto" Schema="dbo" store:Type="Tables" />
@@ -684,14 +623,6 @@
           <AssociationSet Name="fk_Asignar_Menu_TipoUsuario" Association="Self.fk_Asignar_Menu_TipoUsuario">
             <End Role="TipoUsuario" EntitySet="TipoUsuario" />
             <End Role="Asignar_Menu" EntitySet="Asignar_Menu" />
-          </AssociationSet>
-          <AssociationSet Name="fk_BoletaComanda_Caja1" Association="Self.fk_BoletaComanda_Caja1">
-            <End Role="Caja" EntitySet="Caja" />
-            <End Role="BoletaComanda" EntitySet="BoletaComanda" />
-          </AssociationSet>
-          <AssociationSet Name="fk_BoletaComanda_Pago1" Association="Self.fk_BoletaComanda_Pago1">
-            <End Role="Detalle_Pago" EntitySet="Detalle_Pago" />
-            <End Role="BoletaComanda" EntitySet="BoletaComanda" />
           </AssociationSet>
           <AssociationSet Name="FK_Caja_Estado_caja" Association="Self.FK_Caja_Estado_caja">
             <End Role="Estado_caja" EntitySet="Estado_caja" />
@@ -781,10 +712,6 @@
             <End Role="Menu" EntitySet="Menu" />
             <End Role="ReportesVentas" EntitySet="ReportesVentas" />
           </AssociationSet>
-          <AssociationSet Name="FK_Reserva_Mesa" Association="Self.FK_Reserva_Mesa">
-            <End Role="Mesa" EntitySet="Mesa" />
-            <End Role="Reserva" EntitySet="Reserva" />
-          </AssociationSet>
           <AssociationSet Name="fk_Usuario_Estado_Usuario" Association="Self.fk_Usuario_Estado_Usuario">
             <End Role="Estado_Usuario" EntitySet="Estado_Usuario" />
             <End Role="Usuario" EntitySet="Usuario" />
@@ -809,28 +736,12 @@
           <NavigationProperty Name="Menu_Link" Relationship="Self.fk_Asignar_Menu_Menu_Link" FromRole="Asignar_Menu" ToRole="Menu_Link" />
           <NavigationProperty Name="TipoUsuario" Relationship="Self.fk_Asignar_Menu_TipoUsuario" FromRole="Asignar_Menu" ToRole="TipoUsuario" />
         </EntityType>
-        <EntityType Name="BoletaComanda">
-          <Key>
-            <PropertyRef Name="codigo_boleta" />
-          </Key>
-          <Property Name="codigo_boleta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="subTotal" Type="Int32" Nullable="false" />
-          <Property Name="total" Type="Int32" Nullable="false" />
-          <Property Name="codigo_menu" Type="Int32" Nullable="false" />
-          <Property Name="codigo_comanda" Type="Int32" Nullable="false" />
-          <Property Name="codigo_pago" Type="Int32" Nullable="false" />
-          <Property Name="numero_caja" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Caja" Relationship="Self.fk_BoletaComanda_Caja1" FromRole="BoletaComanda" ToRole="Caja" />
-          <NavigationProperty Name="Detalle_Pago" Relationship="Self.fk_BoletaComanda_Pago1" FromRole="BoletaComanda" ToRole="Detalle_Pago" />
-        </EntityType>
         <EntityType Name="Caja">
           <Key>
             <PropertyRef Name="numero_caja" />
           </Key>
           <Property Name="numero_caja" Type="Int32" Nullable="false" />
           <Property Name="codigo_estado" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="BoletaComanda" Relationship="Self.fk_BoletaComanda_Caja1" FromRole="Caja" ToRole="BoletaComanda" />
           <NavigationProperty Name="Estado_caja" Relationship="Self.FK_Caja_Estado_caja" FromRole="Caja" ToRole="Estado_caja" />
           <NavigationProperty Name="detalleCaja" Relationship="Self.FK_detalleCaja_Caja" FromRole="Caja" ToRole="detalleCaja" />
         </EntityType>
@@ -936,11 +847,10 @@
           </Key>
           <Property Name="codigo_pago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="codigo_tipoPago" Type="Int32" Nullable="false" />
-          <Property Name="numeroTransaccion" Type="Int32" Nullable="false" />
+          <Property Name="numeroTransaccion" Type="Int32" />
           <Property Name="propina" Type="Int32" Nullable="false" />
           <Property Name="descuento" Type="Int32" Nullable="false" />
           <Property Name="codigo_comanda" Type="Int32" />
-          <NavigationProperty Name="BoletaComanda" Relationship="Self.fk_BoletaComanda_Pago1" FromRole="Detalle_Pago" ToRole="BoletaComanda" />
           <NavigationProperty Name="TipoPago" Relationship="Self.fk_Pago_TipoPago1" FromRole="Detalle_Pago" ToRole="TipoPago" />
         </EntityType>
         <EntityType Name="detalleCaja">
@@ -1024,7 +934,6 @@
           <NavigationProperty Name="Detalle_Mesa_Pedido" Relationship="Self.fk_idMesa_Mesa" FromRole="Mesa" ToRole="Detalle_Mesa_Pedido" />
           <NavigationProperty Name="Estado_Mesa" Relationship="Self.fk_Mesa_Estado_Mesa1" FromRole="Mesa" ToRole="Estado_Mesa" />
           <NavigationProperty Name="PedidosActivos" Relationship="Self.fk_idMesaPedido_Mesa" FromRole="Mesa" ToRole="PedidosActivos" />
-          <NavigationProperty Name="Reserva" Relationship="Self.FK_Reserva_Mesa" FromRole="Mesa" ToRole="Reserva" />
         </EntityType>
         <EntityType Name="PedidosActivos">
           <Key>
@@ -1092,17 +1001,6 @@
           <Property Name="cantidad" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ComandaMesa" Relationship="Self.fk_Re_codigo_comanda_ComandaMesa" FromRole="ReportesVentas" ToRole="ComandaMesa" />
           <NavigationProperty Name="Menu" Relationship="Self.fk_Re_codigo_menu" FromRole="ReportesVentas" ToRole="Menu" />
-        </EntityType>
-        <EntityType Name="Reserva">
-          <Key>
-            <PropertyRef Name="codigo_reserva" />
-          </Key>
-          <Property Name="codigo_reserva" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idMesa" Type="Int32" Nullable="false" />
-          <Property Name="nombre_reserva" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="fecha_reser" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="hora_reser" Type="Time" Nullable="false" Precision="7" />
-          <NavigationProperty Name="Mesa" Relationship="Self.FK_Reserva_Mesa" FromRole="Reserva" ToRole="Mesa" />
         </EntityType>
         <EntityType Name="TamanoP">
           <Key>
@@ -1175,30 +1073,6 @@
             </Principal>
             <Dependent Role="Asignar_Menu">
               <PropertyRef Name="codigo_tipoUsuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_BoletaComanda_Caja1">
-          <End Role="Caja" Type="Self.Caja" Multiplicity="1" />
-          <End Role="BoletaComanda" Type="Self.BoletaComanda" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Caja">
-              <PropertyRef Name="numero_caja" />
-            </Principal>
-            <Dependent Role="BoletaComanda">
-              <PropertyRef Name="numero_caja" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_BoletaComanda_Pago1">
-          <End Role="Detalle_Pago" Type="Self.Detalle_Pago" Multiplicity="1" />
-          <End Role="BoletaComanda" Type="Self.BoletaComanda" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Detalle_Pago">
-              <PropertyRef Name="codigo_pago" />
-            </Principal>
-            <Dependent Role="BoletaComanda">
-              <PropertyRef Name="codigo_pago" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1430,18 +1304,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Reserva_Mesa">
-          <End Role="Mesa" Type="Self.Mesa" Multiplicity="1" />
-          <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Mesa">
-              <PropertyRef Name="idMesa" />
-            </Principal>
-            <Dependent Role="Reserva">
-              <PropertyRef Name="idMesa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_Producto_has_Proveedor_Producto1">
           <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
           <End Role="Producto_Proveedor" Type="Self.Producto_Proveedor" Multiplicity="*" />
@@ -1504,7 +1366,6 @@
         </Association>
         <EntityContainer Name="Pizza_BD1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Asignar_Menu" EntityType="Self.Asignar_Menu" />
-          <EntitySet Name="BoletaComanda" EntityType="Self.BoletaComanda" />
           <EntitySet Name="Caja" EntityType="Self.Caja" />
           <EntitySet Name="Categoria" EntityType="Self.Categoria" />
           <EntitySet Name="ComandaMesa" EntityType="Self.ComandaMesa" />
@@ -1523,7 +1384,6 @@
           <EntitySet Name="Producto_Proveedor" EntityType="Self.Producto_Proveedor" />
           <EntitySet Name="Proveedor" EntityType="Self.Proveedor" />
           <EntitySet Name="ReportesVentas" EntityType="Self.ReportesVentas" />
-          <EntitySet Name="Reserva" EntityType="Self.Reserva" />
           <EntitySet Name="TamanoP" EntityType="Self.TamanoP" />
           <EntitySet Name="TipoPago" EntityType="Self.TipoPago" />
           <EntitySet Name="TipoProducto" EntityType="Self.TipoProducto" />
@@ -1536,14 +1396,6 @@
           <AssociationSet Name="fk_Asignar_Menu_TipoUsuario" Association="Self.fk_Asignar_Menu_TipoUsuario">
             <End Role="TipoUsuario" EntitySet="TipoUsuario" />
             <End Role="Asignar_Menu" EntitySet="Asignar_Menu" />
-          </AssociationSet>
-          <AssociationSet Name="fk_BoletaComanda_Caja1" Association="Self.fk_BoletaComanda_Caja1">
-            <End Role="Caja" EntitySet="Caja" />
-            <End Role="BoletaComanda" EntitySet="BoletaComanda" />
-          </AssociationSet>
-          <AssociationSet Name="fk_BoletaComanda_Pago1" Association="Self.fk_BoletaComanda_Pago1">
-            <End Role="Detalle_Pago" EntitySet="Detalle_Pago" />
-            <End Role="BoletaComanda" EntitySet="BoletaComanda" />
           </AssociationSet>
           <AssociationSet Name="FK_Caja_Estado_caja" Association="Self.FK_Caja_Estado_caja">
             <End Role="Estado_caja" EntitySet="Estado_caja" />
@@ -1621,10 +1473,6 @@
             <End Role="Mesa" EntitySet="Mesa" />
             <End Role="PedidosActivos" EntitySet="PedidosActivos" />
           </AssociationSet>
-          <AssociationSet Name="FK_Reserva_Mesa" Association="Self.FK_Reserva_Mesa">
-            <End Role="Mesa" EntitySet="Mesa" />
-            <End Role="Reserva" EntitySet="Reserva" />
-          </AssociationSet>
           <AssociationSet Name="fk_Producto_has_Proveedor_Producto1" Association="Self.fk_Producto_has_Proveedor_Producto1">
             <End Role="Producto" EntitySet="Producto" />
             <End Role="Producto_Proveedor" EntitySet="Producto_Proveedor" />
@@ -1658,20 +1506,6 @@
                 <ScalarProperty Name="idAsignarMenu" ColumnName="idAsignarMenu" />
                 <ScalarProperty Name="codigo_tipoUsuario" ColumnName="codigo_tipoUsuario" />
                 <ScalarProperty Name="idMenu" ColumnName="idMenu" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BoletaComanda">
-            <EntityTypeMapping TypeName="PizzaE_novModel.BoletaComanda">
-              <MappingFragment StoreEntitySet="BoletaComanda">
-                <ScalarProperty Name="codigo_boleta" ColumnName="codigo_boleta" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-                <ScalarProperty Name="subTotal" ColumnName="subTotal" />
-                <ScalarProperty Name="total" ColumnName="total" />
-                <ScalarProperty Name="codigo_menu" ColumnName="codigo_menu" />
-                <ScalarProperty Name="codigo_comanda" ColumnName="codigo_comanda" />
-                <ScalarProperty Name="codigo_pago" ColumnName="codigo_pago" />
-                <ScalarProperty Name="numero_caja" ColumnName="numero_caja" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1914,17 +1748,6 @@
                 <ScalarProperty Name="nombre_menu" ColumnName="nombre_menu" />
                 <ScalarProperty Name="precio_menu" ColumnName="precio_menu" />
                 <ScalarProperty Name="cantidad" ColumnName="cantidad" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Reserva">
-            <EntityTypeMapping TypeName="PizzaE_novModel.Reserva">
-              <MappingFragment StoreEntitySet="Reserva">
-                <ScalarProperty Name="codigo_reserva" ColumnName="codigo_reserva" />
-                <ScalarProperty Name="idMesa" ColumnName="idMesa" />
-                <ScalarProperty Name="nombre_reserva" ColumnName="nombre_reserva" />
-                <ScalarProperty Name="fecha_reser" ColumnName="fecha_reser" />
-                <ScalarProperty Name="hora_reser" ColumnName="hora_reser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

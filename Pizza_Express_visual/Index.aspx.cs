@@ -85,13 +85,6 @@ namespace Pizza_Express_visual
             uContenido.Update();
         }
 
-        protected void Menu_Reservas_Click(object sender, EventArgs e)
-        {
-            alerta.Visible = false;
-            mcontenedor.SetActiveView(vReservas);
-            uContenido.Update();
-        }
-
         protected void Menu_usuarios_Click(object sender, EventArgs e)
         {
             alerta.Visible = false;

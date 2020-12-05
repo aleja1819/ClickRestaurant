@@ -302,7 +302,7 @@ namespace Pizza_Express_visual.Components
 
                 Session["precioTotal"] = accesoReportes.listaPrecios(fechaInicial, fechaFinal);
                 
-                ltotalRangoFecha.Text = "Total Ventas $" + Session["precioTotal"];
+                ltotalRangoFecha.Text = "Total Ventas del día $" + Session["precioTotal"];
                 ltotalRangoFecha.Visible = true;
 
             }

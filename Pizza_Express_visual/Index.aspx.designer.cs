@@ -51,15 +51,6 @@ namespace Pizza_Express_visual
         protected global::System.Web.UI.WebControls.LinkButton Menu_ventas;
 
         /// <summary>
-        /// Control Menu_Reservas.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Menu_Reservas;
-
-        /// <summary>
         /// Control Menu_Mesas.
         /// </summary>
         /// <remarks>
@@ -220,24 +211,6 @@ namespace Pizza_Express_visual
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.MultiView mcontenedor;
-
-        /// <summary>
-        /// Control vReservas.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View vReservas;
-
-        /// <summary>
-        /// Control components_Reservas.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::Pizza_Express_visual.Components.components_Reservas components_Reservas;
 
         /// <summary>
         /// Control vUsuarios.

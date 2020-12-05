@@ -67,7 +67,7 @@
                     <%--TOTAL VENTAS DE UN RANGO DE FECHA--%>
                     <div class="container col-8 offset-3">
                         <h5 class="text-dark text-md-left">
-                            <asp:Label runat="server" ID="ltotalRangoFecha" Visible="false" class="text-danger" Text="Total Ventas $"></asp:Label></h5>
+                            <asp:Label runat="server" ID="ltotalRangoFecha" Visible="false" class="text-danger" Text="Total Ventas del día $"></asp:Label></h5>
                     </div>
 
                     <br />

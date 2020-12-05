@@ -13,7 +13,6 @@
 <%@ Register Src="~/Components/components_Proveedores.ascx" TagPrefix="uc1" TagName="components_Proveedores" %>
 <%@ Register Src="~/Components/components_RegistrarProductos.ascx" TagPrefix="uc1" TagName="components_RegistrarProductos" %>
 <%@ Register Src="~/Components/components_Reportes.ascx" TagPrefix="uc1" TagName="components_Reportes" %>
-<%@ Register Src="~/Components/components_Reservas.ascx" TagPrefix="uc1" TagName="components_Reservas" %>
 <%@ Register Src="~/Components/components_Usuarios.ascx" TagPrefix="uc1" TagName="components_Usuarios" %>
 <%@ Register Src="~/Components/component_Caja.ascx" TagPrefix="uc1" TagName="component_Caja" %>
 <%@ Register Src="~/Components/components_Mesas.ascx" TagPrefix="uc1" TagName="components_Mesas" %>
@@ -77,8 +76,7 @@
                                     <asp:LinkButton Style="color: white" Class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" Visible="false" ID="Menu_ventas" runat="server"
                                         aria-haspopup="true" aria-expanded="false"><i class="fas fa-dollar-sign fa-2x"></i> Ventas</asp:LinkButton>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <asp:LinkButton runat="server" ID="Menu_Reservas" OnClick="Menu_Reservas_Click" CssClass="dropdown-item">Reservas</asp:LinkButton>
-                                        <%--<asp:LinkButton runat="server" ID="Menu_comanda" OnClick="Menu_comanda_Click" CssClass="dropdown-item">Toma de Pedido</asp:LinkButton>--%>
+                                       <%--<asp:LinkButton runat="server" ID="Menu_comanda" OnClick="Menu_comanda_Click" CssClass="dropdown-item">Toma de Pedido</asp:LinkButton>--%>
                                         <asp:LinkButton runat="server" ID="Menu_Mesas" OnClick="Menu_Mesas_Click" CssClass="dropdown-item">Toma de Pedidos</asp:LinkButton>
                                         <asp:LinkButton runat="server" ID="Menu_Caja" OnClick="Menu_Caja_Click" CssClass="dropdown-item">Apertura Caja</asp:LinkButton>
                                     </div>
@@ -194,10 +192,7 @@
                 <%--VISTAS--%>
                 <asp:MultiView runat="server" ID="mcontenedor">
 
-                    <asp:View runat="server" ID="vReservas">
-                        <uc1:components_Reservas runat="server" ID="components_Reservas" />
-                    </asp:View>
-                    <asp:View runat="server" ID="vUsuarios">
+                   <asp:View runat="server" ID="vUsuarios">
                         <uc1:components_Usuarios runat="server" ID="components_Usuarios" />
                     </asp:View>
                     <asp:View runat="server" ID="vProveedores">
