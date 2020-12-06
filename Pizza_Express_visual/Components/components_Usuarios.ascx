@@ -78,7 +78,7 @@
                                 <asp:BoundField DataField="email_usuario" HeaderText="Email" />
                                 <asp:BoundField DataField="contraseña_usuario" HeaderText="Contraseña" Visible="true" />
                                 <asp:BoundField DataField="nombre_tipoUsuario" HeaderText="Tipo Usuario" />
-                                <asp:BoundField DataField="nombre_estado" HeaderText="Estado Usuario" />
+                                <%--<asp:BoundField DataField="nombre_estado" HeaderText="Estado Usuario" />--%>
 
                                 <asp:ButtonField ButtonType="Link" CommandName="ideditar" ControlStyle-CssClass="btn btn-dark" Text="Editar" />
                                 <asp:ButtonField ButtonType="Link" CommandName="ideliminar" ControlStyle-CssClass="btn btn-danger" Text="Eliminar" />
@@ -159,7 +159,7 @@
                                     </asp:DropDownList>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group" hidden="hidden">
                                     <label for="fEstado">Estado(*)</label>
                                     <br />
                                     <asp:DropDownList runat="server" ID="fEstado" CssClass="form-control"

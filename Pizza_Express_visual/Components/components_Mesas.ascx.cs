@@ -998,7 +998,18 @@ namespace Pizza_Express_visual.Components
         {
 
             bool correcto = true;
-
+            if(ftipoPago.SelectedItem.Text.Equals("Efectivo") && ttransferencia.Text.Length != 0)
+            {
+                MostrarError(ttransferencia, validar_ttransferencia, 0);
+                correcto = false;
+            }else if(ftipoPago.SelectedItem.Text.Equals("Tarjeta") && ttransferencia.Text.Length == 0){
+                MostrarError(ttransferencia, validar_ttransferencia, 0);
+                correcto = false;
+            }
+            else
+            {
+                MostrarError(ttransferencia, validar_ttransferencia, 1);
+            }
             if (tpropina.Text.Equals(""))
             {
                 MostrarError(tpropina, validar_tpropina, 0);

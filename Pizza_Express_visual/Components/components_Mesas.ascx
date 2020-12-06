@@ -459,7 +459,7 @@
                                     <div class="input-group-text text-info"><i class="fa fa-usd"></i></div>
                                 </div>
                                 <asp:TextBox ID="ttransferencia" runat="server"  placeholder="Ingrese N° transferencia, solo si canceló con tarjeta "  CssClass="form-control bg-secondary"></asp:TextBox>
-                                <asp:Label runat="server" ID="validar_ttransferencia" CssClass="invalid-feedback" Text="Complete campos, Ingrese propina"></asp:Label>
+                                <asp:Label runat="server" ID="validar_ttransferencia" CssClass="invalid-feedback" Text="Verifique Este campo, Medio de Pago Efectivo = Vacío, Medio de Pago Tarjeta = N° Comprobante RedCompra"></asp:Label>
                             </div>
                         </div>
 
@@ -490,8 +490,25 @@
 
                         <div class="modal-footer">
                             <asp:Label runat="server" ID="codigo_orginal" CssClass="ocultarCol"></asp:Label>
-                            <asp:LinkButton ID="btnRegistraPago" runat="server" Visible="true" OnClick="btnRegistraPago_Click" CssClass="btn btn-success float-right">Pagar</asp:LinkButton>
-                            <asp:LinkButton ID="btnPdfPago" runat="server" Visible="true" OnClick="btnPdfPago_Click" CssClass="btn btn-success float-right">Imprimir Detalle</asp:LinkButton>
+                            <asp:LinkButton ID="btnPdfPago" runat="server" Visible="true" OnClick="btnPdfPago_Click" CssClass="btn btn-success float-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-notes" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                  <rect x="5" y="3" width="14" height="18" rx="2" />
+                                  <line x1="9" y1="7" x2="15" y2="7" />
+                                  <line x1="9" y1="11" x2="15" y2="11" />
+                                  <line x1="9" y1="15" x2="13" y2="15" />
+                                </svg><br />
+                                Imprimir Detalle
+                            </asp:LinkButton>
+                            <asp:LinkButton ID="btnRegistraPago" runat="server" Visible="true" OnClick="btnRegistraPago_Click" CssClass="btn btn-danger float-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-coin" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                  <circle cx="12" cy="12" r="9" />
+                                  <path d="M14.8 9a2 2 0 0 0 -1.8 -1h-2a2 2 0 0 0 0 4h2a2 2 0 0 1 0 4h-2a2 2 0 0 1 -1.8 -1" />
+                                  <path d="M12 6v2m0 8v2" />
+                                </svg><br />
+                                Realizar Pago
+                            </asp:LinkButton>
                         </div>
                     </div>
                 </div>

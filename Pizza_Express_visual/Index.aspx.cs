@@ -31,7 +31,8 @@ namespace Pizza_Express_visual
             catch (Exception)
             {
                 Session["name_user"] = "Usuario no Registrado";
-                login.Visible = true;
+                //login.Visible = true;
+                usuarioNoRegistrado();
             }
 
 
@@ -116,6 +117,33 @@ namespace Pizza_Express_visual
             login.Visible = false;
             idCerrarSesion.Visible = true;
 
+        }
+
+        void usuarioNoRegistrado()
+        {
+
+            mostrar_usuario.Visible = false;
+            MostrarLogo.Visible = true;
+
+            login.Visible = true;
+            idCerrarSesion.Visible = false;
+
+            Session.Clear();
+            Session.Abandon();
+
+            Menu_administracion.Visible = false;
+            Menu_ventas.Visible = false;
+            Menu_home.Visible = false;
+            mostrar_usuario.Visible = false;
+            component_Bienvenidos.Visible = false;
+            login.Visible = true;
+            MostrarLogo.Visible = true;
+
+            alerta.Visible = false;
+            mcontenedor.SetActiveView(vBienvenida);
+            uBarraMenu.Update();
+            uContenido.Update();
+            uModal.Update();
         }
 
         protected void bingresar_login_Click(object sender, EventArgs e)
