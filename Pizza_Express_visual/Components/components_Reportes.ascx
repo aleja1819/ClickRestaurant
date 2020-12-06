@@ -71,6 +71,15 @@
                     </div>
 
                     <br />
+
+                         <div class="container col-10">
+                                 <%--/////////CARGAR TODOS LOS DATOS A LA TABLA PARA IMPRIMIR///////////////--%>
+                            <div class="col-md-2 offset-10">
+                                <asp:LinkButton runat="server" Visible="true" CssClass="btn btn-success" ID="bCargarDatos" OnClick="bCargarDatos_Click"> Seleccionar Todo </asp:LinkButton>
+                            </div>
+                          </div>
+                    
+
                     <%--GRIDVIEW--%>
                     <div class="container col-10">
                         <div class="row">
@@ -95,6 +104,8 @@
                                     </asp:GridView>
                                 </div>
                                 <br />
+                                
+                           
 
 
                                 <div class="container col-6 offset-5">

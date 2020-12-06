@@ -123,6 +123,34 @@ namespace Pizza_Express_visual.Services
 
             }
         }
+        public List<object> MostrarTodo(DateTime FechaInicial, DateTime fechaTermino)
+        {
+            try
+            {
+
+                using (Pizza_BD1 contexto = new Pizza_BD1())
+                {
+
+                    var retornoTodo = from cc in contexto.ComandaMesa
+                                         join dm in contexto.ReportesVentas
+                                         on cc.codigo_comanda equals dm.codigo_comanda
+                                         where (cc.fecha.Day <= fechaTermino.Day && cc.fecha.Month <= fechaTermino.Month && cc.fecha.Year <= fechaTermino.Year)
+                                         &&
+                                         (cc.fecha.Day >= FechaInicial.Day && cc.fecha.Month >= FechaInicial.Month && cc.fecha.Year >= FechaInicial.Year)
+                                         select new { dm.codigo_comanda, dm.precio_menu, cc.fecha, dm.nombre_menu, dm.cantidad };
+
+
+                    int c = retornoTodo.Count();
+                    return retornoTodo.ToList<object>();
+
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+
+            }
+        }
 
         public List<object> listartodo()
         {

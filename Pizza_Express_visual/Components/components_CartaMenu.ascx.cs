@@ -206,7 +206,7 @@ namespace Pizza_Express_visual.Components
                 }
                 else
                 {
-                }
+                
 
                 //LEER LOS DATOS INGRESADOS
                 string nombre_P = tnombre.Text;
@@ -244,6 +244,7 @@ namespace Pizza_Express_visual.Components
                 alerta.CssClass = "alert alert-primary animated zoomInUp";
                 mensaje3.Text = "MENÚ MODIFICADO CON EXITO.";
 
+                }
             }
             catch (Exception)
             {

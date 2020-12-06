@@ -59,16 +59,28 @@ namespace Pizza_Express_visual.Components
         {
 
             bool correcto = true;
+            string rutProveedor = trut.Text;
+            int cod = accesoProductos.codigoProveedor(rutProveedor);
+            string codi = cod + "";
 
-            if (trut.Text.Equals(""))
+            if ( trut.Text == codi )
             {
-                MostrarError(trut, valida_trut, 0);
+                MostrarError(trut, va, 0);
                 correcto = false;
             }
             else
             {
-                MostrarError(trut, valida_trut, 1);
+                MostrarError(trut, va, 1);
             }
+            //if (trut.Text.Equals(""))
+            //{
+            //    MostrarError(trut, valida_trut, 0);
+            //    correcto = false;
+            //}
+            //else
+            //{
+            //    MostrarError(trut, valida_trut, 1);
+            //}
             if (tnombre.Text.Equals(""))
             {
                 MostrarError(tnombre, valida_tnombre, 0);
@@ -158,8 +170,9 @@ namespace Pizza_Express_visual.Components
                         DateTime t = DateTime.Now;
 
                         int cant = Convert.ToInt32(tcantidad.Text);
+                        string codi = cod +"";
 
-                                               
+
 
                             accesoProductos.addProd_Prove(new Models.Producto_Proveedor
                             {
@@ -168,7 +181,6 @@ namespace Pizza_Express_visual.Components
                                 codigo_producto = idProd,
                                 cantidad_producto = cant,
                                 codigo_proveedor = cod
-
 
                             });
 
@@ -188,9 +200,9 @@ namespace Pizza_Express_visual.Components
                             mensaje3.Text = "PRODUCTO AGREGADO CON EXITO.";
 
                             bregistrarProducto.Visible = false;
-                       
+                        }
                     }
-                }
+                
             }
             catch (Exception)
             {

@@ -123,7 +123,7 @@
                                         </div>
                                         <asp:TextBox runat="server" placeholder="Rut Proveedor" ID="trut" CssClass="form-control bg-secondary"></asp:TextBox>
                                         <asp:Label runat="server" ID="valida_trut" CssClass="invalid-feedback" Text="Complete Campos, Ingrese Rut-Rut Erroneo"></asp:Label>
-                                    <asp:Label runat="server" ID="va" CssClass="invalid-feedback" Text="Rut Erroneo"></asp:Label>
+                                        <asp:Label runat="server" ID="va" CssClass="invalid-feedback" Text="Proveedor No registrado"></asp:Label>
                                     </div>
                                 </div>
 

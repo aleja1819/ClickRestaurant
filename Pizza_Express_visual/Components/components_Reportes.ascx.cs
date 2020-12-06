@@ -49,11 +49,12 @@ namespace Pizza_Express_visual.Components
                 active(1);
                 alerta.Visible = false;
 
-               
-          }
+        
+
+            }
 
         }
-            
+
         protected void venta_Click(object sender, EventArgs e)
         {
             active(1);
@@ -78,7 +79,7 @@ namespace Pizza_Express_visual.Components
 
                 idTablaEnvio.DataSource = accesoReportes.filtrarPorNombre(FechaInicial, FechaFinal);
                 idTablaEnvio.DataBind();
-                
+
             }
             catch (Exception)
             {
@@ -301,7 +302,7 @@ namespace Pizza_Express_visual.Components
 
 
                 Session["precioTotal"] = accesoReportes.listaPrecios(fechaInicial, fechaFinal);
-                
+
                 ltotalRangoFecha.Text = "Total Ventas del día $" + Session["precioTotal"];
                 ltotalRangoFecha.Visible = true;
 
@@ -312,7 +313,7 @@ namespace Pizza_Express_visual.Components
 
             }
         }
-               
+
         private void calcularTotalVentaSeleccion() //CALCULAR VENTAS SELECCIONADAS
 
         {
@@ -324,7 +325,7 @@ namespace Pizza_Express_visual.Components
 
             ltotalRangoFechaSelección.Text = "Total ventas seleccionadas $" + suma;
             ltotalRangoFechaSelección.Visible = true;
-        } 
+        }
 
         protected void idVentaSelect_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -338,30 +339,29 @@ namespace Pizza_Express_visual.Components
                 string precio_Ven = "";
                 try
                 {
-                                       
-                        codigo_Ven = idVentaSelect.Rows[fila].Cells[0].Text;
-                        canti_Ven = idVentaSelect.Rows[fila].Cells[1].Text;
-                        nombre_Ven = idVentaSelect.Rows[fila].Cells[2].Text.Replace("&#243;", "ó").Replace("&#233;", "é").Replace("&#241;", "ñ").Replace(".", "");
-                        fecha_Ven = idVentaSelect.Rows[fila].Cells[3].Text;
-                        precio_Ven = idVentaSelect.Rows[fila].Cells[4].Text.Replace("$", "").Replace(".", "");
-               
+
+                    codigo_Ven = idVentaSelect.Rows[fila].Cells[0].Text;
+                    canti_Ven = idVentaSelect.Rows[fila].Cells[1].Text;
+                    nombre_Ven = idVentaSelect.Rows[fila].Cells[2].Text.Replace("&#243;", "ó").Replace("&#233;", "é").Replace("&#241;", "ñ").Replace(".", "");
+                    fecha_Ven = idVentaSelect.Rows[fila].Cells[3].Text;
+                    precio_Ven = idVentaSelect.Rows[fila].Cells[4].Text.Replace("$", "").Replace(".", "");
 
 
-                        int codV = Convert.ToInt32(codigo_Ven);
-                        int cantidad = Convert.ToInt32(canti_Ven);
-                        int precio = Convert.ToInt32(precio_Ven);
-                        //AGREGAR PRODUCTO AL CARRO
-                        ventas carrito = new ventas();
-                        carrito = ListaVentas.First(v => v.codigo_C == codV);
-                        ListaVentas[ListaVentas.IndexOf(carrito)].cantidad_V += 1;
-                        ListaVentas[ListaVentas.IndexOf(carrito)].precio_V += precio;
-    
-                        CargarVentasReporte.DataSource = ListaVentas;
-                        CargarVentasReporte.DataBind();
-                        ltotalRangoFechaSelección.Visible = true;
-                        
+                    int codV = Convert.ToInt32(codigo_Ven);
+                    int cantidad = Convert.ToInt32(canti_Ven);
+                    int precio = Convert.ToInt32(precio_Ven);
+                    //AGREGAR PRODUCTO AL CARRO
+                    ventas carrito = new ventas();
+                    carrito = ListaVentas.First(v => v.codigo_C == codV);
+                    ListaVentas[ListaVentas.IndexOf(carrito)].cantidad_V += 1;
+                    ListaVentas[ListaVentas.IndexOf(carrito)].precio_V += precio;
+
+                    CargarVentasReporte.DataSource = ListaVentas;
+                    CargarVentasReporte.DataBind();
+                    ltotalRangoFechaSelección.Visible = true;
+
                 }
-                              
+
                 catch (Exception)
                 {
 
@@ -371,14 +371,15 @@ namespace Pizza_Express_visual.Components
                     DateTime fecha = Convert.ToDateTime(fecha_Ven);
 
                     ListaVentas.Add(new ventas { codigo_C = codV, cantidad_V = cantidad, nombre_V = nombre_Ven, fecha_V = fecha, precio_V = precio });
-                        
+
                 }
                 finally
                 {
-                    
+
                     CargarVentasReporte.DataSource = ListaVentas;
                     CargarVentasReporte.DataBind();
                     codigo_Ven = "";
+
 
                 }
                 calcularTotalVentaSeleccion();
@@ -387,7 +388,7 @@ namespace Pizza_Express_visual.Components
                 bPDFVentas.Visible = true;
 
             }
-            
+
         }
 
         protected void CargarVentasReporte_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -420,12 +421,12 @@ namespace Pizza_Express_visual.Components
 
                     if (carrito.cantidad_V > 1)
                     {
-                        
+
                         //restar stock
                         int cantidadActual = carrito.cantidad_V;
                         int precioActual = carrito.precio_V;
 
-                        ListaVentas[ListaVentas.IndexOf(carrito)].cantidad_V = cantidadActual -1 ;
+                        ListaVentas[ListaVentas.IndexOf(carrito)].cantidad_V = cantidadActual - 1;
                         ListaVentas[ListaVentas.IndexOf(carrito)].precio_V = precio - precioActual;
 
 
@@ -547,7 +548,7 @@ namespace Pizza_Express_visual.Components
             ltotalRangoFechaSelección.Text = "Total ventas seleccionadas $0";
             ListaVentas.Clear();
             ListaProducto.Clear();
-               
+
         }
         protected void LinkButtonlimpiarseleccionventa_Click(object sender, EventArgs e)
         {
@@ -572,7 +573,105 @@ namespace Pizza_Express_visual.Components
             LinkButtonlimpiarseleccionventaPRO.Visible = false;
             ldetalleSeleciónP.Visible = false;
             bGenerarPdf.Visible = false;
-           
+
         }
+
+        protected void bCargarDatos_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int fila = idVentaSelect.Rows.Count;
+
+                string codigo_Ven = "";
+                string canti_Ven = "";
+                string nombre_Ven = "";
+                string fecha_Ven = "";
+                string precio_Ven = "";
+
+               
+
+                            for (int i = 0; i < fila; i++)
+                {
+
+                    Session["codigo"] = idVentaSelect.Rows[i].Cells[0].Text; 
+                    Session["cantidad"] = idVentaSelect.Rows[i].Cells[1].Text; 
+                    Session["nombre"] = idVentaSelect.Rows[i].Cells[2].Text.Replace("&#243;", "ó").Replace("&#233;", "é").Replace("&#241;", "ñ").Replace(".", "");;
+                    Session["fecha"] = idVentaSelect.Rows[i].Cells[3].Text; 
+                    Session["precio"] = idVentaSelect.Rows[i].Cells[4].Text.Replace("$", "").Replace(".", "");
+
+                    
+
+                    int codV = Convert.ToInt32(Session["codigo"]);
+                    int cantidad = Convert.ToInt32(Session["cantidad"]);
+                    int precio = Convert.ToInt32(Session["precio"]);
+
+
+                        //AGREGAR PRODUCTO AL CARRO
+                        ventas carrito = new ventas();
+                    carrito = ListaVentas.First(v => v.codigo_C == codV);
+                    //ListaVentas[ListaVentas.IndexOf(carrito)].cantidad_V += 1;
+                    //ListaVentas[ListaVentas.IndexOf(carrito)].precio_V += precio;
+
+                    List<string> cargar = new List<string>();
+
+
+
+                }
+
+
+                    CargarVentasReporte.DataSource = ListaVentas;
+                    CargarVentasReporte.DataBind();
+                    ltotalRangoFechaSelección.Visible = true;
+
+                }
+
+            catch (Exception)
+            {
+
+                List<string> cargar = new List<string>();
+
+                
+
+                int codV = Convert.ToInt32(Session["codigo"]);
+                int cantidad = Convert.ToInt32(Session["cantidad"]);
+                int precio = Convert.ToInt32(Session["precio"]);
+                DateTime fecha = Convert.ToDateTime(Session["fecha"]);
+                string nombre = "" + (Session["nombre"]);
+
+                cargar.Add(Session["codigo"]+"");
+                cargar.Add(Session["cantidad"] + "");
+                cargar.Add(Session["nombre"] + "");
+                cargar.Add(Session["fecha"] + "");
+                cargar.Add(Session["precio"] + "");
+
+
+                ListaVentas.Add(new ventas
+                {
+
+                    codigo_C = Convert.ToInt32(cargar[0]),
+                    cantidad_V = Convert.ToInt32(cargar[1]),
+                    nombre_V = (cargar[2]),
+                    fecha_V = Convert.ToDateTime(cargar[3]),
+                    precio_V = Convert.ToInt32(cargar[4]),
+
+                });
+
+            }
+            finally
+            {
+
+                CargarVentasReporte.DataSource = ListaVentas;
+                CargarVentasReporte.DataBind();
+                Session["codigo"] = "";
+
+
+            }
+            calcularTotalVentaSeleccion();
+            LinkButtonlimpiarseleccionventa.Visible = true;
+            ldetalleSeleccion.Visible = true;
+            bPDFVentas.Visible = true;
+        }
+
+        }
+
     }
-}

@@ -76,7 +76,7 @@
                                 <asp:BoundField DataField="rut_usuario" HeaderText="Rut" />
                                 <asp:BoundField DataField="nombre_usuario" HeaderText="Nombre Usuario" />
                                 <asp:BoundField DataField="email_usuario" HeaderText="Email" />
-                                <asp:BoundField DataField="contraseña_usuario" HeaderText="Contraseña" Visible="false" />
+                                <asp:BoundField DataField="contraseña_usuario" HeaderText="Contraseña" Visible="true" />
                                 <asp:BoundField DataField="nombre_tipoUsuario" HeaderText="Tipo Usuario" />
                                 <asp:BoundField DataField="nombre_estado" HeaderText="Estado Usuario" />
 
@@ -146,8 +146,8 @@
                                         <div class="input-group-prepend">
                                             <div class="input-group-text text-info"><i class="fas fa-key"></i></div>
                                         </div>
-                                        <asp:TextBox runat="server" ID="tclave" TextMode="Password" placeholder="Contraseña" CssClass="form-control bg-secondary"></asp:TextBox>
-                                        <asp:Label runat="server" ID="valida_tcalve" CssClass="invalid-feedback" Text="Ingrese Contraseña"></asp:Label>
+                                        <asp:TextBox runat="server" ID="tclave"  placeholder="Contraseña" CssClass="form-control bg-secondary"></asp:TextBox>
+                                        <asp:Label runat="server" ID="valida_tclave" CssClass="invalid-feedback" Text="Ingrese Contraseña"></asp:Label>
                                     </div>
                                 </div>
 
