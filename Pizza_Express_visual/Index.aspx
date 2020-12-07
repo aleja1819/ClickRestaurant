@@ -76,7 +76,6 @@
                                     <asp:LinkButton Style="color: white" Class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" Visible="false" ID="Menu_ventas" runat="server"
                                         aria-haspopup="true" aria-expanded="false"><i class="fas fa-dollar-sign fa-2x"></i> Ventas</asp:LinkButton>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                       <%--<asp:LinkButton runat="server" ID="Menu_comanda" OnClick="Menu_comanda_Click" CssClass="dropdown-item">Toma de Pedido</asp:LinkButton>--%>
                                         <asp:LinkButton runat="server" ID="Menu_Mesas" OnClick="Menu_Mesas_Click" CssClass="dropdown-item">Toma de Pedidos</asp:LinkButton>
                                         <asp:LinkButton runat="server" ID="Menu_Caja" OnClick="Menu_Caja_Click" CssClass="dropdown-item">Apertura Caja</asp:LinkButton>
                                     </div>

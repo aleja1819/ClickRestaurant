@@ -31,7 +31,6 @@ namespace Pizza_Express_visual
             catch (Exception)
             {
                 Session["name_user"] = "Usuario no Registrado";
-                //login.Visible = true;
                 usuarioNoRegistrado();
             }
 
@@ -112,6 +111,7 @@ namespace Pizza_Express_visual
             queryUsuario.menu(idRol, ListaMenu);
 
             mostrar_usuario.Visible = true;
+            component_Bienvenidos.Visible = true;
             MostrarLogo.Visible = false;
 
             login.Visible = false;
@@ -121,10 +121,6 @@ namespace Pizza_Express_visual
 
         void usuarioNoRegistrado()
         {
-
-            mostrar_usuario.Visible = false;
-            MostrarLogo.Visible = true;
-
             login.Visible = true;
             idCerrarSesion.Visible = false;
 
