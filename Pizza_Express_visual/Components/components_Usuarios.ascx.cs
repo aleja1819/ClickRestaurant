@@ -52,14 +52,12 @@ namespace Pizza_Express_visual.Components
             }
             else
             {
-
                 trut.Text = "";
                 tnombre.Text = "";
                 temail.Text = "";
                 tclave.Text = "";
                 fTipoUsuario.SelectedIndex = 0;
                 fEstado.SelectedIndex = 0;
-
             }
         }
 

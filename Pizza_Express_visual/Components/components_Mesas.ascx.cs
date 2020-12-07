@@ -104,12 +104,12 @@ namespace Pizza_Express_visual.Components
                 case 10: bMesa10.CssClass = "btn btn-success"; break;
                 case 11: bMesa11.CssClass = "btn btn-success"; break;
                 case 12: bMesa12.CssClass = "btn btn-success"; break;
-                case 13: bMesa13.CssClass = "btn btn-success"; break;
-                case 14: bMesa14.CssClass = "btn btn-success"; break;
-                case 15: bMesa15.CssClass = "btn btn-success"; break;
-                case 16: bMesa16.CssClass = "btn btn-success"; break;
-                case 17: bMesa17.CssClass = "btn btn-success"; break;
-                case 18: bMesa18.CssClass = "btn btn-success"; break;
+                case 13: bMesa13.CssClass = "btn btn-primary"; break;
+                case 14: bMesa14.CssClass = "btn btn-primary"; break;
+                case 15: bMesa15.CssClass = "btn btn-primary"; break;
+                case 16: bMesa16.CssClass = "btn btn-primary"; break;
+                case 17: bMesa17.CssClass = "btn btn-primary"; break;
+                case 18: bMesa18.CssClass = "btn btn-primary"; break;
             }
         }
 

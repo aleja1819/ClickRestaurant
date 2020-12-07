@@ -311,39 +311,42 @@
 
                     <%-- Fila 3 --%>
 
+                    <h4 class="text-center"><strong>Sección Pedidos para llevar</span></strong></h4>
+                    <br />
+
                     <div class="row">
                         <div class="col-md-2">
-                            <asp:LinkButton ID="bMesa13" OnClick="bMesa13_Click" runat="server" CssClass="btn btn-success">
+                            <asp:LinkButton ID="bMesa13" OnClick="bMesa13_Click" runat="server" CssClass="btn btn-primary">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
-                            <span style="font-size: 15px"><strong>Mesa 13</strong></span>             
+                            <span style="font-size: 14px"><strong>Mesa 13</strong></span>             
                             </asp:LinkButton>
                         </div>
                         <div class="col-md-2">
-                            <asp:LinkButton ID="bMesa14" OnClick="bMesa14_Click" runat="server" CssClass="btn btn-success">
+                            <asp:LinkButton ID="bMesa14" OnClick="bMesa14_Click" runat="server" CssClass="btn btn-primary">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
-                            <span style="font-size: 15px"><strong>Mesa 14</strong></span>             
+                            <span style="font-size: 14px"><strong>Mesa 14</strong></span>             
                             </asp:LinkButton>
                         </div>
                         <div class="col-md-2">
-                            <asp:LinkButton ID="bMesa15" OnClick="bMesa15_Click" runat="server" CssClass="btn btn-success">
+                            <asp:LinkButton ID="bMesa15" OnClick="bMesa15_Click" runat="server" CssClass="btn btn-primary">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
-                            <span style="font-size: 15px"><strong>Mesa 15</strong></span>             
+                            <span style="font-size: 14px"><strong>Mesa 15</strong></span>             
                             </asp:LinkButton>
                         </div>
                         <div class="col-md-2">
-                            <asp:LinkButton ID="bMesa16" OnClick="bMesa16_Click" runat="server" CssClass="btn btn-success">
+                            <asp:LinkButton ID="bMesa16" OnClick="bMesa16_Click" runat="server" CssClass="btn btn-primary">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
                             <span style="font-size: 14px"><strong>Mesa 16</strong></span>
                             </asp:LinkButton>
                         </div>
                         <div class="col-md-2">
-                            <asp:LinkButton ID="bMesa17" OnClick="bMesa17_Click" runat="server" CssClass="btn btn-success">
+                            <asp:LinkButton ID="bMesa17" OnClick="bMesa17_Click" runat="server" CssClass="btn btn-primary">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
                             <span style="font-size: 14px"><strong>Mesa 17</strong></span>      
                             </asp:LinkButton>
                         </div>
                         <div class="col-md-2">
-                            <asp:LinkButton ID="bMesa18" OnClick="bMesa18_Click" runat="server" CssClass="btn btn-success">
+                            <asp:LinkButton ID="bMesa18" OnClick="bMesa18_Click" runat="server" CssClass="btn btn-primary">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
                             <span style="font-size: 14px"><strong>Mesa 18</strong></span>
                             </asp:LinkButton>
