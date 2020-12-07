@@ -372,7 +372,7 @@
                                 </div>
                             
                                 <div class="col-md-8 text-center">                                
-                                    <h2><span class="text-danger"><strong> Total a Cancelar: <%=Session["precioTotal"]%></strong></span></h2>
+                                    <h2><span class="text-danger"><strong> Total a Cancelar: $<%=Session["precioTotal"]%></strong></span></h2>
                                 </div>
                             </div><br />
                             <asp:GridView ID="gridUnPedido" runat="server" CssClass="table table-bordered table-center" AutoGenerateColumns="False" OnRowCommand="gridUnPedido_RowCommand">
