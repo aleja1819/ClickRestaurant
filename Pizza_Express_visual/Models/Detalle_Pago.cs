@@ -19,8 +19,9 @@ namespace Pizza_Express_visual.Models
         public Nullable<int> numeroTransaccion { get; set; }
         public int propina { get; set; }
         public int descuento { get; set; }
-        public Nullable<int> codigo_comanda { get; set; }
+        public int codigo_comanda { get; set; }
     
+        public virtual ComandaMesa ComandaMesa { get; set; }
         public virtual TipoPago TipoPago { get; set; }
     }
 }

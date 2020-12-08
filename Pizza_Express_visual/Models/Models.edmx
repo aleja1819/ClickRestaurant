@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="PizzaE_novModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="PizzaE_novModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Asignar_Menu">
           <Key>
             <PropertyRef Name="idAsignarMenu" />
@@ -737,7 +737,8 @@
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PizzaE_novModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -784,8 +785,8 @@
           <NavigationProperty Name="Estado_Pago" Relationship="Self.FK_ComandaMesa_Estado_Pago" FromRole="ComandaMesa" ToRole="Estado_Pago" />
           <NavigationProperty Name="Mesa" Relationship="Self.FK_ComandaMesa_Mesa" FromRole="ComandaMesa" ToRole="Mesa" />
           <NavigationProperty Name="Usuario" Relationship="Self.fk_ComandaMesa_Usuario1" FromRole="ComandaMesa" ToRole="Usuario" />
+          <NavigationProperty Name="Detalle_Pago" Relationship="Self.fk_Pago_codigo_comanda" FromRole="ComandaMesa" ToRole="Detalle_Pago" />
           <NavigationProperty Name="ReportesVentas" Relationship="Self.fk_Re_codigo_comanda_ComandaMesa" FromRole="ComandaMesa" ToRole="ReportesVentas" />
-          <NavigationProperty Name="Detalle_Pago" Relationship="PizzaE_novModel.fk_Pago_codigo_comanda" FromRole="ComandaMesa" ToRole="Detalle_Pago" />
         </EntityType>
         <EntityType Name="Detalle_Mesa_Pedido">
           <Key>
@@ -856,6 +857,19 @@
           <Property Name="menu30" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="cantidad_m30" Type="Int32" />
           <NavigationProperty Name="Mesa" Relationship="Self.fk_idMesa_Mesa" FromRole="Detalle_Mesa_Pedido" ToRole="Mesa" />
+        </EntityType>
+        <EntityType Name="Detalle_Pago">
+          <Key>
+            <PropertyRef Name="codigo_pago" />
+          </Key>
+          <Property Name="codigo_pago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigo_tipoPago" Type="Int32" Nullable="false" />
+          <Property Name="numeroTransaccion" Type="Int32" />
+          <Property Name="propina" Type="Int32" Nullable="false" />
+          <Property Name="descuento" Type="Int32" Nullable="false" />
+          <Property Name="codigo_comanda" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ComandaMesa" Relationship="Self.fk_Pago_codigo_comanda" FromRole="Detalle_Pago" ToRole="ComandaMesa" />
+          <NavigationProperty Name="TipoPago" Relationship="Self.fk_Pago_TipoPago1" FromRole="Detalle_Pago" ToRole="TipoPago" />
         </EntityType>
         <EntityType Name="detalleCaja">
           <Key>
@@ -1020,7 +1034,7 @@
           </Key>
           <Property Name="codigo_tipoPago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Detalle_Pago" Relationship="PizzaE_novModel.fk_Pago_TipoPago1" FromRole="TipoPago" ToRole="Detalle_Pago" />
+          <NavigationProperty Name="Detalle_Pago" Relationship="Self.fk_Pago_TipoPago1" FromRole="TipoPago" ToRole="Detalle_Pago" />
         </EntityType>
         <EntityType Name="TipoProducto">
           <Key>
@@ -1176,6 +1190,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_Pago_codigo_comanda">
+          <End Role="ComandaMesa" Type="Self.ComandaMesa" Multiplicity="1" />
+          <End Role="Detalle_Pago" Type="Self.Detalle_Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ComandaMesa">
+              <PropertyRef Name="codigo_comanda" />
+            </Principal>
+            <Dependent Role="Detalle_Pago">
+              <PropertyRef Name="codigo_comanda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_Re_codigo_comanda_ComandaMesa">
           <End Role="ComandaMesa" Type="Self.ComandaMesa" Multiplicity="1" />
           <End Role="ReportesVentas" Type="Self.ReportesVentas" Multiplicity="*" />
@@ -1197,6 +1223,18 @@
             </Principal>
             <Dependent Role="Detalle_Mesa_Pedido">
               <PropertyRef Name="idMesa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Pago_TipoPago1">
+          <End Role="TipoPago" Type="Self.TipoPago" Multiplicity="1" />
+          <End Role="Detalle_Pago" Type="Self.Detalle_Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPago">
+              <PropertyRef Name="codigo_tipoPago" />
+            </Principal>
+            <Dependent Role="Detalle_Pago">
+              <PropertyRef Name="codigo_tipoPago" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1362,6 +1400,7 @@
           <EntitySet Name="Categoria" EntityType="Self.Categoria" />
           <EntitySet Name="ComandaMesa" EntityType="Self.ComandaMesa" />
           <EntitySet Name="Detalle_Mesa_Pedido" EntityType="Self.Detalle_Mesa_Pedido" />
+          <EntitySet Name="Detalle_Pago" EntityType="Self.Detalle_Pago" />
           <EntitySet Name="detalleCaja" EntityType="Self.detalleCaja" />
           <EntitySet Name="Estado_caja" EntityType="Self.Estado_caja" />
           <EntitySet Name="Estado_Mesa" EntityType="Self.Estado_Mesa" />
@@ -1420,6 +1459,10 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="ComandaMesa" EntitySet="ComandaMesa" />
           </AssociationSet>
+          <AssociationSet Name="fk_Pago_codigo_comanda" Association="Self.fk_Pago_codigo_comanda">
+            <End Role="ComandaMesa" EntitySet="ComandaMesa" />
+            <End Role="Detalle_Pago" EntitySet="Detalle_Pago" />
+          </AssociationSet>
           <AssociationSet Name="fk_Re_codigo_comanda_ComandaMesa" Association="Self.fk_Re_codigo_comanda_ComandaMesa">
             <End Role="ComandaMesa" EntitySet="ComandaMesa" />
             <End Role="ReportesVentas" EntitySet="ReportesVentas" />
@@ -1427,6 +1470,10 @@
           <AssociationSet Name="fk_idMesa_Mesa" Association="Self.fk_idMesa_Mesa">
             <End Role="Mesa" EntitySet="Mesa" />
             <End Role="Detalle_Mesa_Pedido" EntitySet="Detalle_Mesa_Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Pago_TipoPago1" Association="Self.fk_Pago_TipoPago1">
+            <End Role="TipoPago" EntitySet="TipoPago" />
+            <End Role="Detalle_Pago" EntitySet="Detalle_Pago" />
           </AssociationSet>
           <AssociationSet Name="FK_detalleCaja_Usuario" Association="Self.FK_detalleCaja_Usuario">
             <End Role="Usuario" EntitySet="Usuario" />
@@ -1480,53 +1527,7 @@
             <End Role="TipoUsuario" EntitySet="TipoUsuario" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
-          <EntitySet Name="Detalle_Pago" EntityType="PizzaE_novModel.Detalle_Pago" />
-          <AssociationSet Name="fk_Pago_codigo_comanda" Association="PizzaE_novModel.fk_Pago_codigo_comanda">
-            <End Role="ComandaMesa" EntitySet="ComandaMesa" />
-            <End Role="Detalle_Pago" EntitySet="Detalle_Pago" />
-          </AssociationSet>
-          <AssociationSet Name="fk_Pago_TipoPago1" Association="PizzaE_novModel.fk_Pago_TipoPago1">
-            <End Role="TipoPago" EntitySet="TipoPago" />
-            <End Role="Detalle_Pago" EntitySet="Detalle_Pago" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Detalle_Pago">
-          <Key>
-            <PropertyRef Name="codigo_pago" />
-          </Key>
-          <Property Name="codigo_pago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="codigo_tipoPago" Type="Int32" Nullable="false" />
-          <Property Name="numeroTransaccion" Type="Int32" />
-          <Property Name="propina" Type="Int32" Nullable="false" />
-          <Property Name="descuento" Type="Int32" Nullable="false" />
-          <Property Name="codigo_comanda" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ComandaMesa" Relationship="PizzaE_novModel.fk_Pago_codigo_comanda" FromRole="Detalle_Pago" ToRole="ComandaMesa" />
-          <NavigationProperty Name="TipoPago" Relationship="PizzaE_novModel.fk_Pago_TipoPago1" FromRole="Detalle_Pago" ToRole="TipoPago" />
-        </EntityType>
-        <Association Name="fk_Pago_codigo_comanda">
-          <End Type="PizzaE_novModel.ComandaMesa" Role="ComandaMesa" Multiplicity="1" />
-          <End Type="PizzaE_novModel.Detalle_Pago" Role="Detalle_Pago" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ComandaMesa">
-              <PropertyRef Name="codigo_comanda" />
-            </Principal>
-            <Dependent Role="Detalle_Pago">
-              <PropertyRef Name="codigo_comanda" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_Pago_TipoPago1">
-          <End Type="PizzaE_novModel.TipoPago" Role="TipoPago" Multiplicity="1" />
-          <End Type="PizzaE_novModel.Detalle_Pago" Role="Detalle_Pago" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TipoPago">
-              <PropertyRef Name="codigo_tipoPago" />
-            </Principal>
-            <Dependent Role="Detalle_Pago">
-              <PropertyRef Name="codigo_tipoPago" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1637,6 +1638,18 @@
                 <ScalarProperty Name="cantidad_m29" ColumnName="cantidad_m29" />
                 <ScalarProperty Name="menu30" ColumnName="menu30" />
                 <ScalarProperty Name="cantidad_m30" ColumnName="cantidad_m30" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detalle_Pago">
+            <EntityTypeMapping TypeName="PizzaE_novModel.Detalle_Pago">
+              <MappingFragment StoreEntitySet="Detalle_Pago">
+                <ScalarProperty Name="codigo_pago" ColumnName="codigo_pago" />
+                <ScalarProperty Name="codigo_tipoPago" ColumnName="codigo_tipoPago" />
+                <ScalarProperty Name="numeroTransaccion" ColumnName="numeroTransaccion" />
+                <ScalarProperty Name="propina" ColumnName="propina" />
+                <ScalarProperty Name="descuento" ColumnName="descuento" />
+                <ScalarProperty Name="codigo_comanda" ColumnName="codigo_comanda" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1814,18 +1827,6 @@
                 <ScalarProperty Name="contraseña_usuario" ColumnName="contraseña_usuario" />
                 <ScalarProperty Name="rut_usuario" ColumnName="rut_usuario" />
                 <ScalarProperty Name="email_usuario" ColumnName="email_usuario" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Detalle_Pago">
-            <EntityTypeMapping TypeName="PizzaE_novModel.Detalle_Pago">
-              <MappingFragment StoreEntitySet="Detalle_Pago">
-                <ScalarProperty Name="codigo_comanda" ColumnName="codigo_comanda" />
-                <ScalarProperty Name="descuento" ColumnName="descuento" />
-                <ScalarProperty Name="propina" ColumnName="propina" />
-                <ScalarProperty Name="numeroTransaccion" ColumnName="numeroTransaccion" />
-                <ScalarProperty Name="codigo_tipoPago" ColumnName="codigo_tipoPago" />
-                <ScalarProperty Name="codigo_pago" ColumnName="codigo_pago" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
