@@ -12,7 +12,6 @@ namespace Pizza_Express_visual.Services
 
         public List<object> filtrarCajas() {
 
-
             try
             {
                 using (Pizza_BD1 contexto = new Pizza_BD1()) {
@@ -21,7 +20,7 @@ namespace Pizza_Express_visual.Services
                             join c in contexto.Caja
                             on dc.numero_caja equals c.numero_caja
                             join u in contexto.Usuario
-                            on dc.codigo_usuario equals u.codigo_usuario
+                            on dc.codigo_usuario equals  u.codigo_usuario
                             orderby dc.id_DetalleCaja descending
                             select new
                             {
@@ -33,9 +32,8 @@ namespace Pizza_Express_visual.Services
                                 u.nombre_usuario
                             };
 
-
                     return r.ToList<object>();
-                
+
                 }
 
             }
@@ -145,7 +143,40 @@ namespace Pizza_Express_visual.Services
             }
         }
 
+        public int BuscarCaja(int dato)
+        {
+            using (Pizza_BD1 contexto = new Pizza_BD1())
+            {
 
+                var r = from dc in contexto.detalleCaja
+                                where dc.numero_caja == dato
+                                join c in contexto.Caja on dc.numero_caja equals c.numero_caja
+                                join u in contexto.Usuario on dc.codigo_usuario equals u.codigo_usuario
+                                orderby dc.id_DetalleCaja descending
+                                
+                                select new
+                                {
+                                    dc.id_DetalleCaja,
+                                    dc.monto_apertura,
+                                    dc.fecha,
+                                    dc.hora,
+                                    c.numero_caja,
+                                    u.nombre_usuario
+                                };
+                
+
+               
+                return r.FirstOrDefault().monto_apertura;
+
+            }
+
+
+
+
+
+
+
+        }
 
 
 

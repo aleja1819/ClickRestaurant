@@ -78,6 +78,15 @@ namespace Pizza_Express_visual.Components
         protected global::System.Web.UI.WebControls.LinkButton bregistrarmonto;
 
         /// <summary>
+        /// Control btnVolverU.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnVolverU;
+
+        /// <summary>
         /// Control idTabla.
         /// </summary>
         /// <remarks>
@@ -130,14 +139,5 @@ namespace Pizza_Express_visual.Components
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label cod_orginal;
-
-        /// <summary>
-        /// Control ideditarCajaBoton.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ideditarCajaBoton;
     }
 }

@@ -9,9 +9,6 @@
     }
 </style>
 
-
-
-
 <div class="container">
     <div class="row">
 
@@ -20,44 +17,57 @@
             <asp:UpdatePanel runat="server" ID="uContenedorCajaA" UpdateMode="Conditional" ChildrenAsTriggers="true">
                 <ContentTemplate>
 
+                    <h3>Apertura de Caja</h3>
+
                     <asp:Panel runat="server" ID="alerta" Visible="false">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                         <asp:Label ID="mensaje3" runat="server"></asp:Label>
                     </asp:Panel>
-
                     <br />
 
-                    <h4>APERTURA DE CAJA</h4>
-                    <div class="form-group">
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <div class="form-group">
                                     <label for="tmonto">Monto de apertura</label>
-                                    <div class="input-group col-md-4">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text text-info"><i class="fas fa-user"></i></div>
-                                        </div>
-                                        <asp:TextBox runat="server" placeholder="Monto de apertura" ID="tmonto" CssClass="form-control bg-secondary"></asp:TextBox>
+                                    <div class="input-group col-md-12">
+                                        <asp:TextBox runat="server" placeholder="Ingrese monto aqui" ID="tmonto" CssClass="form-control"></asp:TextBox>
                                         <asp:Label runat="server" ID="valida_tmonto" CssClass="invalid-feedback" Text="I"></asp:Label>
                                     </div>
                                 </div>
-                    
+                        </div>
 
-                    <div class="form-group col-md-2">
+
+                        <div class="col-md-2">
+                            <div class="form-group col-md-12">
                                     <label for="fcaja">N° Caja</label>
-                                    <br />
                                     <asp:DropDownList runat="server" ID="fcaja" CssClass="form-control"
                                         DataTextField="numero_caja" DataValueField="numero_caja" >
                                         
                                     </asp:DropDownList>
                                 </div>
+                        </div>
 
-                    <br />
-                    <asp:LinkButton runat="server" CssClass="btn btn-success" OnClick="bregistrarmonto_Click" ID="bregistrarmonto">
+                        <div class="col-md-2">
+                            <br />
+                        <asp:LinkButton runat="server" CssClass="btn btn-success" OnClick="bregistrarmonto_Click" ID="bregistrarmonto">
                        <i class="fas fa-plus"></i> Registrar Monto
                             </asp:LinkButton>
+                        </div>
+                        <div class="col-md-2">
+                            <br>
+                            <asp:LinkButton runat="server" CssClass="btn btn-primary btn-lg" OnClick="btnVolverU_Click" ID="btnVolverU">
+                       <i class="fas fa-home"></i>
+                            </asp:LinkButton>      
+                    </div>
 
-                        <br />
-                        <br />
+
+                    </div>
+
+
+                    <br /><br />
                         
                     <div class="col align-content-center">
                         <asp:GridView runat="server" ID="idTabla" CssClass="table table-bordered table-center " AutoGenerateColumns="false"
@@ -65,15 +75,15 @@
                             <HeaderStyle CssClass="btn-success" ForeColor="White" Font-Bold="true" />
 
                             <Columns>
-                                <asp:BoundField DataField="id_DetalleCaja" HeaderText="ID"/>
+                                <asp:BoundField DataField="id_DetalleCaja" HeaderText="ID"
+                                        HeaderStyle-CssClass="ocultarCol" ItemStyle-CssClass="ocultarCol"/>
                                 <asp:BoundField DataField="monto_apertura" HeaderText="Monto" />
                                 <asp:BoundField DataField="fecha" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy}"/>
                                 <asp:BoundField DataField="hora" HeaderText="Hora" DataFormatString="{0:T}"/>
                                 <asp:BoundField DataField="numero_caja" HeaderText="N° Caja"/>
                                 <asp:BoundField DataField="nombre_usuario" HeaderText="Usuario"/>
 
-                                <asp:ButtonField ButtonType="Link" CommandName="ideditar" ControlStyle-CssClass="btn btn-dark" Text="Editar"/>
-                                <asp:ButtonField ButtonType="Link" CommandName="ideliminar" ControlStyle-CssClass="btn btn-dark" Text="Eliminar"/>
+                                <asp:ButtonField ButtonType="Link" CommandName="ideliminar" ControlStyle-CssClass="btn btn-danger" Text="Eliminar"/>
 
                             </Columns>
                         </asp:GridView>                       
@@ -127,7 +137,6 @@
 
                             <div class="modal-footer">
                                 <asp:Label runat="server" ID="cod_orginal" CssClass="ocultarCol"></asp:Label>
-                                <asp:Button runat="server" ID="ideditarCajaBoton" Visible="false" OnClick="ideditarCajaBoton_Click" Text="Actualizar" CssClass="btn btn-success float-right" />
                             </div>
                         </div>
 

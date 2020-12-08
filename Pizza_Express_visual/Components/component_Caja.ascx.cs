@@ -14,7 +14,6 @@ namespace Pizza_Express_visual.Components
     {
 
         private QueryCaja accesoCaja = new QueryCaja();
-        private detalleCaja dcaja = new detalleCaja();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -32,10 +31,15 @@ namespace Pizza_Express_visual.Components
 
                 uContenedorCajaA.Update();
 
+
             }
 
 
         }
+
+        
+
+
 
         private void limpiarTodo(int op)
         {
@@ -126,70 +130,15 @@ namespace Pizza_Express_visual.Components
 
             }
 
-        protected void ideditarCajaBoton_Click(object sender, EventArgs e)
-        {
-
-            try
-            {
-                CultureInfo myCIintl = new CultureInfo("es-ES", false);
-                int monto = Convert.ToInt32(tmonto.Text);
-                String hora = DateTime.Now.ToString("HH:mm:ss");
-                string codigo_original = cod_orginal.Text;
-
-
-                accesoCaja.editarCaja(new Models.detalleCaja
-                {
-                    monto_apertura = monto,
-                    fecha = DateTime.Today,
-                    hora = Convert.ToDateTime(hora, myCIintl).TimeOfDay,
-                    numero_caja = Convert.ToInt32(fcaja.SelectedItem.Value),
-                    codigo_usuario = Convert.ToInt32(Session["idUser"].ToString())
-
-                }, codigo_original);
-
-                idTabla.DataSource = accesoCaja.filtrarCajas();
-                idTabla.DataBind();
-
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalCaja", "$('#myModalCaja').modal('show');", true);
-                uModalCaja.Update();
-                uContenedorCajaA.Update();
-
-                emonto.Text = "";
-                tmonto.Text = "";
-
-                alerta.Visible = true;
-                alerta.CssClass = "alert alert-primary animated zoomInUp";
-                mensaje3.Text = "MONTO MODIFICADO CON EXITO";
-
-
-            }
-            catch
-            {
-                alerta.Visible = true;
-                alerta.CssClass = "alert alert-danger animated zoomInUp";
-                mensaje3.Text = "DATOS INCORRECTOS, MONTO NO MODIFICADO";
-
-            }
-
-        }
 
         protected void idTabla_RowCommand(object sender, GridViewCommandEventArgs e)
         {
 
             alerta.Visible = false;
-            ideditarCajaBoton.Visible = true;
 
             int fila = Convert.ToInt32(e.CommandArgument);
             if (e.CommandName.Equals("ideditar"))
             {
-
-                cod_orginal.Text = idTabla.Rows[fila].Cells[0].Text;
-                emonto.Text = idTabla.Rows[fila].Cells[1].Text;
-
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalCaja", "$('#myModalCaja').modal('show');", true);
-                uModalCaja.Update();
-                uContenedorCajaA.Update();
-
             }
             else if (e.CommandName.Equals("ideliminar"))
             {
@@ -210,6 +159,14 @@ namespace Pizza_Express_visual.Components
 
 
 
+        }
+
+        protected void btnVolverU_Click(object sender, EventArgs e)
+        {
+            alerta.Visible = false;
+            idTabla.DataSource = accesoCaja.filtrarCajas();
+            idTabla.DataBind();
+            alerta.Visible = false;
         }
     }
 }
