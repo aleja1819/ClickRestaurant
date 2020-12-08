@@ -9,7 +9,6 @@
 <br />
 <br />
 <h1 class="text-center">Bienvenido A ClickRestaurante!!!</h1>
-<h5 class="text-center">Te has registrado como: <%=Session["name_user"] %></h5>
 
 <div class="row">
     <div class="col text-center">
