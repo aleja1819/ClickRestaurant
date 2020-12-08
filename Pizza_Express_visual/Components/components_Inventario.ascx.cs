@@ -15,6 +15,9 @@ namespace Pizza_Express_visual.Components
 
                 idTablaInven.DataSource = accesoProductos.filtrarProductos();
                 idTablaInven.DataBind();
+                alerta.Visible = false;
+                uContenedorProducto.Update();
+
 
             }
         }
@@ -221,6 +224,14 @@ namespace Pizza_Express_visual.Components
         }
 
         protected void btnVolver_Click(object sender, EventArgs e)
+        {
+            alerta.Visible = false;
+            idTablaInven.DataSource = accesoProductos.filtrarProductos();
+            idTablaInven.DataBind();
+            alerta.Visible = false;
+        }
+
+        protected void BtnActualizar_Click(object sender, EventArgs e)
         {
             alerta.Visible = false;
             idTablaInven.DataSource = accesoProductos.filtrarProductos();
