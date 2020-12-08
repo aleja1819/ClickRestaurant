@@ -49,18 +49,9 @@
                             </div>
                         </div>
 
-                                     <div class="col-2">
+                                     <div class="col-md-4">
                             <asp:LinkButton runat="server" CssClass="btn btn-primary btn-lg" OnClick="btnVolver_Click" ID="btnVolver">
                        <i class="fas fa-home"></i>
-                            </asp:LinkButton>      
-                    </div>
-
-                                 <div class="col-2">
-                            <asp:LinkButton runat="server" CssClass="btn btn-warning " OnClick="BtnActualizar_Click" ID="BtnActualizar">
-                       <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-clockwise" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                       <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
-                       <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
-                        </svg> Actualizar
                             </asp:LinkButton>      
                     </div>
                 </div>
@@ -68,13 +59,14 @@
                         <br />
                         <br />
                         <br />
-                      
+                        <br />
+                       
   
                         <%--SEGUNDA COLUMNA--%>
 
                         <div class="col align-content-center">
                             <asp:GridView runat="server" ID="idTablaInven" CssClass="table table-bordered table-center" AutoGenerateColumns="false"
-                                OnRowCommand="idTabla_RowCommand" OnPageIndexChanging="idTablaInven_PageIndexChanging" PageSize="10" AllowPaging="true">
+                                OnRowCommand="idTabla_RowCommand" OnPageIndexChanging="idTablaInven_PageIndexChanging" PageSize="4" AllowPaging="true">
 
                                 <HeaderStyle CssClass="btn-success" ForeColor="White" Font-Bold="true" />
 
