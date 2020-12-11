@@ -43,23 +43,15 @@
 
                             <div class="col-md-4">
 
-                                <div class="input-group md-4">
-                                    <div class="col-4">
-                                        <h5 class="text-dark">Desde :</h5>
-                                    </div>
-                                    <div class="col-8">
-                                        <asp:TextBox runat="server" ID="tfechaI" CssClass="form-control" TextMode="Date" placeholder="Fecha inicial"></asp:TextBox>
-                                    </div>
+                                <div class="input-group md-5">
+                                    <h5 class="text-dark">Desde :</h5>
+                                    <asp:TextBox runat="server" ID="tfechaI" CssClass="form-control" TextMode="Date" placeholder="Fecha inicial"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="input-group mb-4">
-                                    <div class="col-4">
                                     <h5 class="text-dark">Hasta : </h5>
-                                        </div>
-                                    <div class="col-8">
                                     <asp:TextBox runat="server" ID="tfechaF" CssClass="form-control" TextMode="Date" placeholder="Fecha final"></asp:TextBox>
-                                        </div>
                                 </div>
                             </div>
                             <div class="col-md-2">
@@ -105,10 +97,10 @@
                                     </asp:GridView>
                                 </div>
 
-                                <div class="col-md-10">
+<%--                                <div class="col-md-10">
                                     <h5 class="text-dark text-md-left">
                                         <asp:Label runat="server" ID="ltotalRangoFecha2" Visible="false" class="text-danger" Text="Total Ventas del Periodo $"></asp:Label></h5>
-                                </div>
+                                </div>--%>
                             </div>
                             <div class="col-md-1">
                                 <asp:LinkButton runat="server" Visible="false" CssClass="btn btn-success" ID="btnPrintAll" OnClick="btnPrintAll_Click"> 

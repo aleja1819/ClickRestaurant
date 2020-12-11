@@ -326,8 +326,8 @@ namespace Pizza_Express_visual.Components
                     ltotalRangoFecha.Text = "Total Ventas del Periodo $" + Session["precioTotal"];
                     ltotalRangoFecha.Visible = true;
 
-                    ltotalRangoFecha2.Text = "Total Ventas del Periodo $" + Session["precioTotal"];
-                    ltotalRangoFecha2.Visible = true;
+                    //ltotalRangoFecha2.Text = "Total Ventas del Periodo $" + Session["precioTotal"];
+                    //ltotalRangoFecha2.Visible = true;
                 }
             }
             catch (Exception)
@@ -739,7 +739,7 @@ namespace Pizza_Express_visual.Components
 
             btnCleanAll.Visible = false;
             ltotalRangoFecha.Visible = false;
-            ltotalRangoFecha2.Visible = false;
+            //ltotalRangoFecha2.Visible = false;
             btnPrintAll.Visible = false;
 
         }

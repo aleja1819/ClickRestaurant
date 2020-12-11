@@ -179,7 +179,8 @@ namespace Pizza_Express_visual.Services
                     foreach (var repo in retornoPrecio)
                     {
 
-                        suma += Convert.ToInt32(repo.precio_menu) * Convert.ToInt32(repo.cantidad);
+                        //suma += Convert.ToInt32(repo.precio_menu) * Convert.ToInt32(repo.cantidad);
+                        suma += Convert.ToInt32(repo.precio_menu);
 
                     }
 
