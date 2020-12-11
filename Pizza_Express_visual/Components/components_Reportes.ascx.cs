@@ -12,8 +12,6 @@ namespace Pizza_Express_visual.Components
     public partial class components_Reportes : System.Web.UI.UserControl
     {
 
-        //private QueryReportes aR = new QueryReportes();
-        //static List<object> prod_dispo = new List<object>();
         static List<Services.productos> ListaProducto = new List<productos>();
         static List<Services.ventas> ListaVentas = new List<ventas>();
         private QueryReportes accesoReportes = new QueryReportes();
@@ -311,6 +309,8 @@ namespace Pizza_Express_visual.Components
                 else {
 
                     AVenta.Visible = false;
+                    btnPrintAll.Visible = true;
+                    btnCleanAll.Visible = true;
                     DateTime fechaInicial = Convert.ToDateTime(tfechaI.Text);
                     DateTime fechaFinal = Convert.ToDateTime(tfechaF.Text);
 
@@ -320,11 +320,14 @@ namespace Pizza_Express_visual.Components
                     idVentaSelect.DataBind();
 
 
+
                     Session["precioTotal"] = accesoReportes.listaPrecios(fechaInicial, fechaFinal);
 
                     ltotalRangoFecha.Text = "Total Ventas del Periodo $" + Session["precioTotal"];
                     ltotalRangoFecha.Visible = true;
 
+                    ltotalRangoFecha2.Text = "Total Ventas del Periodo $" + Session["precioTotal"];
+                    ltotalRangoFecha2.Visible = true;
                 }
             }
             catch (Exception)
@@ -450,8 +453,6 @@ namespace Pizza_Express_visual.Components
                         ListaVentas[ListaVentas.IndexOf(carrito)].cantidad_V = cantidadActual - 1;
                         ListaVentas[ListaVentas.IndexOf(carrito)].precio_V = precio - precioActual;
 
-
-
                     }
                     else
                     {
@@ -553,8 +554,8 @@ namespace Pizza_Express_visual.Components
             doc.Add(table);
             doc.Close();
             ShowPdfL((path + nombre));
-
         }
+
         private void ShowPdfL(string strS)
         {
             Response.ClearContent();
@@ -603,6 +604,143 @@ namespace Pizza_Express_visual.Components
             LinkButtonlimpiarseleccionventaPRO.Visible = false;
             ldetalleSeleciónP.Visible = false;
             bGenerarPdf.Visible = false;
+
+        }
+
+        protected void btnPrintAll_Click(object sender, EventArgs e)
+        {
+            DateTime fechaInicial = Convert.ToDateTime(tfechaI.Text);
+            DateTime fechaFinal = Convert.ToDateTime(tfechaF.Text);
+
+            List<reporteVentas> listaCompleta = accesoReportes.reporteTodoPDF(fechaInicial, fechaFinal);
+
+            pdfTotalVentas(listaCompleta, fechaInicial, fechaFinal);
+
+        }
+
+        // GENERA PDF DE TODAS LAS VENTAS DEL DÏA
+
+        private void pdfTotalVentas(List<reporteVentas> listaCompleta, DateTime fechaInicial, DateTime fechaFinal)
+        {
+            var doc = new Document(PageSize.A5);
+            string path = Server.MapPath("Files");
+            Random r = new Random();
+            string nombre = "Prod_" + r.Next(1, 500) + "_" + DateTime.Now.Second + ".pdf";
+            PdfWriter pdfWrite = PdfWriter.GetInstance(doc, new FileStream(path + nombre, FileMode.OpenOrCreate));
+
+            doc.Open();
+            iTextSharp.text.Image tif = iTextSharp.text.Image.GetInstance(path + "/PIZZZA.jpg");
+            tif.ScalePercent(13f, 9f);
+            tif.Alignment = iTextSharp.text.Image.ALIGN_RIGHT;
+            doc.Add(tif);
+
+            iTextSharp.text.Font verdana = FontFactory.GetFont("Arial", 18, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
+            Paragraph paragraph = new Paragraph(@"Reporte de Ventas", verdana);
+            paragraph.Alignment = Element.ALIGN_CENTER;
+            doc.Add(paragraph);
+
+            Paragraph noVali = new Paragraph(" ");
+            noVali.Alignment = Element.ALIGN_CENTER;
+            doc.Add(noVali);
+
+            Paragraph paragraph2 = new Paragraph("Fecha Emisión Reporte: " + DateTime.Now.ToString());
+            paragraph2.Alignment = Element.ALIGN_LEFT;
+            paragraph2.PaddingTop = 1;
+            doc.Add(paragraph2);
+
+            Paragraph salto1 = new Paragraph(" ");
+            doc.Add(salto1);
+
+            iTextSharp.text.Font destacado = FontFactory.GetFont("Arial", 10, iTextSharp.text.Font.NORMAL, BaseColor.BLUE);
+            Paragraph paragraphRango = new Paragraph("Reporte Del: " + fechaInicial.ToString("dd MMMM yyyy") + " Al " + fechaFinal.ToString("dd MMMM yyyy"), destacado);
+            paragraphRango.Alignment = Element.ALIGN_LEFT;
+            paragraphRango.PaddingTop = 1;
+            doc.Add(paragraphRango);
+
+            Paragraph salto2 = new Paragraph(" ");
+            doc.Add(salto2);
+
+            iTextSharp.text.Font letraRoja = FontFactory.GetFont("Arial", 12, iTextSharp.text.Font.NORMAL, BaseColor.RED);
+            Paragraph totalVenta = new Paragraph("Total Ventas del periodo: " + "$" + Session["precioTotal"], letraRoja);
+            paragraph2.Alignment = Element.ALIGN_LEFT;
+            paragraph2.PaddingTop = 1;
+            doc.Add(totalVenta);
+
+            Paragraph valiTotal = new Paragraph(" ");
+            noVali.Alignment = Element.ALIGN_CENTER;
+            doc.Add(valiTotal);
+
+            Paragraph paragraph3 = new Paragraph();
+            paragraph3.Alignment = Element.ALIGN_LEFT;
+            doc.Add(paragraph3);
+
+            PdfPTable table = new PdfPTable(4);
+            PdfPCell cell = new PdfPCell();
+            cell.HorizontalAlignment = 1; //0=Left, 1=Centre, 2=Right
+            cell.BorderColor = BaseColor.BLACK;
+            cell.BackgroundColor = BaseColor.RED;
+
+            iTextSharp.text.Font letraBlanca = FontFactory.GetFont("Arial", 12, iTextSharp.text.Font.NORMAL, BaseColor.WHITE);
+            cell.Phrase = new Phrase("cantidad", letraBlanca);
+            table.AddCell(cell);
+            cell.Phrase = new Phrase("Nombre", letraBlanca);
+            table.AddCell(cell);
+            cell.Phrase = new Phrase("Fecha", letraBlanca);
+            table.AddCell(cell);
+            cell.Phrase = new Phrase("Precio", letraBlanca);
+            table.AddCell(cell);
+
+
+            PdfPCell cell0 = new PdfPCell();
+            foreach (var ele in listaCompleta)
+            {
+                cell0.Phrase = new Phrase(ele.cantidad.ToString());
+                table.AddCell(cell0);
+
+                cell0.Phrase = new Phrase(ele.nombreMenu);
+                table.AddCell(cell0);
+
+                cell0.Phrase = new Phrase(ele.fecha.ToString());
+                table.AddCell(cell0);
+
+                cell0.Phrase = new Phrase("$" + ele.precioMenu);
+                table.AddCell(cell0);
+
+            }
+
+
+            doc.Add(table);
+            Paragraph salto3 = new Paragraph(" ");
+            doc.Add(salto3);
+            Paragraph totalVentaFin = new Paragraph("Total Ventas del periodo: " + "$" + Session["precioTotal"], letraRoja);
+            doc.Add(totalVentaFin);
+            doc.Close();
+            ShowPdfL((path + nombre));
+
+        }
+
+        protected void btnCleanAll_Click(object sender, EventArgs e)
+        {
+            idVentaSelect.DataSource = null;
+            idVentaSelect.DataBind();
+
+            cargaReporte.DataSource = null;
+            cargaReporte.DataBind();
+            limpiarTodo(2);
+
+            CargarVentasReporte.DataSource = null;
+            CargarVentasReporte.DataBind();
+            LinkButtonlimpiarseleccionventa.Visible = true;
+            limpiarTodo(2);
+            LinkButtonlimpiarseleccionventa.Visible = false;
+            ldetalleSeleccion.Visible = false;
+            bPDFVentas.Visible = false;
+            ltotalRangoFechaSelección.Visible = false;
+
+            btnCleanAll.Visible = false;
+            ltotalRangoFecha.Visible = false;
+            ltotalRangoFecha2.Visible = false;
+            btnPrintAll.Visible = false;
 
         }
     }

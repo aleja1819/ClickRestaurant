@@ -84,7 +84,7 @@
 
                                 <div class="tab-pane fade" id="tabPicadillo" role="tabpanel">
                                     <div class="btn-group-vertical" role="group">
-                                        <asp:LinkButton ID="idQueso" OnClick="idQueso_Click" CssClass=" btn btn-success" runat="server" Text="QUESO"></asp:LinkButton>
+                                        <asp:LinkButton ID="idQueso" OnClick="idQueso_Click" CssClass=" btn btn-success" runat="server" Text="PICADILLO"></asp:LinkButton>
 
                                     </div>
                                 </div>
@@ -195,7 +195,7 @@
                                         <asp:BoundField DataField="codigo_M" HeaderText="Código Interno" HeaderStyle-CssClass="ocultarCol" ItemStyle-CssClass="ocultarCol"/>
                                         <asp:BoundField DataField="cantidad" HeaderText="Cantidad" />
                                         <asp:BoundField DataField="nombre_M" HeaderText="Nombre" />
-                                        <asp:BoundField DataField="precio_M" HeaderText="Precio" />
+                                        <asp:BoundField DataField="precio_M" HeaderText="Precio"/>
 
                                         <asp:ButtonField ButtonType="Link" CommandName="ideditar" ControlStyle-CssClass="btn btn-danger" Text="-" />
                                     </Columns>
@@ -365,7 +365,6 @@
 
                         <div class="col-md-10">
 
-                            <%-- GridView para solo un pedido en una mesa --%>
                             <div class="row">
                                 <div class="col-md-4 text-center">
                                     <h2><span class="text-danger"><strong>Pedidos Mesa N° <%=System.Configuration.ConfigurationSettings.AppSettings["mesaSeleccionada"]%></strong></span></h2>
@@ -375,14 +374,14 @@
                                     <h2><span class="text-danger"><strong> Total a Cancelar: $<%=Session["precioTotal"]%></strong></span></h2>
                                 </div>
                             </div><br />
-                            <asp:GridView ID="gridUnPedido" runat="server" CssClass="table table-bordered table-center" AutoGenerateColumns="False" OnRowCommand="gridUnPedido_RowCommand">
+                            <asp:GridView ID="gridUnPedido" runat="server" CssClass="table table-bordered table-center" AutoGenerateColumns="False">
                                 <HeaderStyle CssClass="btn-dark" />
                                 <Columns>
                                     <asp:BoundField DataField="codigo_comanda" HeaderText="ID PEDIDO"/>
                                     <asp:BoundField DataField="nombre_menu" HeaderText="Pedido" />
-                                    <asp:BoundField DataField="precio_menu" HeaderText="Valor Unitario" />
+                                    <asp:BoundField DataField="precio_menu" HeaderText="Valor Unitario" DataFormatString="${0:N0}"/>
                                     <asp:BoundField DataField="cantidad" HeaderText="Cantidad" />
-                                    <asp:BoundField DataField="subtotal" HeaderText="SubTotal" />
+                                    <asp:BoundField DataField="subtotal" HeaderText="SubTotal" DataFormatString="${0:N0}"/>
                                 </Columns>
                             </asp:GridView>
 

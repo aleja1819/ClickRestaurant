@@ -240,7 +240,7 @@ namespace Pizza_Express_visual.Components
                             codigo_comanda = Convert.ToInt32(pedidosMesaX[1]),
                             codigo_menu = Convert.ToInt32(pedidosMesaX[3]),
                             nombre_menu = pedidosMesaX[4],
-                            precio_menu = Convert.ToInt32(pedidosMesaX[5]),
+                            precio_menu = Convert.ToInt32(pedidosMesaX[7]),
                             cantidad = Convert.ToInt32(pedidosMesaX[6]),
                         });
 
@@ -757,7 +757,7 @@ namespace Pizza_Express_visual.Components
             Paragraph esp = new Paragraph(" ");
             Paragraph fecha = new Paragraph("Fecha: " + DateTime.Now.ToString());
             Paragraph mesa = new Paragraph("N° Mesa: " + idMesa);
-            Paragraph cajero = new Paragraph("Atendido por: Cajero PIZZERIA");
+            Paragraph cajero = new Paragraph("Atendido por: " + Session["name_user"]);
             fecha.Alignment = Element.ALIGN_LEFT;
             fecha.PaddingTop = 1;
             doc.Add(esp);
@@ -803,11 +803,11 @@ namespace Pizza_Express_visual.Components
                     cell0.Phrase = new Phrase(el.nombre);
                     table.AddCell(cell0);
 
-                    cell0.Phrase = new Phrase(el.precio.ToString());
+                    cell0.Phrase = new Phrase("$" + el.precio.ToString());
                     table.AddCell(cell0);
 
                 
-                    cell0.Phrase = new Phrase(el.total.ToString());
+                    cell0.Phrase = new Phrase("$" + el.total.ToString());
                     table.AddCell(cell0);
 
                     sum += el.total;
@@ -815,26 +815,34 @@ namespace Pizza_Express_visual.Components
                 doc.Add(table);
             }
 
+            Paragraph espacio2 = new Paragraph(" ");
             Paragraph FormaDePago = new Paragraph("Medio de Pago : "+ftipoPago.SelectedItem.Text);
-            Paragraph TicketTransferencia = new Paragraph("N° Transacción RedCompra : "+ttransferencia.Text);
+            Paragraph TicketTransferencia = new Paragraph("N° Transacción RedCompra : "+ttransferencia.Text);            
             Paragraph subtotal = new Paragraph("Subtotal $"+sum);
             Paragraph propina = new Paragraph("Propina $" + tpropina.Text);
             Paragraph descuento = new Paragraph("Dscto $" + tdescuento.Text);
-            Paragraph totalPago = new Paragraph("Total A PAgar $ "+LTotalCancelar.Text);
+            Paragraph totalPago = new Paragraph("Total A Pagar $ "+LTotalCancelar.Text, verdana);
             subtotal.Alignment = Element.ALIGN_RIGHT;
             propina.Alignment = Element.ALIGN_RIGHT;
             descuento.Alignment = Element.ALIGN_RIGHT;
             totalPago.Alignment = Element.ALIGN_RIGHT;
             fecha.PaddingTop = 1;
+            doc.Add(espacio2);
             doc.Add(FormaDePago);
-            doc.Add(TicketTransferencia);
+            if (ftipoPago.SelectedItem.Text.Equals("Tarjeta"))
+            {
+                doc.Add(TicketTransferencia);
+            }
             doc.Add(subtotal);
             doc.Add(propina);
             doc.Add(descuento);
             doc.Add(totalPago);
 
+            Paragraph espacio3 = new Paragraph(" ");
             Paragraph noVali = new Paragraph("NO VALIDO COMO BOLETA");
             noVali.Alignment = Element.ALIGN_CENTER;
+            doc.Add(espacio3);
+            doc.Add(espacio3);
             doc.Add(noVali);
 
 
@@ -871,7 +879,7 @@ namespace Pizza_Express_visual.Components
             doc.Add(tif);
 
             // Carga Título "Cocina"
-            iTextSharp.text.Font verdana = FontFactory.GetFont("Verdana", 18, iTextSharp.text.Font.BOLDITALIC, BaseColor.RED);
+            iTextSharp.text.Font verdana = FontFactory.GetFont("Verdana", 19, iTextSharp.text.Font.BOLDITALIC, BaseColor.RED);
             Paragraph paragraph = new Paragraph(@"COCINA", verdana);
             paragraph.Alignment = Element.ALIGN_CENTER;
             doc.Add(paragraph);
@@ -883,7 +891,7 @@ namespace Pizza_Express_visual.Components
             // Carga numero mesa
             Paragraph mesa = new Paragraph("N° Mesa: " + idMesa);
             // Carga Garzón
-            Paragraph garzon = new Paragraph("Garzón: GARZÓN PIZZERIA");
+            Paragraph garzon = new Paragraph("Atendido por: " + Session["name_user"]);
             Random c = new Random();
             // Carga comanda
             Paragraph comanda = new Paragraph("Comanda: " + Session["codigo_comanda"]);
@@ -1084,15 +1092,6 @@ namespace Pizza_Express_visual.Components
             Session["envioComanda"] = 0;
         }
 
-        protected void gridCargaPedidos_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-
-        }
-
-        protected void gridUnPedido_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-
-        }
 
         protected void Nuevo_Pedido_Click(object sender, EventArgs e)
         {
@@ -1251,6 +1250,7 @@ namespace Pizza_Express_visual.Components
             List<ElementoPagado> detalleBoleta = accesoMesas.detalleBoleta(idMesa);
 
             pdfBoleta(idMesa, detalleBoleta);
+
 
         }
 

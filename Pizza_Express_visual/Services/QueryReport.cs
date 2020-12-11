@@ -26,6 +26,15 @@ namespace Pizza_Express_visual.Services
         public int precioTotal { get; set; }
     }
 
+    public class reporteVentas
+    {
+        public int codigoComanda { get; set; }
+        public int precioMenu { get; set; }
+        public DateTime fecha { get; set; }
+        public string nombreMenu { get; set; }
+        public int cantidad { get; set; }
+    }
+
     public class QueryReportes
     {
         private Pizza_BD1 contexto = new Pizza_BD1();
@@ -69,14 +78,75 @@ namespace Pizza_Express_visual.Services
                     var retornoReporte = from cc in contexto.ComandaMesa
                                          join dm in contexto.ReportesVentas
                                          on cc.codigo_comanda equals dm.codigo_comanda
-                                         where (cc.fecha.Day <= fechaTermino.Day && cc.fecha.Month <= fechaTermino.Month && cc.fecha.Year <= fechaTermino.Year)
-                                         &&
-                                         (cc.fecha.Day >= FechaInicial.Day && cc.fecha.Month >= FechaInicial.Month && cc.fecha.Year >= FechaInicial.Year)
-                                         select new { dm.codigo_comanda, dm.precio_menu, cc.fecha, dm.nombre_menu, dm.cantidad};
-
+                                         where (
+                                            cc.fecha.Day <= fechaTermino.Day 
+                                         && cc.fecha.Month <= fechaTermino.Month 
+                                         && cc.fecha.Year <= fechaTermino.Year)
+                                         &&(cc.fecha.Day >= FechaInicial.Day 
+                                         && cc.fecha.Month >= FechaInicial.Month 
+                                         && cc.fecha.Year >= FechaInicial.Year)
+                                         select new { 
+                                             dm.codigo_comanda, 
+                                             dm.precio_menu, 
+                                             cc.fecha, 
+                                             dm.nombre_menu, 
+                                             dm.cantidad
+                                         };
 
                     int c = retornoReporte.Count();
                     return retornoReporte.ToList<object>();
+
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+
+            }
+        }
+
+        public List<reporteVentas> reporteTodoPDF(DateTime FechaInicial, DateTime fechaTermino)
+        {
+            try
+            {
+
+                using (Pizza_BD1 contexto = new Pizza_BD1())
+                {
+                    var retornoTodo = from cc in contexto.ComandaMesa
+                                      join dm in contexto.ReportesVentas
+                                      on cc.codigo_comanda equals dm.codigo_comanda
+                                      where (
+                                         cc.fecha.Day <= fechaTermino.Day
+                                      && cc.fecha.Month <= fechaTermino.Month
+                                      && cc.fecha.Year <= fechaTermino.Year)
+                                      && (cc.fecha.Day >= FechaInicial.Day
+                                      && cc.fecha.Month >= FechaInicial.Month
+                                      && cc.fecha.Year >= FechaInicial.Year)
+                                      select new
+                                      {
+                                          dm.codigo_comanda,
+                                          dm.precio_menu,
+                                          cc.fecha,
+                                          dm.nombre_menu,
+                                          dm.cantidad
+                                      };
+
+                    List<reporteVentas> reporteVentas = new List<reporteVentas>();
+
+                    foreach (var r in retornoTodo)
+                    {
+                        
+                        reporteVentas.Add(new reporteVentas
+                        {
+                            codigoComanda = r.codigo_comanda,
+                            precioMenu = r.precio_menu,
+                            fecha = r.fecha,
+                            nombreMenu = r.nombre_menu,
+                            cantidad = r.cantidad
+                        });
+                    }
+
+                    return reporteVentas.ToList<reporteVentas>();
 
                 }
             }
@@ -123,34 +193,6 @@ namespace Pizza_Express_visual.Services
 
             }
         }
-        public List<object> MostrarTodo(DateTime FechaInicial, DateTime fechaTermino)
-        {
-            try
-            {
-
-                using (Pizza_BD1 contexto = new Pizza_BD1())
-                {
-
-                    var retornoTodo = from cc in contexto.ComandaMesa
-                                         join dm in contexto.ReportesVentas
-                                         on cc.codigo_comanda equals dm.codigo_comanda
-                                         where (cc.fecha.Day <= fechaTermino.Day && cc.fecha.Month <= fechaTermino.Month && cc.fecha.Year <= fechaTermino.Year)
-                                         &&
-                                         (cc.fecha.Day >= FechaInicial.Day && cc.fecha.Month >= FechaInicial.Month && cc.fecha.Year >= FechaInicial.Year)
-                                         select new { dm.codigo_comanda, dm.precio_menu, cc.fecha, dm.nombre_menu, dm.cantidad };
-
-
-                    int c = retornoTodo.Count();
-                    return retornoTodo.ToList<object>();
-
-                }
-            }
-            catch (Exception)
-            {
-                return null;
-
-            }
-        }
 
         public List<object> listartodo()
         {
@@ -159,8 +201,16 @@ namespace Pizza_Express_visual.Services
                 using (Pizza_BD1 contexto = new Pizza_BD1())
                 {
 
-                    var retornoReporte = from p in contexto.Producto join pp in contexto.Producto_Proveedor on p.codigo_producto equals pp.codigo_proveedor select new { p.codigo_producto, p.nombre_producto, pp.Proveedor.rut_proveedor, pp.fecha_ingreso_producto, pp.cantidad_producto };
-
+                    var retornoReporte = from p in contexto.Producto 
+                                         join pp in contexto.Producto_Proveedor
+                                         on p.codigo_producto equals pp.codigo_proveedor 
+                                         select new { 
+                                             p.codigo_producto, 
+                                             p.nombre_producto, 
+                                             pp.Proveedor.rut_proveedor, 
+                                             pp.fecha_ingreso_producto, 
+                                             pp.cantidad_producto 
+                                         };
 
                     return retornoReporte.ToList<object>();
                 }

@@ -43,15 +43,23 @@
 
                             <div class="col-md-4">
 
-                                <div class="input-group mb-4">
-                                    <h5 class="text-dark">Desde : </h5>
-                                    <asp:TextBox runat="server" ID="tfechaI" CssClass="form-control" TextMode="Date" placeholder="Fecha inicial"></asp:TextBox>
+                                <div class="input-group md-4">
+                                    <div class="col-4">
+                                        <h5 class="text-dark">Desde :</h5>
+                                    </div>
+                                    <div class="col-8">
+                                        <asp:TextBox runat="server" ID="tfechaI" CssClass="form-control" TextMode="Date" placeholder="Fecha inicial"></asp:TextBox>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="input-group mb-4">
+                                    <div class="col-4">
                                     <h5 class="text-dark">Hasta : </h5>
+                                        </div>
+                                    <div class="col-8">
                                     <asp:TextBox runat="server" ID="tfechaF" CssClass="form-control" TextMode="Date" placeholder="Fecha final"></asp:TextBox>
+                                        </div>
                                 </div>
                             </div>
                             <div class="col-md-2">
@@ -76,7 +84,7 @@
 
                         <br />
                         <div class="row">
-                            <div class=" col-md-12">
+                            <div class=" col-md-11">
                                 <div class="col align-content-center">
                                     <asp:GridView runat="server" ID="idVentaSelect" CssClass="table table-bordered table-center " AutoGenerateColumns="false"
                                         OnRowCommand="idVentaSelect_RowCommand">
@@ -96,6 +104,29 @@
                                         </Columns>
                                     </asp:GridView>
                                 </div>
+
+                                <div class="col-md-10">
+                                    <h5 class="text-dark text-md-left">
+                                        <asp:Label runat="server" ID="ltotalRangoFecha2" Visible="false" class="text-danger" Text="Total Ventas del Periodo $"></asp:Label></h5>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <asp:LinkButton runat="server" Visible="false" CssClass="btn btn-success" ID="btnPrintAll" OnClick="btnPrintAll_Click"> 
+                                        <svg class="w-5 h-5" viewBox="0 0 16 16" class="bi bi-printer-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5z"/>
+                                        <path fill-rule="evenodd" d="M11 9H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z"/>
+                                        <path fill-rule="evenodd" d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+                                                </svg>
+                                        <span style="font-size: 15px">Imprimir Rango</span>                                              
+                                </asp:LinkButton><br />
+                                <br />
+                                <%--BOTON LIMPIAR--%>
+                                <asp:LinkButton runat="server" Visible="false" CssClass="btn btn-info" ID="btnCleanAll" OnClick="btnCleanAll_Click">
+                                            <svg class="w-5 h-5" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
+                                            </svg>
+                                           <span style="font-size: 15px">Limpiar Todo</span>
+                                </asp:LinkButton>
                             </div>
                         </div>
                     </div>
@@ -111,7 +142,7 @@
                         <%--TOTAL PRECIO SELECCION FECHA--%>
                         <div class=" col-md-10">
                             <h5 class="text-dark text-md-left">
-                                <asp:Label runat="server" Visible="false" ID="ltotalRangoFechaSelección" class="text-danger" Text="Total ventas seleccionadas $0"></asp:Label></h5>
+                            <asp:Label runat="server" Visible="false" ID="ltotalRangoFechaSelección" class="text-danger" Text="Total ventas seleccionadas $0"></asp:Label></h5>
                         </div>
                     </div>
                     <br />
@@ -132,7 +163,7 @@
                                             <asp:BoundField DataField="cantidad_V" HeaderText="cantidad" />
                                             <asp:BoundField DataField="nombre_V" HeaderText="Nombre Menú" />
                                             <asp:BoundField DataField="fecha_V" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy}" />
-                                            <asp:BoundField DataField="precio_V" HeaderText="Precio" />
+                                            <asp:BoundField DataField="precio_V" HeaderText="Precio" DataFormatString="${0:N0}"/>
 
                                             <asp:ButtonField ButtonType="Link" Visible="false" CommandName="idQuitar" ControlStyle-CssClass="btn btn-danger" Text="-" />
 
@@ -314,5 +345,6 @@
     <Triggers>
         <asp:PostBackTrigger ControlID="bGenerarPdf" />
         <asp:PostBackTrigger ControlID="bPDFVentas" />
+        <asp:PostBackTrigger ControlID="btnPrintAll" />
     </Triggers>
 </asp:UpdatePanel>
