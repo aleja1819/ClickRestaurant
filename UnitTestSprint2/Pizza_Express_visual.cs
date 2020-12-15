@@ -12,7 +12,7 @@ namespace Pizza_Express_visual.Services
        
 
 
-        static List<Services.reporte> ListaReporte = new List<reporte>();
+        //static List<Services.reporte> ListaReporte = new List<reporte>();
         static List<Services.ventas> ListaVentas = new List<ventas>();
         private QueryReportes accesoReportes = new QueryReportes();
 

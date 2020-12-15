@@ -242,44 +242,44 @@ namespace Pizza_Express_visual.Components
                 else
                 {
 
+
+
+                    string rut_p = trut.Text;
+                    string nombre_p = tnombre.Text;
+                    string apellidoP_p = tapellidoP.Text;
+                    string apellidoM_p = tapellidoM.Text;
+                    string direccion_p = tdireccion.Text;
+
+                    int id_tipop = Convert.ToInt32(fTipoProducto.SelectedItem.Value);
+                    string codigo_original = codigo_orginal.Text;
+
+                    accesoProveedor.editarProveedor(new Models.Proveedor
+                    {
+
+                        rut_proveedor = rut_p,
+                        nombre_proveedor = nombre_p,
+                        apellido_paterno_proveedor = apellidoP_p,
+                        apellido_materno_proveedor = apellidoM_p,
+                        direccion_proveedor = direccion_p,
+                        codigo_tipoProducto = id_tipop,
+
+                    }, codigo_original);
+
+                    //MOSTRAR LOS DATOS EN LA TABLA
+                    idTabla.DataSource = accesoProveedor.filtrarProveedor();
+                    idTabla.DataBind();
+
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal('hide');", true);
+                    uModalProveedor.Update();
+                    uContenedorProveedor.Update();
+
+
+                    limpiarTodo(2);
+
+                    alerta.Visible = true;
+                    alerta.CssClass = "alert alert-primary animated zoomInUp";
+                    mensaje3.Text = "USUARIO MODIFICADO CON EXITO.";
                 }
-
-                string rut_p = trut.Text;
-                string nombre_p = tnombre.Text;
-                string apellidoP_p = tapellidoP.Text;
-                string apellidoM_p = tapellidoM.Text;
-                string direccion_p = tdireccion.Text;
-
-                int id_tipop = Convert.ToInt32(fTipoProducto.SelectedItem.Value);
-                string codigo_original = codigo_orginal.Text;
-
-                accesoProveedor.editarProveedor(new Models.Proveedor
-                {
-
-                    rut_proveedor = rut_p,
-                    nombre_proveedor = nombre_p,
-                    apellido_paterno_proveedor = apellidoP_p,
-                    apellido_materno_proveedor = apellidoM_p,
-                    direccion_proveedor = direccion_p,
-                    codigo_tipoProducto = id_tipop,
-
-                }, codigo_original);
-
-                //MOSTRAR LOS DATOS EN LA TABLA
-                idTabla.DataSource = accesoProveedor.filtrarProveedor();
-                idTabla.DataBind();
-
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal('hide');", true);
-                uModalProveedor.Update();
-                uContenedorProveedor.Update();
-
-
-                limpiarTodo(2);
-
-                alerta.Visible = true;
-                alerta.CssClass = "alert alert-primary animated zoomInUp";
-                mensaje3.Text = "USUARIO MODIFICADO CON EXITO.";
-
             }
             catch (Exception)
             {

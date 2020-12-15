@@ -338,3 +338,14 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+
+# web.config
+Web.config
+*.sql
+/Pizza_Express_visual/FilesProd_406_7.pdf
+/Pizza_Express_visual/FilesProd_379_50.pdf
+/Pizza_Express_visual/FilesProd_265_57.pdf
+/Pizza_Express_visual/FilesProd_252_27.pdf
+/Pizza_Express_visual/FilesProd_18_57.pdf
+/Pizza_Express_visual/FilesProd_167_3.pdf
+/Pizza_Express_visual/FilesPedido_33_55

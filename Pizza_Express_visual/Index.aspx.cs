@@ -31,7 +31,7 @@ namespace Pizza_Express_visual
             catch (Exception)
             {
                 Session["name_user"] = "Usuario no Registrado";
-                login.Visible = true;
+                usuarioNoRegistrado();
             }
 
 
@@ -85,24 +85,10 @@ namespace Pizza_Express_visual
             uContenido.Update();
         }
 
-        protected void Menu_Reservas_Click(object sender, EventArgs e)
-        {
-            alerta.Visible = false;
-            mcontenedor.SetActiveView(vReservas);
-            uContenido.Update();
-        }
-
         protected void Menu_usuarios_Click(object sender, EventArgs e)
         {
             alerta.Visible = false;
             mcontenedor.SetActiveView(vUsuarios);
-            uContenido.Update();
-        }
-
-        protected void Menu_comanda_Click(object sender, EventArgs e)
-        {
-            alerta.Visible = false;
-            mcontenedor.SetActiveView(vComanda);
             uContenido.Update();
         }
 
@@ -125,11 +111,35 @@ namespace Pizza_Express_visual
             queryUsuario.menu(idRol, ListaMenu);
 
             mostrar_usuario.Visible = true;
+            component_Bienvenidos.Visible = true;
             MostrarLogo.Visible = false;
 
             login.Visible = false;
             idCerrarSesion.Visible = true;
 
+        }
+
+        void usuarioNoRegistrado()
+        {
+            login.Visible = true;
+            idCerrarSesion.Visible = false;
+
+            Session.Clear();
+            Session.Abandon();
+
+            Menu_administracion.Visible = false;
+            Menu_ventas.Visible = false;
+            Menu_home.Visible = false;
+            mostrar_usuario.Visible = false;
+            component_Bienvenidos.Visible = false;
+            login.Visible = true;
+            MostrarLogo.Visible = true;
+
+            alerta.Visible = false;
+            mcontenedor.SetActiveView(vBienvenida);
+            uBarraMenu.Update();
+            uContenido.Update();
+            uModal.Update();
         }
 
         protected void bingresar_login_Click(object sender, EventArgs e)
@@ -216,6 +226,11 @@ namespace Pizza_Express_visual
             uContenido.Update();
         }
 
-        
+        protected void Menu_Mesas_Click(object sender, EventArgs e)
+        {
+            alerta.Visible = false;
+            mcontenedor.SetActiveView(vMesas);
+            uContenido.Update();            
+        }
     }
 }

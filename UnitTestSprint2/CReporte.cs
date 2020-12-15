@@ -10,7 +10,7 @@ namespace Pizza_Express_visual.Components
     public partial class components_Reportes
     {
 
-        static List<Services.reporte> ListaReporte = new List<reporte>();
+        //static List<Services.reporte> ListaReporte = new List<reporte>();
         static List<Services.ventas> ListaVentas = new List<ventas>();
         private QueryReportes accesoReportes = new QueryReportes();
 

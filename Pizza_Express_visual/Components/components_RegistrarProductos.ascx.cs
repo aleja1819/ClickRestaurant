@@ -59,16 +59,28 @@ namespace Pizza_Express_visual.Components
         {
 
             bool correcto = true;
+            string rutProveedor = trut.Text;
+            int cod = accesoProductos.codigoProveedor(rutProveedor);
+            string codi = cod + "";
 
-            if (trut.Text.Equals(""))
+            if ( trut.Text == codi )
             {
-                MostrarError(trut, valida_trut, 0);
+                MostrarError(trut, va, 0);
                 correcto = false;
             }
             else
             {
-                MostrarError(trut, valida_trut, 1);
+                MostrarError(trut, va, 1);
             }
+            //if (trut.Text.Equals(""))
+            //{
+            //    MostrarError(trut, valida_trut, 0);
+            //    correcto = false;
+            //}
+            //else
+            //{
+            //    MostrarError(trut, valida_trut, 1);
+            //}
             if (tnombre.Text.Equals(""))
             {
                 MostrarError(tnombre, valida_tnombre, 0);
@@ -158,33 +170,39 @@ namespace Pizza_Express_visual.Components
                         DateTime t = DateTime.Now;
 
                         int cant = Convert.ToInt32(tcantidad.Text);
+                        string codi = cod +"";
 
-                        accesoProductos.addProd_Prove(new Models.Producto_Proveedor
-                        {
 
-                            fecha_ingreso_producto = t,
-                            codigo_producto = idProd,
-                            cantidad_producto = cant,
-                            codigo_proveedor = cod
-                        }); 
 
-                        //MOSTRAR LOS DATOS EN LA TABLA
-                        idTabla.DataSource = accesoProductos.filtrarProductos();
-                        idTabla.DataBind();
+                            accesoProductos.addProd_Prove(new Models.Producto_Proveedor
+                            {
 
-                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal('hide');", true);
-                        uModalProducto.Update();
-                        uContenedorProducto.Update();
+                                fecha_ingreso_producto = t,
+                                codigo_producto = idProd,
+                                cantidad_producto = cant,
+                                codigo_proveedor = cod
 
-                        limpiarTodo(2);
+                            });
 
-                        alerta.Visible = true;
-                        alerta.CssClass = "alert alert-primary animated zoomInUp";
-                        mensaje3.Text = "PRODUCTO AGREGADO CON EXITO.";
 
-                        bregistrarProducto.Visible = false;
+                            //MOSTRAR LOS DATOS EN LA TABLA
+                            idTabla.DataSource = accesoProductos.filtrarProductos();
+                            idTabla.DataBind();
+
+                            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal('hide');", true);
+                            uModalProducto.Update();
+                            uContenedorProducto.Update();
+
+                            limpiarTodo(2);
+
+                            alerta.Visible = true;
+                            alerta.CssClass = "alert alert-primary animated zoomInUp";
+                            mensaje3.Text = "PRODUCTO AGREGADO CON EXITO.";
+
+                            bregistrarProducto.Visible = false;
+                        }
                     }
-                }
+                
             }
             catch (Exception)
             {

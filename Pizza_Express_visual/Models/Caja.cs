@@ -17,15 +17,12 @@ namespace Pizza_Express_visual.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Caja()
         {
-            this.BoletaComanda = new HashSet<BoletaComanda>();
             this.detalleCaja = new HashSet<detalleCaja>();
         }
     
         public int numero_caja { get; set; }
         public int codigo_estado { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BoletaComanda> BoletaComanda { get; set; }
         public virtual Estado_caja Estado_caja { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<detalleCaja> detalleCaja { get; set; }

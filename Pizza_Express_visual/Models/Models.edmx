@@ -1,0 +1,1856 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PizzaE_novModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Asignar_Menu">
+          <Key>
+            <PropertyRef Name="idAsignarMenu" />
+          </Key>
+          <Property Name="idAsignarMenu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigo_tipoUsuario" Type="int" Nullable="false" />
+          <Property Name="idMenu" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Caja">
+          <Key>
+            <PropertyRef Name="numero_caja" />
+          </Key>
+          <Property Name="numero_caja" Type="int" Nullable="false" />
+          <Property Name="codigo_estado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="codigo_categoria" />
+          </Key>
+          <Property Name="codigo_categoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_categoria" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ComandaMesa">
+          <Key>
+            <PropertyRef Name="codigo_comanda" />
+          </Key>
+          <Property Name="codigo_comanda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idMesa" Type="int" Nullable="false" />
+          <Property Name="idEstadoPago" Type="int" />
+          <Property Name="fecha" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="precio_total" Type="int" Nullable="false" />
+          <Property Name="codigo_usuario" Type="int" Nullable="false" />
+          <Property Name="id_DetalleCaja" Type="int" />
+        </EntityType>
+        <EntityType Name="Detalle_Mesa_Pedido">
+          <Key>
+            <PropertyRef Name="idMesa" />
+            <PropertyRef Name="codigo_comanda" />
+          </Key>
+          <Property Name="idMesa" Type="int" Nullable="false" />
+          <Property Name="codigo_comanda" Type="int" Nullable="false" />
+          <Property Name="precio_total" Type="int" Nullable="false" />
+          <Property Name="menu1" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m1" Type="int" />
+          <Property Name="menu2" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m2" Type="int" />
+          <Property Name="menu3" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m3" Type="int" />
+          <Property Name="menu4" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m4" Type="int" />
+          <Property Name="menu5" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m5" Type="int" />
+          <Property Name="menu6" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m6" Type="int" />
+          <Property Name="menu7" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m7" Type="int" />
+          <Property Name="menu8" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m8" Type="int" />
+          <Property Name="menu9" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m9" Type="int" />
+          <Property Name="menu10" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m10" Type="int" />
+          <Property Name="menu11" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m11" Type="int" />
+          <Property Name="menu12" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m12" Type="int" />
+          <Property Name="menu13" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m13" Type="int" />
+          <Property Name="menu14" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m14" Type="int" />
+          <Property Name="menu15" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m15" Type="int" />
+          <Property Name="menu16" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m16" Type="int" />
+          <Property Name="menu17" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m17" Type="int" />
+          <Property Name="menu18" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m18" Type="int" />
+          <Property Name="menu19" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m19" Type="int" />
+          <Property Name="menu20" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m20" Type="int" />
+          <Property Name="menu21" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m21" Type="int" />
+          <Property Name="menu22" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m22" Type="int" />
+          <Property Name="menu23" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m23" Type="int" />
+          <Property Name="menu24" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m24" Type="int" />
+          <Property Name="menu25" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m25" Type="int" />
+          <Property Name="menu26" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m26" Type="int" />
+          <Property Name="menu27" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m27" Type="int" />
+          <Property Name="menu28" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m28" Type="int" />
+          <Property Name="menu29" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m29" Type="int" />
+          <Property Name="menu30" Type="varchar" MaxLength="50" />
+          <Property Name="cantidad_m30" Type="int" />
+        </EntityType>
+        <EntityType Name="Detalle_Pago">
+          <Key>
+            <PropertyRef Name="codigo_pago" />
+          </Key>
+          <Property Name="codigo_pago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigo_tipoPago" Type="int" Nullable="false" />
+          <Property Name="numeroTransaccion" Type="int" />
+          <Property Name="propina" Type="int" Nullable="false" />
+          <Property Name="descuento" Type="int" Nullable="false" />
+          <Property Name="codigo_comanda" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="detalleCaja">
+          <Key>
+            <PropertyRef Name="id_DetalleCaja" />
+          </Key>
+          <Property Name="id_DetalleCaja" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="monto_apertura" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="hora" Type="time" Precision="7" Nullable="false" />
+          <Property Name="numero_caja" Type="int" />
+          <Property Name="codigo_usuario" Type="int" />
+        </EntityType>
+        <EntityType Name="Estado_caja">
+          <Key>
+            <PropertyRef Name="codigo_estado" />
+          </Key>
+          <Property Name="codigo_estado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_estado" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estado_Mesa">
+          <Key>
+            <PropertyRef Name="codigo_estado" />
+          </Key>
+          <Property Name="codigo_estado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_estado" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estado_Pago">
+          <Key>
+            <PropertyRef Name="idEstadoPago" />
+          </Key>
+          <Property Name="idEstadoPago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estado_Usuario">
+          <Key>
+            <PropertyRef Name="codigo_estado" />
+          </Key>
+          <Property Name="codigo_estado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_estado" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="codigo_menu" />
+          </Key>
+          <Property Name="codigo_menu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigo_categoria" Type="int" Nullable="false" />
+          <Property Name="nombre_menu" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="precio_menu" Type="int" Nullable="false" />
+          <Property Name="ingredientes_menu" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="codigo_tamanoP" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Menu_Link">
+          <Key>
+            <PropertyRef Name="idMenu" />
+          </Key>
+          <Property Name="idMenu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="linkMenu" Type="varchar" MaxLength="120" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mesa">
+          <Key>
+            <PropertyRef Name="idMesa" />
+          </Key>
+          <Property Name="idMesa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigo_estado" Type="int" Nullable="false" />
+          <Property Name="numeroMesa" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PedidosActivos">
+          <Key>
+            <PropertyRef Name="idPedidosActivos" />
+          </Key>
+          <Property Name="idPedidosActivos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idMesa" Type="int" Nullable="false" />
+          <Property Name="codigo_comanda" Type="int" Nullable="false" />
+          <Property Name="idEstadoPago" Type="int" Nullable="false" />
+          <Property Name="codigo_menu" Type="int" Nullable="false" />
+          <Property Name="nombre_menu" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="precio_menu" Type="int" Nullable="false" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
+          <Property Name="subtotal" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="codigo_producto" />
+          </Key>
+          <Property Name="codigo_producto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_producto" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="codigo_usuario" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Producto_Proveedor">
+          <Key>
+            <PropertyRef Name="codigo_producto" />
+            <PropertyRef Name="codigo_proveedor" />
+          </Key>
+          <Property Name="codigo_producto" Type="int" Nullable="false" />
+          <Property Name="codigo_proveedor" Type="int" Nullable="false" />
+          <Property Name="fecha_ingreso_producto" Type="date" Nullable="false" />
+          <Property Name="cantidad_producto" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Proveedor">
+          <Key>
+            <PropertyRef Name="codigo_proveedor" />
+          </Key>
+          <Property Name="codigo_proveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rut_proveedor" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="nombre_proveedor" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="apellido_paterno_proveedor" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="apellido_materno_proveedor" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="codigo_tipoProducto" Type="int" Nullable="false" />
+          <Property Name="direccion_proveedor" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReportesVentas">
+          <Key>
+            <PropertyRef Name="idReportesVentas" />
+          </Key>
+          <Property Name="idReportesVentas" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigo_comanda" Type="int" Nullable="false" />
+          <Property Name="codigo_menu" Type="int" Nullable="false" />
+          <Property Name="nombre_menu" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="precio_menu" Type="int" Nullable="false" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TamanoP">
+          <Key>
+            <PropertyRef Name="codigo_tamanoP" />
+          </Key>
+          <Property Name="codigo_tamanoP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_tamanoP" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="TipoPago">
+          <Key>
+            <PropertyRef Name="codigo_tipoPago" />
+          </Key>
+          <Property Name="codigo_tipoPago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoProducto">
+          <Key>
+            <PropertyRef Name="codigo_tipoProducto" />
+          </Key>
+          <Property Name="codigo_tipoProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_tipoProducto" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoUsuario">
+          <Key>
+            <PropertyRef Name="codigo_tipoUsuario" />
+          </Key>
+          <Property Name="codigo_tipoUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_tipoUsuario" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="codigo_usuario" />
+          </Key>
+          <Property Name="codigo_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigo_tipoUsuario" Type="int" Nullable="false" />
+          <Property Name="codigo_estado" Type="int" Nullable="false" />
+          <Property Name="nombre_usuario" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="contraseña_usuario" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="rut_usuario" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="email_usuario" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_Asignar_Menu_Menu_Link">
+          <End Role="Menu_Link" Type="Self.Menu_Link" Multiplicity="1" />
+          <End Role="Asignar_Menu" Type="Self.Asignar_Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu_Link">
+              <PropertyRef Name="idMenu" />
+            </Principal>
+            <Dependent Role="Asignar_Menu">
+              <PropertyRef Name="idMenu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Asignar_Menu_TipoUsuario">
+          <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
+          <End Role="Asignar_Menu" Type="Self.Asignar_Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoUsuario">
+              <PropertyRef Name="codigo_tipoUsuario" />
+            </Principal>
+            <Dependent Role="Asignar_Menu">
+              <PropertyRef Name="codigo_tipoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Caja_Estado_caja">
+          <End Role="Estado_caja" Type="Self.Estado_caja" Multiplicity="1" />
+          <End Role="Caja" Type="Self.Caja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado_caja">
+              <PropertyRef Name="codigo_estado" />
+            </Principal>
+            <Dependent Role="Caja">
+              <PropertyRef Name="codigo_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CartaMenu_Categoria1">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="Menu" Type="Self.Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="codigo_categoria" />
+            </Principal>
+            <Dependent Role="Menu">
+              <PropertyRef Name="codigo_categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CartaMenu_tamanoP">
+          <End Role="TamanoP" Type="Self.TamanoP" Multiplicity="1" />
+          <End Role="Menu" Type="Self.Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TamanoP">
+              <PropertyRef Name="codigo_tamanoP" />
+            </Principal>
+            <Dependent Role="Menu">
+              <PropertyRef Name="codigo_tamanoP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_codigo_comanda_ComandaMesa">
+          <End Role="ComandaMesa" Type="Self.ComandaMesa" Multiplicity="1" />
+          <End Role="PedidosActivos" Type="Self.PedidosActivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ComandaMesa">
+              <PropertyRef Name="codigo_comanda" />
+            </Principal>
+            <Dependent Role="PedidosActivos">
+              <PropertyRef Name="codigo_comanda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_codigo_menu">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+          <End Role="PedidosActivos" Type="Self.PedidosActivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="codigo_menu" />
+            </Principal>
+            <Dependent Role="PedidosActivos">
+              <PropertyRef Name="codigo_menu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComandaMesa_detalleCaja1">
+          <End Role="detalleCaja" Type="Self.detalleCaja" Multiplicity="0..1" />
+          <End Role="ComandaMesa" Type="Self.ComandaMesa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="detalleCaja">
+              <PropertyRef Name="id_DetalleCaja" />
+            </Principal>
+            <Dependent Role="ComandaMesa">
+              <PropertyRef Name="id_DetalleCaja" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComandaMesa_Estado_Pago">
+          <End Role="Estado_Pago" Type="Self.Estado_Pago" Multiplicity="0..1" />
+          <End Role="ComandaMesa" Type="Self.ComandaMesa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado_Pago">
+              <PropertyRef Name="idEstadoPago" />
+            </Principal>
+            <Dependent Role="ComandaMesa">
+              <PropertyRef Name="idEstadoPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComandaMesa_Mesa">
+          <End Role="Mesa" Type="Self.Mesa" Multiplicity="1" />
+          <End Role="ComandaMesa" Type="Self.ComandaMesa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mesa">
+              <PropertyRef Name="idMesa" />
+            </Principal>
+            <Dependent Role="ComandaMesa">
+              <PropertyRef Name="idMesa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ComandaMesa_Usuario1">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="ComandaMesa" Type="Self.ComandaMesa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="codigo_usuario" />
+            </Principal>
+            <Dependent Role="ComandaMesa">
+              <PropertyRef Name="codigo_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_detalleCaja_Caja">
+          <End Role="Caja" Type="Self.Caja" Multiplicity="0..1" />
+          <End Role="detalleCaja" Type="Self.detalleCaja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Caja">
+              <PropertyRef Name="numero_caja" />
+            </Principal>
+            <Dependent Role="detalleCaja">
+              <PropertyRef Name="numero_caja" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_detalleCaja_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="detalleCaja" Type="Self.detalleCaja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="codigo_usuario" />
+            </Principal>
+            <Dependent Role="detalleCaja">
+              <PropertyRef Name="codigo_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_idEstadoPago">
+          <End Role="Estado_Pago" Type="Self.Estado_Pago" Multiplicity="1" />
+          <End Role="PedidosActivos" Type="Self.PedidosActivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado_Pago">
+              <PropertyRef Name="idEstadoPago" />
+            </Principal>
+            <Dependent Role="PedidosActivos">
+              <PropertyRef Name="idEstadoPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_idMesa_Mesa">
+          <End Role="Mesa" Type="Self.Mesa" Multiplicity="1" />
+          <End Role="Detalle_Mesa_Pedido" Type="Self.Detalle_Mesa_Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mesa">
+              <PropertyRef Name="idMesa" />
+            </Principal>
+            <Dependent Role="Detalle_Mesa_Pedido">
+              <PropertyRef Name="idMesa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_idMesaPedido_Mesa">
+          <End Role="Mesa" Type="Self.Mesa" Multiplicity="1" />
+          <End Role="PedidosActivos" Type="Self.PedidosActivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mesa">
+              <PropertyRef Name="idMesa" />
+            </Principal>
+            <Dependent Role="PedidosActivos">
+              <PropertyRef Name="idMesa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Mesa_Estado_Mesa1">
+          <End Role="Estado_Mesa" Type="Self.Estado_Mesa" Multiplicity="1" />
+          <End Role="Mesa" Type="Self.Mesa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado_Mesa">
+              <PropertyRef Name="codigo_estado" />
+            </Principal>
+            <Dependent Role="Mesa">
+              <PropertyRef Name="codigo_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Pago_codigo_comanda">
+          <End Role="ComandaMesa" Type="Self.ComandaMesa" Multiplicity="1" />
+          <End Role="Detalle_Pago" Type="Self.Detalle_Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ComandaMesa">
+              <PropertyRef Name="codigo_comanda" />
+            </Principal>
+            <Dependent Role="Detalle_Pago">
+              <PropertyRef Name="codigo_comanda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Pago_TipoPago1">
+          <End Role="TipoPago" Type="Self.TipoPago" Multiplicity="1" />
+          <End Role="Detalle_Pago" Type="Self.Detalle_Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPago">
+              <PropertyRef Name="codigo_tipoPago" />
+            </Principal>
+            <Dependent Role="Detalle_Pago">
+              <PropertyRef Name="codigo_tipoPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Producto_has_Proveedor_Producto1">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Producto_Proveedor" Type="Self.Producto_Proveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="codigo_producto" />
+            </Principal>
+            <Dependent Role="Producto_Proveedor">
+              <PropertyRef Name="codigo_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Producto_has_Proveedor_Proveedor1">
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
+          <End Role="Producto_Proveedor" Type="Self.Producto_Proveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="codigo_proveedor" />
+            </Principal>
+            <Dependent Role="Producto_Proveedor">
+              <PropertyRef Name="codigo_proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Producto_Usuario1">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="codigo_usuario" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="codigo_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Proveedor_TipoProducto1">
+          <End Role="TipoProducto" Type="Self.TipoProducto" Multiplicity="1" />
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoProducto">
+              <PropertyRef Name="codigo_tipoProducto" />
+            </Principal>
+            <Dependent Role="Proveedor">
+              <PropertyRef Name="codigo_tipoProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Re_codigo_comanda_ComandaMesa">
+          <End Role="ComandaMesa" Type="Self.ComandaMesa" Multiplicity="1" />
+          <End Role="ReportesVentas" Type="Self.ReportesVentas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ComandaMesa">
+              <PropertyRef Name="codigo_comanda" />
+            </Principal>
+            <Dependent Role="ReportesVentas">
+              <PropertyRef Name="codigo_comanda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Re_codigo_menu">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+          <End Role="ReportesVentas" Type="Self.ReportesVentas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="codigo_menu" />
+            </Principal>
+            <Dependent Role="ReportesVentas">
+              <PropertyRef Name="codigo_menu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Usuario_Estado_Usuario">
+          <End Role="Estado_Usuario" Type="Self.Estado_Usuario" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado_Usuario">
+              <PropertyRef Name="codigo_estado" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="codigo_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Usuario_TipoUsuario">
+          <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoUsuario">
+              <PropertyRef Name="codigo_tipoUsuario" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="codigo_tipoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PizzaE_novModelStoreContainer">
+          <EntitySet Name="Asignar_Menu" EntityType="Self.Asignar_Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Caja" EntityType="Self.Caja" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ComandaMesa" EntityType="Self.ComandaMesa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Detalle_Mesa_Pedido" EntityType="Self.Detalle_Mesa_Pedido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Detalle_Pago" EntityType="Self.Detalle_Pago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="detalleCaja" EntityType="Self.detalleCaja" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estado_caja" EntityType="Self.Estado_caja" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estado_Mesa" EntityType="Self.Estado_Mesa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estado_Pago" EntityType="Self.Estado_Pago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estado_Usuario" EntityType="Self.Estado_Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Menu_Link" EntityType="Self.Menu_Link" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mesa" EntityType="Self.Mesa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PedidosActivos" EntityType="Self.PedidosActivos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto_Proveedor" EntityType="Self.Producto_Proveedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proveedor" EntityType="Self.Proveedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReportesVentas" EntityType="Self.ReportesVentas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TamanoP" EntityType="Self.TamanoP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoPago" EntityType="Self.TipoPago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoProducto" EntityType="Self.TipoProducto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_Asignar_Menu_Menu_Link" Association="Self.fk_Asignar_Menu_Menu_Link">
+            <End Role="Menu_Link" EntitySet="Menu_Link" />
+            <End Role="Asignar_Menu" EntitySet="Asignar_Menu" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Asignar_Menu_TipoUsuario" Association="Self.fk_Asignar_Menu_TipoUsuario">
+            <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+            <End Role="Asignar_Menu" EntitySet="Asignar_Menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Caja_Estado_caja" Association="Self.FK_Caja_Estado_caja">
+            <End Role="Estado_caja" EntitySet="Estado_caja" />
+            <End Role="Caja" EntitySet="Caja" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CartaMenu_Categoria1" Association="Self.fk_CartaMenu_Categoria1">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Menu" EntitySet="Menu" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CartaMenu_tamanoP" Association="Self.fk_CartaMenu_tamanoP">
+            <End Role="TamanoP" EntitySet="TamanoP" />
+            <End Role="Menu" EntitySet="Menu" />
+          </AssociationSet>
+          <AssociationSet Name="fk_codigo_comanda_ComandaMesa" Association="Self.fk_codigo_comanda_ComandaMesa">
+            <End Role="ComandaMesa" EntitySet="ComandaMesa" />
+            <End Role="PedidosActivos" EntitySet="PedidosActivos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_codigo_menu" Association="Self.fk_codigo_menu">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="PedidosActivos" EntitySet="PedidosActivos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComandaMesa_detalleCaja1" Association="Self.FK_ComandaMesa_detalleCaja1">
+            <End Role="detalleCaja" EntitySet="detalleCaja" />
+            <End Role="ComandaMesa" EntitySet="ComandaMesa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComandaMesa_Estado_Pago" Association="Self.FK_ComandaMesa_Estado_Pago">
+            <End Role="Estado_Pago" EntitySet="Estado_Pago" />
+            <End Role="ComandaMesa" EntitySet="ComandaMesa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComandaMesa_Mesa" Association="Self.FK_ComandaMesa_Mesa">
+            <End Role="Mesa" EntitySet="Mesa" />
+            <End Role="ComandaMesa" EntitySet="ComandaMesa" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ComandaMesa_Usuario1" Association="Self.fk_ComandaMesa_Usuario1">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="ComandaMesa" EntitySet="ComandaMesa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_detalleCaja_Caja" Association="Self.FK_detalleCaja_Caja">
+            <End Role="Caja" EntitySet="Caja" />
+            <End Role="detalleCaja" EntitySet="detalleCaja" />
+          </AssociationSet>
+          <AssociationSet Name="FK_detalleCaja_Usuario" Association="Self.FK_detalleCaja_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="detalleCaja" EntitySet="detalleCaja" />
+          </AssociationSet>
+          <AssociationSet Name="fk_idEstadoPago" Association="Self.fk_idEstadoPago">
+            <End Role="Estado_Pago" EntitySet="Estado_Pago" />
+            <End Role="PedidosActivos" EntitySet="PedidosActivos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_idMesa_Mesa" Association="Self.fk_idMesa_Mesa">
+            <End Role="Mesa" EntitySet="Mesa" />
+            <End Role="Detalle_Mesa_Pedido" EntitySet="Detalle_Mesa_Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="fk_idMesaPedido_Mesa" Association="Self.fk_idMesaPedido_Mesa">
+            <End Role="Mesa" EntitySet="Mesa" />
+            <End Role="PedidosActivos" EntitySet="PedidosActivos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Mesa_Estado_Mesa1" Association="Self.fk_Mesa_Estado_Mesa1">
+            <End Role="Estado_Mesa" EntitySet="Estado_Mesa" />
+            <End Role="Mesa" EntitySet="Mesa" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Pago_codigo_comanda" Association="Self.fk_Pago_codigo_comanda">
+            <End Role="ComandaMesa" EntitySet="ComandaMesa" />
+            <End Role="Detalle_Pago" EntitySet="Detalle_Pago" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Pago_TipoPago1" Association="Self.fk_Pago_TipoPago1">
+            <End Role="TipoPago" EntitySet="TipoPago" />
+            <End Role="Detalle_Pago" EntitySet="Detalle_Pago" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Producto_has_Proveedor_Producto1" Association="Self.fk_Producto_has_Proveedor_Producto1">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Producto_Proveedor" EntitySet="Producto_Proveedor" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Producto_has_Proveedor_Proveedor1" Association="Self.fk_Producto_has_Proveedor_Proveedor1">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="Producto_Proveedor" EntitySet="Producto_Proveedor" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Producto_Usuario1" Association="Self.fk_Producto_Usuario1">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Proveedor_TipoProducto1" Association="Self.fk_Proveedor_TipoProducto1">
+            <End Role="TipoProducto" EntitySet="TipoProducto" />
+            <End Role="Proveedor" EntitySet="Proveedor" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Re_codigo_comanda_ComandaMesa" Association="Self.fk_Re_codigo_comanda_ComandaMesa">
+            <End Role="ComandaMesa" EntitySet="ComandaMesa" />
+            <End Role="ReportesVentas" EntitySet="ReportesVentas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Re_codigo_menu" Association="Self.fk_Re_codigo_menu">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="ReportesVentas" EntitySet="ReportesVentas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Usuario_Estado_Usuario" Association="Self.fk_Usuario_Estado_Usuario">
+            <End Role="Estado_Usuario" EntitySet="Estado_Usuario" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Usuario_TipoUsuario" Association="Self.fk_Usuario_TipoUsuario">
+            <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PizzaE_novModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Asignar_Menu">
+          <Key>
+            <PropertyRef Name="idAsignarMenu" />
+          </Key>
+          <Property Name="idAsignarMenu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigo_tipoUsuario" Type="Int32" Nullable="false" />
+          <Property Name="idMenu" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Menu_Link" Relationship="Self.fk_Asignar_Menu_Menu_Link" FromRole="Asignar_Menu" ToRole="Menu_Link" />
+          <NavigationProperty Name="TipoUsuario" Relationship="Self.fk_Asignar_Menu_TipoUsuario" FromRole="Asignar_Menu" ToRole="TipoUsuario" />
+        </EntityType>
+        <EntityType Name="Caja">
+          <Key>
+            <PropertyRef Name="numero_caja" />
+          </Key>
+          <Property Name="numero_caja" Type="Int32" Nullable="false" />
+          <Property Name="codigo_estado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Estado_caja" Relationship="Self.FK_Caja_Estado_caja" FromRole="Caja" ToRole="Estado_caja" />
+          <NavigationProperty Name="detalleCaja" Relationship="Self.FK_detalleCaja_Caja" FromRole="Caja" ToRole="detalleCaja" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="codigo_categoria" />
+          </Key>
+          <Property Name="codigo_categoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_categoria" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Menu" Relationship="Self.fk_CartaMenu_Categoria1" FromRole="Categoria" ToRole="Menu" />
+        </EntityType>
+        <EntityType Name="ComandaMesa">
+          <Key>
+            <PropertyRef Name="codigo_comanda" />
+          </Key>
+          <Property Name="codigo_comanda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idMesa" Type="Int32" Nullable="false" />
+          <Property Name="idEstadoPago" Type="Int32" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="precio_total" Type="Int32" Nullable="false" />
+          <Property Name="codigo_usuario" Type="Int32" Nullable="false" />
+          <Property Name="id_DetalleCaja" Type="Int32" />
+          <NavigationProperty Name="PedidosActivos" Relationship="Self.fk_codigo_comanda_ComandaMesa" FromRole="ComandaMesa" ToRole="PedidosActivos" />
+          <NavigationProperty Name="detalleCaja" Relationship="Self.FK_ComandaMesa_detalleCaja1" FromRole="ComandaMesa" ToRole="detalleCaja" />
+          <NavigationProperty Name="Estado_Pago" Relationship="Self.FK_ComandaMesa_Estado_Pago" FromRole="ComandaMesa" ToRole="Estado_Pago" />
+          <NavigationProperty Name="Mesa" Relationship="Self.FK_ComandaMesa_Mesa" FromRole="ComandaMesa" ToRole="Mesa" />
+          <NavigationProperty Name="Usuario" Relationship="Self.fk_ComandaMesa_Usuario1" FromRole="ComandaMesa" ToRole="Usuario" />
+          <NavigationProperty Name="Detalle_Pago" Relationship="Self.fk_Pago_codigo_comanda" FromRole="ComandaMesa" ToRole="Detalle_Pago" />
+          <NavigationProperty Name="ReportesVentas" Relationship="Self.fk_Re_codigo_comanda_ComandaMesa" FromRole="ComandaMesa" ToRole="ReportesVentas" />
+        </EntityType>
+        <EntityType Name="Detalle_Mesa_Pedido">
+          <Key>
+            <PropertyRef Name="idMesa" />
+            <PropertyRef Name="codigo_comanda" />
+          </Key>
+          <Property Name="idMesa" Type="Int32" Nullable="false" />
+          <Property Name="codigo_comanda" Type="Int32" Nullable="false" />
+          <Property Name="precio_total" Type="Int32" Nullable="false" />
+          <Property Name="menu1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m1" Type="Int32" />
+          <Property Name="menu2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m2" Type="Int32" />
+          <Property Name="menu3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m3" Type="Int32" />
+          <Property Name="menu4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m4" Type="Int32" />
+          <Property Name="menu5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m5" Type="Int32" />
+          <Property Name="menu6" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m6" Type="Int32" />
+          <Property Name="menu7" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m7" Type="Int32" />
+          <Property Name="menu8" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m8" Type="Int32" />
+          <Property Name="menu9" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m9" Type="Int32" />
+          <Property Name="menu10" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m10" Type="Int32" />
+          <Property Name="menu11" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m11" Type="Int32" />
+          <Property Name="menu12" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m12" Type="Int32" />
+          <Property Name="menu13" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m13" Type="Int32" />
+          <Property Name="menu14" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m14" Type="Int32" />
+          <Property Name="menu15" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m15" Type="Int32" />
+          <Property Name="menu16" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m16" Type="Int32" />
+          <Property Name="menu17" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m17" Type="Int32" />
+          <Property Name="menu18" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m18" Type="Int32" />
+          <Property Name="menu19" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m19" Type="Int32" />
+          <Property Name="menu20" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m20" Type="Int32" />
+          <Property Name="menu21" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m21" Type="Int32" />
+          <Property Name="menu22" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m22" Type="Int32" />
+          <Property Name="menu23" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m23" Type="Int32" />
+          <Property Name="menu24" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m24" Type="Int32" />
+          <Property Name="menu25" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m25" Type="Int32" />
+          <Property Name="menu26" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m26" Type="Int32" />
+          <Property Name="menu27" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m27" Type="Int32" />
+          <Property Name="menu28" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m28" Type="Int32" />
+          <Property Name="menu29" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m29" Type="Int32" />
+          <Property Name="menu30" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_m30" Type="Int32" />
+          <NavigationProperty Name="Mesa" Relationship="Self.fk_idMesa_Mesa" FromRole="Detalle_Mesa_Pedido" ToRole="Mesa" />
+        </EntityType>
+        <EntityType Name="Detalle_Pago">
+          <Key>
+            <PropertyRef Name="codigo_pago" />
+          </Key>
+          <Property Name="codigo_pago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigo_tipoPago" Type="Int32" Nullable="false" />
+          <Property Name="numeroTransaccion" Type="Int32" />
+          <Property Name="propina" Type="Int32" Nullable="false" />
+          <Property Name="descuento" Type="Int32" Nullable="false" />
+          <Property Name="codigo_comanda" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ComandaMesa" Relationship="Self.fk_Pago_codigo_comanda" FromRole="Detalle_Pago" ToRole="ComandaMesa" />
+          <NavigationProperty Name="TipoPago" Relationship="Self.fk_Pago_TipoPago1" FromRole="Detalle_Pago" ToRole="TipoPago" />
+        </EntityType>
+        <EntityType Name="detalleCaja">
+          <Key>
+            <PropertyRef Name="id_DetalleCaja" />
+          </Key>
+          <Property Name="id_DetalleCaja" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="monto_apertura" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="hora" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="numero_caja" Type="Int32" />
+          <Property Name="codigo_usuario" Type="Int32" />
+          <NavigationProperty Name="Caja" Relationship="Self.FK_detalleCaja_Caja" FromRole="detalleCaja" ToRole="Caja" />
+          <NavigationProperty Name="ComandaMesa" Relationship="Self.FK_ComandaMesa_detalleCaja1" FromRole="detalleCaja" ToRole="ComandaMesa" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_detalleCaja_Usuario" FromRole="detalleCaja" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Estado_caja">
+          <Key>
+            <PropertyRef Name="codigo_estado" />
+          </Key>
+          <Property Name="codigo_estado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_estado" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Caja" Relationship="Self.FK_Caja_Estado_caja" FromRole="Estado_caja" ToRole="Caja" />
+        </EntityType>
+        <EntityType Name="Estado_Mesa">
+          <Key>
+            <PropertyRef Name="codigo_estado" />
+          </Key>
+          <Property Name="codigo_estado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_estado" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Mesa" Relationship="Self.fk_Mesa_Estado_Mesa1" FromRole="Estado_Mesa" ToRole="Mesa" />
+        </EntityType>
+        <EntityType Name="Estado_Pago">
+          <Key>
+            <PropertyRef Name="idEstadoPago" />
+          </Key>
+          <Property Name="idEstadoPago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ComandaMesa" Relationship="Self.FK_ComandaMesa_Estado_Pago" FromRole="Estado_Pago" ToRole="ComandaMesa" />
+          <NavigationProperty Name="PedidosActivos" Relationship="Self.fk_idEstadoPago" FromRole="Estado_Pago" ToRole="PedidosActivos" />
+        </EntityType>
+        <EntityType Name="Estado_Usuario">
+          <Key>
+            <PropertyRef Name="codigo_estado" />
+          </Key>
+          <Property Name="codigo_estado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_estado" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="Self.fk_Usuario_Estado_Usuario" FromRole="Estado_Usuario" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="codigo_menu" />
+          </Key>
+          <Property Name="codigo_menu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigo_categoria" Type="Int32" Nullable="false" />
+          <Property Name="nombre_menu" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="precio_menu" Type="Int32" Nullable="false" />
+          <Property Name="ingredientes_menu" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="codigo_tamanoP" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Categoria" Relationship="Self.fk_CartaMenu_Categoria1" FromRole="Menu" ToRole="Categoria" />
+          <NavigationProperty Name="TamanoP" Relationship="Self.fk_CartaMenu_tamanoP" FromRole="Menu" ToRole="TamanoP" />
+          <NavigationProperty Name="PedidosActivos" Relationship="Self.fk_codigo_menu" FromRole="Menu" ToRole="PedidosActivos" />
+          <NavigationProperty Name="ReportesVentas" Relationship="Self.fk_Re_codigo_menu" FromRole="Menu" ToRole="ReportesVentas" />
+        </EntityType>
+        <EntityType Name="Menu_Link">
+          <Key>
+            <PropertyRef Name="idMenu" />
+          </Key>
+          <Property Name="idMenu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="linkMenu" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Asignar_Menu" Relationship="Self.fk_Asignar_Menu_Menu_Link" FromRole="Menu_Link" ToRole="Asignar_Menu" />
+        </EntityType>
+        <EntityType Name="Mesa">
+          <Key>
+            <PropertyRef Name="idMesa" />
+          </Key>
+          <Property Name="idMesa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigo_estado" Type="Int32" Nullable="false" />
+          <Property Name="numeroMesa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ComandaMesa" Relationship="Self.FK_ComandaMesa_Mesa" FromRole="Mesa" ToRole="ComandaMesa" />
+          <NavigationProperty Name="Detalle_Mesa_Pedido" Relationship="Self.fk_idMesa_Mesa" FromRole="Mesa" ToRole="Detalle_Mesa_Pedido" />
+          <NavigationProperty Name="Estado_Mesa" Relationship="Self.fk_Mesa_Estado_Mesa1" FromRole="Mesa" ToRole="Estado_Mesa" />
+          <NavigationProperty Name="PedidosActivos" Relationship="Self.fk_idMesaPedido_Mesa" FromRole="Mesa" ToRole="PedidosActivos" />
+        </EntityType>
+        <EntityType Name="PedidosActivos">
+          <Key>
+            <PropertyRef Name="idPedidosActivos" />
+          </Key>
+          <Property Name="idPedidosActivos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idMesa" Type="Int32" Nullable="false" />
+          <Property Name="codigo_comanda" Type="Int32" Nullable="false" />
+          <Property Name="idEstadoPago" Type="Int32" Nullable="false" />
+          <Property Name="codigo_menu" Type="Int32" Nullable="false" />
+          <Property Name="nombre_menu" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="precio_menu" Type="Int32" Nullable="false" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <Property Name="subtotal" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ComandaMesa" Relationship="Self.fk_codigo_comanda_ComandaMesa" FromRole="PedidosActivos" ToRole="ComandaMesa" />
+          <NavigationProperty Name="Estado_Pago" Relationship="Self.fk_idEstadoPago" FromRole="PedidosActivos" ToRole="Estado_Pago" />
+          <NavigationProperty Name="Menu" Relationship="Self.fk_codigo_menu" FromRole="PedidosActivos" ToRole="Menu" />
+          <NavigationProperty Name="Mesa" Relationship="Self.fk_idMesaPedido_Mesa" FromRole="PedidosActivos" ToRole="Mesa" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="codigo_producto" />
+          </Key>
+          <Property Name="codigo_producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_producto" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="codigo_usuario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Producto_Proveedor" Relationship="Self.fk_Producto_has_Proveedor_Producto1" FromRole="Producto" ToRole="Producto_Proveedor" />
+          <NavigationProperty Name="Usuario" Relationship="Self.fk_Producto_Usuario1" FromRole="Producto" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Producto_Proveedor">
+          <Key>
+            <PropertyRef Name="codigo_producto" />
+            <PropertyRef Name="codigo_proveedor" />
+          </Key>
+          <Property Name="codigo_producto" Type="Int32" Nullable="false" />
+          <Property Name="codigo_proveedor" Type="Int32" Nullable="false" />
+          <Property Name="fecha_ingreso_producto" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="cantidad_producto" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Producto" Relationship="Self.fk_Producto_has_Proveedor_Producto1" FromRole="Producto_Proveedor" ToRole="Producto" />
+          <NavigationProperty Name="Proveedor" Relationship="Self.fk_Producto_has_Proveedor_Proveedor1" FromRole="Producto_Proveedor" ToRole="Proveedor" />
+        </EntityType>
+        <EntityType Name="Proveedor">
+          <Key>
+            <PropertyRef Name="codigo_proveedor" />
+          </Key>
+          <Property Name="codigo_proveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rut_proveedor" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre_proveedor" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido_paterno_proveedor" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido_materno_proveedor" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="codigo_tipoProducto" Type="Int32" Nullable="false" />
+          <Property Name="direccion_proveedor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Producto_Proveedor" Relationship="Self.fk_Producto_has_Proveedor_Proveedor1" FromRole="Proveedor" ToRole="Producto_Proveedor" />
+          <NavigationProperty Name="TipoProducto" Relationship="Self.fk_Proveedor_TipoProducto1" FromRole="Proveedor" ToRole="TipoProducto" />
+        </EntityType>
+        <EntityType Name="ReportesVentas">
+          <Key>
+            <PropertyRef Name="idReportesVentas" />
+          </Key>
+          <Property Name="idReportesVentas" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigo_comanda" Type="Int32" Nullable="false" />
+          <Property Name="codigo_menu" Type="Int32" Nullable="false" />
+          <Property Name="nombre_menu" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="precio_menu" Type="Int32" Nullable="false" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ComandaMesa" Relationship="Self.fk_Re_codigo_comanda_ComandaMesa" FromRole="ReportesVentas" ToRole="ComandaMesa" />
+          <NavigationProperty Name="Menu" Relationship="Self.fk_Re_codigo_menu" FromRole="ReportesVentas" ToRole="Menu" />
+        </EntityType>
+        <EntityType Name="TamanoP">
+          <Key>
+            <PropertyRef Name="codigo_tamanoP" />
+          </Key>
+          <Property Name="codigo_tamanoP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_tamanoP" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Menu" Relationship="Self.fk_CartaMenu_tamanoP" FromRole="TamanoP" ToRole="Menu" />
+        </EntityType>
+        <EntityType Name="TipoPago">
+          <Key>
+            <PropertyRef Name="codigo_tipoPago" />
+          </Key>
+          <Property Name="codigo_tipoPago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Detalle_Pago" Relationship="Self.fk_Pago_TipoPago1" FromRole="TipoPago" ToRole="Detalle_Pago" />
+        </EntityType>
+        <EntityType Name="TipoProducto">
+          <Key>
+            <PropertyRef Name="codigo_tipoProducto" />
+          </Key>
+          <Property Name="codigo_tipoProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_tipoProducto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Proveedor" Relationship="Self.fk_Proveedor_TipoProducto1" FromRole="TipoProducto" ToRole="Proveedor" />
+        </EntityType>
+        <EntityType Name="TipoUsuario">
+          <Key>
+            <PropertyRef Name="codigo_tipoUsuario" />
+          </Key>
+          <Property Name="codigo_tipoUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_tipoUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Asignar_Menu" Relationship="Self.fk_Asignar_Menu_TipoUsuario" FromRole="TipoUsuario" ToRole="Asignar_Menu" />
+          <NavigationProperty Name="Usuario" Relationship="Self.fk_Usuario_TipoUsuario" FromRole="TipoUsuario" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="codigo_usuario" />
+          </Key>
+          <Property Name="codigo_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigo_tipoUsuario" Type="Int32" Nullable="false" />
+          <Property Name="codigo_estado" Type="Int32" Nullable="false" />
+          <Property Name="nombre_usuario" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contraseña_usuario" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="rut_usuario" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email_usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ComandaMesa" Relationship="Self.fk_ComandaMesa_Usuario1" FromRole="Usuario" ToRole="ComandaMesa" />
+          <NavigationProperty Name="detalleCaja" Relationship="Self.FK_detalleCaja_Usuario" FromRole="Usuario" ToRole="detalleCaja" />
+          <NavigationProperty Name="Estado_Usuario" Relationship="Self.fk_Usuario_Estado_Usuario" FromRole="Usuario" ToRole="Estado_Usuario" />
+          <NavigationProperty Name="Producto" Relationship="Self.fk_Producto_Usuario1" FromRole="Usuario" ToRole="Producto" />
+          <NavigationProperty Name="TipoUsuario" Relationship="Self.fk_Usuario_TipoUsuario" FromRole="Usuario" ToRole="TipoUsuario" />
+        </EntityType>
+        <Association Name="fk_Asignar_Menu_Menu_Link">
+          <End Role="Menu_Link" Type="Self.Menu_Link" Multiplicity="1" />
+          <End Role="Asignar_Menu" Type="Self.Asignar_Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu_Link">
+              <PropertyRef Name="idMenu" />
+            </Principal>
+            <Dependent Role="Asignar_Menu">
+              <PropertyRef Name="idMenu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Asignar_Menu_TipoUsuario">
+          <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
+          <End Role="Asignar_Menu" Type="Self.Asignar_Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoUsuario">
+              <PropertyRef Name="codigo_tipoUsuario" />
+            </Principal>
+            <Dependent Role="Asignar_Menu">
+              <PropertyRef Name="codigo_tipoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Caja_Estado_caja">
+          <End Role="Estado_caja" Type="Self.Estado_caja" Multiplicity="1" />
+          <End Role="Caja" Type="Self.Caja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado_caja">
+              <PropertyRef Name="codigo_estado" />
+            </Principal>
+            <Dependent Role="Caja">
+              <PropertyRef Name="codigo_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_detalleCaja_Caja">
+          <End Role="Caja" Type="Self.Caja" Multiplicity="0..1" />
+          <End Role="detalleCaja" Type="Self.detalleCaja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Caja">
+              <PropertyRef Name="numero_caja" />
+            </Principal>
+            <Dependent Role="detalleCaja">
+              <PropertyRef Name="numero_caja" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CartaMenu_Categoria1">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="Menu" Type="Self.Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="codigo_categoria" />
+            </Principal>
+            <Dependent Role="Menu">
+              <PropertyRef Name="codigo_categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_codigo_comanda_ComandaMesa">
+          <End Role="ComandaMesa" Type="Self.ComandaMesa" Multiplicity="1" />
+          <End Role="PedidosActivos" Type="Self.PedidosActivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ComandaMesa">
+              <PropertyRef Name="codigo_comanda" />
+            </Principal>
+            <Dependent Role="PedidosActivos">
+              <PropertyRef Name="codigo_comanda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComandaMesa_detalleCaja1">
+          <End Role="detalleCaja" Type="Self.detalleCaja" Multiplicity="0..1" />
+          <End Role="ComandaMesa" Type="Self.ComandaMesa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="detalleCaja">
+              <PropertyRef Name="id_DetalleCaja" />
+            </Principal>
+            <Dependent Role="ComandaMesa">
+              <PropertyRef Name="id_DetalleCaja" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComandaMesa_Estado_Pago">
+          <End Role="Estado_Pago" Type="Self.Estado_Pago" Multiplicity="0..1" />
+          <End Role="ComandaMesa" Type="Self.ComandaMesa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado_Pago">
+              <PropertyRef Name="idEstadoPago" />
+            </Principal>
+            <Dependent Role="ComandaMesa">
+              <PropertyRef Name="idEstadoPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComandaMesa_Mesa">
+          <End Role="Mesa" Type="Self.Mesa" Multiplicity="1" />
+          <End Role="ComandaMesa" Type="Self.ComandaMesa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mesa">
+              <PropertyRef Name="idMesa" />
+            </Principal>
+            <Dependent Role="ComandaMesa">
+              <PropertyRef Name="idMesa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ComandaMesa_Usuario1">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="ComandaMesa" Type="Self.ComandaMesa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="codigo_usuario" />
+            </Principal>
+            <Dependent Role="ComandaMesa">
+              <PropertyRef Name="codigo_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Pago_codigo_comanda">
+          <End Role="ComandaMesa" Type="Self.ComandaMesa" Multiplicity="1" />
+          <End Role="Detalle_Pago" Type="Self.Detalle_Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ComandaMesa">
+              <PropertyRef Name="codigo_comanda" />
+            </Principal>
+            <Dependent Role="Detalle_Pago">
+              <PropertyRef Name="codigo_comanda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Re_codigo_comanda_ComandaMesa">
+          <End Role="ComandaMesa" Type="Self.ComandaMesa" Multiplicity="1" />
+          <End Role="ReportesVentas" Type="Self.ReportesVentas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ComandaMesa">
+              <PropertyRef Name="codigo_comanda" />
+            </Principal>
+            <Dependent Role="ReportesVentas">
+              <PropertyRef Name="codigo_comanda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_idMesa_Mesa">
+          <End Role="Mesa" Type="Self.Mesa" Multiplicity="1" />
+          <End Role="Detalle_Mesa_Pedido" Type="Self.Detalle_Mesa_Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mesa">
+              <PropertyRef Name="idMesa" />
+            </Principal>
+            <Dependent Role="Detalle_Mesa_Pedido">
+              <PropertyRef Name="idMesa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Pago_TipoPago1">
+          <End Role="TipoPago" Type="Self.TipoPago" Multiplicity="1" />
+          <End Role="Detalle_Pago" Type="Self.Detalle_Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPago">
+              <PropertyRef Name="codigo_tipoPago" />
+            </Principal>
+            <Dependent Role="Detalle_Pago">
+              <PropertyRef Name="codigo_tipoPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_detalleCaja_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="detalleCaja" Type="Self.detalleCaja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="codigo_usuario" />
+            </Principal>
+            <Dependent Role="detalleCaja">
+              <PropertyRef Name="codigo_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Mesa_Estado_Mesa1">
+          <End Role="Estado_Mesa" Type="Self.Estado_Mesa" Multiplicity="1" />
+          <End Role="Mesa" Type="Self.Mesa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado_Mesa">
+              <PropertyRef Name="codigo_estado" />
+            </Principal>
+            <Dependent Role="Mesa">
+              <PropertyRef Name="codigo_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_idEstadoPago">
+          <End Role="Estado_Pago" Type="Self.Estado_Pago" Multiplicity="1" />
+          <End Role="PedidosActivos" Type="Self.PedidosActivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado_Pago">
+              <PropertyRef Name="idEstadoPago" />
+            </Principal>
+            <Dependent Role="PedidosActivos">
+              <PropertyRef Name="idEstadoPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Usuario_Estado_Usuario">
+          <End Role="Estado_Usuario" Type="Self.Estado_Usuario" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado_Usuario">
+              <PropertyRef Name="codigo_estado" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="codigo_estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_CartaMenu_tamanoP">
+          <End Role="TamanoP" Type="Self.TamanoP" Multiplicity="1" />
+          <End Role="Menu" Type="Self.Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TamanoP">
+              <PropertyRef Name="codigo_tamanoP" />
+            </Principal>
+            <Dependent Role="Menu">
+              <PropertyRef Name="codigo_tamanoP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_codigo_menu">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+          <End Role="PedidosActivos" Type="Self.PedidosActivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="codigo_menu" />
+            </Principal>
+            <Dependent Role="PedidosActivos">
+              <PropertyRef Name="codigo_menu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Re_codigo_menu">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+          <End Role="ReportesVentas" Type="Self.ReportesVentas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="codigo_menu" />
+            </Principal>
+            <Dependent Role="ReportesVentas">
+              <PropertyRef Name="codigo_menu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_idMesaPedido_Mesa">
+          <End Role="Mesa" Type="Self.Mesa" Multiplicity="1" />
+          <End Role="PedidosActivos" Type="Self.PedidosActivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mesa">
+              <PropertyRef Name="idMesa" />
+            </Principal>
+            <Dependent Role="PedidosActivos">
+              <PropertyRef Name="idMesa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Producto_has_Proveedor_Producto1">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="Producto_Proveedor" Type="Self.Producto_Proveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="codigo_producto" />
+            </Principal>
+            <Dependent Role="Producto_Proveedor">
+              <PropertyRef Name="codigo_producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Producto_Usuario1">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="codigo_usuario" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="codigo_usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Producto_has_Proveedor_Proveedor1">
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
+          <End Role="Producto_Proveedor" Type="Self.Producto_Proveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="codigo_proveedor" />
+            </Principal>
+            <Dependent Role="Producto_Proveedor">
+              <PropertyRef Name="codigo_proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Proveedor_TipoProducto1">
+          <End Role="TipoProducto" Type="Self.TipoProducto" Multiplicity="1" />
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoProducto">
+              <PropertyRef Name="codigo_tipoProducto" />
+            </Principal>
+            <Dependent Role="Proveedor">
+              <PropertyRef Name="codigo_tipoProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Usuario_TipoUsuario">
+          <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoUsuario">
+              <PropertyRef Name="codigo_tipoUsuario" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="codigo_tipoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Pizza_BD1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Asignar_Menu" EntityType="Self.Asignar_Menu" />
+          <EntitySet Name="Caja" EntityType="Self.Caja" />
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" />
+          <EntitySet Name="ComandaMesa" EntityType="Self.ComandaMesa" />
+          <EntitySet Name="Detalle_Mesa_Pedido" EntityType="Self.Detalle_Mesa_Pedido" />
+          <EntitySet Name="Detalle_Pago" EntityType="Self.Detalle_Pago" />
+          <EntitySet Name="detalleCaja" EntityType="Self.detalleCaja" />
+          <EntitySet Name="Estado_caja" EntityType="Self.Estado_caja" />
+          <EntitySet Name="Estado_Mesa" EntityType="Self.Estado_Mesa" />
+          <EntitySet Name="Estado_Pago" EntityType="Self.Estado_Pago" />
+          <EntitySet Name="Estado_Usuario" EntityType="Self.Estado_Usuario" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" />
+          <EntitySet Name="Menu_Link" EntityType="Self.Menu_Link" />
+          <EntitySet Name="Mesa" EntityType="Self.Mesa" />
+          <EntitySet Name="PedidosActivos" EntityType="Self.PedidosActivos" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" />
+          <EntitySet Name="Producto_Proveedor" EntityType="Self.Producto_Proveedor" />
+          <EntitySet Name="Proveedor" EntityType="Self.Proveedor" />
+          <EntitySet Name="ReportesVentas" EntityType="Self.ReportesVentas" />
+          <EntitySet Name="TamanoP" EntityType="Self.TamanoP" />
+          <EntitySet Name="TipoPago" EntityType="Self.TipoPago" />
+          <EntitySet Name="TipoProducto" EntityType="Self.TipoProducto" />
+          <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="fk_Asignar_Menu_Menu_Link" Association="Self.fk_Asignar_Menu_Menu_Link">
+            <End Role="Menu_Link" EntitySet="Menu_Link" />
+            <End Role="Asignar_Menu" EntitySet="Asignar_Menu" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Asignar_Menu_TipoUsuario" Association="Self.fk_Asignar_Menu_TipoUsuario">
+            <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+            <End Role="Asignar_Menu" EntitySet="Asignar_Menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Caja_Estado_caja" Association="Self.FK_Caja_Estado_caja">
+            <End Role="Estado_caja" EntitySet="Estado_caja" />
+            <End Role="Caja" EntitySet="Caja" />
+          </AssociationSet>
+          <AssociationSet Name="FK_detalleCaja_Caja" Association="Self.FK_detalleCaja_Caja">
+            <End Role="Caja" EntitySet="Caja" />
+            <End Role="detalleCaja" EntitySet="detalleCaja" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CartaMenu_Categoria1" Association="Self.fk_CartaMenu_Categoria1">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Menu" EntitySet="Menu" />
+          </AssociationSet>
+          <AssociationSet Name="fk_codigo_comanda_ComandaMesa" Association="Self.fk_codigo_comanda_ComandaMesa">
+            <End Role="ComandaMesa" EntitySet="ComandaMesa" />
+            <End Role="PedidosActivos" EntitySet="PedidosActivos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComandaMesa_detalleCaja1" Association="Self.FK_ComandaMesa_detalleCaja1">
+            <End Role="detalleCaja" EntitySet="detalleCaja" />
+            <End Role="ComandaMesa" EntitySet="ComandaMesa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComandaMesa_Estado_Pago" Association="Self.FK_ComandaMesa_Estado_Pago">
+            <End Role="Estado_Pago" EntitySet="Estado_Pago" />
+            <End Role="ComandaMesa" EntitySet="ComandaMesa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComandaMesa_Mesa" Association="Self.FK_ComandaMesa_Mesa">
+            <End Role="Mesa" EntitySet="Mesa" />
+            <End Role="ComandaMesa" EntitySet="ComandaMesa" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ComandaMesa_Usuario1" Association="Self.fk_ComandaMesa_Usuario1">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="ComandaMesa" EntitySet="ComandaMesa" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Pago_codigo_comanda" Association="Self.fk_Pago_codigo_comanda">
+            <End Role="ComandaMesa" EntitySet="ComandaMesa" />
+            <End Role="Detalle_Pago" EntitySet="Detalle_Pago" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Re_codigo_comanda_ComandaMesa" Association="Self.fk_Re_codigo_comanda_ComandaMesa">
+            <End Role="ComandaMesa" EntitySet="ComandaMesa" />
+            <End Role="ReportesVentas" EntitySet="ReportesVentas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_idMesa_Mesa" Association="Self.fk_idMesa_Mesa">
+            <End Role="Mesa" EntitySet="Mesa" />
+            <End Role="Detalle_Mesa_Pedido" EntitySet="Detalle_Mesa_Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Pago_TipoPago1" Association="Self.fk_Pago_TipoPago1">
+            <End Role="TipoPago" EntitySet="TipoPago" />
+            <End Role="Detalle_Pago" EntitySet="Detalle_Pago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_detalleCaja_Usuario" Association="Self.FK_detalleCaja_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="detalleCaja" EntitySet="detalleCaja" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Mesa_Estado_Mesa1" Association="Self.fk_Mesa_Estado_Mesa1">
+            <End Role="Estado_Mesa" EntitySet="Estado_Mesa" />
+            <End Role="Mesa" EntitySet="Mesa" />
+          </AssociationSet>
+          <AssociationSet Name="fk_idEstadoPago" Association="Self.fk_idEstadoPago">
+            <End Role="Estado_Pago" EntitySet="Estado_Pago" />
+            <End Role="PedidosActivos" EntitySet="PedidosActivos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Usuario_Estado_Usuario" Association="Self.fk_Usuario_Estado_Usuario">
+            <End Role="Estado_Usuario" EntitySet="Estado_Usuario" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_CartaMenu_tamanoP" Association="Self.fk_CartaMenu_tamanoP">
+            <End Role="TamanoP" EntitySet="TamanoP" />
+            <End Role="Menu" EntitySet="Menu" />
+          </AssociationSet>
+          <AssociationSet Name="fk_codigo_menu" Association="Self.fk_codigo_menu">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="PedidosActivos" EntitySet="PedidosActivos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Re_codigo_menu" Association="Self.fk_Re_codigo_menu">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="ReportesVentas" EntitySet="ReportesVentas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_idMesaPedido_Mesa" Association="Self.fk_idMesaPedido_Mesa">
+            <End Role="Mesa" EntitySet="Mesa" />
+            <End Role="PedidosActivos" EntitySet="PedidosActivos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Producto_has_Proveedor_Producto1" Association="Self.fk_Producto_has_Proveedor_Producto1">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Producto_Proveedor" EntitySet="Producto_Proveedor" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Producto_Usuario1" Association="Self.fk_Producto_Usuario1">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Producto_has_Proveedor_Proveedor1" Association="Self.fk_Producto_has_Proveedor_Proveedor1">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="Producto_Proveedor" EntitySet="Producto_Proveedor" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Proveedor_TipoProducto1" Association="Self.fk_Proveedor_TipoProducto1">
+            <End Role="TipoProducto" EntitySet="TipoProducto" />
+            <End Role="Proveedor" EntitySet="Proveedor" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Usuario_TipoUsuario" Association="Self.fk_Usuario_TipoUsuario">
+            <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PizzaE_novModelStoreContainer" CdmEntityContainer="Pizza_BD1">
+          <EntitySetMapping Name="Asignar_Menu">
+            <EntityTypeMapping TypeName="PizzaE_novModel.Asignar_Menu">
+              <MappingFragment StoreEntitySet="Asignar_Menu">
+                <ScalarProperty Name="idAsignarMenu" ColumnName="idAsignarMenu" />
+                <ScalarProperty Name="codigo_tipoUsuario" ColumnName="codigo_tipoUsuario" />
+                <ScalarProperty Name="idMenu" ColumnName="idMenu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Caja">
+            <EntityTypeMapping TypeName="PizzaE_novModel.Caja">
+              <MappingFragment StoreEntitySet="Caja">
+                <ScalarProperty Name="numero_caja" ColumnName="numero_caja" />
+                <ScalarProperty Name="codigo_estado" ColumnName="codigo_estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categoria">
+            <EntityTypeMapping TypeName="PizzaE_novModel.Categoria">
+              <MappingFragment StoreEntitySet="Categoria">
+                <ScalarProperty Name="codigo_categoria" ColumnName="codigo_categoria" />
+                <ScalarProperty Name="nombre_categoria" ColumnName="nombre_categoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ComandaMesa">
+            <EntityTypeMapping TypeName="PizzaE_novModel.ComandaMesa">
+              <MappingFragment StoreEntitySet="ComandaMesa">
+                <ScalarProperty Name="codigo_comanda" ColumnName="codigo_comanda" />
+                <ScalarProperty Name="idMesa" ColumnName="idMesa" />
+                <ScalarProperty Name="idEstadoPago" ColumnName="idEstadoPago" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="precio_total" ColumnName="precio_total" />
+                <ScalarProperty Name="codigo_usuario" ColumnName="codigo_usuario" />
+                <ScalarProperty Name="id_DetalleCaja" ColumnName="id_DetalleCaja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detalle_Mesa_Pedido">
+            <EntityTypeMapping TypeName="PizzaE_novModel.Detalle_Mesa_Pedido">
+              <MappingFragment StoreEntitySet="Detalle_Mesa_Pedido">
+                <ScalarProperty Name="idMesa" ColumnName="idMesa" />
+                <ScalarProperty Name="codigo_comanda" ColumnName="codigo_comanda" />
+                <ScalarProperty Name="precio_total" ColumnName="precio_total" />
+                <ScalarProperty Name="menu1" ColumnName="menu1" />
+                <ScalarProperty Name="cantidad_m1" ColumnName="cantidad_m1" />
+                <ScalarProperty Name="menu2" ColumnName="menu2" />
+                <ScalarProperty Name="cantidad_m2" ColumnName="cantidad_m2" />
+                <ScalarProperty Name="menu3" ColumnName="menu3" />
+                <ScalarProperty Name="cantidad_m3" ColumnName="cantidad_m3" />
+                <ScalarProperty Name="menu4" ColumnName="menu4" />
+                <ScalarProperty Name="cantidad_m4" ColumnName="cantidad_m4" />
+                <ScalarProperty Name="menu5" ColumnName="menu5" />
+                <ScalarProperty Name="cantidad_m5" ColumnName="cantidad_m5" />
+                <ScalarProperty Name="menu6" ColumnName="menu6" />
+                <ScalarProperty Name="cantidad_m6" ColumnName="cantidad_m6" />
+                <ScalarProperty Name="menu7" ColumnName="menu7" />
+                <ScalarProperty Name="cantidad_m7" ColumnName="cantidad_m7" />
+                <ScalarProperty Name="menu8" ColumnName="menu8" />
+                <ScalarProperty Name="cantidad_m8" ColumnName="cantidad_m8" />
+                <ScalarProperty Name="menu9" ColumnName="menu9" />
+                <ScalarProperty Name="cantidad_m9" ColumnName="cantidad_m9" />
+                <ScalarProperty Name="menu10" ColumnName="menu10" />
+                <ScalarProperty Name="cantidad_m10" ColumnName="cantidad_m10" />
+                <ScalarProperty Name="menu11" ColumnName="menu11" />
+                <ScalarProperty Name="cantidad_m11" ColumnName="cantidad_m11" />
+                <ScalarProperty Name="menu12" ColumnName="menu12" />
+                <ScalarProperty Name="cantidad_m12" ColumnName="cantidad_m12" />
+                <ScalarProperty Name="menu13" ColumnName="menu13" />
+                <ScalarProperty Name="cantidad_m13" ColumnName="cantidad_m13" />
+                <ScalarProperty Name="menu14" ColumnName="menu14" />
+                <ScalarProperty Name="cantidad_m14" ColumnName="cantidad_m14" />
+                <ScalarProperty Name="menu15" ColumnName="menu15" />
+                <ScalarProperty Name="cantidad_m15" ColumnName="cantidad_m15" />
+                <ScalarProperty Name="menu16" ColumnName="menu16" />
+                <ScalarProperty Name="cantidad_m16" ColumnName="cantidad_m16" />
+                <ScalarProperty Name="menu17" ColumnName="menu17" />
+                <ScalarProperty Name="cantidad_m17" ColumnName="cantidad_m17" />
+                <ScalarProperty Name="menu18" ColumnName="menu18" />
+                <ScalarProperty Name="cantidad_m18" ColumnName="cantidad_m18" />
+                <ScalarProperty Name="menu19" ColumnName="menu19" />
+                <ScalarProperty Name="cantidad_m19" ColumnName="cantidad_m19" />
+                <ScalarProperty Name="menu20" ColumnName="menu20" />
+                <ScalarProperty Name="cantidad_m20" ColumnName="cantidad_m20" />
+                <ScalarProperty Name="menu21" ColumnName="menu21" />
+                <ScalarProperty Name="cantidad_m21" ColumnName="cantidad_m21" />
+                <ScalarProperty Name="menu22" ColumnName="menu22" />
+                <ScalarProperty Name="cantidad_m22" ColumnName="cantidad_m22" />
+                <ScalarProperty Name="menu23" ColumnName="menu23" />
+                <ScalarProperty Name="cantidad_m23" ColumnName="cantidad_m23" />
+                <ScalarProperty Name="menu24" ColumnName="menu24" />
+                <ScalarProperty Name="cantidad_m24" ColumnName="cantidad_m24" />
+                <ScalarProperty Name="menu25" ColumnName="menu25" />
+                <ScalarProperty Name="cantidad_m25" ColumnName="cantidad_m25" />
+                <ScalarProperty Name="menu26" ColumnName="menu26" />
+                <ScalarProperty Name="cantidad_m26" ColumnName="cantidad_m26" />
+                <ScalarProperty Name="menu27" ColumnName="menu27" />
+                <ScalarProperty Name="cantidad_m27" ColumnName="cantidad_m27" />
+                <ScalarProperty Name="menu28" ColumnName="menu28" />
+                <ScalarProperty Name="cantidad_m28" ColumnName="cantidad_m28" />
+                <ScalarProperty Name="menu29" ColumnName="menu29" />
+                <ScalarProperty Name="cantidad_m29" ColumnName="cantidad_m29" />
+                <ScalarProperty Name="menu30" ColumnName="menu30" />
+                <ScalarProperty Name="cantidad_m30" ColumnName="cantidad_m30" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detalle_Pago">
+            <EntityTypeMapping TypeName="PizzaE_novModel.Detalle_Pago">
+              <MappingFragment StoreEntitySet="Detalle_Pago">
+                <ScalarProperty Name="codigo_pago" ColumnName="codigo_pago" />
+                <ScalarProperty Name="codigo_tipoPago" ColumnName="codigo_tipoPago" />
+                <ScalarProperty Name="numeroTransaccion" ColumnName="numeroTransaccion" />
+                <ScalarProperty Name="propina" ColumnName="propina" />
+                <ScalarProperty Name="descuento" ColumnName="descuento" />
+                <ScalarProperty Name="codigo_comanda" ColumnName="codigo_comanda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="detalleCaja">
+            <EntityTypeMapping TypeName="PizzaE_novModel.detalleCaja">
+              <MappingFragment StoreEntitySet="detalleCaja">
+                <ScalarProperty Name="id_DetalleCaja" ColumnName="id_DetalleCaja" />
+                <ScalarProperty Name="monto_apertura" ColumnName="monto_apertura" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="hora" ColumnName="hora" />
+                <ScalarProperty Name="numero_caja" ColumnName="numero_caja" />
+                <ScalarProperty Name="codigo_usuario" ColumnName="codigo_usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estado_caja">
+            <EntityTypeMapping TypeName="PizzaE_novModel.Estado_caja">
+              <MappingFragment StoreEntitySet="Estado_caja">
+                <ScalarProperty Name="codigo_estado" ColumnName="codigo_estado" />
+                <ScalarProperty Name="nombre_estado" ColumnName="nombre_estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estado_Mesa">
+            <EntityTypeMapping TypeName="PizzaE_novModel.Estado_Mesa">
+              <MappingFragment StoreEntitySet="Estado_Mesa">
+                <ScalarProperty Name="codigo_estado" ColumnName="codigo_estado" />
+                <ScalarProperty Name="nombre_estado" ColumnName="nombre_estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estado_Pago">
+            <EntityTypeMapping TypeName="PizzaE_novModel.Estado_Pago">
+              <MappingFragment StoreEntitySet="Estado_Pago">
+                <ScalarProperty Name="idEstadoPago" ColumnName="idEstadoPago" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estado_Usuario">
+            <EntityTypeMapping TypeName="PizzaE_novModel.Estado_Usuario">
+              <MappingFragment StoreEntitySet="Estado_Usuario">
+                <ScalarProperty Name="codigo_estado" ColumnName="codigo_estado" />
+                <ScalarProperty Name="nombre_estado" ColumnName="nombre_estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menu">
+            <EntityTypeMapping TypeName="PizzaE_novModel.Menu">
+              <MappingFragment StoreEntitySet="Menu">
+                <ScalarProperty Name="codigo_menu" ColumnName="codigo_menu" />
+                <ScalarProperty Name="codigo_categoria" ColumnName="codigo_categoria" />
+                <ScalarProperty Name="nombre_menu" ColumnName="nombre_menu" />
+                <ScalarProperty Name="precio_menu" ColumnName="precio_menu" />
+                <ScalarProperty Name="ingredientes_menu" ColumnName="ingredientes_menu" />
+                <ScalarProperty Name="codigo_tamanoP" ColumnName="codigo_tamanoP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menu_Link">
+            <EntityTypeMapping TypeName="PizzaE_novModel.Menu_Link">
+              <MappingFragment StoreEntitySet="Menu_Link">
+                <ScalarProperty Name="idMenu" ColumnName="idMenu" />
+                <ScalarProperty Name="linkMenu" ColumnName="linkMenu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mesa">
+            <EntityTypeMapping TypeName="PizzaE_novModel.Mesa">
+              <MappingFragment StoreEntitySet="Mesa">
+                <ScalarProperty Name="idMesa" ColumnName="idMesa" />
+                <ScalarProperty Name="codigo_estado" ColumnName="codigo_estado" />
+                <ScalarProperty Name="numeroMesa" ColumnName="numeroMesa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PedidosActivos">
+            <EntityTypeMapping TypeName="PizzaE_novModel.PedidosActivos">
+              <MappingFragment StoreEntitySet="PedidosActivos">
+                <ScalarProperty Name="idPedidosActivos" ColumnName="idPedidosActivos" />
+                <ScalarProperty Name="idMesa" ColumnName="idMesa" />
+                <ScalarProperty Name="codigo_comanda" ColumnName="codigo_comanda" />
+                <ScalarProperty Name="idEstadoPago" ColumnName="idEstadoPago" />
+                <ScalarProperty Name="codigo_menu" ColumnName="codigo_menu" />
+                <ScalarProperty Name="nombre_menu" ColumnName="nombre_menu" />
+                <ScalarProperty Name="precio_menu" ColumnName="precio_menu" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="subtotal" ColumnName="subtotal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto">
+            <EntityTypeMapping TypeName="PizzaE_novModel.Producto">
+              <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="codigo_producto" ColumnName="codigo_producto" />
+                <ScalarProperty Name="nombre_producto" ColumnName="nombre_producto" />
+                <ScalarProperty Name="codigo_usuario" ColumnName="codigo_usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto_Proveedor">
+            <EntityTypeMapping TypeName="PizzaE_novModel.Producto_Proveedor">
+              <MappingFragment StoreEntitySet="Producto_Proveedor">
+                <ScalarProperty Name="codigo_producto" ColumnName="codigo_producto" />
+                <ScalarProperty Name="codigo_proveedor" ColumnName="codigo_proveedor" />
+                <ScalarProperty Name="fecha_ingreso_producto" ColumnName="fecha_ingreso_producto" />
+                <ScalarProperty Name="cantidad_producto" ColumnName="cantidad_producto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proveedor">
+            <EntityTypeMapping TypeName="PizzaE_novModel.Proveedor">
+              <MappingFragment StoreEntitySet="Proveedor">
+                <ScalarProperty Name="codigo_proveedor" ColumnName="codigo_proveedor" />
+                <ScalarProperty Name="rut_proveedor" ColumnName="rut_proveedor" />
+                <ScalarProperty Name="nombre_proveedor" ColumnName="nombre_proveedor" />
+                <ScalarProperty Name="apellido_paterno_proveedor" ColumnName="apellido_paterno_proveedor" />
+                <ScalarProperty Name="apellido_materno_proveedor" ColumnName="apellido_materno_proveedor" />
+                <ScalarProperty Name="codigo_tipoProducto" ColumnName="codigo_tipoProducto" />
+                <ScalarProperty Name="direccion_proveedor" ColumnName="direccion_proveedor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReportesVentas">
+            <EntityTypeMapping TypeName="PizzaE_novModel.ReportesVentas">
+              <MappingFragment StoreEntitySet="ReportesVentas">
+                <ScalarProperty Name="idReportesVentas" ColumnName="idReportesVentas" />
+                <ScalarProperty Name="codigo_comanda" ColumnName="codigo_comanda" />
+                <ScalarProperty Name="codigo_menu" ColumnName="codigo_menu" />
+                <ScalarProperty Name="nombre_menu" ColumnName="nombre_menu" />
+                <ScalarProperty Name="precio_menu" ColumnName="precio_menu" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TamanoP">
+            <EntityTypeMapping TypeName="PizzaE_novModel.TamanoP">
+              <MappingFragment StoreEntitySet="TamanoP">
+                <ScalarProperty Name="codigo_tamanoP" ColumnName="codigo_tamanoP" />
+                <ScalarProperty Name="nombre_tamanoP" ColumnName="nombre_tamanoP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoPago">
+            <EntityTypeMapping TypeName="PizzaE_novModel.TipoPago">
+              <MappingFragment StoreEntitySet="TipoPago">
+                <ScalarProperty Name="codigo_tipoPago" ColumnName="codigo_tipoPago" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoProducto">
+            <EntityTypeMapping TypeName="PizzaE_novModel.TipoProducto">
+              <MappingFragment StoreEntitySet="TipoProducto">
+                <ScalarProperty Name="codigo_tipoProducto" ColumnName="codigo_tipoProducto" />
+                <ScalarProperty Name="nombre_tipoProducto" ColumnName="nombre_tipoProducto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoUsuario">
+            <EntityTypeMapping TypeName="PizzaE_novModel.TipoUsuario">
+              <MappingFragment StoreEntitySet="TipoUsuario">
+                <ScalarProperty Name="codigo_tipoUsuario" ColumnName="codigo_tipoUsuario" />
+                <ScalarProperty Name="nombre_tipoUsuario" ColumnName="nombre_tipoUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="PizzaE_novModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="codigo_usuario" ColumnName="codigo_usuario" />
+                <ScalarProperty Name="codigo_tipoUsuario" ColumnName="codigo_tipoUsuario" />
+                <ScalarProperty Name="codigo_estado" ColumnName="codigo_estado" />
+                <ScalarProperty Name="nombre_usuario" ColumnName="nombre_usuario" />
+                <ScalarProperty Name="contraseña_usuario" ColumnName="contraseña_usuario" />
+                <ScalarProperty Name="rut_usuario" ColumnName="rut_usuario" />
+                <ScalarProperty Name="email_usuario" ColumnName="email_usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -52,14 +52,12 @@ namespace Pizza_Express_visual.Components
             }
             else
             {
-
                 trut.Text = "";
                 tnombre.Text = "";
                 temail.Text = "";
                 tclave.Text = "";
                 fTipoUsuario.SelectedIndex = 0;
                 fEstado.SelectedIndex = 0;
-
             }
         }
 
@@ -161,12 +159,12 @@ namespace Pizza_Express_visual.Components
             }
             if (tclave.Text.Equals(""))
             {
-                MostrarError(tclave, valida_tcalve, 0);
+                MostrarError(tclave, valida_tclave, 0);
                 correcto = false;
             }
             else
             {
-                MostrarError(tclave, valida_tcalve, 1);
+                MostrarError(tclave, valida_tclave, 1);
             }
             return correcto;
         }
@@ -270,43 +268,44 @@ namespace Pizza_Express_visual.Components
                 }
                 else
                 {
+
+
+                    //LEER LOS DATOS INGRESADOS
+                    string rut_u = trut.Text;
+                    string nombre_u = tnombre.Text;
+                    string email_u = temail.Text;
+                    string clave_u = tclave.Text;
+
+                    int id_tipoU = Convert.ToInt32(fTipoUsuario.SelectedItem.Value);
+                    string codigo_original = cod_orginal.Text;
+
+                    int idE = Convert.ToInt32(fEstado.SelectedItem.Value);
+                    accesoUsuario.editarUsuario(new Models.Usuario
+                    {
+
+                        rut_usuario = rut_u,
+                        nombre_usuario = nombre_u,
+                        email_usuario = email_u,
+                        contraseña_usuario = clave_u,
+                        codigo_tipoUsuario = id_tipoU,
+                        codigo_estado = idE
+
+                    }, codigo_original);
+
+                    //MOSTRAR LOS DATOS EN LA TABLA
+                    idTabla.DataSource = accesoUsuario.filtrarUsuarios();
+                    idTabla.DataBind();
+
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal('hide');", true);
+                    uModalUsuario.Update();
+                    uContenedorUsuario.Update();
+
+                    limpiarTodo(2);
+
+                    alerta.Visible = true;
+                    alerta.CssClass = "alert alert-primary animated zoomInUp";
+                    mensaje3.Text = "USUARIO MODIFICADO CON EXITO.";
                 }
-
-                //LEER LOS DATOS INGRESADOS
-                string rut_u = trut.Text;
-                string nombre_u = tnombre.Text;
-                string email_u = temail.Text;
-                string clave_u = tclave.Text;
-
-                int id_tipoU = Convert.ToInt32(fTipoUsuario.SelectedItem.Value);
-                string codigo_original = cod_orginal.Text;
-                int idE = Convert.ToInt32(fEstado.SelectedItem.Value);
-                accesoUsuario.editarUsuario(new Models.Usuario
-                {
-
-                    rut_usuario = rut_u,
-                    nombre_usuario = nombre_u,
-                    email_usuario = email_u,
-                    contraseña_usuario = clave_u,
-                    codigo_tipoUsuario = id_tipoU,
-                    codigo_estado = idE
-
-                }, codigo_original);
-
-                //MOSTRAR LOS DATOS EN LA TABLA
-                idTabla.DataSource = accesoUsuario.filtrarUsuarios();
-                idTabla.DataBind();
-
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModalUsuario", "$('#myModalUsuario').modal('hide');", true);
-                uModalUsuario.Update();
-                uContenedorUsuario.Update();
-
-                limpiarTodo(2);
-
-                alerta.Visible = true;
-                alerta.CssClass = "alert alert-primary animated zoomInUp";
-                mensaje3.Text = "USUARIO MODIFICADO CON EXITO.";
-
             }
             catch (Exception)
             {

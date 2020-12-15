@@ -14,21 +14,13 @@ namespace Pizza_Express_visual.Models
     
     public partial class Detalle_Pago
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Detalle_Pago()
-        {
-            this.BoletaComanda = new HashSet<BoletaComanda>();
-        }
-    
         public int codigo_pago { get; set; }
         public int codigo_tipoPago { get; set; }
-        public int numeroTransaccion { get; set; }
+        public Nullable<int> numeroTransaccion { get; set; }
         public int propina { get; set; }
         public int descuento { get; set; }
-        public Nullable<int> codigo_comanda { get; set; }
+        public int codigo_comanda { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BoletaComanda> BoletaComanda { get; set; }
         public virtual ComandaMesa ComandaMesa { get; set; }
         public virtual TipoPago TipoPago { get; set; }
     }

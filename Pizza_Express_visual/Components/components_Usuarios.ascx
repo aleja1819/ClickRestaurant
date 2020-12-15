@@ -76,9 +76,8 @@
                                 <asp:BoundField DataField="rut_usuario" HeaderText="Rut" />
                                 <asp:BoundField DataField="nombre_usuario" HeaderText="Nombre Usuario" />
                                 <asp:BoundField DataField="email_usuario" HeaderText="Email" />
-                                <asp:BoundField DataField="contraseña_usuario" HeaderText="Contraseña" Visible="false" />
+                                <asp:BoundField DataField="contraseña_usuario" HeaderStyle-CssClass="ocultarCol" HeaderText="Contraseña" ItemStyle-CssClass="ocultarCol"/>
                                 <asp:BoundField DataField="nombre_tipoUsuario" HeaderText="Tipo Usuario" />
-                                <asp:BoundField DataField="nombre_estado" HeaderText="Estado Usuario" />
 
                                 <asp:ButtonField ButtonType="Link" CommandName="ideditar" ControlStyle-CssClass="btn btn-dark" Text="Editar" />
                                 <asp:ButtonField ButtonType="Link" CommandName="ideliminar" ControlStyle-CssClass="btn btn-danger" Text="Eliminar" />
@@ -146,8 +145,8 @@
                                         <div class="input-group-prepend">
                                             <div class="input-group-text text-info"><i class="fas fa-key"></i></div>
                                         </div>
-                                        <asp:TextBox runat="server" ID="tclave" TextMode="Password" placeholder="Contraseña" CssClass="form-control bg-secondary"></asp:TextBox>
-                                        <asp:Label runat="server" ID="valida_tcalve" CssClass="invalid-feedback" Text="Ingrese Contraseña"></asp:Label>
+                                        <asp:TextBox runat="server" ID="tclave" placeholder="Contraseña" CssClass="form-control bg-secondary"></asp:TextBox>
+                                        <asp:Label runat="server" ID="valida_tclave" CssClass="invalid-feedback" Text="Ingrese Contraseña"></asp:Label>
                                     </div>
                                 </div>
 
@@ -159,7 +158,7 @@
                                     </asp:DropDownList>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group" hidden="hidden">
                                     <label for="fEstado">Estado(*)</label>
                                     <br />
                                     <asp:DropDownList runat="server" ID="fEstado" CssClass="form-control"
