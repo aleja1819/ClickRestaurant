@@ -21,6 +21,8 @@ namespace Pizza_Express_visual.Services
                             on dc.numero_caja equals c.numero_caja
                             join u in contexto.Usuario
                             on dc.codigo_usuario equals  u.codigo_usuario
+                            join e in contexto.Estado_caja
+                            on c.codigo_estado equals e.codigo_estado
                             orderby dc.id_DetalleCaja descending
                             select new
                             {
@@ -29,6 +31,7 @@ namespace Pizza_Express_visual.Services
                                 dc.fecha,
                                 dc.hora,
                                 c.numero_caja,
+                                e.nombre_estado,
                                 u.nombre_usuario
                             };
 
@@ -98,6 +101,7 @@ namespace Pizza_Express_visual.Services
                 {
                     var cajae = contexto.detalleCaja.Find(id);
 
+                    cajae.Caja.codigo_estado = 1;
                     contexto.detalleCaja.Remove(cajae);
                     contexto.SaveChanges();
 
@@ -111,6 +115,55 @@ namespace Pizza_Express_visual.Services
             }
 
         }
+
+        public bool cerrarCaja(int id) {
+
+            try
+            {
+                using (Pizza_BD1 contexto = new Pizza_BD1()) 
+                {
+                    var c = contexto.detalleCaja.Find(id);
+                    c.Caja.codigo_estado = 2;
+
+                    int respuesta = contexto.SaveChanges();
+                    return respuesta == 1;
+                }
+
+            }      
+            catch (Exception)
+            {
+                return false;
+            
+            }
+        
+        
+        }
+
+        public bool abrirCaja(int id)
+        {
+
+            try
+            {
+                using (Pizza_BD1 contexto = new Pizza_BD1())
+                {
+                    var c = contexto.detalleCaja.Find(id);
+                    c.Caja.codigo_estado = 1;
+
+                    int respuesta = contexto.SaveChanges();
+                    return respuesta == 1;
+                }
+
+            }
+            catch (Exception)
+            {
+                return false;
+
+            }
+
+
+        }
+
+
 
         public bool editarCaja(detalleCaja caja, string idOriginal)
         {

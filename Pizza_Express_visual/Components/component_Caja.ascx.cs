@@ -33,12 +33,7 @@ namespace Pizza_Express_visual.Components
 
 
             }
-
-
         }
-
-        
-
 
 
         private void limpiarTodo(int op)
@@ -69,6 +64,10 @@ namespace Pizza_Express_visual.Components
                 CultureInfo myCIintl = new CultureInfo("es-ES", false);
                 int monto = Convert.ToInt32(tmonto.Text);
                 String hora = DateTime.Now.ToString("HH:mm:ss");
+
+
+
+
                 accesoCaja.addMonto(new Models.detalleCaja
                 {
                     monto_apertura = monto,
@@ -78,6 +77,8 @@ namespace Pizza_Express_visual.Components
                     codigo_usuario = Convert.ToInt32(Session["idUser"].ToString())
 
                 });
+
+                
 
                 idTabla.DataSource = accesoCaja.filtrarCajas();
                 idTabla.DataBind();
@@ -140,6 +141,7 @@ namespace Pizza_Express_visual.Components
             if (e.CommandName.Equals("ideditar"))
             {
             }
+
             else if (e.CommandName.Equals("ideliminar"))
             {
 
@@ -156,7 +158,21 @@ namespace Pizza_Express_visual.Components
                 mensaje3.Text = "CAJA ELIMINADA CON EXITO.";
 
             }
+            else if (e.CommandName.Equals("idcerrar"))
+            {
+                string cod = idTabla.Rows[fila].Cells[0].Text;
+                int id = Convert.ToInt32(cod);
 
+                accesoCaja.cerrarCaja(id);
+                idTabla.DataSource = accesoCaja.filtrarCajas();
+                idTabla.DataBind();
+
+
+                alerta.Visible = true;
+                alerta.CssClass = "alert alert-primary animated zoomInUp";
+                mensaje3.Text = "CAJA CERRADA CON EXITO.";
+
+            }
 
 
         }

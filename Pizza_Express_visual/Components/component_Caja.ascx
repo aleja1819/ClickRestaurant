@@ -81,10 +81,10 @@
                                 <asp:BoundField DataField="fecha" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy}"/>
                                 <asp:BoundField DataField="hora" HeaderText="Hora" DataFormatString="{0:T}"/>
                                 <asp:BoundField DataField="numero_caja" HeaderText="N° Caja"/>
+                                <asp:BoundField DataField="nombre_estado" HeaderText="Estado"/>
                                 <asp:BoundField DataField="nombre_usuario" HeaderText="Usuario"/>
-
                                 <asp:ButtonField ButtonType="Link" CommandName="ideliminar" ControlStyle-CssClass="btn btn-danger" Text="Eliminar"/>
-
+                                <asp:ButtonField ButtonType="Link" CommandName="idcerrar" ControlStyle-CssClass="btn btn-danger" Text="Cerrar Caja"/>
                             </Columns>
                         </asp:GridView>                       
                     </div>
